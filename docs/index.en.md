@@ -6,6 +6,7 @@ hide:
   - feedback
 ---
 <!-- markdownlint-disable-next-line -->
+<!--
 <div style="max-width:50rem;margin:auto;" markdown>
 <div style="max-width:38rem;" markdown>
 ## Why should I care?
@@ -41,5 +42,15 @@ It's important for a website like Privacy Guides to always stay up-to-date. We n
 - [:fontawesome-brands-mastodon: Follow us on Mastodon](https://mastodon.social/@privacyguides){ rel=me }
 - [:material-book-edit: Contribute to this website](https://github.com/privacyguides/privacyguides.org)
 - [:pg-matrix: Chat with us on Matrix](https://matrix.to/#/#privacyguides:matrix.org)
+-->
 
-</div>
+
+
+<div class="grid cards" style="margin:auto;max-width:800px;text-align:center;" markdown>
+
+- [:fontawesome-brands-linux: Linux](https://www.divijesh.com/Linux/intro2/)
+- [:fontawesome-brands-codepen: Atheism](https://www.divijesh.com/Atheism/intro/)
+- [:fontawesome-brands-pagelines: Veganism](https://www.divijesh.com/Vegan/intro/)
+- [:fontawesome-brands-cloudversify: Universe](https://www.divijesh.com/Universe/intro/)
+- [:fontawesome-brands-simplybuilt: Movies](https://www.divijesh.com/Movies/list/)
+</div> 

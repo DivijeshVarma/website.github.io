@@ -104,6 +104,25 @@ h1, h2, h3, .md-header__topic {
     font-family: "Bagnard", serif;
 }
 
+/* redhat logo with color red */
+.redhat {
+  color: #F21D36;
+}
+
+/* animation heart */
+@keyframes heart {
+  0%, 40%, 80%, 100% {
+    transform: scale(1);
+  }
+  20%, 60% {
+    transform: scale(1.15);
+  }
+}
+.heart {
+  animation: heart 1000ms infinite;
+  color: #36F21D;
+}
+
 /* Recommendation cards */
 .md-typeset .admonition.recommendation,
 .md-typeset details.recommendation {
