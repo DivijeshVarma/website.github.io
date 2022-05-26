@@ -102,13 +102,20 @@ plugins:
 extra_css:
   - stylesheets/extra.css
 markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+      use_pygments: true
+        #auto_title: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
   - admonition
   - pymdownx.details
-  - pymdownx.superfences:
-      custom_fences:
-        - name: mermaid
-          class: mermaid
-          format: !!python/name:pymdownx.superfences.fence_code_format
+    #- pymdownx.superfences:
+    #    custom_fences:
+    #      - name: mermaid
+    #        class: mermaid
+    #        format: !!python/name:pymdownx.superfences.fence_code_format
   - pymdownx.tabbed:
       alternate_style: true
   - pymdownx.arithmatex:
@@ -190,11 +197,11 @@ nav:
       - 'video-streaming.md'
   - 'About':
     - 'about.md'
-    - 'about/donate.md'
-    - 'Online Services': 'https://privacyguides.net'
-    - 'Website Statistics': 'https://stats.privacyguides.net/privacyguides.org'
-    - 'about/notices.md'
-    - 'about/privacy-policy.md'
+      #- 'about/donate.md'
+      #- 'Online Services': 'https://privacyguides.net'
+      #- 'Website Statistics': 'https://stats.privacyguides.net/privacyguides.org'
+      #- 'about/notices.md'
+      #- 'about/privacy-policy.md'
   - 'Donate': '/about/donate/'
   - 'Discussions': 'https://github.com/orgs/privacyguides/discussions'
   - 'Blog': 'https://blog.privacyguides.org/'
