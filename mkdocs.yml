@@ -102,6 +102,7 @@ plugins:
 extra_css:
   - stylesheets/extra.css
 markdown_extensions:
+  - tables
   - pymdownx.highlight:
       anchor_linenums: true
       use_pygments: true
