@@ -47,10 +47,13 @@ It's important for a website like Privacy Guides to always stay up-to-date. We n
 
 
 <div class="grid cards" style="margin:auto;max-width:800px;text-align:center;" markdown>
-
  [:fontawesome-brands-linux: Linux](https://www.divijesh.com/Linux/intro2/)
+
  [:fontawesome-brands-codepen: Atheism](https://www.divijesh.com/Atheism/intro/)
+
  [:fontawesome-brands-pagelines: Veganism](https://www.divijesh.com/Vegan/intro/)
+
  [:fontawesome-brands-cloudversify: Universe](https://www.divijesh.com/Universe/intro/)
+
  [:fontawesome-brands-simplybuilt: Movies](https://www.divijesh.com/Movies/list/)
 </div> 

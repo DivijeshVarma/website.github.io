@@ -152,6 +152,9 @@ extra_javascript:
 
 nav:
   - Home: 'index.md'
+  - 'Linux':
+    - 'Editors':
+      - 'linux/vi.en.md'
   - 'Knowledge Base':
     - 'The Basics':
       - 'basics/threat-modeling.md'
@@ -203,6 +206,6 @@ nav:
       #- 'Website Statistics': 'https://stats.privacyguides.net/privacyguides.org'
       #- 'about/notices.md'
       #- 'about/privacy-policy.md'
-  - 'Donate': '/about/donate/'
-  - 'Discussions': 'https://github.com/orgs/privacyguides/discussions'
-  - 'Blog': 'https://blog.privacyguides.org/'
+      #- 'Donate': '/about/donate/'
+      #- 'Discussions': 'https://github.com/orgs/privacyguides/discussions'
+      #- 'Blog': 'https://blog.privacyguides.org/'
