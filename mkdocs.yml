@@ -155,6 +155,7 @@ nav:
   - 'Linux':
     - 'Editors':
       - 'linux/vi.en.md'
+      - 'linux/nano.en.md'
   - 'Knowledge Base':
     - 'The Basics':
       - 'basics/threat-modeling.md'

@@ -90,6 +90,8 @@ Operating on Line:
 ### Replace Command
 
 1. Type  rx  to replace the character at the cursor with  x .
+2. Another way to replace Type a capital  R  to replace more than one character.
+3. Replace mode is like Insert mode, but every typed character deletes an existing character.
 
 ### Change Operator
 
@@ -138,3 +140,80 @@ Operating on Line:
 
 1. To save the changes made to the text, type  :w FILENAME
 2. Now remove the file by typing (Windows) ==:!del TEST==	or (Unix):	:!rm TEST
+
+### Selecting Text to Write
+
+1. To save part of the file, type  v  motion  :w FILENAME
+2. Press  v  and move the cursor to the fifth item below.  Notice that the text is highlighted.
+3. Press the  :  character.  At the bottom of the screen  :'<,'> will appear.
+4. Type  w TEST  , where TEST is a filename that does not exist yet.  Verify that you see  :'<,'>w TEST  before you press ++enter++
+
+### Retrieving and Merging Files
+
+1. To insert the contents of a file, type  :r FILENAME
+2. You can also read the output of an external command.  For example, :r !ls  reads the output of the ls command and puts it below the cursor.
+3. :r FILENAME  retrieves disk file FILENAME and puts it below the cursor position.
+4. :r !dir  reads the output of the dir command and puts it below the cursor position.
+
+### Open Command
+
+1. Type  o  to open a line below the cursor and place you in Insert mode.
+2. To open up a line ABOVE the cursor, simply type a capital	O
+
+### Append Command
+
+1. Type  a  to insert text AFTER the cursor.
+2. Use  e  to move to the next incomplete word.
+3. a, i and A all go to the same Insert mode, the only difference is where the characters are inserted.
+
+### Copy and Paste
+
+1. Use the  y  operator to copy text and  p  to paste it.
+2. You can also use  y  as an operator:  yw  yanks one word, yy  yanks the whole line, then  p  puts that line.
+
+### Set Option
+
+1. Set an option so a search or substitute ignores case.
+2. Typing ":set xxx" sets the option "xxx".  Some options are:
+3. 'ic' 'ignorecase'	ignore upper/lower case when searching
+4. 'is' 'incsearch'	show partial matches for a search phrase
+5. 'hls' 'hlsearch'	highlight all matching phrases, You can either use the long or the short option name.
+6. Prepend "no" to switch an option off.   ==:set noic==
+
+### Getting Help
+
+1. :help w
+2. :help c_CTRL-D
+3. :help insert-index
+4. :help user-manual
+5. Type  CTRL-W CTRL-W   to jump from one window to another.
+6. Type    :q ++enter++    to close the help window.
+
+### Completion
+
+1. Command line completion with CTRL-D and ++tab++
+2. Type the start of a command  :e   
+3. CTRL-D  and Vim will show a list of commands that start with "e".
+
+### Notes
+
+* :e! -- Discard unsavedchanges in file.
+* :sh -- Switch to shell temporary, copy something. ==ctrl+d==  return to vi file.
+* X -- Remove left side chars.
+* D -- Remove everything from cursor right side.
+* dG -- Remove everything below
+* d1G -- Remove everything above
+* :set nu -- Set numbers
+* :set nonu  -- Remove numbers
+* :11,15d -- Remove everything between 11 to 15
+* G -- last line
+* 1G -- first line
+* 60G -- to go to line
+* L -- last line of display
+* H -- top line of display
+* M -- middle line
+* cc -- Remove line and insert
+* C -- Remove everything from cursor right side and insert.
+* J -- Join 2 lines
+* :1,5 co 9 -- after 9 th line 1 to 5 lines copied
+* :4 m 2 -- after 2nd line 4 line will be moved.
