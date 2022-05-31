@@ -8,6 +8,40 @@ At the bottom of the window, there is a list of the most basic command shortcuts
 
 All commands are prefixed with either ^ or M character. The caret symbol (^) represents the Ctrl key. For example, the ^J commands mean to press the Ctrl and J keys at the same time. The letter M represents the Alt key.
 
+* To start nano in very specific line number:
+nano +16 textfile
+
+* To start nano in view only mode:
+nano -v textfile
+
+
+
+### Cheat Sheet
+
+* `Ctrl+g`  Help
+* `Ctrl+o`  Save file
+* `Ctrl+x`  Exit
+* `Ctrl+w`  Search text
+* `Ctrl+k`  Cut text
+* `Ctrl+u`  Paste text
+* `Ctrl+_`  Goto specific line Number
+* `Ctrl+r`  insert existing file
+* `Alt+a`  `Alt+^`  Select text or Mark set and copy text
+* `Ctrl+u`  To paste data which you copied
+* `Alt+\`   Move to Top of File
+* `Alt+/`   Move to bottom of File
+* `Ctrl+Shift+v`  To paste text from Outside
+* `Shift+→` To select text
+* `Alt+u`   Undo changes
+* `Alt+e`   Redo changes
+* `Ctrl+a`  Move to the beginning of a line
+* `Ctrl+e`  move to the end of a line
+* `Ctrl+y`  Start of file
+* `Ctrl+v`  End of file
+* `Ctr+\`   Search and replace
+* `Alt+del` Delete current line 
+
+
 ### List Commands
 
 * You can get a list of all commands by typing Ctrl+g.
