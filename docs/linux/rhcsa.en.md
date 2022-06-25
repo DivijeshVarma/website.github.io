@@ -17,6 +17,56 @@ It has 3 return status as follows:
 if error output 1
 if no error output 0
 
+
+locate:
+
+The locate command finds files in Linux using the file name. locate is used for obtaining instantaneous results, and it is an essential utility when speed is a priority.
+
+install mlocate package.
+
+`locate mysql | less`
+
+Print the number of matched files
+
+`locate -c mysql`
+
+Limit the number of search results
+
+`locate  git -n 10`
+
+To ignore case sensitivity using the -i option
+
+`locate -i git`
+
+Search for a File with an Exact Name
+
+`locate -r mysql$`
+
+---
+
+Find:
+
+The find command is used to search and locate the list of files and directories based on conditions you specify for files that match the arguments.
+
+[Link](https://www.tecmint.com/35-practical-examples-of-linux-find-command/)
+
+---
+
+Tar:
+
+The Linux “tar” stands for tape archive, which is used by a large number of Linux/Unix system administrators to deal with tape drives backup.
+
+[Link](https://www.tecmint.com/18-tar-command-examples-in-linux/)
+
+---
+
+xz:
+
+xz is a new general-purpose, command line data compression utility, similar to gzip and bzip2. It can be used to compress or decompress a file according to the selected operation mode.
+It supports various formats to compress or decompress files.
+
+[link](https://www.tecmint.com/xz-command-examples-in-linux/)
+
 ---
 
 Password authentication for aws instance not keybased:
@@ -148,7 +198,7 @@ env
 
 ---
 
-grep:
+#### Grep
 
 The grep filter searches a file for a particular pattern of characters, and displays all lines that contain that pattern.
 The pattern that is searched in the file is referred to as the regular expression (grep stands for global search for regular expression and print out).
@@ -240,6 +290,37 @@ sudo grep -R anon /etc/ 2> /dev/null
 ```mysql
 sudo grep -Rl anon /etc/ 2> /dev/null
 ```
+
+#### Egrep
+
+The egrep command searches for a text pattern, using extended regular expressions to perform the match.
+Running egrep is equivalent to running grep with the -E option.
+
+* Display all lines start with 'D'
+
+`grep '^D' text`
+
+* Display all lines end with 'D'
+
+`grep 'D$' text`
+
+* Search for vowels in file
+
+`grep '[aeiou]' text`
+
+* Search for other than vowels in file
+
+`grep '[^aeiou]' text`
+
+* Search for multiple patterns
+
+`grep -e 'hyd' -e 'ban' text`
+
+or
+
+`egrep '(hyd|ban)' text`
+
+---
 
 ### Exiting Vim                                                            
                                                                             
@@ -454,3 +535,8 @@ Operating on Line:
 * J -- Join 2 lines
 * :1,5 co 9 -- after 9 th line 1 to 5 lines copied
 * :4 m 2 -- after 2nd line 4 line will be moved.
+* shift + o -- new line on top of cursor.
+* :set ic -- ignore case sensitive
+* :set noic -- case sensitive
+
+
