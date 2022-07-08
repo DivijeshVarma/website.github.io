@@ -44,6 +44,42 @@ Search for a File with an Exact Name
 
 ---
 
+**Tee**
+
+It is like T junction or pipe
+
+tee is used to save to a file compulsory
+
+Save output to out.txt and send to input of wc simultaneously
+
+ls -l | tee out.txt | wc
+
+To display output to terminal 
+
+ls -l | tee out.txt
+
+Pass output to wc command
+
+ls -l | tee out.txt | wc > wc.txt
+
+ls -l | tee out.txt | wc | tee wc.txt
+
+---
+
+**Xargs**
+
+To Convert output stream into command line arguments
+
+Read filenames from test.txt and remove every file
+
+cat test.txt | xargs rm
+
+Read filenames from test.txt and display file contents to terminal
+
+cat test.txt | xargs cat
+
+---
+
 Find:
 
 The find command is used to search and locate the list of files and directories based on conditions you specify for files that match the arguments.
@@ -68,6 +104,188 @@ It supports various formats to compress or decompress files.
 [link](https://www.tecmint.com/xz-command-examples-in-linux/)
 
 ---
+
+Links:
+
+Links are a very handy way to create a shortcut to an original directory.
+In Linux there are two different types of links:
+
+1. Hard links
+
+2. Symbolic links
+
+[link](https://www.geeksforgeeks.org/soft-hard-links-unixlinux/)
+
+---
+
+**Inode:**
+
+Linux must allocate an index node (inode) for every file and directory in the filesystem. Inodes do not store actual data. Instead, they store the metadata where you can find the storage blocks of each file’s data.
+
+[link](https://docs.rackspace.com/support/how-to/what-are-inodes-in-linux/)
+
+---
+
+**Cut:**
+
+The cut command in UNIX is a command for cutting out the sections from each line of files and writing the result to standard output. It can be used to cut parts of a line by byte position, character and field.
+
+Display specific character: 
+
+`cut -c 8 test.txt`
+
+Display range of characters:
+
+`cut -c 4-8 test.txt`
+
+Display 5 character to last character:
+
+`cut -c 5- test.txt`
+
+Display 1 to specified character:
+
+`cut -c -3 test.txt`
+
+Display 3 to 5 and 7 to 10 characters:
+
+`cut -c 3-5,7-10 test.txt`
+
+Display specific column data:
+
+ -d -- delimiter ignore pipe symbol, by default TAB.
+ 
+ -f -- field
+ 
+we get 3 column data.
+
+`cut -d "|" -f 3 test.txt`
+
+Display range of columns like 2 to 4:
+
+`cut -d "|" -f 2-4 test.txt`
+
+Display 2 to last column:
+
+`cut -d "|" -f 2- text.txt`
+
+Display 1 to specified column:
+
+`cut -d "|" -f -3 text.txt`
+
+Display 1,3,5 columns:
+
+`cut -d "|" -f 1,3,5 text.txt`
+
+Display all columns except 3 and 5:
+
+ use --complement option
+
+`cut -d "|" --complement -f 3,5 text.txt`
+
+ 3 to 5 columns:
+
+`cut -d "|" --complement -f 3-5 text.txt`
+
+---
+
+**tr:**
+
+ Stands for translate or delete.
+ 
+Search and replace a to A character:
+
+`echo "this is a line" | tr 'a' 'A'`
+
+`echo "this is a line" | tr 'aeiou' 'AEIOU'`
+
+Delete specified characters:
+
+`echo "this is a line" | tr -d 'aeiou'`
+
+Remove repeated characters in word:
+
+`echo "thiiis iis aaa linee" | tr -s 'aeiou'`
+
+
+---
+
+**Regular Expressions**
+
+By using wild card characters, we can build regular expressions.
+
+ "*" --> represents zero or more characters, i.e any number of characters.
+ 
+ "?" --> represents only one character
+ 
+ "[]" --> range of characters
+ 
+ "[abc]" --> a or b or c (we have to take only one character a or b or c)
+ 
+ "[!abc]" --> except a,b,c. any character
+ 
+ "[a-z]" --> any lower case alphabet symbol
+ 
+ "[A-Z]" --> any upper case alphabet symbol
+ 
+ "[a-zA-z]" --> any alphabet symbol either lower or upper
+ 
+ "[0-9]" --> any digit 0 to 9
+ 
+ "[a-zA-z0-9]" --> any alphanumeric character
+ 
+ "[!a-zA-z0-9]" --> Except any alphanumeric character (special symbol)
+ 
+ "[[:lower:]]" --> Any lower case alphabet symbol
+ 
+ "[[:upper:]]" --> Any upper case alphabet symbol
+ 
+ "[[:alpha:]]" --> Any alphabet symbol
+ 
+ "[[:digit:]]" --> Any digit from 0 to 9
+ 
+ "[[:alnum:]]" --> This is the same as ‘[0-9A-Za-z]’
+ 
+ "[![:digit:]]" --> Any character except digit
+ 
+ "{ }" --> List of files with comma seperator.
+ 
+ "{a..z}" --> a to z files
+ 
+ `touch {a..d}.java` --> create a,b,c,d files
+ 
+* To list out all files where file name starts with a or b or c
+
+`ls [a-c]*` --> a.txt, b.txt, c.java
+
+* List first one uppercase alpha, second digit, third lowercase alpha
+
+`ls [[:upper:]][[:digit:]][[:lower:]]` --> A7b W4u Z6k
+
+* List all files starts with special symbol
+
+`ls [![:alnum:]]*` --> %abc.txt
+
+* List all files .java or .py extension
+
+`ls {*.java,*.py}` --> b.java, c.java, j.py, k.py
+
+* Remove all files start with a or b or c and ends with e or t
+
+`rm [abc]*[et]` --> a.txt and b.txt will be removed
+
+* List files begin with upper and has letter d in 3rd char, ends with lowercase
+
+`[[:upper:]]?d*[[:lower]]`
+
+
+
+
+
+
+
+
+
+
 
 Password authentication for aws instance not keybased:
 
