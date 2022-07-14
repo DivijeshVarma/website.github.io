@@ -4,8 +4,7 @@ title: "Vim"
 
 Vim is a very powerful editor that has many commands, too many to explain in a tutor such as this.  This tutor is designed to describe enough of the commands that you will be able to easily use Vim as an all-purpose editor.
 
-### Exiting Vim                                                            
-                                                                            
+### Exiting Vim                                                                             
 1. Press the ++esc++ key (to make sure you are in Normal mode).
                                                                             
 2. Type	:q! ++enter++
@@ -217,3 +216,6 @@ Operating on Line:
 * J -- Join 2 lines
 * :1,5 co 9 -- after 9 th line 1 to 5 lines copied
 * :4 m 2 -- after 2nd line 4 line will be moved.
+* shift + o -- new line on top of cursor.
+* :set ic -- ignore case sensitive
+* :set noic -- case sensitive

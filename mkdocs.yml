@@ -158,6 +158,7 @@ nav:
       - 'linux/nano.en.md'
     - 'Notes':
       - 'linux/rhcsa.en.md'
+      - 'linux/user.en.md'
   - 'Knowledge Base':
     - 'The Basics':
       - 'basics/threat-modeling.md'
