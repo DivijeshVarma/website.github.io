@@ -159,6 +159,9 @@ nav:
     - 'Notes':
       - 'linux/rhcsa.en.md'
       - 'linux/user.en.md'
+      - 'linux/acl.en.md'
+      - 'linux/network.en.md'
+      - 'linux/ssh.en.md'
   - 'Knowledge Base':
     - 'The Basics':
       - 'basics/threat-modeling.md'

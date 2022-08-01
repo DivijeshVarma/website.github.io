@@ -194,6 +194,14 @@ Operating on Line:
 2. Type the start of a command  :e   
 3. CTRL-D  and Vim will show a list of commands that start with "e".
 
+### Comment multiple lines
+
+1. Press the Ctrl + V keys to enable visual mode.
+2. Select all the lines you wish to comment out.
+3. With the target lines selected, press Shift + I to enter insert mode.
+4. We need to insert the pound (#) symbol.
+5. Finally, press the ESC key, and Vim will comment out all the selected lines.
+
 ### Notes
 
 * :e! -- Discard unsavedchanges in file.

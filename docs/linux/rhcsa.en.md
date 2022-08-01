@@ -2,7 +2,7 @@
 title: "Tritree"
 ---
 
-### RHCSA Notes
+## RHCSA Notes
 
 ### **Which**
 
@@ -16,7 +16,6 @@ It has 3 return status as follows:
 <mark>echo $?</mark> exit code to show errors for last command
 if error output 1
 if no error output 0
-
 
 ### **Locate**
 
