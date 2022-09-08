@@ -162,6 +162,8 @@ nav:
       - 'linux/acl.en.md'
       - 'linux/network.en.md'
       - 'linux/ssh.en.md'
+      - 'linux/process.en.md'
+      - 'linux/software.en.md'
   - 'Knowledge Base':
     - 'The Basics':
       - 'basics/threat-modeling.md'
