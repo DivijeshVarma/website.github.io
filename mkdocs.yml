@@ -164,6 +164,8 @@ nav:
       - 'linux/ssh.en.md'
       - 'linux/process.en.md'
       - 'linux/software.en.md'
+      - 'linux/systemd.en.md'
+      - 'linux/cron.en.md'
   - 'Knowledge Base':
     - 'The Basics':
       - 'basics/threat-modeling.md'
