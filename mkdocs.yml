@@ -166,6 +166,12 @@ nav:
       - 'linux/software.en.md'
       - 'linux/systemd.en.md'
       - 'linux/cron.en.md'
+      - 'linux/logs.en.md'
+      - 'linux/disk.en.md'
+  - 'English':
+    - 'Tutorial':
+      - 'english/vol1.en.md'
+      - 'english/vol2.en.md'
   - 'Knowledge Base':
     - 'The Basics':
       - 'basics/threat-modeling.md'
