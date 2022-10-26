@@ -172,6 +172,8 @@ nav:
     - 'Tutorial':
       - 'english/vol1.en.md'
       - 'english/vol2.en.md'
+      - 'english/vol3.en.md'
+      - 'english/vol4.en.md'
   - 'Knowledge Base':
     - 'The Basics':
       - 'basics/threat-modeling.md'
