@@ -39,7 +39,7 @@ jobs:
       - run: pip install \
                mkdocs \
                mkdocs-material \
-               mkdocs-static-i18n \
+               mkdocs-static-i18n --use-pep517 \
                mkdocs-git-revision-date-localized-plugin \
                typing-extensions
      
