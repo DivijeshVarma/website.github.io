@@ -1,0 +1,2469 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://www.privacyguides.org/vpn/">
+      
+      <link rel="icon" href="../assets/img/layout/favicon.ico">
+      <meta name="generator" content="mkdocs-1.4.1, mkdocs-material-8.5.7">
+    
+    
+      
+        <title>VPN Services - Divijesh Varma</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.20d9efc8.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.cbb835fc.min.css">
+        
+      
+      
+
+    
+    
+    
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent="teal">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#recommended-providers" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Divijesh Varma" class="md-header__button md-logo" aria-label="Divijesh Varma" data-md-component="logo">
+      
+  <img src="../assets/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Divijesh Varma
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              VPN Services
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent="teal"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 1 7 7c0 2.38-1.19 4.47-3 5.74V17a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 0 1 7-7M9 21v-1h6v1a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1m3-17a5 5 0 0 0-5 5c0 2.05 1.23 3.81 3 4.58V16h4v-2.42c1.77-.77 3-2.53 3-4.58a5 5 0 0 0-5-5Z"/></svg>
+            </label>
+          
+        
+          
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="deep-purple" data-md-color-accent="deep-orange"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 2.38 1.19 4.47 3 5.74V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.26c1.81-1.27 3-3.36 3-5.74a7 7 0 0 0-7-7M9 21a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-1H9v1Z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href=".." class="md-tabs__link">
+      Home
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../linux/vi/" class="md-tabs__link">
+        Linux
+      </a>
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../english/vol1/" class="md-tabs__link">
+        English
+      </a>
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../basics/threat-modeling/" class="md-tabs__link">
+        Knowledge Base
+      </a>
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../tools/" class="md-tabs__link md-tabs__link--active">
+        Recommendations
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../about/" class="md-tabs__link">
+        About
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Divijesh Varma" class="md-nav__button md-logo" aria-label="Divijesh Varma" data-md-component="logo">
+      
+  <img src="../assets/logo.png" alt="logo">
+
+    </a>
+    Divijesh Varma
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          Linux
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Linux" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Linux
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_2_1" type="checkbox" id="__nav_2_1" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_1">
+          Editors
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Editors" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_1">
+          <span class="md-nav__icon md-icon"></span>
+          Editors
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../linux/vi/" class="md-nav__link">
+        Vim
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../linux/nano/" class="md-nav__link">
+        Nano
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_2_2" type="checkbox" id="__nav_2_2" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_2">
+          Notes
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Notes" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_2">
+          <span class="md-nav__icon md-icon"></span>
+          Notes
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../linux/rhcsa/" class="md-nav__link">
+        Tritree
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../linux/user/" class="md-nav__link">
+        User Management
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../linux/acl/" class="md-nav__link">
+        Access control lists (ACLs)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../linux/network/" class="md-nav__link">
+        Networking
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../linux/ssh/" class="md-nav__link">
+        OpenSSH
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../linux/process/" class="md-nav__link">
+        Process Management
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../linux/software/" class="md-nav__link">
+        Software Management
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../linux/systemd/" class="md-nav__link">
+        Systemd Management
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../linux/cron/" class="md-nav__link">
+        Cron Jobs
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../linux/logs/" class="md-nav__link">
+        Logs
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../linux/disk/" class="md-nav__link">
+        Disk Management
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3">
+          English
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="English" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          English
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_3_1" type="checkbox" id="__nav_3_1" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_1">
+          Tutorial
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Tutorial" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_1">
+          <span class="md-nav__icon md-icon"></span>
+          Tutorial
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../english/vol1/" class="md-nav__link">
+        Vol-1
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../english/vol2/" class="md-nav__link">
+        Vol-2
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../english/vol3/" class="md-nav__link">
+        Vol-3
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../english/vol4/" class="md-nav__link">
+        Vol-4
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4">
+          Knowledge Base
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Knowledge Base" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          Knowledge Base
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_4_1" type="checkbox" id="__nav_4_1" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_1">
+          The Basics
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="The Basics" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_1">
+          <span class="md-nav__icon md-icon"></span>
+          The Basics
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../basics/threat-modeling/" class="md-nav__link">
+        Threat Modeling
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../basics/dns/" class="md-nav__link">
+        Introduction to DNS
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../basics/multi-factor-authentication/" class="md-nav__link">
+        Multi-factor Authentication
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../basics/account-deletion/" class="md-nav__link">
+        Account Deletion
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_4_2" type="checkbox" id="__nav_4_2" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_2">
+          Android
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Android" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_2">
+          <span class="md-nav__icon md-icon"></span>
+          Android
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../android/overview/" class="md-nav__link">
+        Android Overview
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../android/grapheneos-vs-calyxos/" class="md-nav__link">
+        GrapheneOS vs CalyxOS
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_4_3" type="checkbox" id="__nav_4_3" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_3">
+          Linux
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Linux" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_3">
+          <span class="md-nav__icon md-icon"></span>
+          Linux
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../linux-desktop/overview/" class="md-nav__link">
+        Linux Overview
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../linux-desktop/hardening/" class="md-nav__link">
+        System Hardening
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../linux-desktop/sandboxing/" class="md-nav__link">
+        Application Sandboxing
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_4_4" type="checkbox" id="__nav_4_4" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_4">
+          Advanced
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Advanced" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_4">
+          <span class="md-nav__icon md-icon"></span>
+          Advanced
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../setup/integrating-metadata-removal/" class="md-nav__link">
+        Integrating Metadata Removal
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5">
+          Recommendations
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Recommendations" data-md-level="1">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          Recommendations
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tools/" class="md-nav__link">
+        Privacy Tools
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_5_2" type="checkbox" id="__nav_5_2" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5_2">
+          Browsers
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Browsers" data-md-level="2">
+        <label class="md-nav__title" for="__nav_5_2">
+          <span class="md-nav__icon md-icon"></span>
+          Browsers
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../browsers/" class="md-nav__link">
+        Web Browsers
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_5_3" type="checkbox" id="__nav_5_3" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5_3">
+          Operating Systems
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Operating Systems" data-md-level="2">
+        <label class="md-nav__title" for="__nav_5_3">
+          <span class="md-nav__icon md-icon"></span>
+          Operating Systems
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../android/" class="md-nav__link">
+        Android
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../linux-desktop/" class="md-nav__link">
+        Linux
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../qubes/" class="md-nav__link">
+        Qubes OS
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../router/" class="md-nav__link">
+        Router Firmware
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_4" type="checkbox" id="__nav_5_4" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5_4">
+          Providers
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Providers" data-md-level="2">
+        <label class="md-nav__title" for="__nav_5_4">
+          <span class="md-nav__icon md-icon"></span>
+          Providers
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cloud/" class="md-nav__link">
+        Cloud Storage
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dns/" class="md-nav__link">
+        DNS Resolvers
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../email/" class="md-nav__link">
+        Email Services
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../search-engines/" class="md-nav__link">
+        Search Engines
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          VPN Services
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        VPN Services
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#recommended-providers" class="md-nav__link">
+    Recommended Providers
+  </a>
+  
+    <nav class="md-nav" aria-label="Recommended Providers">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mullvad" class="md-nav__link">
+    Mullvad
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#protonvpn" class="md-nav__link">
+    ProtonVPN
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ivpn" class="md-nav__link">
+    IVPN
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#our-criteria" class="md-nav__link">
+    Our Criteria
+  </a>
+  
+    <nav class="md-nav" aria-label="Our Criteria">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#jurisdiction" class="md-nav__link">
+    Jurisdiction
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#technology" class="md-nav__link">
+    Technology
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#privacy" class="md-nav__link">
+    Privacy
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#security" class="md-nav__link">
+    Security
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#trust" class="md-nav__link">
+    Trust
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#marketing" class="md-nav__link">
+    Marketing
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#additional-functionality" class="md-nav__link">
+    Additional Functionality
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vpn-overview" class="md-nav__link">
+    VPN Overview
+  </a>
+  
+    <nav class="md-nav" aria-label="VPN Overview">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#should-i-use-a-vpn" class="md-nav__link">
+    Should I use a VPN?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-about-encryption" class="md-nav__link">
+    What about encryption?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#should-i-use-encrypted-dns-with-a-vpn" class="md-nav__link">
+    Should I use encrypted DNS with a VPN?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#should-i-use-tor-and-a-vpn" class="md-nav__link">
+    Should I use Tor and a VPN?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-if-i-need-anonymity" class="md-nav__link">
+    What if I need anonymity?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-about-vpn-providers-that-provides-tor-nodes" class="md-nav__link">
+    What about VPN providers that provides Tor nodes?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#when-are-vpns-useful" class="md-nav__link">
+    When are VPNs useful?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sources-and-further-reading" class="md-nav__link">
+    Sources and Further Reading
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#related-vpn-information" class="md-nav__link">
+    Related VPN information
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vpn-related-breaches-why-external-auditing-is-important" class="md-nav__link">
+    VPN Related breaches - why external auditing is important
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_5_5" type="checkbox" id="__nav_5_5" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5_5">
+          Software
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Software" data-md-level="2">
+        <label class="md-nav__title" for="__nav_5_5">
+          <span class="md-nav__icon md-icon"></span>
+          Software
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../calendar-contacts/" class="md-nav__link">
+        Calendar and Contact Sync
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../notebooks/" class="md-nav__link">
+        Notebooks
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../email-clients/" class="md-nav__link">
+        Email Clients
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../encryption/" class="md-nav__link">
+        Encryption Software
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../file-sharing/" class="md-nav__link">
+        File Sharing and Sync
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../metadata-removal-tools/" class="md-nav__link">
+        Metadata Removal Tools
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../multi-factor-authentication/" class="md-nav__link">
+        Multi-Factor Authenticators
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../passwords/" class="md-nav__link">
+        Password Managers
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../productivity/" class="md-nav__link">
+        Productivity Tools
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../real-time-communication/" class="md-nav__link">
+        Real-Time Communication
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../news-aggregators/" class="md-nav__link">
+        News Aggregators
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../self-contained-networks/" class="md-nav__link">
+        Self-Contained Networks
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../video-streaming/" class="md-nav__link">
+        Video Streaming
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_6" type="checkbox" id="__nav_6" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6">
+          About
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="About" data-md-level="1">
+        <label class="md-nav__title" for="__nav_6">
+          <span class="md-nav__icon md-icon"></span>
+          About
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../about/" class="md-nav__link">
+        Heading
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#recommended-providers" class="md-nav__link">
+    Recommended Providers
+  </a>
+  
+    <nav class="md-nav" aria-label="Recommended Providers">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mullvad" class="md-nav__link">
+    Mullvad
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#protonvpn" class="md-nav__link">
+    ProtonVPN
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ivpn" class="md-nav__link">
+    IVPN
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#our-criteria" class="md-nav__link">
+    Our Criteria
+  </a>
+  
+    <nav class="md-nav" aria-label="Our Criteria">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#jurisdiction" class="md-nav__link">
+    Jurisdiction
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#technology" class="md-nav__link">
+    Technology
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#privacy" class="md-nav__link">
+    Privacy
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#security" class="md-nav__link">
+    Security
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#trust" class="md-nav__link">
+    Trust
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#marketing" class="md-nav__link">
+    Marketing
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#additional-functionality" class="md-nav__link">
+    Additional Functionality
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vpn-overview" class="md-nav__link">
+    VPN Overview
+  </a>
+  
+    <nav class="md-nav" aria-label="VPN Overview">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#should-i-use-a-vpn" class="md-nav__link">
+    Should I use a VPN?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-about-encryption" class="md-nav__link">
+    What about encryption?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#should-i-use-encrypted-dns-with-a-vpn" class="md-nav__link">
+    Should I use encrypted DNS with a VPN?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#should-i-use-tor-and-a-vpn" class="md-nav__link">
+    Should I use Tor and a VPN?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-if-i-need-anonymity" class="md-nav__link">
+    What if I need anonymity?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-about-vpn-providers-that-provides-tor-nodes" class="md-nav__link">
+    What about VPN providers that provides Tor nodes?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#when-are-vpns-useful" class="md-nav__link">
+    When are VPNs useful?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sources-and-further-reading" class="md-nav__link">
+    Sources and Further Reading
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#related-vpn-information" class="md-nav__link">
+    Related VPN information
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vpn-related-breaches-why-external-auditing-is-important" class="md-nav__link">
+    VPN Related breaches - why external auditing is important
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+  
+
+
+
+
+  <h1>VPN Services</h1>
+
+<p>Find a no-logging <abbr title="Virtual Private Network">VPN</abbr> operator who isn’t out to sell or read your web traffic.</p>
+<details class="danger">
+<summary>VPNs do not provide anonymity</summary>
+<p>Using a <abbr title="Virtual Private Network">VPN</abbr> will <strong>not</strong> keep your browsing habits anonymous, nor will it add additional security to non-secure (<abbr title="Hypertext Transfer Protocol">HTTP</abbr>) traffic.</p>
+<p>If you are looking for <strong>anonymity</strong>, you should use the Tor Browser <strong>instead</strong> of a <abbr title="Virtual Private Network">VPN</abbr>.</p>
+<p>If you're looking for added <strong>security</strong>, you should always ensure you're connecting to websites using <abbr title="Hypertext Transfer Protocol Secure">HTTPS</abbr>. A <abbr title="Virtual Private Network">VPN</abbr> is not a replacement for good security practices.</p>
+<p><a class="md-button md-button--primary" href="https://www.torproject.org/">Download Tor</a> <a class="md-button" href="https://medium.com/privacyguides/slicing-onions-part-1-myth-busting-tor-9ec188ae1904">Tor Myths &amp; FAQ</a></p>
+</details>
+<details class="question">
+<summary>When are VPNs useful?</summary>
+<p>If you're looking for additional <strong>privacy</strong> from your <abbr title="Internet Service Provider">ISP</abbr>, on a public Wi-Fi network, or while torrenting files, a <abbr title="Virtual Private Network">VPN</abbr> may be the solution for you as long as you understand the risks involved.</p>
+<p><a class="md-button" href="#vpn-overview">More Info</a></p>
+</details>
+<h2 id="recommended-providers">Recommended Providers<a class="headerlink" href="#recommended-providers" title="Permanent link">&para;</a></h2>
+<div class="admonition summary">
+<p class="admonition-title">Criteria</p>
+<p>Our recommended providers are outside the US, use encryption, accept Monero, support WireGuard &amp; OpenVPN, and have a no logging policy. Read our <a href="#our-criteria">full list of criteria</a> for more information.</p>
+</div>
+<h3 id="mullvad">Mullvad<a class="headerlink" href="#mullvad" title="Permanent link">&para;</a></h3>
+<div class="admonition recommendation">
+<p class="admonition-title">Recommendation</p>
+<p><img align="right" alt="Mullvad logo" src="../assets/img/vpn/mullvad.svg#only-light" />
+<img align="right" alt="Mullvad logo" src="../assets/img/vpn/mullvad-dark.svg#only-dark" /></p>
+<p><strong>Mullvad</strong> is a fast and inexpensive <abbr title="Virtual Private Network">VPN</abbr> with a serious focus on transparency and security. They have been in operation since <strong>2009</strong>. Mullvad is based in Sweden and does not have a free trial.</p>
+<p><strong>EUR €60/year</strong></p>
+<p><a class="md-button md-button--primary" href="https://mullvad.net">Website</a> <a class="md-button" href="http://o54hon2e2vj6c7m3aqqu6uyece65by3vgoxxhlqlsvkmacw6a7m7kiad.onion"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" version="1.1" viewBox="0 0 32 32"><title>tor</title><path d="M17.514 2.391l-0.844 3.376c1.196-2.391 3.13-4.185 5.345-5.767-1.618 1.864-3.094 3.727-3.974 5.626 1.512-2.145 3.552-3.305 5.837-4.114-3.059 2.708-5.486 5.662-7.314 8.58l-1.477-0.633c0.246-2.356 1.125-4.747 2.426-7.068zM16.388 9.952l1.020 0.527c-0.105 0.668 0.035 2.145 0.703 2.497 2.954 1.829 5.697 3.798 6.787 5.802 3.868 6.998-2.708 13.503-8.439 12.87 3.094-2.286 4.009-6.998 2.848-12.167-0.457-2.004-1.196-3.833-2.497-5.908-0.563-0.949-0.352-2.215-0.422-3.622zM15.263 13.292c-0.211 1.090-0.457 3.059-1.407 3.798-0.387 0.281-0.809 0.563-1.231 0.844-1.723 1.16-3.411 2.25-4.185 5.029-0.176 0.598-0.035 1.231 0.105 1.829 0.422 1.723 1.618 3.552 2.567 4.642 0 0.035 0.176 0.176 0.176 0.211 0.774 0.914 1.020 1.196 3.974 1.864l-0.070 0.317c-1.793-0.457-3.235-0.914-4.185-1.969 0-0.035-0.176-0.176-0.176-0.176-0.985-1.125-2.215-3.024-2.637-4.817-0.176-0.703-0.317-1.266-0.106-2.004 0.809-2.883 2.567-4.044 4.325-5.24 0.387-0.246 0.879-0.492 1.266-0.809 0.809-0.527 1.196-2.18 1.582-3.516zM16.037 17.864c0.141 1.125 0.141 2.11 0.457 2.637 0.246 0.457 0.668 1.090 0.914 1.723 0.492 1.16 0.738 2.426 0.774 3.024 0.035 1.020-0.105 2.602-0.457 3.868-0.422 1.371-1.231 2.426-1.864 2.532v0.105c-0.844-0.141-2.18-0.668-2.883-1.16-1.688-1.16-2.532-2.602-2.672-4.747-0.106-1.688 0.914-3.411 2.919-4.466 1.371-0.738 1.793-1.829 2.215-3.165-0.316 1.547-0.668 2.462-2.075 3.305-1.688 0.949-2.883 2.883-2.778 4.185 0.141 1.582 1.231 3.411 2.497 4.501 0.633 0.563 1.723 0.914 2.672 1.090 0.914-0.563 1.442-1.582 1.688-2.743 0.316-1.407 0.352-2.743 0.352-3.446 0-0.633-0.281-1.653-0.527-2.567-0.176-0.703-0.844-1.407-1.020-1.934-0.316-0.879-0.176-1.512-0.211-2.743v0zM15.826 22.681c0.176 0.774 0.563 1.864 0.774 2.919 0.176 0.844 0.211 1.653 0.141 2.286-0.070 0.738-0.106 1.336-0.211 1.969-0.105 0.527-0.387 1.020-0.844 1.547v0.035c-0.246-0.035-0.738-0.387-1.125-0.949-0.246-0.352-0.422-0.844-0.598-1.301-0.176-0.422-0.352-0.914-0.352-1.336 0-1.020 0.105-2.286 0.844-3.13 0.668-0.774 0.879-0.879 1.16-1.793-0.211 1.020-0.352 1.090-0.985 2.004-0.809 1.125-0.844 2.251-0.738 2.954 0.070 0.457 0.246 0.879 0.387 1.231 0.176 0.457 0.387 0.879 0.668 1.266 0.246 0.281 0.387 0.457 0.738 0.633 0.387-0.738 0.633-2.215 0.668-3.024 0.035-0.703 0.070-1.512-0.035-2.321-0.141-1.090-0.457-2.145-0.492-2.989zM15.966 12.308c0.035 1.442 0.316 3.622 0.563 4.114 0.105 0.316 1.055 1.829 1.723 3.411 0.457 1.020 0.598 2.004 0.633 2.286 0.352 2.954 0.070 4.185-0.703 6.822-0.457 1.582-1.723 2.813-2.251 2.848l0.176-0.316c0.914-0.563 1.723-2.004 1.969-3.165 0.457-2.145 0.809-4.431 0.527-5.767-0.070-0.317-0.176-1.371-0.598-2.497-0.598-1.653-1.477-2.989-1.582-3.305-0.352-0.914-0.422-3.2-0.457-4.431v0zM16.388 10.057l0.352 0.176c-0.176 0.387-0.070 2.356 0.211 3.094 0.352 0.985 1.371 2.11 2.004 3.692 0.457 1.055 0.914 3.587 0.949 3.868 0.352 2.954 0.176 5.732-0.703 8.088-0.563 1.477-1.969 2.778-2.497 2.813l-0.985-0.246c1.371-0.527 2.708-2.215 2.989-3.376 0.738-3.27 1.020-7.49-0.035-10.725-0.563-1.688-1.899-3.165-2.145-4.185-0.211-0.949-0.211-1.934-0.141-3.2zM23.421 16.281c1.934 1.758 3.024 4.22 3.024 6.787s-1.16 5.064-3.165 6.716c-1.864 1.547-4.466 2.215-6.963 2.215-1.547 0-2.954-0.070-4.466-0.563-3.481-1.16-6.048-4.114-6.259-7.666-0.211-2.743 0.422-4.853 2.567-7.068 1.090-1.16 3.341-2.497 4.888-3.552 0.774-0.492 1.582-1.969 0.035-4.747l0.316-0.246 4.607 1.899c-0.633 2.040 1.196 3.481 1.793 3.798 1.336 0.738 2.602 1.512 3.622 2.426zM22.753 29.257c1.829-1.512 2.813-3.833 2.813-6.189s-0.914-4.607-2.708-6.189c-1.020-0.914-2.673-2.040-3.727-2.637s-2.356-2.251-1.934-3.833l-3.446-1.512c0.176 0.246 0.598 1.301 0.703 1.618 0.211 0.879 0.105 1.723-0.070 2.11-0.949 1.758-2.637 2.251-3.833 3.235-2.145 1.758-4.466 3.13-4.22 7.947 0.141 2.356 1.969 5.275 4.747 6.611 1.582 0.774 3.376 1.055 5.204 1.16 1.653 0.070 4.747-0.914 6.47-2.321z"/></svg></span></a></p>
+</div>
+<details class="check annotate">
+<summary>38 Countries</summary>
+<p>Mullvad has <a href="https://mullvad.net/servers/">servers in 38 countries</a> (1). Picking a <abbr title="Virtual Private Network">VPN</abbr> provider with a server nearest to you will reduce latency of the network traffic you send. This is because of a shorter route (less hops) to the destination.</p>
+<p>We also think it's better for the security of the <abbr title="Virtual Private Network">VPN</abbr> provider's private keys if they use <a href="https://en.wikipedia.org/wiki/Dedicated_hosting_service">dedicated servers</a>, instead of cheaper shared solutions (with other customers) such as <a href="https://en.wikipedia.org/wiki/Virtual_private_server">virtual private servers</a>.</p>
+</details>
+<ol>
+<li>As of 2022/05/17</li>
+</ol>
+<details class="check">
+<summary>Independently Audited</summary>
+<p>Mullvad's <abbr title="Virtual Private Network">VPN</abbr> clients have been audited by Cure53 and Assured AB in a pentest report <a href="https://cure53.de/pentest-report_mullvad_v2.pdf">published at cure53.de</a>. The security researchers concluded:</p>
+<blockquote>
+<p>Cure53 and Assured AB are happy with the results of the audit and the software leaves an overall positive impression. With security dedication of the in-house team at the Mullvad <abbr title="Virtual Private Network">VPN</abbr> compound, the testers have no doubts about the project being on the right track from a security standpoint.</p>
+</blockquote>
+<p>In 2020 a second audit <a href="https://mullvad.net/blog/2020/6/25/results-available-audit-mullvad-app/">was announced</a> and the <a href="https://cure53.de/pentest-report_mullvad_2020_v2.pdf">final audit report</a> was made available on Cure53's website:</p>
+<blockquote>
+<p>The results of this May-June 2020 project targeting the Mullvad complex are quite positive. [...] The overall application ecosystem used by Mullvad leaves a sound and structured impression. The overall structure of the application makes it easy to roll out patches and fixes in a structured manner. More than anything, the findings spotted by Cure53 showcase the importance of constantly auditing and re-assessing the current leak vectors, in order to always ensure privacy of the end-users. With that being said, Mullvad does a great job protecting the end-user from common <abbr title="Personally Identifiable Information">PII</abbr> leaks and privacy related risks.</p>
+</blockquote>
+<p>In 2021 an infrastructure audit <a href="https://mullvad.net/en/blog/2021/1/20/no-pii-or-privacy-leaks-found-cure53s-infrastructure-audit/">was announced</a> and the <a href="https://cure53.de/pentest-report_mullvad_2021_v1.pdf">final audit report</a> was made available on Cure53's website.</p>
+</details>
+<details class="check">
+<summary>Open Source Clients</summary>
+<p>Mullvad provides the source code for their desktop and mobile clients in their <a href="https://github.com/mullvad/mullvadvpn-app">GitHub organization</a>.</p>
+</details>
+<details class="check">
+<summary>Accepts Cash and Monero</summary>
+<p>Mullvad, in addition to accepting credit/debit cards and PayPal, accepts Bitcoin, Bitcoin Cash, <strong>Monero</strong> and <strong>cash/local currency</strong> as anonymous forms of payment. They also accept Swish and bank wire transfers.</p>
+</details>
+<details class="check">
+<summary>WireGuard Support</summary>
+<p>Mullvad supports the WireGuard® protocol. <a href="https://www.wireguard.com">WireGuard</a> is a newer protocol that utilizes state-of-the-art <a href="https://www.wireguard.com/protocol/">cryptography</a>. Additionally, WireGuard aims to be simpler and more performant.</p>
+<p>Mullvad <a href="https://mullvad.net/en/help/why-wireguard/">recommends</a> the use of WireGuard with their service. It is the default or only protocol on Mullvad's Android, iOS, macOS, and Linux apps, but on Windows you have to <a href="https://mullvad.net/en/help/how-turn-wireguard-mullvad-app/">manually enable</a> WireGuard. Mullvad also offers a WireGuard configuration generator for use with the official WireGuard <a href="https://www.wireguard.com/install/">apps</a>.</p>
+</details>
+<details class="check">
+<summary><abbr title="Internet Protocol version 6">IPv6</abbr> Support</summary>
+<p>Mullvad supports the future of networking <a href="https://en.wikipedia.org/wiki/IPv6"><abbr title="Internet Protocol version 6">IPv6</abbr></a>. Their network allows you to <a href="https://mullvad.net/en/blog/2014/9/15/ipv6-support/">access services hosted on <abbr title="Internet Protocol version 6">IPv6</abbr></a> as opposed to other providers who block <abbr title="Internet Protocol version 6">IPv6</abbr> connections.</p>
+</details>
+<details class="check">
+<summary>Remote Port Forwarding</summary>
+<p>Remote <a href="https://en.wikipedia.org/wiki/Port_forwarding">port forwarding</a> is allowed for people who make one-time payments, but not allowed for accounts with a recurring/subscription-based payment method. This is to prevent Mullvad from being able to identify you based on your port usage and stored subscription information. See <a href="https://mullvad.net/help/port-forwarding-and-mullvad/">Port forwarding with Mullvad <abbr title="Virtual Private Network">VPN</abbr></a> for more information.</p>
+</details>
+<details class="check">
+<summary>Mobile Clients</summary>
+<p>Mullvad has published <a href="https://apps.apple.com/app/mullvad-vpn/id1488466513">App Store</a> and <a href="https://play.google.com/store/apps/details?id=net.mullvad.mullvadvpn">Google Play</a> clients, both supporting an easy-to use interface as opposed to requiring you to manually configure your WireGuard connection. The mobile client on Android is also available in <a href="https://f-droid.org/packages/net.mullvad.mullvadvpn">F-Droid</a>, which ensures that it is compiled with <a href="https://www.f-droid.org/en/2019/05/05/trust-privacy-and-free-software.html">reproducible builds</a>.</p>
+</details>
+<details class="info">
+<summary>Additional Functionality</summary>
+<p>Mullvad is very transparent about which nodes they <a href="https://mullvad.net/en/servers/">own or rent</a>. They use <a href="https://shadowsocks.org/en/index.html">ShadowSocks</a> in their ShadowSocks + OpenVPN configuration, making them more resistant against firewalls with <a href="https://en.wikipedia.org/wiki/Deep_packet_inspection">Deep Packet Inspection</a> trying to block VPNs. Supposedly, <a href="https://github.com/net4people/bbs/issues/22">China has to use a different method to block ShadowSocks servers</a>. Mullvad's website is also accessible via Tor at <a href="http://o54hon2e2vj6c7m3aqqu6uyece65by3vgoxxhlqlsvkmacw6a7m7kiad.onion">o54hon2e2vj6c7m3aqqu6uyece65by3vgoxxhlqlsvkmacw6a7m7kiad.onion</a>.</p>
+</details>
+<h3 id="protonvpn">ProtonVPN<a class="headerlink" href="#protonvpn" title="Permanent link">&para;</a></h3>
+<div class="admonition recommendation">
+<p class="admonition-title">Recommendation</p>
+<p><img align="right" alt="ProtonVPN logo" src="../assets/img/vpn/protonvpn.svg" /></p>
+<p><strong>ProtonVPN</strong> is a strong contender in the <abbr title="Virtual Private Network">VPN</abbr> space, and they have been in operation since 2016. ProtonVPN is based in Switzerland and offers a limited free pricing tier, as well as premium options. They offer a further 14% discount for buying a 2 year subscription.</p>
+<p><strong>Free</strong> - <strong>Basic Plan USD $48/year</strong> - <strong>Plus Plan USD $96/year</strong></p>
+<p><a class="md-button md-button--primary" href="https://protonvpn.com/">Website</a></p>
+</div>
+<details class="check annotate">
+<summary>63 Countries</summary>
+<p>ProtonVPN has <a href="https://protonvpn.com/vpn-servers">servers in 63 countries</a> (1). Picking a <abbr title="Virtual Private Network">VPN</abbr> provider with a server nearest to you will reduce latency of the network traffic you send. This is because of a shorter route (less hops) to the destination.</p>
+<p>We also think it's better for the security of the <abbr title="Virtual Private Network">VPN</abbr> provider's private keys if they use <a href="https://en.wikipedia.org/wiki/Dedicated_hosting_service">dedicated servers</a>, instead of cheaper shared solutions (with other customers) such as <a href="https://en.wikipedia.org/wiki/Virtual_private_server">virtual private servers</a>.</p>
+</details>
+<ol>
+<li>As of 2022/05/17</li>
+</ol>
+<details class="check">
+<summary>Independently Audited</summary>
+<p>As of January 2020 ProtonVPN has undergone an independent audit by SEC Consult. SEC Consult found some medium and low risk vulnerabilities in ProtonVPN's Windows, Android, and iOS applications, all of which were "properly fixed" by ProtonVPN before the reports were published. None of the issues identified would have provided an attacker remote access to your device or traffic. You can view individual reports for each platform at <a href="https://protonvpn.com/blog/open-source/">protonvpn.com</a>.</p>
+</details>
+<details class="check">
+<summary>Open Source Clients</summary>
+<p>ProtonVPN provides the source code for their desktop and mobile clients in their <a href="https://github.com/ProtonVPN">GitHub organization</a>.</p>
+</details>
+<details class="check">
+<summary>Accepts Cash</summary>
+<p>ProtonVPN, in addition to accepting credit/debit cards and PayPal, accepts Bitcoin, and <strong>cash/local currency</strong> as anonymous forms of payment.</p>
+</details>
+<details class="check">
+<summary>WireGuard Support</summary>
+<p>ProtonVPN mostly supports the WireGuard® protocol. <a href="https://www.wireguard.com">WireGuard</a> is a newer protocol that utilizes state-of-the-art <a href="https://www.wireguard.com/protocol/">cryptography</a>. Additionally, WireGuard aims to be simpler and more performant.</p>
+<p>ProtonVPN <a href="https://protonvpn.com/blog/wireguard/">recommends</a> the use of WireGuard with their service. On ProtonVPN's Windows, macOS, iOS, Android, ChromeOS, and Android TV apps, WireGuard is the default protocol; however, <a href="https://protonvpn.com/support/how-to-change-vpn-protocols/">support</a> for the protocol is not present in their Linux app.</p>
+</details>
+<details class="warning">
+<summary>Remote Port Forwarding</summary>
+<p>ProtonVPN currently only supports remote <a href="https://protonvpn.com/support/port-forwarding/">port forwarding</a> on Windows, which may impact some applications. Especially Peer-to-Peer applications like Torrent clients.</p>
+</details>
+<details class="check">
+<summary>Mobile Clients</summary>
+<p>In addition to providing standard OpenVPN configuration files, ProtonVPN has mobile clients for <a href="https://apps.apple.com/us/app/protonvpn-fast-secure-vpn/id1437005085">App Store</a> and <a href="https://play.google.com/store/apps/details?id=ch.protonvpn.android&amp;hl=en_US">Google Play</a> allowing for easy connections to their servers. The mobile client on Android is also available in <a href="https://f-droid.org/en/packages/ch.protonvpn.android">F-Droid</a>, which ensures that it is compiled with <a href="https://www.f-droid.org/en/2019/05/05/trust-privacy-and-free-software.html">reproducible builds</a>.</p>
+</details>
+<details class="info">
+<summary>Additional Functionality</summary>
+<p>ProtonVPN have their own servers and datacenters in Switzerland, Iceland and Sweden. They offer adblocking and known malware domains blocking with their <abbr title="Domain Name System">DNS</abbr> service. Additionally, ProtonVPN also offers "Tor" servers allowing you to easily connect to onion sites, but we still strongly recommend using <a href="https://www.torproject.org/">the official Tor Browser</a> for this purpose.</p>
+</details>
+<h3 id="ivpn">IVPN<a class="headerlink" href="#ivpn" title="Permanent link">&para;</a></h3>
+<div class="admonition recommendation">
+<p class="admonition-title">Recommendation</p>
+<p><img align="right" alt="IVPN logo" src="../assets/img/vpn/ivpn.svg" /></p>
+<p><strong>IVPN</strong> is another premium <abbr title="Virtual Private Network">VPN</abbr> provider, and they have been in operation since 2009. IVPN is based in Gibraltar.</p>
+<p><strong>Standard USD $60/year</strong> - <strong>Pro USD $100/year</strong></p>
+<p><a class="md-button md-button--primary" href="https://www.ivpn.net/">Website</a></p>
+</div>
+<details class="check annotate">
+<summary>32 Countries</summary>
+<p>IVPN has <a href="https://www.ivpn.net/server-locations">servers in 32 countries</a> (1). Picking a <abbr title="Virtual Private Network">VPN</abbr> provider with a server nearest to you will reduce latency of the network traffic you send. This is because of a shorter route (less hops) to the destination.</p>
+<p>We also think it's better for the security of the <abbr title="Virtual Private Network">VPN</abbr> provider's private keys if they use <a href="https://en.wikipedia.org/wiki/Dedicated_hosting_service">dedicated servers</a>, instead of cheaper shared solutions (with other customers) such as <a href="https://en.wikipedia.org/wiki/Virtual_private_server">virtual private servers</a>.</p>
+</details>
+<ol>
+<li>As of 2022/05/17</li>
+</ol>
+<details class="check">
+<summary>Independently Audited</summary>
+<p>IVPN has undergone a <a href="https://cure53.de/audit-report_ivpn.pdf">no-logging audit from Cure53</a> which concluded in agreement with IVPN's no-logging claim. IVPN has also completed a <a href="https://cure53.de/summary-report_ivpn_2019.pdf">comprehensive pentest report Cure53</a> in January 2020. IVPN has also said they plan to have <a href="https://www.ivpn.net/blog/independent-security-audit-concluded">annual reports</a> in the future.</p>
+</details>
+<details class="check">
+<summary>Open Source Clients</summary>
+<p>As of Feburary 2020 <a href="https://www.ivpn.net/blog/ivpn-applications-are-now-open-source">IVPN applications are now open source</a>. Source code can be obtained from their <a href="https://github.com/ivpn">GitHub organization</a>.</p>
+</details>
+<details class="check">
+<summary>Accepts Cash and Monero</summary>
+<p>In addition to accepting credit/debit cards and PayPal, IVPN accepts Bitcoin, <strong>Monero</strong> and <strong>cash/local currency</strong> (on annual plans) as anonymous forms of payment.</p>
+</details>
+<details class="check">
+<summary>WireGuard Support</summary>
+<p>IVPN supports the WireGuard® protocol. <a href="https://www.wireguard.com">WireGuard</a> is a newer protocol that utilizes state-of-the-art <a href="https://www.wireguard.com/protocol/">cryptography</a>. Additionally, WireGuard aims to be simpler and more performant.</p>
+<p>IVPN <a href="https://www.ivpn.net/wireguard/">recommends</a> the use of WireGuard with their service and, as such, the protocol is the default on all of IVPN's apps. IVPN also offers a WireGuard configuration generator for use with the official WireGuard <a href="https://www.wireguard.com/install/">apps</a>.</p>
+</details>
+<details class="check">
+<summary>Remote Port Forwarding</summary>
+<p>Remote <a href="https://en.wikipedia.org/wiki/Port_forwarding">port forwarding</a> is possible with a Pro plan. Port forwarding <a href="https://www.ivpn.net/knowledgebase/81/How-do-I-activate-port-forwarding.html">can be activated</a> via the client area. Port forwarding is only available on IVPN when using WireGuard or OpenVPN protocols and is <a href="https://www.ivpn.net/knowledgebase/116/Port-forwarding-is-not-working-why.html">disabled on US servers</a>.</p>
+</details>
+<details class="check">
+<summary>Mobile Clients</summary>
+<p>In addition to providing standard OpenVPN configuration files, IVPN has mobile clients for <a href="https://apps.apple.com/us/app/ivpn-serious-privacy-protection/id1193122683">App Store</a> and <a href="https://play.google.com/store/apps/details?id=net.ivpn.client">Google Play</a> allowing for easy connections to their servers. The mobile client on Android is also available in <a href="https://f-droid.org/en/packages/net.ivpn.client">F-Droid</a>, which ensures that it is compiled with <a href="https://www.f-droid.org/en/2019/05/05/trust-privacy-and-free-software.html">reproducible builds</a>.</p>
+</details>
+<details class="info">
+<summary>Additional Functionality</summary>
+<p>IVPN clients support two factor authentication (Mullvad and ProtonVPN clients do not). IVPN also provides "<a href="https://www.ivpn.net/antitracker">AntiTracker</a>" functionality, which blocks advertising networks and trackers from the network level.</p>
+</details>
+<h2 id="our-criteria">Our Criteria<a class="headerlink" href="#our-criteria" title="Permanent link">&para;</a></h2>
+<div class="admonition danger">
+<p class="admonition-title">Danger</p>
+<p>It is important to note that using a <abbr title="Virtual Private Network">VPN</abbr> provider will not make you anonymous, but it will give you better privacy in certain situations. A <abbr title="Virtual Private Network">VPN</abbr> is not a tool for illegal activities. Don't rely on a "no log" policy.</p>
+</div>
+<p><strong>Please note we are not affiliated with any of the providers we recommend. This allows us to provide completely objective recommendations.</strong> We have developed a clear set of requirements for any <abbr title="Virtual Private Network">VPN</abbr> provider wishing to be recommended, including strong encryption, independent security audits, modern technology, and more. We suggest you familiarize yourself with this list before choosing a <abbr title="Virtual Private Network">VPN</abbr> provider, and conduct your own research to ensure the <abbr title="Virtual Private Network">VPN</abbr> provider you choose is as trustworthy as possible.</p>
+<h3 id="jurisdiction">Jurisdiction<a class="headerlink" href="#jurisdiction" title="Permanent link">&para;</a></h3>
+<p>Operating outside the five/nine/fourteen-eyes countries is not a guarantee of privacy necessarily, and there are other factors to consider. However, we believe that avoiding these countries is important if you wish to avoid mass government dragnet surveillance, especially from the United States.</p>
+<p><strong>Minimum to Qualify:</strong></p>
+<ul>
+<li>Operating outside the USA or other Five Eyes countries.</li>
+</ul>
+<p><strong>Best Case:</strong></p>
+<ul>
+<li>Operating outside the USA or other Fourteen Eyes countries.</li>
+<li>Operating inside a country with strong consumer protection laws.</li>
+</ul>
+<h3 id="technology">Technology<a class="headerlink" href="#technology" title="Permanent link">&para;</a></h3>
+<p>We require all our recommended <abbr title="Virtual Private Network">VPN</abbr> providers to provide OpenVPN configuration files to be used in any client. <strong>If</strong> a <abbr title="Virtual Private Network">VPN</abbr> provides their own custom client, we require a killswitch to block network data leaks when disconnected.</p>
+<p><strong>Minimum to Qualify:</strong></p>
+<ul>
+<li>Support for strong protocols such as WireGuard &amp; OpenVPN.</li>
+<li>Killswitch built in to clients.</li>
+<li>Multihop support. Multihopping is important to keep data private in case of a single node compromise.</li>
+<li>If <abbr title="Virtual Private Network">VPN</abbr> clients are provided, they should be <a href="https://en.wikipedia.org/wiki/Open_source">open source</a>, like the <abbr title="Virtual Private Network">VPN</abbr> software they generally have built into them. We believe that <a href="https://en.wikipedia.org/wiki/Source_code">source code</a> availability provides greater transparency about what your device is actually doing. We like to see these applications <a href="https://www.f-droid.org/en/2019/05/05/trust-privacy-and-free-software.html">available in F-Droid</a>.</li>
+</ul>
+<p><strong>Best Case:</strong></p>
+<ul>
+<li>WireGuard and OpenVPN support.</li>
+<li>Killswitch with highly configurable options (enable/disable on certain networks, on boot, etc.)</li>
+<li>Easy-to-use <abbr title="Virtual Private Network">VPN</abbr> clients</li>
+<li>Supports <a href="https://en.wikipedia.org/wiki/IPv6"><abbr title="Internet Protocol version 6">IPv6</abbr></a>. We expect that servers will allow incoming connections via <abbr title="Internet Protocol version 6">IPv6</abbr> and allow you to access services hosted on <abbr title="Internet Protocol version 6">IPv6</abbr> addresses.</li>
+<li>Capability of <a href="https://en.wikipedia.org/wiki/Port_forwarding#Remote_port_forwarding">remote port forwarding</a> assists in creating connections when using <abbr title="Peer-to-Peer">P2P</abbr> (<a href="https://en.wikipedia.org/wiki/Peer-to-peer">Peer-to-Peer</a>) filesharing software, Freenet, or hosting a server (e.g., Mumble).</li>
+</ul>
+<h3 id="privacy">Privacy<a class="headerlink" href="#privacy" title="Permanent link">&para;</a></h3>
+<p>We prefer our recommended providers to collect as little data as possible. Not collecting personal information on registration, and accepting anonymous forms of payment are required.</p>
+<p><strong>Minimum to Qualify:</strong></p>
+<ul>
+<li>Monero or cash payment option.</li>
+<li>No personal information required to register: Only username, password, and email at most.</li>
+</ul>
+<p><strong>Best Case:</strong></p>
+<ul>
+<li>Accepts Monero, cash, and other forms of anonymous payment options (gift cards, etc.)</li>
+<li>No personal information accepted (autogenerated username, no email required, etc.)</li>
+</ul>
+<h3 id="security">Security<a class="headerlink" href="#security" title="Permanent link">&para;</a></h3>
+<p>A <abbr title="Virtual Private Network">VPN</abbr> is pointless if it can't even provide adequate security. We require all our recommended providers to abide by current security standards for their OpenVPN connections. Ideally, they would use more future-proof encryption schemes by default. We also require an independent third-party to audit the provider's security, ideally in a very comprehensive manner and on a repeated (yearly) basis.</p>
+<p><strong>Minimum to Qualify:</strong></p>
+<ul>
+<li>Strong Encryption Schemes: OpenVPN with SHA-256 authentication; RSA-2048 or better handshake; AES-256-GCM or AES-256-CBC data encryption.</li>
+<li>Perfect Forward Secrecy (PFS).</li>
+<li>Published security audits from a reputable third-party firm.</li>
+</ul>
+<p><strong>Best Case:</strong></p>
+<ul>
+<li>Strongest Encryption: RSA-4096.</li>
+<li>Perfect Forward Secrecy (PFS).</li>
+<li>Comprehensive published security audits from a reputable third-party firm.</li>
+<li>Bug-bounty programs and/or a coordinated vulnerability-disclosure process.</li>
+</ul>
+<h3 id="trust">Trust<a class="headerlink" href="#trust" title="Permanent link">&para;</a></h3>
+<p>You wouldn't trust your finances to someone with a fake identity, so why trust them with your internet data? We require our recommended providers to be public about their ownership or leadership. We also would like to see frequent transparency reports, especially in regard to how government requests are handled.</p>
+<p><strong>Minimum to Qualify:</strong></p>
+<ul>
+<li>Public-facing leadership or ownership.</li>
+</ul>
+<p><strong>Best Case:</strong></p>
+<ul>
+<li>Public-facing leadership.</li>
+<li>Frequent transparency reports.</li>
+</ul>
+<h3 id="marketing">Marketing<a class="headerlink" href="#marketing" title="Permanent link">&para;</a></h3>
+<p>With the <abbr title="Virtual Private Network">VPN</abbr> providers we recommend we like to see responsible marketing.</p>
+<p><strong>Minimum to Qualify:</strong></p>
+<ul>
+<li>Must self host analytics (no Google Analytics etc). The provider's site must also comply with <a href="https://en.wikipedia.org/wiki/Do_Not_Track">DNT (Do Not Track)</a> for people who want to opt-out.</li>
+</ul>
+<p>Must not have any marketing which is irresponsible:</p>
+<ul>
+<li>Making guarantees of protecting anonymity 100%. When someone makes a claim that something is 100% it means there is no certainty for failure. We know people can quite easily deanonymize themselves in a number of ways, eg:</li>
+<li>Reusing personal information eg. (email accounts, unique pseudonyms etc) that they accessed without anonymity software (Tor, <abbr title="Virtual Private Network">VPN</abbr> etc)</li>
+<li><a href="https://en.wikipedia.org/wiki/Device_fingerprint#Browser_fingerprint">Browser fingerprinting</a></li>
+<li>Claim that a single circuit <abbr title="Virtual Private Network">VPN</abbr> is "more anonymous" than Tor, which is a circuit of 3 or more hops that regularly changes.</li>
+<li>Use responsible language, eg it is okay to say that a <abbr title="Virtual Private Network">VPN</abbr> is "disconnected" or "not connected", however claiming that someone is "exposed", "vulnerable" or "compromised" is needless use of alarming language that may be incorrect. For example, that person might simply be on another <abbr title="Virtual Private Network">VPN</abbr> provider's service or using Tor.</li>
+</ul>
+<p><strong>Best Case:</strong></p>
+<p>Responsible marketing that is both educational and useful to the consumer could include:</p>
+<ul>
+<li>An accurate comparison to when Tor or other <a href="../self-contained-networks/">self-contained networks</a> should be used.</li>
+<li>Availability of the <abbr title="Virtual Private Network">VPN</abbr> provider's website over a .onion <a href="https://en.wikipedia.org/wiki/.onion">Hidden Service</a></li>
+</ul>
+<h3 id="additional-functionality">Additional Functionality<a class="headerlink" href="#additional-functionality" title="Permanent link">&para;</a></h3>
+<p>While not strictly requirements, there are some factors we looked into when determining which providers to recommend. These include adblocking/tracker-blocking functionality, warrant canaries, multihop connections, excellent customer support, the number of allowed simultaneous connections, etc.</p>
+<h2 id="vpn-overview"><abbr title="Virtual Private Network">VPN</abbr> Overview<a class="headerlink" href="#vpn-overview" title="Permanent link">&para;</a></h2>
+<h3 id="should-i-use-a-vpn">Should I use a <abbr title="Virtual Private Network">VPN</abbr>?<a class="headerlink" href="#should-i-use-a-vpn" title="Permanent link">&para;</a></h3>
+<p><strong>Yes</strong>, unless you are already using Tor. A <abbr title="Virtual Private Network">VPN</abbr> does 2 things: shifting the risks from your Internet Service Provider to itself and hiding your <abbr title="Internet Protocol">IP</abbr> from a third party service.</p>
+<p>VPNs cannot encrypt data outside of the connection between your device and the <abbr title="Virtual Private Network">VPN</abbr> server. <abbr title="Virtual Private Network">VPN</abbr> providers can see and modify your traffic the same way your <abbr title="Internet Service Provider">ISP</abbr> could. And there is no way to verify a <abbr title="Virtual Private Network">VPN</abbr> provider's "no logging" policies in any way.</p>
+<p>However, they do hide your actual <abbr title="Internet Protocol">IP</abbr> from a third party service, provided that there are no <abbr title="Internet Protocol">IP</abbr> leaks. They help you blend in with others and mitigate <abbr title="Internet Protocol">IP</abbr> based tracking.</p>
+<h3 id="what-about-encryption">What about encryption?<a class="headerlink" href="#what-about-encryption" title="Permanent link">&para;</a></h3>
+<p>Encryption offered by <abbr title="Virtual Private Network">VPN</abbr> providers are between your devices and their servers. It guarantees that this specific link is secure. This is a step up from using unencrypted proxies where an adversary on the network can intercept the communications between your devices and said proxies and modify them. However, encryption between your apps or browsers with the service providers are not handled by this encryption.</p>
+<p>In order to keep what you actually do on the websites you visit private and secure, you must use <abbr title="Hypertext Transfer Protocol Secure">HTTPS</abbr>. This will keep your passwords, session tokens, and queries safe from the <abbr title="Virtual Private Network">VPN</abbr> provider. Consider enabling "<abbr title="Hypertext Transfer Protocol Secure">HTTPS</abbr> everywhere" in your browser to mitigate downgrade attacks like <a href="https://www.blackhat.com/presentations/bh-dc-09/Marlinspike/BlackHat-DC-09-Marlinspike-Defeating-SSL.pdf">SSL Strip</a>.</p>
+<h3 id="should-i-use-encrypted-dns-with-a-vpn">Should I use encrypted <abbr title="Domain Name System">DNS</abbr> with a <abbr title="Virtual Private Network">VPN</abbr>?<a class="headerlink" href="#should-i-use-encrypted-dns-with-a-vpn" title="Permanent link">&para;</a></h3>
+<p>Unless your <abbr title="Virtual Private Network">VPN</abbr> provider hosts the encrypted <abbr title="Domain Name System">DNS</abbr> servers, <strong>no</strong>. Using DOH/DOT (or any other form of encrypted <abbr title="Domain Name System">DNS</abbr>) with third party servers will simply add more entities to trust, and does <strong>absolutely nothing</strong> to improve your privacy/security. Your <abbr title="Virtual Private Network">VPN</abbr> provider can still see which websites you visit based on the <abbr title="Internet Protocol">IP</abbr> addresses and other methods. Instead of just trusting your <abbr title="Virtual Private Network">VPN</abbr> provider, you are now trusting both the <abbr title="Virtual Private Network">VPN</abbr> provider and the <abbr title="Domain Name System">DNS</abbr> provider.</p>
+<p>A common reason to recommend encrypted <abbr title="Domain Name System">DNS</abbr> is that it helps against <abbr title="Domain Name System">DNS</abbr> spoofing. However, your browser should already be checking for <a href="https://en.wikipedia.org/wiki/Transport_Layer_Security#Digital_certificates"><abbr title="Transport Layer Security">TLS</abbr> certificates</a> with <strong><abbr title="Hypertext Transfer Protocol Secure">HTTPS</abbr></strong> and warn you about it. If you are not using <strong><abbr title="Hypertext Transfer Protocol Secure">HTTPS</abbr></strong>, then an adversary can still just modify anything other than your <abbr title="Domain Name System">DNS</abbr> queries and the end result will be little different.</p>
+<p>Needless to say, <strong>you shouldn't use encrypted <abbr title="Domain Name System">DNS</abbr> with Tor</strong>. This would direct all of your <abbr title="Domain Name System">DNS</abbr> requests through a single circuit, and would allow the encrypted <abbr title="Domain Name System">DNS</abbr> provider to deanonymize you.</p>
+<h3 id="should-i-use-tor-and-a-vpn">Should I use Tor <em>and</em> a <abbr title="Virtual Private Network">VPN</abbr>?<a class="headerlink" href="#should-i-use-tor-and-a-vpn" title="Permanent link">&para;</a></h3>
+<p>By using a <abbr title="Virtual Private Network">VPN</abbr> with Tor, you're creating essentially a permanent entry node, often with a money trail attached. This provides zero additional benefit to you, while increasing the <abbr title="The attack surface of software or hardware is the sum of the different places an attacker can try to enter data to or extract data from.">attack surface</abbr> of your connection dramatically. If you wish to hide your Tor usage from your <abbr title="Internet Service Provider">ISP</abbr> or your government, Tor has a built-in solution for that: Tor bridges. <a href="https://web.archive.org/web/20210116140725/https://write.privacytools.io/my-thoughts-on-security/slicing-onions-part-2-onion-recipes-vpn-not-required">Read more about Tor bridges and why using a <abbr title="Virtual Private Network">VPN</abbr> is not necessary</a>.</p>
+<h3 id="what-if-i-need-anonymity">What if I need anonymity?<a class="headerlink" href="#what-if-i-need-anonymity" title="Permanent link">&para;</a></h3>
+<p>VPNs cannot provide anonymity. Your <abbr title="Virtual Private Network">VPN</abbr> provider will still see your real <abbr title="Internet Protocol">IP</abbr> address, and often has a money trail that can be linked directly back to you. You cannot rely on "no logging" policies to protect your data. Use <a href="https://www.torproject.org/">Tor</a> instead.</p>
+<h3 id="what-about-vpn-providers-that-provides-tor-nodes">What about <abbr title="Virtual Private Network">VPN</abbr> providers that provides Tor nodes?<a class="headerlink" href="#what-about-vpn-providers-that-provides-tor-nodes" title="Permanent link">&para;</a></h3>
+<p>Do not use that feature. The point of using Tor is that you do not trust your <abbr title="Virtual Private Network">VPN</abbr> provider. Currently Tor only supports the <a href="https://en.wikipedia.org/wiki/Transmission_Control_Protocol"><abbr title="Transmission Control Protocol">TCP</abbr></a> protocol. <a href="https://en.wikipedia.org/wiki/User_Datagram_Protocol"><abbr title="User Datagram Protocol">UDP</abbr></a> (used in <a href="https://en.wikipedia.org/wiki/WebRTC">WebRTC</a> for voice and video sharing, the new <a href="https://en.wikipedia.org/wiki/HTTP/3">http3/QUIC</a> protocol, etc), <a href="https://en.wikipedia.org/wiki/Internet_Control_Message_Protocol">ICMP</a> and other packets will be dropped. To compensate for this, <abbr title="Virtual Private Network">VPN</abbr> providers typically will route all non <abbr title="Transmission Control Protocol">TCP</abbr> packets through their <abbr title="Virtual Private Network">VPN</abbr> server (your first hop). This is the case with <a href="https://protonvpn.com/support/tor-vpn/">ProtonVPN</a>. Additionally, when using this Tor over <abbr title="Virtual Private Network">VPN</abbr> setup, you do not have control over other important Tor features such as <a href="https://www.whonix.org/wiki/Stream_Isolation">Isolated Destination Address</a> (using a different Tor circuit for every domain you visit).</p>
+<p>Thus, this feature should be viewed as a convenient way to access the Tor Network, not to stay annonymous. For true anonimity, use the Tor Browser Bundle, TorSocks, or a Tor gateway.</p>
+<h3 id="when-are-vpns-useful">When are VPNs useful?<a class="headerlink" href="#when-are-vpns-useful" title="Permanent link">&para;</a></h3>
+<p>A <abbr title="Virtual Private Network">VPN</abbr> may still be useful to you in a variety of scenarios, such as:</p>
+<ol>
+<li>Hiding your traffic from <strong>only</strong> your Internet Service Provider.</li>
+<li>Hiding your downloads (such as torrents) from your <abbr title="Internet Service Provider">ISP</abbr> and anti-piracy organizations.</li>
+<li>Hiding your <abbr title="Internet Protocol">IP</abbr> from third party websites and services, preventing <abbr title="Internet Protocol">IP</abbr> based tracking.</li>
+</ol>
+<p>For use cases like these, or if you have another compelling reason, the <abbr title="Virtual Private Network">VPN</abbr> providers we listed above are who we think are the most trustworthy. However, using a <abbr title="Virtual Private Network">VPN</abbr> provider still means you're <em>trusting</em> the provider. In pretty much any other scenario you should be using a secure<strong>-by-design</strong> tool such as Tor.</p>
+<h3 id="sources-and-further-reading">Sources and Further Reading<a class="headerlink" href="#sources-and-further-reading" title="Permanent link">&para;</a></h3>
+<ol>
+<li><a href="https://schub.io/blog/2019/04/08/very-precarious-narrative.html"><abbr title="Virtual Private Network">VPN</abbr> - a Very Precarious Narrative</a> by Dennis Schubert</li>
+<li><a href="../self-contained-networks/">The self-contained networks</a> recommended by Privacy Guides are able to replace a <abbr title="Virtual Private Network">VPN</abbr> that allows access to services on local area network</li>
+<li><a href="https://medium.com/privacyguides/slicing-onions-part-1-myth-busting-tor-9ec188ae1904">Slicing Onions: Part 1 – Myth-busting Tor</a> by blacklight447</li>
+<li><a href="https://web.archive.org/web/20210116140725/https://write.privacytools.io/my-thoughts-on-security/slicing-onions-part-2-onion-recipes-vpn-not-required">Slicing Onions: Part 2 – Onion recipes; <abbr title="Virtual Private Network">VPN</abbr> not required</a> by blacklight447</li>
+<li><a href="https://www.ivpn.net/privacy-guides">IVPN Privacy Guides</a></li>
+<li><a href="https://www.doineedavpn.com">"Do I need a <abbr title="Virtual Private Network">VPN</abbr>?"</a>, a tool developed by IVPN to challenge aggressive <abbr title="Virtual Private Network">VPN</abbr> marketing by helping individuals decide if a <abbr title="Virtual Private Network">VPN</abbr> is right for them.</li>
+</ol>
+<h2 id="related-vpn-information">Related <abbr title="Virtual Private Network">VPN</abbr> information<a class="headerlink" href="#related-vpn-information" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="https://medium.com/privacyguides/the-trouble-with-vpn-and-privacy-review-sites-ae9b29eda8fd">The Trouble with <abbr title="Virtual Private Network">VPN</abbr> and Privacy Review Sites</a></li>
+<li><a href="https://torrentfreak.com/proxy-sh-vpn-provider-monitored-traffic-to-catch-hacker-130930/">Proxy.sh <abbr title="Virtual Private Network">VPN</abbr> Provider Sniffed Server Traffic to Catch Hacker</a></li>
+<li><a href="https://medium.com/@blackVPN/no-logs-6d65d95a3016">blackVPN announced to delete connection logs after disconnection</a></li>
+<li><a href="https://gist.github.com/kennwhite/1f3bc4d889b02b35d8aa">Don't use LT2P IPSec, use other protocols.</a></li>
+<li><a href="https://www.top10vpn.com/free-vpn-app-investigation/">Free <abbr title="Virtual Private Network">VPN</abbr> App Investigation</a></li>
+<li><a href="https://vpnpro.com/blog/hidden-vpn-owners-unveiled-97-vpns-23-companies/">Hidden <abbr title="Virtual Private Network">VPN</abbr> owners unveiled: 101 <abbr title="Virtual Private Network">VPN</abbr> products run by just 23 companies</a></li>
+<li><a href="https://vpnpro.com/blog/chinese-company-secretly-behind-popular-apps-seeking-dangerous-permissions/">This Chinese company is secretly behind 24 popular apps seeking dangerous permissions</a></li>
+</ul>
+<h2 id="vpn-related-breaches-why-external-auditing-is-important"><abbr title="Virtual Private Network">VPN</abbr> Related breaches - why external auditing is important<a class="headerlink" href="#vpn-related-breaches-why-external-auditing-is-important" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="https://www.comparitech.com/blog/vpn-privacy/ufo-vpn-data-exposure/">"Zero logs" <abbr title="Virtual Private Network">VPN</abbr> exposes millions of logs including user passwords, claims data is anonymous</a> July 2020</li>
+<li><a href="https://www.zdnet.com/article/nordvpn-http-post-bug-exposed-sensitive-customer-information/">NordVPN <abbr title="Hypertext Transfer Protocol">HTTP</abbr> POST bug exposed customer information, no authentication required</a> March 2020</li>
+<li><a href="https://www.theregister.com/2019/10/21/nordvpn_security_issue/">Row erupts over who to blame after NordVPN says: One of our servers was hacked via remote management tool</a> October 2019</li>
+<li><a href="https://arstechnica.com/gadgets/2021/07/vpn-servers-seized-by-ukrainian-authorities-werent-encrypted/"><abbr title="Virtual Private Network">VPN</abbr> servers seized by Ukrainian authorities weren't encrypted and allowed authorities to impersonate Windscribe servers and capture and decrypt traffic passing through them</a> July 2021</li>
+</ul>
+<!-- markdownlint-disable -->
+
+  <hr>
+<div class="md-source-file">
+  <small>
+    
+      Last update:
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">October 26, 2022</span>
+      
+    
+  </small>
+</div>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+          <a href="#" class="md-top md-icon" data-md-component="top" hidden>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+            Back to top
+          </a>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+    <nav class="md-footer__inner md-grid" aria-label="Footer" >
+      
+        
+        <a href="../search-engines/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Search Engines" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Search Engines
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../calendar-contacts/" class="md-footer__link md-footer__link--next" aria-label="Next: Calendar and Contact Sync" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Calendar and Contact Sync
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.instant", "navigation.tracking", "navigation.tabs", "navigation.tabs.sticky", "navigation.expand", "navigation.top", "navigation.sections", "content.tooltips", "header.autohide"], "search": "../assets/javascripts/workers/search.16e2a7d4.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.8492ddcf.min.js"></script>
+      
+        <script src="../javascripts/mathjax.js"></script>
+      
+        <script src="../javascripts/feedback.js"></script>
+      
+    
+  </body>
+</html>

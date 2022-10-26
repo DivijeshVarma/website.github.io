@@ -1,0 +1,2238 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://www.privacyguides.org/basics/multi-factor-authentication/">
+      
+      <link rel="icon" href="../../assets/img/layout/favicon.ico">
+      <meta name="generator" content="mkdocs-1.4.1, mkdocs-material-8.5.7">
+    
+    
+      
+        <title>Multi-factor Authentication - Divijesh Varma</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.20d9efc8.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.cbb835fc.min.css">
+        
+      
+      
+
+    
+    
+    
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent="teal">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#mfa-method-comparison" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Divijesh Varma" class="md-header__button md-logo" aria-label="Divijesh Varma" data-md-component="logo">
+      
+  <img src="../../assets/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Divijesh Varma
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Multi-factor Authentication
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent="teal"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 1 7 7c0 2.38-1.19 4.47-3 5.74V17a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 0 1 7-7M9 21v-1h6v1a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1m3-17a5 5 0 0 0-5 5c0 2.05 1.23 3.81 3 4.58V16h4v-2.42c1.77-.77 3-2.53 3-4.58a5 5 0 0 0-5-5Z"/></svg>
+            </label>
+          
+        
+          
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="deep-purple" data-md-color-accent="deep-orange"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 2.38 1.19 4.47 3 5.74V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.26c1.81-1.27 3-3.36 3-5.74a7 7 0 0 0-7-7M9 21a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-1H9v1Z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../.." class="md-tabs__link">
+      Home
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../linux/vi/" class="md-tabs__link">
+        Linux
+      </a>
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../english/vol1/" class="md-tabs__link">
+        English
+      </a>
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../threat-modeling/" class="md-tabs__link md-tabs__link--active">
+        Knowledge Base
+      </a>
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../tools/" class="md-tabs__link">
+        Recommendations
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../about/" class="md-tabs__link">
+        About
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Divijesh Varma" class="md-nav__button md-logo" aria-label="Divijesh Varma" data-md-component="logo">
+      
+  <img src="../../assets/logo.png" alt="logo">
+
+    </a>
+    Divijesh Varma
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          Linux
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Linux" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Linux
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_2_1" type="checkbox" id="__nav_2_1" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_1">
+          Editors
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Editors" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_1">
+          <span class="md-nav__icon md-icon"></span>
+          Editors
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/vi/" class="md-nav__link">
+        Vim
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/nano/" class="md-nav__link">
+        Nano
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_2_2" type="checkbox" id="__nav_2_2" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_2">
+          Notes
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Notes" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_2">
+          <span class="md-nav__icon md-icon"></span>
+          Notes
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/rhcsa/" class="md-nav__link">
+        Tritree
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/user/" class="md-nav__link">
+        User Management
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/acl/" class="md-nav__link">
+        Access control lists (ACLs)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/network/" class="md-nav__link">
+        Networking
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/ssh/" class="md-nav__link">
+        OpenSSH
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/process/" class="md-nav__link">
+        Process Management
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/software/" class="md-nav__link">
+        Software Management
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/systemd/" class="md-nav__link">
+        Systemd Management
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/cron/" class="md-nav__link">
+        Cron Jobs
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/logs/" class="md-nav__link">
+        Logs
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/disk/" class="md-nav__link">
+        Disk Management
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3">
+          English
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="English" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          English
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_3_1" type="checkbox" id="__nav_3_1" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_1">
+          Tutorial
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Tutorial" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_1">
+          <span class="md-nav__icon md-icon"></span>
+          Tutorial
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../english/vol1/" class="md-nav__link">
+        Vol-1
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../english/vol2/" class="md-nav__link">
+        Vol-2
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../english/vol3/" class="md-nav__link">
+        Vol-3
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../english/vol4/" class="md-nav__link">
+        Vol-4
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4">
+          Knowledge Base
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Knowledge Base" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          Knowledge Base
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+    
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_1" type="checkbox" id="__nav_4_1" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_1">
+          The Basics
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="The Basics" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_1">
+          <span class="md-nav__icon md-icon"></span>
+          The Basics
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../threat-modeling/" class="md-nav__link">
+        Threat Modeling
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dns/" class="md-nav__link">
+        Introduction to DNS
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Multi-factor Authentication
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Multi-factor Authentication
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#mfa-method-comparison" class="md-nav__link">
+    MFA Method Comparison
+  </a>
+  
+    <nav class="md-nav" aria-label="MFA Method Comparison">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sms-or-email-mfa" class="md-nav__link">
+    SMS or Email MFA
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#push-notifications" class="md-nav__link">
+    Push Notifications
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#time-based-one-time-password-totp" class="md-nav__link">
+    Time-based One-time Password (TOTP)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hardware-security-keys" class="md-nav__link">
+    Hardware security keys
+  </a>
+  
+    <nav class="md-nav" aria-label="Hardware security keys">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#yubico-otp" class="md-nav__link">
+    Yubico OTP
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fido-fast-identity-online" class="md-nav__link">
+    FIDO (Fast IDentity Online)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#general-recommendations" class="md-nav__link">
+    General Recommendations
+  </a>
+  
+    <nav class="md-nav" aria-label="General Recommendations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#which-method-should-i-use" class="md-nav__link">
+    Which Method Should I Use?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#backups" class="md-nav__link">
+    Backups
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#initial-set-up" class="md-nav__link">
+    Initial Set Up
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#email-and-sms" class="md-nav__link">
+    Email and SMS
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#more-places-to-set-up-mfa" class="md-nav__link">
+    More Places to Set Up MFA
+  </a>
+  
+    <nav class="md-nav" aria-label="More Places to Set Up MFA">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#windows" class="md-nav__link">
+    Windows
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#macos" class="md-nav__link">
+    macOS
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#linux" class="md-nav__link">
+    Linux
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#qubes-os" class="md-nav__link">
+    Qubes OS
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ssh" class="md-nav__link">
+    SSH
+  </a>
+  
+    <nav class="md-nav" aria-label="SSH">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#hardware-security-keys_1" class="md-nav__link">
+    Hardware Security Keys
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#time-based-one-time-password-totp_1" class="md-nav__link">
+    Time-based One-time Password (TOTP)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#keepass-and-keepassxc" class="md-nav__link">
+    KeePass (and KeePassXC)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../account-deletion/" class="md-nav__link">
+        Account Deletion
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_4_2" type="checkbox" id="__nav_4_2" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_2">
+          Android
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Android" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_2">
+          <span class="md-nav__icon md-icon"></span>
+          Android
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../android/overview/" class="md-nav__link">
+        Android Overview
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../android/grapheneos-vs-calyxos/" class="md-nav__link">
+        GrapheneOS vs CalyxOS
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_4_3" type="checkbox" id="__nav_4_3" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_3">
+          Linux
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Linux" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_3">
+          <span class="md-nav__icon md-icon"></span>
+          Linux
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux-desktop/overview/" class="md-nav__link">
+        Linux Overview
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux-desktop/hardening/" class="md-nav__link">
+        System Hardening
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux-desktop/sandboxing/" class="md-nav__link">
+        Application Sandboxing
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_4_4" type="checkbox" id="__nav_4_4" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_4">
+          Advanced
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Advanced" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_4">
+          <span class="md-nav__icon md-icon"></span>
+          Advanced
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setup/integrating-metadata-removal/" class="md-nav__link">
+        Integrating Metadata Removal
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5">
+          Recommendations
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Recommendations" data-md-level="1">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          Recommendations
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tools/" class="md-nav__link">
+        Privacy Tools
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_5_2" type="checkbox" id="__nav_5_2" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5_2">
+          Browsers
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Browsers" data-md-level="2">
+        <label class="md-nav__title" for="__nav_5_2">
+          <span class="md-nav__icon md-icon"></span>
+          Browsers
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../browsers/" class="md-nav__link">
+        Web Browsers
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_5_3" type="checkbox" id="__nav_5_3" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5_3">
+          Operating Systems
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Operating Systems" data-md-level="2">
+        <label class="md-nav__title" for="__nav_5_3">
+          <span class="md-nav__icon md-icon"></span>
+          Operating Systems
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../android/" class="md-nav__link">
+        Android
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux-desktop/" class="md-nav__link">
+        Linux
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../qubes/" class="md-nav__link">
+        Qubes OS
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../router/" class="md-nav__link">
+        Router Firmware
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_5_4" type="checkbox" id="__nav_5_4" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5_4">
+          Providers
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Providers" data-md-level="2">
+        <label class="md-nav__title" for="__nav_5_4">
+          <span class="md-nav__icon md-icon"></span>
+          Providers
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cloud/" class="md-nav__link">
+        Cloud Storage
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dns/" class="md-nav__link">
+        DNS Resolvers
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../email/" class="md-nav__link">
+        Email Services
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../search-engines/" class="md-nav__link">
+        Search Engines
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vpn/" class="md-nav__link">
+        VPN Services
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_5_5" type="checkbox" id="__nav_5_5" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5_5">
+          Software
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Software" data-md-level="2">
+        <label class="md-nav__title" for="__nav_5_5">
+          <span class="md-nav__icon md-icon"></span>
+          Software
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../calendar-contacts/" class="md-nav__link">
+        Calendar and Contact Sync
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../notebooks/" class="md-nav__link">
+        Notebooks
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../email-clients/" class="md-nav__link">
+        Email Clients
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../encryption/" class="md-nav__link">
+        Encryption Software
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../file-sharing/" class="md-nav__link">
+        File Sharing and Sync
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../metadata-removal-tools/" class="md-nav__link">
+        Metadata Removal Tools
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../multi-factor-authentication/" class="md-nav__link">
+        Multi-Factor Authenticators
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../passwords/" class="md-nav__link">
+        Password Managers
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../productivity/" class="md-nav__link">
+        Productivity Tools
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../real-time-communication/" class="md-nav__link">
+        Real-Time Communication
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../news-aggregators/" class="md-nav__link">
+        News Aggregators
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../self-contained-networks/" class="md-nav__link">
+        Self-Contained Networks
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../video-streaming/" class="md-nav__link">
+        Video Streaming
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_6" type="checkbox" id="__nav_6" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6">
+          About
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="About" data-md-level="1">
+        <label class="md-nav__title" for="__nav_6">
+          <span class="md-nav__icon md-icon"></span>
+          About
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/" class="md-nav__link">
+        Heading
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#mfa-method-comparison" class="md-nav__link">
+    MFA Method Comparison
+  </a>
+  
+    <nav class="md-nav" aria-label="MFA Method Comparison">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sms-or-email-mfa" class="md-nav__link">
+    SMS or Email MFA
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#push-notifications" class="md-nav__link">
+    Push Notifications
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#time-based-one-time-password-totp" class="md-nav__link">
+    Time-based One-time Password (TOTP)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hardware-security-keys" class="md-nav__link">
+    Hardware security keys
+  </a>
+  
+    <nav class="md-nav" aria-label="Hardware security keys">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#yubico-otp" class="md-nav__link">
+    Yubico OTP
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fido-fast-identity-online" class="md-nav__link">
+    FIDO (Fast IDentity Online)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#general-recommendations" class="md-nav__link">
+    General Recommendations
+  </a>
+  
+    <nav class="md-nav" aria-label="General Recommendations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#which-method-should-i-use" class="md-nav__link">
+    Which Method Should I Use?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#backups" class="md-nav__link">
+    Backups
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#initial-set-up" class="md-nav__link">
+    Initial Set Up
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#email-and-sms" class="md-nav__link">
+    Email and SMS
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#more-places-to-set-up-mfa" class="md-nav__link">
+    More Places to Set Up MFA
+  </a>
+  
+    <nav class="md-nav" aria-label="More Places to Set Up MFA">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#windows" class="md-nav__link">
+    Windows
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#macos" class="md-nav__link">
+    macOS
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#linux" class="md-nav__link">
+    Linux
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#qubes-os" class="md-nav__link">
+    Qubes OS
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ssh" class="md-nav__link">
+    SSH
+  </a>
+  
+    <nav class="md-nav" aria-label="SSH">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#hardware-security-keys_1" class="md-nav__link">
+    Hardware Security Keys
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#time-based-one-time-password-totp_1" class="md-nav__link">
+    Time-based One-time Password (TOTP)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#keepass-and-keepassxc" class="md-nav__link">
+    KeePass (and KeePassXC)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+  
+
+
+
+
+  <h1>Multi-factor Authentication</h1>
+
+<p><strong>Multi-factor authentication</strong> is a security mechanism that requires additional steps beyond entering your username (or email) and password. The most common method is time limited codes you might receive from <abbr title="Short Message Service (standard text messaging)">SMS</abbr> or an app.</p>
+<p>Normally, if a hacker (or adversary) is able to figure out your password then they’d gain access to the account that password belongs to. An account with <abbr title="Multi-Factor Authentication">MFA</abbr> forces the hacker to have both the password (something you <em>know</em>) and a device that you own (something you <em>have</em>), like your phone.</p>
+<p><abbr title="Multi-Factor Authentication">MFA</abbr> methods vary in security, but are based on the premise that the more difficult it is for an attacker to gain access to your <abbr title="Multi-Factor Authentication">MFA</abbr> method, the better. Examples of <abbr title="Multi-Factor Authentication">MFA</abbr> methods (from weakest to strongest) include <abbr title="Short Message Service (standard text messaging)">SMS</abbr>, Email codes, app push notifications, <abbr title="Time-based One-Time Password">TOTP</abbr>, Yubico <abbr title="One-Time Password">OTP</abbr>, and <abbr title="Fast IDentity Online">FIDO</abbr>.</p>
+<h2 id="mfa-method-comparison"><abbr title="Multi-Factor Authentication">MFA</abbr> Method Comparison<a class="headerlink" href="#mfa-method-comparison" title="Permanent link">&para;</a></h2>
+<h3 id="sms-or-email-mfa"><abbr title="Short Message Service (standard text messaging)">SMS</abbr> or Email <abbr title="Multi-Factor Authentication">MFA</abbr><a class="headerlink" href="#sms-or-email-mfa" title="Permanent link">&para;</a></h3>
+<p>Receiving <abbr title="One-Time Password">OTP</abbr> codes via <abbr title="Short Message Service (standard text messaging)">SMS</abbr> or email are one of the weaker ways to secure your accounts with <abbr title="Multi-Factor Authentication">MFA</abbr>. Obtaining a code by email or <abbr title="Short Message Service (standard text messaging)">SMS</abbr> takes away from the "something you <em>have</em>" idea, because there are a variety of ways a hacker could <a href="https://en.wikipedia.org/wiki/SIM_swap_scam">take over your phone number</a> or gain access to your email without having physical access to any of your devices at all. If an unauthorized person gained access to your email, they would be able to use that access to both reset your password and receive the authentication code, giving them full access to your account.</p>
+<h3 id="push-notifications">Push Notifications<a class="headerlink" href="#push-notifications" title="Permanent link">&para;</a></h3>
+<p>Push notification <abbr title="Multi-Factor Authentication">MFA</abbr> takes the form of a message being sent to an app on your phone asking you to confirm new account logins. This method is a lot better than <abbr title="Short Message Service (standard text messaging)">SMS</abbr> or email, since an attacker typically wouldn't be able to get these push notifications without having an already logged-in device, which means they would need to compromise one of your other devices first.</p>
+<p>We all make mistakes, and there is the risk that you might accept the login attempt by accident. Push notification login authorizations are typically sent to <em>all</em> your devices at once, widening the availability of the <abbr title="Multi-Factor Authentication">MFA</abbr> code if you have many devices.</p>
+<p>The security of push notification <abbr title="Multi-Factor Authentication">MFA</abbr> is dependent on both the quality of the app, the server component and the trust of the developer who produces it. Installing an app may also require you to accept invasive privileges that grant access to other data on your device. An individual app also requires that you have a specific app for each service which may not require a password to open, unlike a good <abbr title="Time-based One-Time Password">TOTP</abbr> generator app.</p>
+<h3 id="time-based-one-time-password-totp">Time-based One-time Password (<abbr title="Time-based One-Time Password">TOTP</abbr>)<a class="headerlink" href="#time-based-one-time-password-totp" title="Permanent link">&para;</a></h3>
+<p><abbr title="Time-based One-Time Password">TOTP</abbr> is one of the most common forms of <abbr title="Multi-Factor Authentication">MFA</abbr> available. When you set up <abbr title="Time-based One-Time Password">TOTP</abbr> you are generally required to scan a <a href="https://en.wikipedia.org/wiki/QR_code">QR Code</a> which establishes a "<a href="https://en.wikipedia.org/wiki/Shared_secret">shared secret</a>" with the service that you intend to use. The shared secret is secured inside of the authenticator app's data, and is sometimes protected by a password.</p>
+<p>The time-limited code is then derived from the shared secret and the current time. As the code is only valid for a short time, without access to the shared secret an adversary cannot generate new codes.</p>
+<p>If you have a hardware security key with <abbr title="Time-based One-Time Password">TOTP</abbr> support (such as a YubiKey with <a href="https://www.yubico.com/products/yubico-authenticator/">Yubico Authenticator</a>), we recommend that you store your "shared secrets" on the hardware. Hardware such as the YubiKey was developed with the intention of making the "shared secret" difficult to extract and copy. A YubiKey is also not connected to the Internet, unlike a phone with a <abbr title="Time-based One-Time Password">TOTP</abbr> app.</p>
+<p>Unlike <a href="#fido-fast-identity-online">WebAuthn</a>, <abbr title="Time-based One-Time Password">TOTP</abbr> offers no protection against <a href="https://en.wikipedia.org/wiki/Phishing">phishing</a> or reuse attacks. If an adversary obtains a valid code from you they may use it as many times as they like until it expires (generally 60 seconds).</p>
+<p>An adversary could set up a website to imitate an official service in an attempt to trick you into giving out your username, password and current <abbr title="Time-based One-Time Password">TOTP</abbr> code. If the adversary then uses those recorded credentials they may be able to log into the real service and hijack the account.</p>
+<p>Although not perfect, <abbr title="Time-based One-Time Password">TOTP</abbr> is secure enough for most people, and when <a href="/multi-factor-authentication/#hardware-security-keys">hardware security keys</a> are not supported <a href="/multi-factor-authentication/#authenticator-apps">authenticator apps</a> are still a good option.</p>
+<h3 id="hardware-security-keys">Hardware security keys<a class="headerlink" href="#hardware-security-keys" title="Permanent link">&para;</a></h3>
+<p>The YubiKey stores data on a tamper-resistant solid-state chip which is <a href="https://security.stackexchange.com/a/245772">impossible to access</a> non-destructively without a expensive processes and a forensics laboratory.</p>
+<p>These keys are generally multi-function and provide a number of methods to authenticate. Below are the most common ones.</p>
+<h4 id="yubico-otp">Yubico <abbr title="One-Time Password">OTP</abbr><a class="headerlink" href="#yubico-otp" title="Permanent link">&para;</a></h4>
+<p>Yubico <abbr title="One-Time Password">OTP</abbr> is an authentication protocol typically implemented in hardware security keys. When you decide to use Yubico <abbr title="One-Time Password">OTP</abbr>, the key will generate a public ID, private ID, and a Secret Key which is then uploaded to the Yubico <abbr title="One-Time Password">OTP</abbr> server.</p>
+<p>When logging into a website, all you need to do is to physically touch the security key. The security key will emulate a keyboard and print out a one-time password into the password field.</p>
+<p>The service will then forward the one-time password to the Yubico <abbr title="One-Time Password">OTP</abbr> server for validation. A counter is incremented both on the key and Yubico's validation server. The <abbr title="One-Time Password">OTP</abbr> can only only be used once, and when a successful authentication occurs the counter is increased which prevents reuse of the <abbr title="One-Time Password">OTP</abbr>. Yubico provides a <a href="https://developers.yubico.com/OTP/OTPs_Explained.html">detailed document</a> about the process.</p>
+<figure>
+<p><img alt="Yubico OTP" src="../../assets/img/multi-factor-authentication/yubico-otp.png" /></p>
+</figure>
+<p>There are some benefits and disadvantages to using Yubico <abbr title="One-Time Password">OTP</abbr> when compared to <abbr title="Time-based One-Time Password">TOTP</abbr>.</p>
+<p>The Yubico validation server is a cloud based service, and you're placing trust in Yubico that they are storing data securely and not profiling you. The public ID associated with Yubico <abbr title="One-Time Password">OTP</abbr> is reused on every website and could be another avenue for third parties to profile you. Like <abbr title="Time-based One-Time Password">TOTP</abbr>, Yubico <abbr title="One-Time Password">OTP</abbr> does not provide phishing resistance.</p>
+<p>If your threat model requires you to have different identities on different websites, <strong>do not</strong> use Yubico <abbr title="One-Time Password">OTP</abbr> with the same hardware security key across those websites as public ID is unique to each security key.</p>
+<h4 id="fido-fast-identity-online"><abbr title="Fast IDentity Online">FIDO</abbr> (Fast IDentity Online)<a class="headerlink" href="#fido-fast-identity-online" title="Permanent link">&para;</a></h4>
+<p><a href="https://en.wikipedia.org/wiki/FIDO_Alliance"><abbr title="Fast IDentity Online">FIDO</abbr></a> includes a number of standards, first there was <abbr title="Universal 2nd Factor">U2F</abbr> and then later <a href="https://en.wikipedia.org/wiki/FIDO2_Project">FIDO2</a> which includes the web standard <a href="https://en.wikipedia.org/wiki/WebAuthn">WebAuthn</a>.</p>
+<p><abbr title="Universal 2nd Factor">U2F</abbr> and FIDO2 refer to the <a href="https://en.wikipedia.org/wiki/Client_to_Authenticator_Protocol">Client to Authenticator Protocol</a>, which is the protocol between the security key and the computer, such as a laptop or phone. It complements WebAuthn which is the component used to authenticate with the website (the "Relying Party") you're trying to log in on.</p>
+<p>WebAuthn is the most secure and private form of second factor authentication. While the authentication experience is similar to Yubico <abbr title="One-Time Password">OTP</abbr>, the key does not print out a one-time password and validate with a third party server. Instead it uses <a href="https://en.wikipedia.org/wiki/Public-key_cryptography">public key cryptography</a> for authentication.</p>
+<figure>
+<p><img alt="FIDO" src="../../assets/img/multi-factor-authentication/fido.png" /></p>
+</figure>
+<p>When you create an account the public key is sent to the service, then when you log in, the service will require you to "sign" some data with your private key. The benefit of this is that no password data is ever stored by the service, so there is nothing for an adversary to steal.</p>
+<p>This presentation discusses the history of password authentication, the pitfalls (such as password reuse), and discussion of FIDO2 and <a href="https://webauthn.guide">WebAuthn</a> standards.</p>
+<div class="yt-embed">
+  <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/aMo4ZlWznao" title="How FIDO2 and WebAuthn Stop Account Takeovers" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
+
+<p>FIDO2 and WebAuthn have superior security and privacy properties when compared to any <abbr title="Multi-Factor Authentication">MFA</abbr> methods.</p>
+<p>Typically for web services it is used with WebAuthn which is a part of the <a href="https://en.wikipedia.org/wiki/World_Wide_Web_Consortium#W3C_recommendation_(REC)"><abbr title="World Wide Web Consortium">W3C</abbr> recommendations</a>. It uses public key authentication and is more secure than shared secrets used in Yubico <abbr title="One-Time Password">OTP</abbr> and <abbr title="Time-based One-Time Password">TOTP</abbr> methods, as it includes the origin name (usually, the domain name) during authentication. Attestation is provided to protect you from phishing attacks, as it helps you to determine that you are using the authentic service and not a fake copy.</p>
+<p>Unlike Yubico <abbr title="One-Time Password">OTP</abbr>, WebAuthn does not use any public ID, so the key is <strong>not</strong> identifiable across different websites. It also does not use any third party cloud server for authentication. All communication is completed between the key and the website you are logging into. <abbr title="Fast IDentity Online">FIDO</abbr> also uses a counter which is incremented upon use in order to prevent session reuse and cloned keys.</p>
+<p>If a website or service supports WebAuthn for the authentication, it is highly recommended that you use it over any other form of <abbr title="Multi-Factor Authentication">MFA</abbr>.</p>
+<h2 id="general-recommendations">General Recommendations<a class="headerlink" href="#general-recommendations" title="Permanent link">&para;</a></h2>
+<p>We have these general recommendations:</p>
+<h3 id="which-method-should-i-use">Which Method Should I Use?<a class="headerlink" href="#which-method-should-i-use" title="Permanent link">&para;</a></h3>
+<p>When configuring your <abbr title="Multi-Factor Authentication">MFA</abbr> method, keep in mind that it is only as secure as your weakest authentication method you use. This means it is important that you only use the best <abbr title="Multi-Factor Authentication">MFA</abbr> method available. For instance, if you are already using <abbr title="Time-based One-Time Password">TOTP</abbr>, you should disable email and <abbr title="Short Message Service (standard text messaging)">SMS</abbr> <abbr title="Multi-Factor Authentication">MFA</abbr>. If you are already using FIDO2/WebAuthn, you should not be using Yubico <abbr title="One-Time Password">OTP</abbr> or <abbr title="Time-based One-Time Password">TOTP</abbr> on your account.</p>
+<h3 id="backups">Backups<a class="headerlink" href="#backups" title="Permanent link">&para;</a></h3>
+<p>You should always have backups for your <abbr title="Multi-Factor Authentication">MFA</abbr> method. Hardware security keys can get lost, stolen, or simply stop working over time. It is recommended that you have a pair of hardware security keys with the same access to your accounts instead of just one.</p>
+<p>When using <abbr title="Time-based One-Time Password">TOTP</abbr> with an authenticator app, be sure to back up your recovery keys or the app itself, or copy the "shared secrets" to another instance of the app on a different phone or to an encrypted container (e.g <a href="../../encryption/#veracrypt">VeraCrypt</a>).</p>
+<h3 id="initial-set-up">Initial Set Up<a class="headerlink" href="#initial-set-up" title="Permanent link">&para;</a></h3>
+<p>When buying a security key, it is important that you change the default credentials, set up password protection for the key, and enable touch confirmation if your key supports it. Products such as the YubiKey) have multiple interfaces with separate credentials for each one of them, so you should go over each interface and set up protection as well.</p>
+<h3 id="email-and-sms">Email and <abbr title="Short Message Service (standard text messaging)">SMS</abbr><a class="headerlink" href="#email-and-sms" title="Permanent link">&para;</a></h3>
+<p>If you have to use email for <abbr title="Multi-Factor Authentication">MFA</abbr>, make sure that the email account itself is secured with a proper <abbr title="Multi-Factor Authentication">MFA</abbr> method.</p>
+<p>If you use <abbr title="Short Message Service (standard text messaging)">SMS</abbr> <abbr title="Multi-Factor Authentication">MFA</abbr>, use a carrier who will not switch your phone number to a new <abbr title="Subscriber Identity Module">SIM</abbr> card without account access, or use a dedicated <abbr title="Voice over IP (Internet Protocol)">VoIP</abbr> number from a provider with similar security to avoid a <a href="https://en.wikipedia.org/wiki/SIM_swap_scam"><abbr title="Subscriber Identity Module">SIM</abbr> swap attack</a>.</p>
+<p><a class="md-button" href="../../multi-factor-authentication/"><abbr title="Multi-Factor Authentication">MFA</abbr> tools we recommend</a></p>
+<h2 id="more-places-to-set-up-mfa">More Places to Set Up <abbr title="Multi-Factor Authentication">MFA</abbr><a class="headerlink" href="#more-places-to-set-up-mfa" title="Permanent link">&para;</a></h2>
+<p>Beyond just securing your website logins, multi-factor authentication can be used to secure your local logins, <abbr title="Secure Shell">SSH</abbr> keys or even password databases as well.</p>
+<h3 id="windows">Windows<a class="headerlink" href="#windows" title="Permanent link">&para;</a></h3>
+<p>Yubico has a dedicated <a href="https://docs.microsoft.com/en-us/windows/win32/secauthn/credential-providers-in-windows">Credential Provider</a> that adds Challenge-Response authentication for the username + password login flow for local Windows accounts. If you have a YubiKey with Challenge-Response authentication support, take a look at the <a href="https://support.yubico.com/hc/en-us/articles/360013708460-Yubico-Login-for-Windows-Configuration-Guide">Yubico Login for Windows Configuration Guide</a>, which will allow you to set up <abbr title="Multi-Factor Authentication">MFA</abbr> on your Windows computer.</p>
+<h3 id="macos">macOS<a class="headerlink" href="#macos" title="Permanent link">&para;</a></h3>
+<p>macOS has <a href="https://support.apple.com/guide/deployment/intro-to-smart-card-integration-depd0b888248/web">native support</a> for authentication with smart cards (PIV). If you have a smartcard or a hardware security key that supports the PIV interface such as the YubiKey, we recommend that you follow your smartcard/hardware security vendor's documentation and set up second factor authentication for your macOS computer.</p>
+<p>Yubico have a guide <a href="https://support.yubico.com/hc/en-us/articles/360016649059">Using Your YubiKey as a Smart Card in macOS</a> which can help you set up your YubiKey on macOS.</p>
+<p>After your smartcard/security key is set up, we recommend running this command in the Terminal:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>sudo defaults write /Library/Preferences/com.apple.loginwindow DisableFDEAutoLogin -bool YES
+</code></pre></div>
+<p>The command will prevent an adversary from bypassing <abbr title="Multi-Factor Authentication">MFA</abbr> when the computer boots.</p>
+<h3 id="linux">Linux<a class="headerlink" href="#linux" title="Permanent link">&para;</a></h3>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>If the hostname of your system changes (such as due to DHCP), you would be unable to login. It is vital that you set up a proper hostname for your computer before following this guide.</p>
+</div>
+<p>The <code>pam_u2f</code> module on Linux can provide two factor authentication for logging in on most popular Linux distributions. If you have a hardware security key that supports <abbr title="Universal 2nd Factor">U2F</abbr>, you can set up <abbr title="Multi-Factor Authentication">MFA</abbr> authentication for your login. Yubico has a guide <a href="https://support.yubico.com/hc/en-us/articles/360016649099-Ubuntu-Linux-Login-Guide-U2F">Ubuntu Linux Login Guide - <abbr title="Universal 2nd Factor">U2F</abbr></a> which should work on any distribution. The package manager commands—such as <code>apt-get</code>—and package names may however differ. This guide does <strong>not</strong> apply to Qubes <abbr title="Operating System">OS</abbr>.</p>
+<h3 id="qubes-os">Qubes <abbr title="Operating System">OS</abbr><a class="headerlink" href="#qubes-os" title="Permanent link">&para;</a></h3>
+<p>Qubes <abbr title="Operating System">OS</abbr> has support for Challenge-Response authentication with YubiKeys. If you have a YubiKey with Challenge-Response authentication support, take a look at the Qubes <abbr title="Operating System">OS</abbr> <a href="https://www.qubes-os.org/doc/yubikey/">YubiKey documentation</a> if you want to set up <abbr title="Multi-Factor Authentication">MFA</abbr> on Qubes <abbr title="Operating System">OS</abbr>.</p>
+<h3 id="ssh"><abbr title="Secure Shell">SSH</abbr><a class="headerlink" href="#ssh" title="Permanent link">&para;</a></h3>
+<h4 id="hardware-security-keys_1">Hardware Security Keys<a class="headerlink" href="#hardware-security-keys_1" title="Permanent link">&para;</a></h4>
+<p><abbr title="Secure Shell">SSH</abbr> <abbr title="Multi-Factor Authentication">MFA</abbr> could be set up using multiple different authentication methods that are popular with hardware security keys. We recommend that you check out Yubico's <a href="https://developers.yubico.com/SSH/">documentation</a> on how to set this up.</p>
+<h4 id="time-based-one-time-password-totp_1">Time-based One-time Password (<abbr title="Time-based One-Time Password">TOTP</abbr>)<a class="headerlink" href="#time-based-one-time-password-totp_1" title="Permanent link">&para;</a></h4>
+<p><abbr title="Secure Shell">SSH</abbr> <abbr title="Multi-Factor Authentication">MFA</abbr> can also be set up using <abbr title="Time-based One-Time Password">TOTP</abbr>. DigitalOcean has provided a tutorial <a href="https://www.digitalocean.com/community/tutorials/how-to-set-up-multi-factor-authentication-for-ssh-on-ubuntu-20-04">How To Set Up Multi-Factor Authentication for <abbr title="Secure Shell">SSH</abbr> on Ubuntu 20.04</a>. Most things should be the same regardless of distribution, however the package manager commands—such as <code>apt-get</code>—and package names may differ.</p>
+<h3 id="keepass-and-keepassxc">KeePass (and KeePassXC)<a class="headerlink" href="#keepass-and-keepassxc" title="Permanent link">&para;</a></h3>
+<p>KeePass and KeePassXC databases can be secured using Challenge-Response or <abbr title="HMAC (Hash-based Message Authentication Code) based One-Time Password">HOTP</abbr> as a second factor authentication. Yubico has provided a document for KeePass <a href="https://support.yubico.com/hc/en-us/articles/360013779759-Using-Your-YubiKey-with-KeePass">Using Your YubiKey with KeePass</a> and there is also one on the <a href="https://keepassxc.org/docs/#faq-yubikey-2fa">KeePassXC</a> website.</p>
+<!-- markdownlint-disable -->
+
+  <hr>
+<div class="md-source-file">
+  <small>
+    
+      Last update:
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">October 26, 2022</span>
+      
+    
+  </small>
+</div>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+          <a href="#" class="md-top md-icon" data-md-component="top" hidden>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+            Back to top
+          </a>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+    <nav class="md-footer__inner md-grid" aria-label="Footer" >
+      
+        
+        <a href="../dns/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Introduction to DNS" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Introduction to DNS
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../account-deletion/" class="md-footer__link md-footer__link--next" aria-label="Next: Account Deletion" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Account Deletion
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.instant", "navigation.tracking", "navigation.tabs", "navigation.tabs.sticky", "navigation.expand", "navigation.top", "navigation.sections", "content.tooltips", "header.autohide"], "search": "../../assets/javascripts/workers/search.16e2a7d4.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.8492ddcf.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="../../javascripts/feedback.js"></script>
+      
+    
+  </body>
+</html>

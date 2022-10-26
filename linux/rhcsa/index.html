@@ -1,0 +1,2469 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://www.privacyguides.org/linux/rhcsa/">
+      
+      <link rel="icon" href="../../assets/img/layout/favicon.ico">
+      <meta name="generator" content="mkdocs-1.4.1, mkdocs-material-8.5.7">
+    
+    
+      
+        <title>Tritree - Divijesh Varma</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.20d9efc8.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.cbb835fc.min.css">
+        
+      
+      
+
+    
+    
+    
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent="teal">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#rhcsa-notes" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Divijesh Varma" class="md-header__button md-logo" aria-label="Divijesh Varma" data-md-component="logo">
+      
+  <img src="../../assets/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Divijesh Varma
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Tritree
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent="teal"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 1 7 7c0 2.38-1.19 4.47-3 5.74V17a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 0 1 7-7M9 21v-1h6v1a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1m3-17a5 5 0 0 0-5 5c0 2.05 1.23 3.81 3 4.58V16h4v-2.42c1.77-.77 3-2.53 3-4.58a5 5 0 0 0-5-5Z"/></svg>
+            </label>
+          
+        
+          
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="deep-purple" data-md-color-accent="deep-orange"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 2.38 1.19 4.47 3 5.74V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.26c1.81-1.27 3-3.36 3-5.74a7 7 0 0 0-7-7M9 21a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-1H9v1Z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../.." class="md-tabs__link">
+      Home
+    </a>
+  </li>
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../vi/" class="md-tabs__link md-tabs__link--active">
+        Linux
+      </a>
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../english/vol1/" class="md-tabs__link">
+        English
+      </a>
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../basics/threat-modeling/" class="md-tabs__link">
+        Knowledge Base
+      </a>
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../tools/" class="md-tabs__link">
+        Recommendations
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../about/" class="md-tabs__link">
+        About
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Divijesh Varma" class="md-nav__button md-logo" aria-label="Divijesh Varma" data-md-component="logo">
+      
+  <img src="../../assets/logo.png" alt="logo">
+
+    </a>
+    Divijesh Varma
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          Linux
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Linux" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Linux
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_2_1" type="checkbox" id="__nav_2_1" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_1">
+          Editors
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Editors" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_1">
+          <span class="md-nav__icon md-icon"></span>
+          Editors
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vi/" class="md-nav__link">
+        Vim
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nano/" class="md-nav__link">
+        Nano
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_2" type="checkbox" id="__nav_2_2" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_2">
+          Notes
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Notes" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_2">
+          <span class="md-nav__icon md-icon"></span>
+          Notes
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Tritree
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Tritree
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#rhcsa-notes" class="md-nav__link">
+    RHCSA Notes
+  </a>
+  
+    <nav class="md-nav" aria-label="RHCSA Notes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#which" class="md-nav__link">
+    Which
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#locate" class="md-nav__link">
+    Locate
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tee" class="md-nav__link">
+    Tee
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#xargs" class="md-nav__link">
+    Xargs
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#find" class="md-nav__link">
+    Find
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tar" class="md-nav__link">
+    Tar
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#xz" class="md-nav__link">
+    xz
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#links" class="md-nav__link">
+    Links
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#inode" class="md-nav__link">
+    Inode
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cut" class="md-nav__link">
+    Cut
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tr" class="md-nav__link">
+    Tr
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#regular-expressions" class="md-nav__link">
+    Regular Expressions
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#password-authentication" class="md-nav__link">
+    Password authentication
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#etchosts" class="md-nav__link">
+    /etc/hosts
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#findmnt" class="md-nav__link">
+    Findmnt
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#grep" class="md-nav__link">
+    Grep
+  </a>
+  
+    <nav class="md-nav" aria-label="Grep">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#egrep" class="md-nav__link">
+    Egrep
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fgrep" class="md-nav__link">
+    Fgrep
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shuffling" class="md-nav__link">
+    Shuffling
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../user/" class="md-nav__link">
+        User Management
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../acl/" class="md-nav__link">
+        Access control lists (ACLs)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../network/" class="md-nav__link">
+        Networking
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ssh/" class="md-nav__link">
+        OpenSSH
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../process/" class="md-nav__link">
+        Process Management
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../software/" class="md-nav__link">
+        Software Management
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../systemd/" class="md-nav__link">
+        Systemd Management
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cron/" class="md-nav__link">
+        Cron Jobs
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../logs/" class="md-nav__link">
+        Logs
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../disk/" class="md-nav__link">
+        Disk Management
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3">
+          English
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="English" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          English
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_3_1" type="checkbox" id="__nav_3_1" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_1">
+          Tutorial
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Tutorial" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_1">
+          <span class="md-nav__icon md-icon"></span>
+          Tutorial
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../english/vol1/" class="md-nav__link">
+        Vol-1
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../english/vol2/" class="md-nav__link">
+        Vol-2
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../english/vol3/" class="md-nav__link">
+        Vol-3
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../english/vol4/" class="md-nav__link">
+        Vol-4
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4">
+          Knowledge Base
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Knowledge Base" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          Knowledge Base
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_4_1" type="checkbox" id="__nav_4_1" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_1">
+          The Basics
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="The Basics" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_1">
+          <span class="md-nav__icon md-icon"></span>
+          The Basics
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../basics/threat-modeling/" class="md-nav__link">
+        Threat Modeling
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../basics/dns/" class="md-nav__link">
+        Introduction to DNS
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../basics/multi-factor-authentication/" class="md-nav__link">
+        Multi-factor Authentication
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../basics/account-deletion/" class="md-nav__link">
+        Account Deletion
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_4_2" type="checkbox" id="__nav_4_2" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_2">
+          Android
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Android" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_2">
+          <span class="md-nav__icon md-icon"></span>
+          Android
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../android/overview/" class="md-nav__link">
+        Android Overview
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../android/grapheneos-vs-calyxos/" class="md-nav__link">
+        GrapheneOS vs CalyxOS
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_4_3" type="checkbox" id="__nav_4_3" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_3">
+          Linux
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Linux" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_3">
+          <span class="md-nav__icon md-icon"></span>
+          Linux
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux-desktop/overview/" class="md-nav__link">
+        Linux Overview
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux-desktop/hardening/" class="md-nav__link">
+        System Hardening
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux-desktop/sandboxing/" class="md-nav__link">
+        Application Sandboxing
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_4_4" type="checkbox" id="__nav_4_4" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_4">
+          Advanced
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Advanced" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_4">
+          <span class="md-nav__icon md-icon"></span>
+          Advanced
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setup/integrating-metadata-removal/" class="md-nav__link">
+        Integrating Metadata Removal
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5">
+          Recommendations
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Recommendations" data-md-level="1">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          Recommendations
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tools/" class="md-nav__link">
+        Privacy Tools
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_5_2" type="checkbox" id="__nav_5_2" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5_2">
+          Browsers
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Browsers" data-md-level="2">
+        <label class="md-nav__title" for="__nav_5_2">
+          <span class="md-nav__icon md-icon"></span>
+          Browsers
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../browsers/" class="md-nav__link">
+        Web Browsers
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_5_3" type="checkbox" id="__nav_5_3" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5_3">
+          Operating Systems
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Operating Systems" data-md-level="2">
+        <label class="md-nav__title" for="__nav_5_3">
+          <span class="md-nav__icon md-icon"></span>
+          Operating Systems
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../android/" class="md-nav__link">
+        Android
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux-desktop/" class="md-nav__link">
+        Linux
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../qubes/" class="md-nav__link">
+        Qubes OS
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../router/" class="md-nav__link">
+        Router Firmware
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_5_4" type="checkbox" id="__nav_5_4" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5_4">
+          Providers
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Providers" data-md-level="2">
+        <label class="md-nav__title" for="__nav_5_4">
+          <span class="md-nav__icon md-icon"></span>
+          Providers
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cloud/" class="md-nav__link">
+        Cloud Storage
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dns/" class="md-nav__link">
+        DNS Resolvers
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../email/" class="md-nav__link">
+        Email Services
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../search-engines/" class="md-nav__link">
+        Search Engines
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vpn/" class="md-nav__link">
+        VPN Services
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_5_5" type="checkbox" id="__nav_5_5" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5_5">
+          Software
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Software" data-md-level="2">
+        <label class="md-nav__title" for="__nav_5_5">
+          <span class="md-nav__icon md-icon"></span>
+          Software
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../calendar-contacts/" class="md-nav__link">
+        Calendar and Contact Sync
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../notebooks/" class="md-nav__link">
+        Notebooks
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../email-clients/" class="md-nav__link">
+        Email Clients
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../encryption/" class="md-nav__link">
+        Encryption Software
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../file-sharing/" class="md-nav__link">
+        File Sharing and Sync
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../metadata-removal-tools/" class="md-nav__link">
+        Metadata Removal Tools
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../multi-factor-authentication/" class="md-nav__link">
+        Multi-Factor Authenticators
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../passwords/" class="md-nav__link">
+        Password Managers
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../productivity/" class="md-nav__link">
+        Productivity Tools
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../real-time-communication/" class="md-nav__link">
+        Real-Time Communication
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../news-aggregators/" class="md-nav__link">
+        News Aggregators
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../self-contained-networks/" class="md-nav__link">
+        Self-Contained Networks
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../video-streaming/" class="md-nav__link">
+        Video Streaming
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_6" type="checkbox" id="__nav_6" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6">
+          About
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="About" data-md-level="1">
+        <label class="md-nav__title" for="__nav_6">
+          <span class="md-nav__icon md-icon"></span>
+          About
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/" class="md-nav__link">
+        Heading
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#rhcsa-notes" class="md-nav__link">
+    RHCSA Notes
+  </a>
+  
+    <nav class="md-nav" aria-label="RHCSA Notes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#which" class="md-nav__link">
+    Which
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#locate" class="md-nav__link">
+    Locate
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tee" class="md-nav__link">
+    Tee
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#xargs" class="md-nav__link">
+    Xargs
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#find" class="md-nav__link">
+    Find
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tar" class="md-nav__link">
+    Tar
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#xz" class="md-nav__link">
+    xz
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#links" class="md-nav__link">
+    Links
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#inode" class="md-nav__link">
+    Inode
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cut" class="md-nav__link">
+    Cut
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tr" class="md-nav__link">
+    Tr
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#regular-expressions" class="md-nav__link">
+    Regular Expressions
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#password-authentication" class="md-nav__link">
+    Password authentication
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#etchosts" class="md-nav__link">
+    /etc/hosts
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#findmnt" class="md-nav__link">
+    Findmnt
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#grep" class="md-nav__link">
+    Grep
+  </a>
+  
+    <nav class="md-nav" aria-label="Grep">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#egrep" class="md-nav__link">
+    Egrep
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fgrep" class="md-nav__link">
+    Fgrep
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shuffling" class="md-nav__link">
+    Shuffling
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+  
+
+
+
+
+  <h1>Tritree</h1>
+
+<h2 id="rhcsa-notes">RHCSA Notes<a class="headerlink" href="#rhcsa-notes" title="Permanent link">&para;</a></h2>
+<h3 id="which"><strong>Which</strong><a class="headerlink" href="#which" title="Permanent link">&para;</a></h3>
+<p>which command in Linux is a command which is used to locate the executable file associated with the given command by searching it in the path environment variable.
+It has 3 return status as follows:</p>
+<ul>
+<li>0 : If all specified commands are found and executable.</li>
+<li>1 : If one or more specified commands is nonexistent or not executable.</li>
+<li>2 : If an invalid option is specified.</li>
+</ul>
+<p><mark>echo $?</mark> exit code to show errors for last command
+if error output 1
+if no error output 0</p>
+<h3 id="locate"><strong>Locate</strong><a class="headerlink" href="#locate" title="Permanent link">&para;</a></h3>
+<p>The locate command finds files in Linux using the file name. locate is used for obtaining instantaneous results, and it is an essential utility when speed is a priority.</p>
+<p>install mlocate package.</p>
+<p><code>locate mysql | less</code></p>
+<p>Print the number of matched files</p>
+<p><code>locate -c mysql</code></p>
+<p>Limit the number of search results</p>
+<p><code>locate  git -n 10</code></p>
+<p>To ignore case sensitivity using the -i option</p>
+<p><code>locate -i git</code></p>
+<p>Search for a File with an Exact Name</p>
+<p><code>locate -r mysql$</code></p>
+<hr />
+<h3 id="tee"><strong>Tee</strong><a class="headerlink" href="#tee" title="Permanent link">&para;</a></h3>
+<p>It is like T junction or pipe</p>
+<p>tee is used to save to a file compulsory</p>
+<p>Save output to out.txt and send to input of wc simultaneously</p>
+<p>ls -l | tee out.txt | wc</p>
+<p>To display output to terminal </p>
+<p>ls -l | tee out.txt</p>
+<p>Pass output to wc command</p>
+<p>ls -l | tee out.txt | wc &gt; wc.txt</p>
+<p>ls -l | tee out.txt | wc | tee wc.txt</p>
+<hr />
+<h3 id="xargs"><strong>Xargs</strong><a class="headerlink" href="#xargs" title="Permanent link">&para;</a></h3>
+<p>To Convert output stream into command line arguments</p>
+<p>Read filenames from test.txt and remove every file</p>
+<p>cat test.txt | xargs rm</p>
+<p>Read filenames from test.txt and display file contents to terminal</p>
+<p>cat test.txt | xargs cat</p>
+<hr />
+<h3 id="find"><strong>Find</strong><a class="headerlink" href="#find" title="Permanent link">&para;</a></h3>
+<p>The find command is used to search and locate the list of files and directories based on conditions you specify for files that match the arguments.</p>
+<p><a href="https://www.tecmint.com/35-practical-examples-of-linux-find-command/">Link</a></p>
+<hr />
+<h3 id="tar"><strong>Tar</strong><a class="headerlink" href="#tar" title="Permanent link">&para;</a></h3>
+<p>The Linux “tar” stands for tape archive, which is used by a large number of Linux/Unix system administrators to deal with tape drives backup.</p>
+<p><a href="https://www.tecmint.com/18-tar-command-examples-in-linux/">Link</a></p>
+<hr />
+<h3 id="xz"><strong>xz</strong><a class="headerlink" href="#xz" title="Permanent link">&para;</a></h3>
+<p>xz is a new general-purpose, command line data compression utility, similar to gzip and bzip2. It can be used to compress or decompress a file according to the selected operation mode.
+It supports various formats to compress or decompress files.</p>
+<p><a href="https://www.tecmint.com/xz-command-examples-in-linux/">link</a></p>
+<hr />
+<h3 id="links"><strong>Links</strong><a class="headerlink" href="#links" title="Permanent link">&para;</a></h3>
+<p>Links are a very handy way to create a shortcut to an original directory.
+In Linux there are two different types of links:</p>
+<ol>
+<li>
+<p>Hard links</p>
+</li>
+<li>
+<p>Symbolic links</p>
+</li>
+</ol>
+<p><a href="https://www.geeksforgeeks.org/soft-hard-links-unixlinux/">link</a></p>
+<hr />
+<h3 id="inode"><strong>Inode</strong><a class="headerlink" href="#inode" title="Permanent link">&para;</a></h3>
+<p>Linux must allocate an index node (inode) for every file and directory in the filesystem. Inodes do not store actual data. Instead, they store the metadata where you can find the storage blocks of each file’s data.</p>
+<p><a href="https://docs.rackspace.com/support/how-to/what-are-inodes-in-linux/">link</a></p>
+<hr />
+<h3 id="cut"><strong>Cut</strong><a class="headerlink" href="#cut" title="Permanent link">&para;</a></h3>
+<p>The cut command in UNIX is a command for cutting out the sections from each line of files and writing the result to standard output. It can be used to cut parts of a line by byte position, character and field.</p>
+<p>Display specific character: </p>
+<p><code>cut -c 8 test.txt</code></p>
+<p>Display range of characters:</p>
+<p><code>cut -c 4-8 test.txt</code></p>
+<p>Display 5 character to last character:</p>
+<p><code>cut -c 5- test.txt</code></p>
+<p>Display 1 to specified character:</p>
+<p><code>cut -c -3 test.txt</code></p>
+<p>Display 3 to 5 and 7 to 10 characters:</p>
+<p><code>cut -c 3-5,7-10 test.txt</code></p>
+<p>Display specific column data:</p>
+<p>-d -- delimiter ignore pipe symbol, by default TAB.</p>
+<p>-f -- field</p>
+<p>we get 3 column data.</p>
+<p><code>cut -d "|" -f 3 test.txt</code></p>
+<p>Display range of columns like 2 to 4:</p>
+<p><code>cut -d "|" -f 2-4 test.txt</code></p>
+<p>Display 2 to last column:</p>
+<p><code>cut -d "|" -f 2- text.txt</code></p>
+<p>Display 1 to specified column:</p>
+<p><code>cut -d "|" -f -3 text.txt</code></p>
+<p>Display 1,3,5 columns:</p>
+<p><code>cut -d "|" -f 1,3,5 text.txt</code></p>
+<p>Display all columns except 3 and 5:</p>
+<p>use --complement option</p>
+<p><code>cut -d "|" --complement -f 3,5 text.txt</code></p>
+<p>3 to 5 columns:</p>
+<p><code>cut -d "|" --complement -f 3-5 text.txt</code></p>
+<hr />
+<h3 id="tr"><strong>Tr</strong><a class="headerlink" href="#tr" title="Permanent link">&para;</a></h3>
+<p>Stands for translate or delete.</p>
+<p>Search and replace a to A character:</p>
+<p><code>echo "this is a line" | tr 'a' 'A'</code></p>
+<p><code>echo "this is a line" | tr 'aeiou' 'AEIOU'</code></p>
+<p>Delete specified characters:</p>
+<p><code>echo "this is a line" | tr -d 'aeiou'</code></p>
+<p>Remove repeated characters in word:</p>
+<p><code>echo "thiiis iis aaa linee" | tr -s 'aeiou'</code></p>
+<hr />
+<h3 id="regular-expressions"><strong>Regular Expressions</strong><a class="headerlink" href="#regular-expressions" title="Permanent link">&para;</a></h3>
+<p>By using wild card characters, we can build regular expressions.</p>
+<p>"*" --&gt; represents zero or more characters, i.e any number of characters.</p>
+<p>"?" --&gt; represents only one character</p>
+<p>"[]" --&gt; range of characters</p>
+<p>"[abc]" --&gt; a or b or c (we have to take only one character a or b or c)</p>
+<p>"[!abc]" --&gt; except a,b,c. any character</p>
+<p>"[a-z]" --&gt; any lower case alphabet symbol</p>
+<p>"[A-Z]" --&gt; any upper case alphabet symbol</p>
+<p>"[a-zA-z]" --&gt; any alphabet symbol either lower or upper</p>
+<p>"[0-9]" --&gt; any digit 0 to 9</p>
+<p>"[a-zA-z0-9]" --&gt; any alphanumeric character</p>
+<p>"[!a-zA-z0-9]" --&gt; Except any alphanumeric character (special symbol)</p>
+<p>"[[:lower:]]" --&gt; Any lower case alphabet symbol</p>
+<p>"[[:upper:]]" --&gt; Any upper case alphabet symbol</p>
+<p>"[[:alpha:]]" --&gt; Any alphabet symbol</p>
+<p>"[[:digit:]]" --&gt; Any digit from 0 to 9</p>
+<p>"[[:alnum:]]" --&gt; This is the same as ‘[0-9A-Za-z]’</p>
+<p>"[![:digit:]]" --&gt; Any character except digit</p>
+<p>"{ }" --&gt; List of files with comma seperator.</p>
+<p>"{a..z}" --&gt; a to z files</p>
+<p><code>touch {a..d}.java</code> --&gt; create a,b,c,d files</p>
+<ul>
+<li>To list out all files where file name starts with a or b or c</li>
+</ul>
+<p><code>ls [a-c]*</code> --&gt; a.txt, b.txt, c.java</p>
+<ul>
+<li>List first one uppercase alpha, second digit, third lowercase alpha</li>
+</ul>
+<p><code>ls [[:upper:]][[:digit:]][[:lower:]]</code> --&gt; A7b W4u Z6k</p>
+<ul>
+<li>List all files starts with special symbol</li>
+</ul>
+<p><code>ls [![:alnum:]]*</code> --&gt; %abc.txt</p>
+<ul>
+<li>List all files .java or .py extension</li>
+</ul>
+<p><code>ls {*.java,*.py}</code> --&gt; b.java, c.java, j.py, k.py</p>
+<ul>
+<li>Remove all files start with a or b or c and ends with e or t</li>
+</ul>
+<p><code>rm [abc]*[et]</code> --&gt; a.txt and b.txt will be removed</p>
+<ul>
+<li>List files begin with upper and has letter d in 3rd char, ends with lowercase</li>
+</ul>
+<p><code>[[:upper:]]?d*[[:lower]]</code></p>
+<h3 id="password-authentication"><strong>Password authentication</strong><a class="headerlink" href="#password-authentication" title="Permanent link">&para;</a></h3>
+<p>Password authentication for aws instance not keybased
+vi /etc/ssh/sshd_config</p>
+<p>PasswordAuthentication yes</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">systemctl</span><span class="w"> </span><span class="k">restart</span><span class="w"> </span><span class="n">sshd</span><span class="w"></span>
+</code></pre></div>
+<p>visudo for sudo access in /etc/sudoers file without password</p>
+<p>username All=(ALL) NOPASSWD: ALL</p>
+<hr />
+<p>To check memory:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">free</span><span class="w"> </span><span class="o">-</span><span class="n">h</span><span class="w"></span>
+</code></pre></div></p>
+<hr />
+<h3 id="etchosts"><strong>/etc/hosts</strong><a class="headerlink" href="#etchosts" title="Permanent link">&para;</a></h3>
+<p>All operating systems with network support have a hosts file to translate hostnames to IP addresses.
+Whenever you open a website by typing its hostname, your system will read through the hosts file to check for the corresponding IP and then open it.
+The hosts file is a simple text file located in the etc folder on Linux and Mac OS (/etc/hosts).</p>
+<p>Whenever you type an address, your system will check the hosts file for its presence;
+if it is present there, you will be directed to the corresponding IP. If the hostname is not defined in the hosts file,
+your system will check the DNS server of your internet to look up for the corresponding IP and redirect you accordingly.</p>
+<p>Why Edit /etc/hosts file?</p>
+<p>By editing the hosts files, you can achieve the following things:</p>
+<ul>
+<li>Block a website:</li>
+</ul>
+<p>You can block a website by redirecting it to the IP of your localhost or the default route.</p>
+<p>For example, if we want to block google.com, we can add the following text to our file:</p>
+<p><code>127.0.0.1 www.google.com</code></p>
+<p>or</p>
+<p><code>0.0.0.0 www.google.com</code></p>
+<p>Now when you try to open www.google.com from your browser, you will see an error.</p>
+<ul>
+<li>Access Remote Computer Through an Alias:</li>
+</ul>
+<p>Suppose we have a server located at a local network that we want to access. We usually have to type the server’s IP to access it unless it has been defined on our local DNS.
+One way to avoid typing the IP, again and again, is to assign an alias to the server in the hosts file as follows:</p>
+<p><code>192.168.1.10 myserver</code></p>
+<p>The IP corresponds to the location of the server we want to access and myserver is the new alias we want to use.</p>
+<p>Sometimes you may need to restart the web browser to apply changes.</p>
+<hr />
+<h3 id="findmnt"><strong>Findmnt</strong><a class="headerlink" href="#findmnt" title="Permanent link">&para;</a></h3>
+<p>The more common command to check mounted file systems on linux is the mount command which is used to not only list mounted devices, but also mount and unmount them as and when needed.</p>
+<p>The findmnt command shows details like the device name, mount directory, mount options and the file system type.</p>
+<ul>
+<li>List the file systems:</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">findmnt</span><span class="w"></span>
+</code></pre></div>
+<ul>
+<li>Output in list format:</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">findmnt</span><span class="w"> </span><span class="o">-</span><span class="n">l</span><span class="w"></span>
+</code></pre></div>
+<ul>
+<li>df style output:</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="n">findmnt</span><span class="w"> </span><span class="o">-</span><span class="n">D</span><span class="w"></span>
+</code></pre></div>
+<ul>
+<li>Read file systems from fstab:</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="n">findmnt</span><span class="w"> </span><span class="o">-</span><span class="n">s</span><span class="w"></span>
+</code></pre></div>
+<ul>
+<li>Filter filesystems by type:</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="n">findmnt</span><span class="w"> </span><span class="o">-</span><span class="n">t</span><span class="w"> </span><span class="n">ext4</span><span class="w"></span>
+</code></pre></div>
+<ul>
+<li>Search by source device:</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>findmnt -S /dev/sda1
+</code></pre></div>
+<ul>
+<li>Search by mount point:</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>findmnt -T /
+</code></pre></div>
+<hr />
+<p>To run previous command:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>!f
+</code></pre></div>
+<hr />
+<p>To list environment variables:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>env
+</code></pre></div>
+<hr />
+<h3 id="grep"><strong>Grep</strong><a class="headerlink" href="#grep" title="Permanent link">&para;</a></h3>
+<p>The grep filter searches a file for a particular pattern of characters, and displays all lines that contain that pattern.
+The pattern that is searched in the file is referred to as the regular expression (grep stands for global search for regular expression and print out).</p>
+<ul>
+<li>Search any line that contains the word in filename on Linux:</li>
+</ul>
+<p><code>grep 'word' filename</code></p>
+<ul>
+<li>Perform a case-insensitive search for the word ‘bar’ in Linux and Unix:</li>
+</ul>
+<p><code>grep -i 'bar' file1</code></p>
+<ul>
+<li>Look for all files in the current directory and in all of its subdirectories in Linux for the word ‘httpd’:</li>
+</ul>
+<p><code>grep -R 'httpd' .</code></p>
+<ul>
+<li>Search and display the total number of times that the string ‘nixcraft’ appears in a file named frontpage.md:</li>
+</ul>
+<p><code>grep -c 'nixcraft' frontpage.md</code></p>
+<ul>
+<li>Use grep to search words only:</li>
+</ul>
+<p>You can force the grep command to select only those lines containing matches that form whole words</p>
+<p><code>grep -w "boo" file</code></p>
+<ul>
+<li>Output with the number of the line in the text file:</li>
+</ul>
+<p><code>grep -n 'root' /etc/passwd</code></p>
+<ul>
+<li>Force grep invert match:</li>
+</ul>
+<p>For example print all line that do not contain the word start root</p>
+<p><code>grep -v '^root' /etc/passwd</code></p>
+<ul>
+<li>Display lines before and after the match:</li>
+</ul>
+<p>Want to see the lines before your matches</p>
+<p><code>grep -B 3 'root' /etc/passwd</code></p>
+<p>display the lines after your matches</p>
+<p><code>grep -A 3 'root' /etc/passwd</code></p>
+<p>prints the searched line and 3 lines after and before the result</p>
+<p><code>grep -C 3 'root' /etc/passwd</code></p>
+<ul>
+<li>Display the file names that matches the pattern:</li>
+</ul>
+<p><code>grep -l "unix" *</code></p>
+<ul>
+<li>Displaying only the matched pattern:</li>
+</ul>
+<p>By default, grep displays the entire line which has the matched string. We can make the grep to display only the matched string by using the -o option.</p>
+<p><code>grep -o "unix" geekfile.txt</code></p>
+<ul>
+<li>Matching the lines that start with a string:</li>
+</ul>
+<p>The ^ regular expression pattern specifies the start of a line.</p>
+<p><code>grep "^unix" geekfile.txt</code></p>
+<ul>
+<li>Matching the lines that end with a string:</li>
+</ul>
+<p>The $ regular expression pattern specifies the end of a line.</p>
+<p><code>grep "os$" geekfile.txt</code></p>
+<ul>
+<li>Specifies multiple contents with -e option:</li>
+</ul>
+<p><code>grep –e "Agarwal" –e "divi" –e "jesh" geekfile.txt</code></p>
+<ul>
+<li>Takes patterns from file, one per line using option -f:</li>
+</ul>
+<p><code>grep –f pattern.txt  geekfile.txt</code></p>
+<ul>
+<li>To search for string in directory recursive ignore errors:</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="n">sudo</span><span class="w"> </span><span class="n">grep</span><span class="w"> </span><span class="o">-</span><span class="n">R</span><span class="w"> </span><span class="n">anon</span><span class="w"> </span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="w"> </span><span class="mi">2</span><span class="o">&gt;</span><span class="w"> </span><span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="no">null</span><span class="w"></span>
+</code></pre></div>
+<ul>
+<li>To find files:</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="n">sudo</span><span class="w"> </span><span class="n">grep</span><span class="w"> </span><span class="o">-</span><span class="n">Rl</span><span class="w"> </span><span class="n">anon</span><span class="w"> </span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="w"> </span><span class="mi">2</span><span class="o">&gt;</span><span class="w"> </span><span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="no">null</span><span class="w"></span>
+</code></pre></div>
+<h4 id="egrep">Egrep<a class="headerlink" href="#egrep" title="Permanent link">&para;</a></h4>
+<p>The egrep command searches for a text pattern, using extended regular expressions to perform the match.
+Running egrep is equivalent to running grep with the -E option.</p>
+<p>Grep can understand some patterns but not all patterns.</p>
+<ul>
+<li>Display all lines start with 'D'</li>
+</ul>
+<p><code>grep '^D' text</code></p>
+<ul>
+<li>Display all lines end with 'D'</li>
+</ul>
+<p><code>grep 'D$' text</code></p>
+<ul>
+<li>Search for vowels in file</li>
+</ul>
+<p><code>grep '[aeiou]' text</code></p>
+<ul>
+<li>Search for other than vowels in file</li>
+</ul>
+<p><code>grep '[^aeiou]' text</code></p>
+<ul>
+<li>Search for multiple patterns</li>
+</ul>
+<p><code>grep -e 'hyd' -e 'ban' text</code></p>
+<p>or</p>
+<p><code>egrep '(hyd|ban)' text</code></p>
+<h4 id="fgrep">Fgrep<a class="headerlink" href="#fgrep" title="Permanent link">&para;</a></h4>
+<p>Fixed strings grep cannot understand patterns, it can understand only strings.</p>
+<p>To search fast we use grep and performance wise.</p>
+<p><code>grep -F</code></p>
+<p>Some words are there in file.txt search those in demo.txt.</p>
+<p><code>fgrep -f file.txt demo.txt</code></p>
+<hr />
+<h3 id="shuffling"><strong>Shuffling</strong><a class="headerlink" href="#shuffling" title="Permanent link">&para;</a></h3>
+<p>shuf -i 1-100 -n 1
+8</p>
+<p><code>touch pot/dir$(shuf -i 1-100 -n 1)/divi.txt</code></p>
+<p><code>find pot -type f -name 'divi.txt'</code></p>
+<p>move find result to desktop</p>
+<p><code>find pot -type f -name 'divi.txt' -exec mv {} ~/Desktop \;</code></p>
+<p>Remove all files in pot but not dirs</p>
+<p><code>find pot -type f -name '*.txt' -exec rm {} \;</code></p>
+
+  <hr>
+<div class="md-source-file">
+  <small>
+    
+      Last update:
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">October 26, 2022</span>
+      
+    
+  </small>
+</div>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+          <a href="#" class="md-top md-icon" data-md-component="top" hidden>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+            Back to top
+          </a>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+    <nav class="md-footer__inner md-grid" aria-label="Footer" >
+      
+        
+        <a href="../nano/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Nano" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Nano
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../user/" class="md-footer__link md-footer__link--next" aria-label="Next: User Management" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              User Management
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.instant", "navigation.tracking", "navigation.tabs", "navigation.tabs.sticky", "navigation.expand", "navigation.top", "navigation.sections", "content.tooltips", "header.autohide"], "search": "../../assets/javascripts/workers/search.16e2a7d4.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.8492ddcf.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="../../javascripts/feedback.js"></script>
+      
+    
+  </body>
+</html>

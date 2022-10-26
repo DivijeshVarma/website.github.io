@@ -1,0 +1,2234 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://www.privacyguides.org/linux-desktop/">
+      
+      <link rel="icon" href="../assets/img/layout/favicon.ico">
+      <meta name="generator" content="mkdocs-1.4.1, mkdocs-material-8.5.7">
+    
+    
+      
+        <title>Linux - Divijesh Varma</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.20d9efc8.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.cbb835fc.min.css">
+        
+      
+      
+
+    
+    
+    
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent="teal">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#traditional-distributions" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Divijesh Varma" class="md-header__button md-logo" aria-label="Divijesh Varma" data-md-component="logo">
+      
+  <img src="../assets/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Divijesh Varma
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Linux
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent="teal"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 1 7 7c0 2.38-1.19 4.47-3 5.74V17a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 0 1 7-7M9 21v-1h6v1a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1m3-17a5 5 0 0 0-5 5c0 2.05 1.23 3.81 3 4.58V16h4v-2.42c1.77-.77 3-2.53 3-4.58a5 5 0 0 0-5-5Z"/></svg>
+            </label>
+          
+        
+          
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="deep-purple" data-md-color-accent="deep-orange"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 2.38 1.19 4.47 3 5.74V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.26c1.81-1.27 3-3.36 3-5.74a7 7 0 0 0-7-7M9 21a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-1H9v1Z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href=".." class="md-tabs__link">
+      Home
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../linux/vi/" class="md-tabs__link">
+        Linux
+      </a>
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../english/vol1/" class="md-tabs__link">
+        English
+      </a>
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../basics/threat-modeling/" class="md-tabs__link">
+        Knowledge Base
+      </a>
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../tools/" class="md-tabs__link md-tabs__link--active">
+        Recommendations
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../about/" class="md-tabs__link">
+        About
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Divijesh Varma" class="md-nav__button md-logo" aria-label="Divijesh Varma" data-md-component="logo">
+      
+  <img src="../assets/logo.png" alt="logo">
+
+    </a>
+    Divijesh Varma
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          Linux
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Linux" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Linux
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_2_1" type="checkbox" id="__nav_2_1" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_1">
+          Editors
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Editors" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_1">
+          <span class="md-nav__icon md-icon"></span>
+          Editors
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../linux/vi/" class="md-nav__link">
+        Vim
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../linux/nano/" class="md-nav__link">
+        Nano
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_2_2" type="checkbox" id="__nav_2_2" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_2">
+          Notes
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Notes" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_2">
+          <span class="md-nav__icon md-icon"></span>
+          Notes
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../linux/rhcsa/" class="md-nav__link">
+        Tritree
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../linux/user/" class="md-nav__link">
+        User Management
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../linux/acl/" class="md-nav__link">
+        Access control lists (ACLs)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../linux/network/" class="md-nav__link">
+        Networking
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../linux/ssh/" class="md-nav__link">
+        OpenSSH
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../linux/process/" class="md-nav__link">
+        Process Management
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../linux/software/" class="md-nav__link">
+        Software Management
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../linux/systemd/" class="md-nav__link">
+        Systemd Management
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../linux/cron/" class="md-nav__link">
+        Cron Jobs
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../linux/logs/" class="md-nav__link">
+        Logs
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../linux/disk/" class="md-nav__link">
+        Disk Management
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3">
+          English
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="English" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          English
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_3_1" type="checkbox" id="__nav_3_1" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_1">
+          Tutorial
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Tutorial" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_1">
+          <span class="md-nav__icon md-icon"></span>
+          Tutorial
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../english/vol1/" class="md-nav__link">
+        Vol-1
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../english/vol2/" class="md-nav__link">
+        Vol-2
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../english/vol3/" class="md-nav__link">
+        Vol-3
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../english/vol4/" class="md-nav__link">
+        Vol-4
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4">
+          Knowledge Base
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Knowledge Base" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          Knowledge Base
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_4_1" type="checkbox" id="__nav_4_1" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_1">
+          The Basics
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="The Basics" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_1">
+          <span class="md-nav__icon md-icon"></span>
+          The Basics
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../basics/threat-modeling/" class="md-nav__link">
+        Threat Modeling
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../basics/dns/" class="md-nav__link">
+        Introduction to DNS
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../basics/multi-factor-authentication/" class="md-nav__link">
+        Multi-factor Authentication
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../basics/account-deletion/" class="md-nav__link">
+        Account Deletion
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_4_2" type="checkbox" id="__nav_4_2" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_2">
+          Android
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Android" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_2">
+          <span class="md-nav__icon md-icon"></span>
+          Android
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../android/overview/" class="md-nav__link">
+        Android Overview
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../android/grapheneos-vs-calyxos/" class="md-nav__link">
+        GrapheneOS vs CalyxOS
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_4_3" type="checkbox" id="__nav_4_3" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_3">
+          Linux
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Linux" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_3">
+          <span class="md-nav__icon md-icon"></span>
+          Linux
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="overview/" class="md-nav__link">
+        Linux Overview
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="hardening/" class="md-nav__link">
+        System Hardening
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="sandboxing/" class="md-nav__link">
+        Application Sandboxing
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_4_4" type="checkbox" id="__nav_4_4" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_4">
+          Advanced
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Advanced" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_4">
+          <span class="md-nav__icon md-icon"></span>
+          Advanced
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../setup/integrating-metadata-removal/" class="md-nav__link">
+        Integrating Metadata Removal
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5">
+          Recommendations
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Recommendations" data-md-level="1">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          Recommendations
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tools/" class="md-nav__link">
+        Privacy Tools
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_5_2" type="checkbox" id="__nav_5_2" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5_2">
+          Browsers
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Browsers" data-md-level="2">
+        <label class="md-nav__title" for="__nav_5_2">
+          <span class="md-nav__icon md-icon"></span>
+          Browsers
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../browsers/" class="md-nav__link">
+        Web Browsers
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_3" type="checkbox" id="__nav_5_3" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5_3">
+          Operating Systems
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Operating Systems" data-md-level="2">
+        <label class="md-nav__title" for="__nav_5_3">
+          <span class="md-nav__icon md-icon"></span>
+          Operating Systems
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../android/" class="md-nav__link">
+        Android
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Linux
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Linux
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#traditional-distributions" class="md-nav__link">
+    Traditional Distributions
+  </a>
+  
+    <nav class="md-nav" aria-label="Traditional Distributions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fedora-workstation" class="md-nav__link">
+    Fedora Workstation
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opensuse-tumbleweed" class="md-nav__link">
+    openSUSE Tumbleweed
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#arch-linux" class="md-nav__link">
+    Arch Linux
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#immutable-distributions" class="md-nav__link">
+    Immutable Distributions
+  </a>
+  
+    <nav class="md-nav" aria-label="Immutable Distributions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fedora-silverblue" class="md-nav__link">
+    Fedora Silverblue
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nixos" class="md-nav__link">
+    NixOS
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#anonymity-focused-distributions" class="md-nav__link">
+    Anonymity-Focused Distributions
+  </a>
+  
+    <nav class="md-nav" aria-label="Anonymity-Focused Distributions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#whonix" class="md-nav__link">
+    Whonix
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tails" class="md-nav__link">
+    Tails
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#general-recommendations" class="md-nav__link">
+    General Recommendations
+  </a>
+  
+    <nav class="md-nav" aria-label="General Recommendations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#drive-encryption" class="md-nav__link">
+    Drive Encryption
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#swap" class="md-nav__link">
+    Swap
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#wayland" class="md-nav__link">
+    Wayland
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#proprietary-firmware-microcode-updates" class="md-nav__link">
+    Proprietary Firmware (Microcode Updates)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#privacy-tweaks" class="md-nav__link">
+    Privacy Tweaks
+  </a>
+  
+    <nav class="md-nav" aria-label="Privacy Tweaks">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mac-address-randomization" class="md-nav__link">
+    MAC Address Randomization
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#other-identifiers" class="md-nav__link">
+    Other Identifiers
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#system-counting" class="md-nav__link">
+    System Counting
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../qubes/" class="md-nav__link">
+        Qubes OS
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../router/" class="md-nav__link">
+        Router Firmware
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_5_4" type="checkbox" id="__nav_5_4" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5_4">
+          Providers
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Providers" data-md-level="2">
+        <label class="md-nav__title" for="__nav_5_4">
+          <span class="md-nav__icon md-icon"></span>
+          Providers
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cloud/" class="md-nav__link">
+        Cloud Storage
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dns/" class="md-nav__link">
+        DNS Resolvers
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../email/" class="md-nav__link">
+        Email Services
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../search-engines/" class="md-nav__link">
+        Search Engines
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vpn/" class="md-nav__link">
+        VPN Services
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_5_5" type="checkbox" id="__nav_5_5" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5_5">
+          Software
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Software" data-md-level="2">
+        <label class="md-nav__title" for="__nav_5_5">
+          <span class="md-nav__icon md-icon"></span>
+          Software
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../calendar-contacts/" class="md-nav__link">
+        Calendar and Contact Sync
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../notebooks/" class="md-nav__link">
+        Notebooks
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../email-clients/" class="md-nav__link">
+        Email Clients
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../encryption/" class="md-nav__link">
+        Encryption Software
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../file-sharing/" class="md-nav__link">
+        File Sharing and Sync
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../metadata-removal-tools/" class="md-nav__link">
+        Metadata Removal Tools
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../multi-factor-authentication/" class="md-nav__link">
+        Multi-Factor Authenticators
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../passwords/" class="md-nav__link">
+        Password Managers
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../productivity/" class="md-nav__link">
+        Productivity Tools
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../real-time-communication/" class="md-nav__link">
+        Real-Time Communication
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../news-aggregators/" class="md-nav__link">
+        News Aggregators
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../self-contained-networks/" class="md-nav__link">
+        Self-Contained Networks
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../video-streaming/" class="md-nav__link">
+        Video Streaming
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_6" type="checkbox" id="__nav_6" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6">
+          About
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="About" data-md-level="1">
+        <label class="md-nav__title" for="__nav_6">
+          <span class="md-nav__icon md-icon"></span>
+          About
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../about/" class="md-nav__link">
+        Heading
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#traditional-distributions" class="md-nav__link">
+    Traditional Distributions
+  </a>
+  
+    <nav class="md-nav" aria-label="Traditional Distributions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fedora-workstation" class="md-nav__link">
+    Fedora Workstation
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opensuse-tumbleweed" class="md-nav__link">
+    openSUSE Tumbleweed
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#arch-linux" class="md-nav__link">
+    Arch Linux
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#immutable-distributions" class="md-nav__link">
+    Immutable Distributions
+  </a>
+  
+    <nav class="md-nav" aria-label="Immutable Distributions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fedora-silverblue" class="md-nav__link">
+    Fedora Silverblue
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nixos" class="md-nav__link">
+    NixOS
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#anonymity-focused-distributions" class="md-nav__link">
+    Anonymity-Focused Distributions
+  </a>
+  
+    <nav class="md-nav" aria-label="Anonymity-Focused Distributions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#whonix" class="md-nav__link">
+    Whonix
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tails" class="md-nav__link">
+    Tails
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#general-recommendations" class="md-nav__link">
+    General Recommendations
+  </a>
+  
+    <nav class="md-nav" aria-label="General Recommendations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#drive-encryption" class="md-nav__link">
+    Drive Encryption
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#swap" class="md-nav__link">
+    Swap
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#wayland" class="md-nav__link">
+    Wayland
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#proprietary-firmware-microcode-updates" class="md-nav__link">
+    Proprietary Firmware (Microcode Updates)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#privacy-tweaks" class="md-nav__link">
+    Privacy Tweaks
+  </a>
+  
+    <nav class="md-nav" aria-label="Privacy Tweaks">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mac-address-randomization" class="md-nav__link">
+    MAC Address Randomization
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#other-identifiers" class="md-nav__link">
+    Other Identifiers
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#system-counting" class="md-nav__link">
+    System Counting
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+  
+
+
+
+
+  <h1>Linux</h1>
+
+<p>Linux distributions are commonly recommended for privacy protection and software freedom.</p>
+<ul>
+<li><a href="overview/">General Linux Overview <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg></span></a></li>
+</ul>
+<p>If you don't already use Linux, below are some distributions we suggest trying out, as well as some general privacy and security improvement tips that are applicable to many Linux distributions.</p>
+<h2 id="traditional-distributions">Traditional Distributions<a class="headerlink" href="#traditional-distributions" title="Permanent link">&para;</a></h2>
+<h3 id="fedora-workstation">Fedora Workstation<a class="headerlink" href="#fedora-workstation" title="Permanent link">&para;</a></h3>
+<div class="admonition recommendation">
+<p class="admonition-title">Recommendation</p>
+<p><img align="right" alt="Fedora logo" src="../assets/img/linux-desktop/fedora-workstation.svg" /></p>
+<p><strong>Fedora Workstation</strong> is our recommended distribution for people new to Linux. Fedora generally adopts newer technologies before other distributions e.g., <a href="https://wayland.freedesktop.org/">Wayland</a>, <a href="https://pipewire.org">PipeWire</a>, and soon, <a href="https://fedoraproject.org/wiki/Changes/FsVerityRPM">FS-Verity</a>. These new technologies often come with improvements in security, privacy, and usability in general.</p>
+<p><a class="md-button md-button--primary" href="https://getfedora.org/">Homepage</a></p>
+</div>
+<p>Fedora has a semi-<abbr title="An update release cycle in which updates are released very frequently, instead of at set intervals.">rolling release</abbr> cycle. While some packages like <a href="https://www.gnome.org">GNOME</a> are frozen until the next Fedora release, most packages (including the kernel) are updated frequently throughout the lifespan of the release. Each Fedora release is supported for one year, with a new version released every 6 months.</p>
+<h3 id="opensuse-tumbleweed">openSUSE Tumbleweed<a class="headerlink" href="#opensuse-tumbleweed" title="Permanent link">&para;</a></h3>
+<div class="admonition recommendation">
+<p class="admonition-title">Recommendation</p>
+<p><img align="right" alt="openSUSE Tumbleweed logo" src="../assets/img/linux-desktop/opensuse-tumbleweed.svg" /></p>
+<p><strong>openSUSE Tumbleweed</strong> is a stable <abbr title="An update release cycle in which updates are released very frequently, instead of at set intervals.">rolling release</abbr> distribution.</p>
+<p>openSUSE Tumbleweed has a <a href="https://kubic.opensuse.org/blog/2018-04-04-transactionalupdates/">transactional update</a> system that uses <a href="https://en.wikipedia.org/wiki/Btrfs">Btrfs</a> and <a href="https://en.opensuse.org/openSUSE:Snapper_Tutorial">Snapper</a> to ensure that snapshots can be rolled back should there be a problem.</p>
+<p><a class="md-button md-button--primary" href="https://get.opensuse.org/tumbleweed/">Homepage</a></p>
+</div>
+<p>Tumbleweed follows a <abbr title="An update release cycle in which updates are released very frequently, instead of at set intervals.">rolling release</abbr> model where each update is released as a snapshot of the distribution. When you upgrade your system, a new snapshot is downloaded. Each snapshot is run through a series of automated tests by <a href="https://openqa.opensuse.org">openQA</a> to ensure its quality.</p>
+<h3 id="arch-linux">Arch Linux<a class="headerlink" href="#arch-linux" title="Permanent link">&para;</a></h3>
+<div class="admonition recommendation">
+<p class="admonition-title">Recommendation</p>
+<p><img align="right" alt="Arch logo" src="../assets/img/linux-desktop/archlinux.svg" /></p>
+<p><strong>Arch Linux</strong> is a lightweight, do-it-yourself (DIY) distribution meaning that you only get what you install. For more information see their <a href="https://wiki.archlinux.org/title/Frequently_asked_questions">FAQ</a>.</p>
+<p><a class="md-button md-button--primary" href="https://archlinux.org/">Homepage</a></p>
+</div>
+<p>Arch Linux has a <abbr title="An update release cycle in which updates are released very frequently, instead of at set intervals.">rolling release</abbr> cycle. There is no fixed release schedule and packages are updated very frequently.</p>
+<p>Being a DIY distribution, you are <a href="#arch-based-distributions">expected to set up and maintain</a> your system on your own. Arch has an <a href="https://wiki.archlinux.org/title/Archinstall">official installer</a> to make the installation process a little easier.</p>
+<p>A large portion of <a href="https://reproducible.archlinux.org">Arch Linux’s packages</a> are <a href="https://reproducible-builds.org">reproducible</a>.</p>
+<h2 id="immutable-distributions">Immutable Distributions<a class="headerlink" href="#immutable-distributions" title="Permanent link">&para;</a></h2>
+<h3 id="fedora-silverblue">Fedora Silverblue<a class="headerlink" href="#fedora-silverblue" title="Permanent link">&para;</a></h3>
+<div class="admonition recommendation">
+<p class="admonition-title">Recommendation</p>
+<p><img align="right" alt="Fedora Silverblue logo" src="../assets/img/linux-desktop/fedora-silverblue.svg" /></p>
+<p><strong>Fedora Silverblue</strong> and <strong>Fedora Kinoite</strong> are immutable variants of Fedora with a strong focus on container workflows. Silverblue comes with the <a href="https://www.gnome.org/">GNOME</a> desktop environment while Kinoite comes with <a href="https://kde.org/">KDE</a>. Silverblue and Kinoite follow the same release schedule as Fedora Workstation, benefiting from the same fast updates and staying very close to upstream.</p>
+<p><a class="md-button md-button--primary" href="https://silverblue.fedoraproject.org/">Homepage</a></p>
+</div>
+<p>Silverblue (and Kinoite) differ from Fedora Workstation as they replace the <a href="https://fedoraproject.org/wiki/DNF">DNF</a> package manager with a much more advanced alternative called <a href="https://docs.fedoraproject.org/en-US/fedora/rawhide/system-administrators-guide/package-management/rpm-ostree/"><code>rpm-ostree</code></a>. The <code>rpm-ostree</code> package manager works by downloading a base image for the system, then overlaying packages over it in a <a href="https://en.wikipedia.org/wiki/Git">git</a>-like commit tree. When the system is updated, a new base image is downloaded and the overlays will be applied to that new image.</p>
+<p>After the update is complete you will reboot the system into the new deployment. <code>rpm-ostree</code> keeps two deployments of the system so that you can easily rollback if something breaks in the new deployment. There is also the option to pin more deployments as needed.</p>
+<p><a href="https://www.flatpak.org">Flatpak</a> is the primary package installation method on these distributions, as <code>rpm-ostree</code> is only meant to overlay packages that cannot stay inside of a container on top of the base image.</p>
+<p>As an alternative to Flatpaks, there is the option of <a href="https://docs.fedoraproject.org/en-US/fedora-silverblue/toolbox/">Toolbox</a> to create <a href="https://podman.io">Podman</a> containers with a shared home directory with the host operating system and mimic a traditional Fedora environment, which is a <a href="https://containertoolbx.org">useful feature</a> for the discerning developer.</p>
+<h3 id="nixos">NixOS<a class="headerlink" href="#nixos" title="Permanent link">&para;</a></h3>
+<div class="admonition recommendation">
+<p class="admonition-title">Recommendation</p>
+<p><img align="right" alt="NixOS logo" src="../assets/img/linux-desktop/nixos.svg" /></p>
+<p>NixOS is an independent distribution based on the Nix package manager with a focus on reproducibility and reliability.</p>
+<p><a class="md-button md-button--primary" href="https://nixos.org/">Homepage</a></p>
+</div>
+<p>NixOS’s package manager keeps every version of every package in a different folder in the <strong>Nix store</strong>. Due to this you can have different versions of the same package installed on your system. After the package contents have been written to the folder, the folder is made read-only.</p>
+<p>NixOS also provides atomic updates; first it downloads (or builds) the packages and files for the new system generation and then switches to it. There are different ways to switch to a new generation; you can tell NixOS to activate it after reboot or you can switch to it at runtime. You can also <em>test</em> the new generation by switching to it at runtime, but not setting it as the current system generation. If something in the update process breaks, you can just reboot and automatically and return to a working version of your system.</p>
+<p>Nix the package manager uses a purely functional language - which is also called Nix - to define packages.</p>
+<p><a href="https://github.com/nixos/nixpkgs">Nixpkgs</a> (the main source of packages) are contained in a single GitHub repository. You can also define your own packages in the same language and then easily include them in your config.</p>
+<p>Nix is a source-based package manager; if there’s no pre-built available in the binary cache, Nix will just build the package from source using its definition. It builds each package in a sandboxed <em>pure</em> environment, which is as independent of the host system as possible, thus making binaries reproducible.</p>
+<h2 id="anonymity-focused-distributions">Anonymity-Focused Distributions<a class="headerlink" href="#anonymity-focused-distributions" title="Permanent link">&para;</a></h2>
+<h3 id="whonix">Whonix<a class="headerlink" href="#whonix" title="Permanent link">&para;</a></h3>
+<div class="admonition recommendation">
+<p class="admonition-title">Recommendation</p>
+<p><img align="right" alt="Whonix logo" src="../assets/img/linux-desktop/whonix.svg" /></p>
+<p><strong>Whonix</strong> is based on <a href="https://www.whonix.org/wiki/Kicksecure">Kicksecure</a>, a security-focused <abbr title="In software development, a fork is created when developers take a copy of source code from one software package and start independent development on it, creating a distinct and separate piece of software.">fork</abbr> of Debian. It aims to provide privacy, security, and anonymity on the internet.</p>
+<p><a class="md-button md-button--primary" href="https://www.whonix.org/">Homepage</a></p>
+</div>
+<p>Whonix is meant to run as two virtual machines: a “Workstation” and a Tor “Gateway”. All communications from the Workstation has to go through the Tor gateway, and will be routed through the Tor Network.</p>
+<p>Some of its features include Tor Stream Isolation, <a href="https://www.whonix.org/wiki/Keystroke_Deanonymization#Kloak">keystroke anonymization</a>, <a href="https://github.com/Whonix/swap-file-creator">encrypted swap</a>, and a hardened memory allocator.</p>
+<p>Future versions of Whonix will likely include <a href="https://github.com/Whonix/apparmor-profile-everything">full system AppArmor policies</a> and a <a href="https://www.whonix.org/wiki/Sandbox-app-launcher">sandbox app launcher</a> to fully confine all processes on the system.</p>
+<p>Whonix is best used <a href="https://www.whonix.org/wiki/Qubes/Why_use_Qubes_over_other_Virtualizers">in conjunction with Qubes</a>.</p>
+<h3 id="tails">Tails<a class="headerlink" href="#tails" title="Permanent link">&para;</a></h3>
+<div class="admonition recommendation">
+<p class="admonition-title">Recommendation</p>
+<p><img align="right" alt="Tails logo" src="../assets/img/linux-desktop/tails.svg" /></p>
+<p><strong>Tails</strong> is a live operating system based on Debian that routes all communications through Tor.</p>
+<p>It can boot on almost any computer from a DVD, USB stick, or SD card. It aims to preserve privacy and anonymity while circumventing censorship and leaving no trace of itself on the computer it is used on.</p>
+<p><a class="md-button md-button--primary" href="https://tails.boum.org/">Homepage</a></p>
+</div>
+<p>By design, Tails is meant to completely reset itself after each reboot. Encrypted <a href="https://tails.boum.org/doc/first_steps/persistence/index.en.html">persistent storage</a> can be configured to store some data.</p>
+<h2 id="general-recommendations">General Recommendations<a class="headerlink" href="#general-recommendations" title="Permanent link">&para;</a></h2>
+<h3 id="drive-encryption">Drive Encryption<a class="headerlink" href="#drive-encryption" title="Permanent link">&para;</a></h3>
+<p>Most Linux distributions have an installer option for enabling <abbr title="Linux Unified Key Setup (Full-Disk Encryption)">LUKS</abbr> <abbr title="Full Disk Encryption">FDE</abbr> upon installation.</p>
+<p>If this option isn’t set at installation time, you will have to backup your data and re-install, as encryption is applied after <a href="https://en.wikipedia.org/wiki/Disk_partitioning">disk partitioning</a>, but before <a href="https://en.wikipedia.org/wiki/File_system">file systems</a> are formatted.</p>
+<p>When securely erasing storage devices such as a Solid-state drive (SSD) you should use the <a href="https://ata.wiki.kernel.org/index.php/ATA_Secure_Erase">ATA Secure Erase</a> command. This command can be issued from your UEFI setup. If the storage device is a regular hard drive (HDD), consider using <a href="https://en.wikipedia.org/wiki/Nwipe"><code>nwipe</code></a>.</p>
+<h3 id="swap">Swap<a class="headerlink" href="#swap" title="Permanent link">&para;</a></h3>
+<p>Consider using <a href="https://wiki.archlinux.org/title/Swap#zram-generator">ZRAM</a> or <a href="https://wiki.archlinux.org/title/Dm-crypt/Swap_encryption">encrypted swap</a> instead of unencrypted swap to avoid potential security issues with sensitive data being pushed to <a href="https://en.wikipedia.org/wiki/Memory_paging">swap space</a>. Fedora based distributions <a href="https://fedoraproject.org/wiki/Changes/SwapOnZRAM">use ZRAM by default</a>.</p>
+<h3 id="wayland">Wayland<a class="headerlink" href="#wayland" title="Permanent link">&para;</a></h3>
+<p>We recommend using a desktop environment that supports the <a href="https://en.wikipedia.org/wiki/Wayland_(display_server_protocol)">Wayland</a> display protocol as it developed with security <a href="https://lwn.net/Articles/589147/">in mind</a>. Its predecessor, <a href="https://en.wikipedia.org/wiki/X_Window_System">X11</a>, does not support <abbr title="Graphical User Interface">GUI</abbr> isolation, allowing all windows to <a href="https://blog.invisiblethings.org/2011/04/23/linux-security-circus-on-gui-isolation.html">record screen, log and inject inputs in other windows</a>, making any attempt at sandboxing futile. While there are options to do nested X11 such as <a href="https://en.wikipedia.org/wiki/Xpra">Xpra</a> or <a href="https://en.wikipedia.org/wiki/Xephyr">Xephyr</a>, they often come with negative performance consequences and are not convenient to set up and are not preferable over Wayland.</p>
+<p>Fortunately, common environments such as <a href="https://www.gnome.org">GNOME</a>, <a href="https://kde.org">KDE</a>, and the window manager <a href="https://swaywm.org">Sway</a> have support for Wayland. Some distributions like Fedora and Tumbleweed use it by default and some others may do so in the future as X11 is in <a href="https://www.phoronix.com/scan.php?page=news_item&amp;px=X.Org-Maintenance-Mode-Quickly">hard maintenance mode</a>. If you’re using one of those environments it is as easy as selecting the “Wayland” session at the desktop display manager (<a href="https://en.wikipedia.org/wiki/GNOME_Display_Manager">GDM</a>, <a href="https://en.wikipedia.org/wiki/Simple_Desktop_Display_Manager">SDDM</a>).</p>
+<p>We recommend <strong>against</strong> using desktop environments or window managers that do not have Wayland support such as Cinnamon (default on Linux Mint), Pantheon (default on Elementary <abbr title="Operating System">OS</abbr>), MATE, Xfce, and i3.</p>
+<h3 id="proprietary-firmware-microcode-updates">Proprietary Firmware (Microcode Updates)<a class="headerlink" href="#proprietary-firmware-microcode-updates" title="Permanent link">&para;</a></h3>
+<p>Linux distributions such as those which are <a href="https://en.wikipedia.org/wiki/Linux-libre">Linux-libre</a> or DIY (Arch Linux) don’t come with the proprietary <a href="https://en.wikipedia.org/wiki/Microcode">microcode</a> updates. Some notable examples of these vulnerabilities include <a href="https://en.wikipedia.org/wiki/Spectre_(security_vulnerability)">Spectre</a>, <a href="https://en.wikipedia.org/wiki/Meltdown_(security_vulnerability)">Meltdown</a>, <a href="https://en.wikipedia.org/wiki/Speculative_Store_Bypass">SSB</a>, <a href="https://en.wikipedia.org/wiki/Foreshadow">Foreshadow</a>, <a href="https://en.wikipedia.org/wiki/Microarchitectural_Data_Sampling">MDS</a>, <a href="https://en.wikipedia.org/wiki/SWAPGS_(security_vulnerability)">SWAPGS</a>, and other <a href="https://www.kernel.org/doc/html/latest/admin-guide/hw-vuln/index.html">hardware vulnerabilities</a>.</p>
+<p>We <strong>highly recommend</strong> that you install the microcode updates, as your CPU is already running the proprietary microcode from the factory. Fedora and openSUSE both have the microcode updates applied by default.</p>
+<h2 id="privacy-tweaks">Privacy Tweaks<a class="headerlink" href="#privacy-tweaks" title="Permanent link">&para;</a></h2>
+<h3 id="mac-address-randomization"><abbr title="Media Access Control">MAC</abbr> Address Randomization<a class="headerlink" href="#mac-address-randomization" title="Permanent link">&para;</a></h3>
+<p>Many desktop Linux distributions (Fedora, openSUSE etc) will come with <a href="https://en.wikipedia.org/wiki/NetworkManager">NetworkManager</a>, to configure Ethernet and Wi-Fi settings.</p>
+<p>It is possible to <a href="https://fedoramagazine.org/randomize-mac-address-nm/">randomize</a> the <a href="https://en.wikipedia.org/wiki/MAC_address"><abbr title="Media Access Control">MAC</abbr> address</a> when using NetworkManager. This provides a bit more privacy on Wi-Fi networks as it makes it harder to track specific devices on the network you’re connected to. It does <a href="https://papers.mathyvanhoef.com/wisec2016.pdf"><strong>not</strong></a> make you anonymous.</p>
+<p>We recommend changing the setting to <strong>random</strong> instead of <strong>stable</strong>, as suggested in the <a href="https://fedoramagazine.org/randomize-mac-address-nm/">article</a>.</p>
+<p>If you are using <a href="https://en.wikipedia.org/wiki/Systemd#Ancillary_components">systemd-networkd</a>, you will need to set <a href="https://www.freedesktop.org/software/systemd/man/systemd.link.html#MACAddressPolicy="><code>MACAddressPolicy=random</code></a> which will enable <a href="https://www.freedesktop.org/software/systemd/man/systemd.network.html#Anonymize=">RFC 7844 (Anonymity Profiles for DHCP Clients)</a>.</p>
+<p>There isn’t much point in randomizing the <abbr title="Media Access Control">MAC</abbr> address for Ethernet connections as a system administrator can find you by looking at the port you are using on the <a href="https://en.wikipedia.org/wiki/Network_switch">network switch</a>. Randomizing Wi-Fi <abbr title="Media Access Control">MAC</abbr> addresses depends on support from the Wi-Fi’s firmware.</p>
+<h3 id="other-identifiers">Other Identifiers<a class="headerlink" href="#other-identifiers" title="Permanent link">&para;</a></h3>
+<p>There are other system identifiers which you may wish to be careful about. You should give this some thought to see if it applies to your <a href="../basics/threat-modeling/">threat model</a>:</p>
+<ul>
+<li><strong>Hostnames:</strong> Your system's hostname is shared with the networks you connect to. You should avoid including identifying terms like your name or operating system in your hostname, instead sticking to generic terms or random strings.</li>
+<li><strong>Usernames:</strong> Similarly, your username is used in a variety of ways across your system. Consider using generic terms like "user" rather than your actual name.</li>
+<li><strong>Machine ID:</strong>: During installation a unique machine ID is generated and stored on your device. Consider <a href="https://madaidans-insecurities.github.io/guides/linux-hardening.html#machine-id">setting it to a generic ID</a>.</li>
+</ul>
+<h3 id="system-counting">System Counting<a class="headerlink" href="#system-counting" title="Permanent link">&para;</a></h3>
+<p>The Fedora Project <a href="https://fedoraproject.org/wiki/Changes/DNF_Better_Counting">counts</a> how many unique systems access its mirrors by using a <a href="https://fedoraproject.org/wiki/Changes/DNF_Better_Counting#Detailed_Description"><code>countme</code></a> variable instead of a unique ID. Fedora does this to determine load and provision better servers for updates where necessary.</p>
+<p>This <a href="https://dnf.readthedocs.io/en/latest/conf_ref.html#options-for-both-main-and-repo">option</a> is currently off by default. We recommend adding <code>countme=false</code> to <code>/etc/dnf/dnf.conf</code> just in case it is enabled in the future. On systems that use <code>rpm-ostree</code> such as Silverblue, the countme option is disabled by masking the <a href="https://fedoramagazine.org/getting-better-at-counting-rpm-ostree-based-systems/">rpm-ostree-countme</a> timer.</p>
+<p>openSUSE also uses a <a href="https://en.opensuse.org/openSUSE:Statistics">unique ID</a> to count systems, which can be disabled by deleting the <code>/var/lib/zypp/AnonymousUniqueId</code> file.</p>
+<!-- markdownlint-disable -->
+
+  <hr>
+<div class="md-source-file">
+  <small>
+    
+      Last update:
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">October 26, 2022</span>
+      
+    
+  </small>
+</div>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+          <a href="#" class="md-top md-icon" data-md-component="top" hidden>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+            Back to top
+          </a>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+    <nav class="md-footer__inner md-grid" aria-label="Footer" >
+      
+        
+        <a href="../android/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Android" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Android
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../qubes/" class="md-footer__link md-footer__link--next" aria-label="Next: Qubes OS" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Qubes OS
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.instant", "navigation.tracking", "navigation.tabs", "navigation.tabs.sticky", "navigation.expand", "navigation.top", "navigation.sections", "content.tooltips", "header.autohide"], "search": "../assets/javascripts/workers/search.16e2a7d4.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.8492ddcf.min.js"></script>
+      
+        <script src="../javascripts/mathjax.js"></script>
+      
+        <script src="../javascripts/feedback.js"></script>
+      
+    
+  </body>
+</html>

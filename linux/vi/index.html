@@ -1,0 +1,2418 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://www.privacyguides.org/linux/vi/">
+      
+      <link rel="icon" href="../../assets/img/layout/favicon.ico">
+      <meta name="generator" content="mkdocs-1.4.1, mkdocs-material-8.5.7">
+    
+    
+      
+        <title>Vim - Divijesh Varma</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.20d9efc8.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.cbb835fc.min.css">
+        
+      
+      
+
+    
+    
+    
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent="teal">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#exiting-vim" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Divijesh Varma" class="md-header__button md-logo" aria-label="Divijesh Varma" data-md-component="logo">
+      
+  <img src="../../assets/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Divijesh Varma
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Vim
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent="teal"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 1 7 7c0 2.38-1.19 4.47-3 5.74V17a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 0 1 7-7M9 21v-1h6v1a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1m3-17a5 5 0 0 0-5 5c0 2.05 1.23 3.81 3 4.58V16h4v-2.42c1.77-.77 3-2.53 3-4.58a5 5 0 0 0-5-5Z"/></svg>
+            </label>
+          
+        
+          
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="deep-purple" data-md-color-accent="deep-orange"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 2.38 1.19 4.47 3 5.74V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.26c1.81-1.27 3-3.36 3-5.74a7 7 0 0 0-7-7M9 21a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-1H9v1Z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../.." class="md-tabs__link">
+      Home
+    </a>
+  </li>
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="./" class="md-tabs__link md-tabs__link--active">
+        Linux
+      </a>
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../english/vol1/" class="md-tabs__link">
+        English
+      </a>
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../basics/threat-modeling/" class="md-tabs__link">
+        Knowledge Base
+      </a>
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../tools/" class="md-tabs__link">
+        Recommendations
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../about/" class="md-tabs__link">
+        About
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Divijesh Varma" class="md-nav__button md-logo" aria-label="Divijesh Varma" data-md-component="logo">
+      
+  <img src="../../assets/logo.png" alt="logo">
+
+    </a>
+    Divijesh Varma
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          Linux
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Linux" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Linux
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+    
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_1" type="checkbox" id="__nav_2_1" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_1">
+          Editors
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Editors" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_1">
+          <span class="md-nav__icon md-icon"></span>
+          Editors
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Vim
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Vim
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#exiting-vim" class="md-nav__link">
+    Exiting Vim
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#text-editing-deletion" class="md-nav__link">
+    Text Editing - Deletion
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#text-editing-insertion" class="md-nav__link">
+    Text Editing - Insertion
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#text-editing-appending" class="md-nav__link">
+    Text Editing - Appending
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#save-and-quit" class="md-nav__link">
+    Save and Quit
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#deletion-commands" class="md-nav__link">
+    Deletion Commands
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#operators-and-motion" class="md-nav__link">
+    Operators and Motion
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#undo" class="md-nav__link">
+    Undo
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#delete-summary" class="md-nav__link">
+    Delete Summary
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#put-command" class="md-nav__link">
+    Put Command
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#replace-command" class="md-nav__link">
+    Replace Command
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#change-operator" class="md-nav__link">
+    Change Operator
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cursor-location-and-file-status" class="md-nav__link">
+    Cursor Location and File Status
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#search-command" class="md-nav__link">
+    Search Command
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#matching-parentheses-search" class="md-nav__link">
+    Matching Parentheses Search
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#substitute-command" class="md-nav__link">
+    Substitute Command
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#execute-external-command" class="md-nav__link">
+    Execute External Command
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#writing-files" class="md-nav__link">
+    Writing Files
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#selecting-text-to-write" class="md-nav__link">
+    Selecting Text to Write
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#retrieving-and-merging-files" class="md-nav__link">
+    Retrieving and Merging Files
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#open-command" class="md-nav__link">
+    Open Command
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#append-command" class="md-nav__link">
+    Append Command
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#copy-and-paste" class="md-nav__link">
+    Copy and Paste
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#set-option" class="md-nav__link">
+    Set Option
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#getting-help" class="md-nav__link">
+    Getting Help
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#completion" class="md-nav__link">
+    Completion
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#comment-multiple-lines" class="md-nav__link">
+    Comment multiple lines
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#notes" class="md-nav__link">
+    Notes
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nano/" class="md-nav__link">
+        Nano
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_2_2" type="checkbox" id="__nav_2_2" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_2">
+          Notes
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Notes" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_2">
+          <span class="md-nav__icon md-icon"></span>
+          Notes
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rhcsa/" class="md-nav__link">
+        Tritree
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../user/" class="md-nav__link">
+        User Management
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../acl/" class="md-nav__link">
+        Access control lists (ACLs)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../network/" class="md-nav__link">
+        Networking
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ssh/" class="md-nav__link">
+        OpenSSH
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../process/" class="md-nav__link">
+        Process Management
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../software/" class="md-nav__link">
+        Software Management
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../systemd/" class="md-nav__link">
+        Systemd Management
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cron/" class="md-nav__link">
+        Cron Jobs
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../logs/" class="md-nav__link">
+        Logs
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../disk/" class="md-nav__link">
+        Disk Management
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3">
+          English
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="English" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          English
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_3_1" type="checkbox" id="__nav_3_1" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_1">
+          Tutorial
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Tutorial" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_1">
+          <span class="md-nav__icon md-icon"></span>
+          Tutorial
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../english/vol1/" class="md-nav__link">
+        Vol-1
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../english/vol2/" class="md-nav__link">
+        Vol-2
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../english/vol3/" class="md-nav__link">
+        Vol-3
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../english/vol4/" class="md-nav__link">
+        Vol-4
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4">
+          Knowledge Base
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Knowledge Base" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          Knowledge Base
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_4_1" type="checkbox" id="__nav_4_1" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_1">
+          The Basics
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="The Basics" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_1">
+          <span class="md-nav__icon md-icon"></span>
+          The Basics
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../basics/threat-modeling/" class="md-nav__link">
+        Threat Modeling
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../basics/dns/" class="md-nav__link">
+        Introduction to DNS
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../basics/multi-factor-authentication/" class="md-nav__link">
+        Multi-factor Authentication
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../basics/account-deletion/" class="md-nav__link">
+        Account Deletion
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_4_2" type="checkbox" id="__nav_4_2" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_2">
+          Android
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Android" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_2">
+          <span class="md-nav__icon md-icon"></span>
+          Android
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../android/overview/" class="md-nav__link">
+        Android Overview
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../android/grapheneos-vs-calyxos/" class="md-nav__link">
+        GrapheneOS vs CalyxOS
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_4_3" type="checkbox" id="__nav_4_3" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_3">
+          Linux
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Linux" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_3">
+          <span class="md-nav__icon md-icon"></span>
+          Linux
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux-desktop/overview/" class="md-nav__link">
+        Linux Overview
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux-desktop/hardening/" class="md-nav__link">
+        System Hardening
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux-desktop/sandboxing/" class="md-nav__link">
+        Application Sandboxing
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_4_4" type="checkbox" id="__nav_4_4" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_4">
+          Advanced
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Advanced" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_4">
+          <span class="md-nav__icon md-icon"></span>
+          Advanced
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setup/integrating-metadata-removal/" class="md-nav__link">
+        Integrating Metadata Removal
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5">
+          Recommendations
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Recommendations" data-md-level="1">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          Recommendations
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tools/" class="md-nav__link">
+        Privacy Tools
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_5_2" type="checkbox" id="__nav_5_2" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5_2">
+          Browsers
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Browsers" data-md-level="2">
+        <label class="md-nav__title" for="__nav_5_2">
+          <span class="md-nav__icon md-icon"></span>
+          Browsers
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../browsers/" class="md-nav__link">
+        Web Browsers
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_5_3" type="checkbox" id="__nav_5_3" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5_3">
+          Operating Systems
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Operating Systems" data-md-level="2">
+        <label class="md-nav__title" for="__nav_5_3">
+          <span class="md-nav__icon md-icon"></span>
+          Operating Systems
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../android/" class="md-nav__link">
+        Android
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux-desktop/" class="md-nav__link">
+        Linux
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../qubes/" class="md-nav__link">
+        Qubes OS
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../router/" class="md-nav__link">
+        Router Firmware
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_5_4" type="checkbox" id="__nav_5_4" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5_4">
+          Providers
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Providers" data-md-level="2">
+        <label class="md-nav__title" for="__nav_5_4">
+          <span class="md-nav__icon md-icon"></span>
+          Providers
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cloud/" class="md-nav__link">
+        Cloud Storage
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dns/" class="md-nav__link">
+        DNS Resolvers
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../email/" class="md-nav__link">
+        Email Services
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../search-engines/" class="md-nav__link">
+        Search Engines
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vpn/" class="md-nav__link">
+        VPN Services
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_5_5" type="checkbox" id="__nav_5_5" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5_5">
+          Software
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Software" data-md-level="2">
+        <label class="md-nav__title" for="__nav_5_5">
+          <span class="md-nav__icon md-icon"></span>
+          Software
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../calendar-contacts/" class="md-nav__link">
+        Calendar and Contact Sync
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../notebooks/" class="md-nav__link">
+        Notebooks
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../email-clients/" class="md-nav__link">
+        Email Clients
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../encryption/" class="md-nav__link">
+        Encryption Software
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../file-sharing/" class="md-nav__link">
+        File Sharing and Sync
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../metadata-removal-tools/" class="md-nav__link">
+        Metadata Removal Tools
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../multi-factor-authentication/" class="md-nav__link">
+        Multi-Factor Authenticators
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../passwords/" class="md-nav__link">
+        Password Managers
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../productivity/" class="md-nav__link">
+        Productivity Tools
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../real-time-communication/" class="md-nav__link">
+        Real-Time Communication
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../news-aggregators/" class="md-nav__link">
+        News Aggregators
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../self-contained-networks/" class="md-nav__link">
+        Self-Contained Networks
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../video-streaming/" class="md-nav__link">
+        Video Streaming
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_6" type="checkbox" id="__nav_6" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6">
+          About
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="About" data-md-level="1">
+        <label class="md-nav__title" for="__nav_6">
+          <span class="md-nav__icon md-icon"></span>
+          About
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/" class="md-nav__link">
+        Heading
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#exiting-vim" class="md-nav__link">
+    Exiting Vim
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#text-editing-deletion" class="md-nav__link">
+    Text Editing - Deletion
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#text-editing-insertion" class="md-nav__link">
+    Text Editing - Insertion
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#text-editing-appending" class="md-nav__link">
+    Text Editing - Appending
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#save-and-quit" class="md-nav__link">
+    Save and Quit
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#deletion-commands" class="md-nav__link">
+    Deletion Commands
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#operators-and-motion" class="md-nav__link">
+    Operators and Motion
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#undo" class="md-nav__link">
+    Undo
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#delete-summary" class="md-nav__link">
+    Delete Summary
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#put-command" class="md-nav__link">
+    Put Command
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#replace-command" class="md-nav__link">
+    Replace Command
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#change-operator" class="md-nav__link">
+    Change Operator
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cursor-location-and-file-status" class="md-nav__link">
+    Cursor Location and File Status
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#search-command" class="md-nav__link">
+    Search Command
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#matching-parentheses-search" class="md-nav__link">
+    Matching Parentheses Search
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#substitute-command" class="md-nav__link">
+    Substitute Command
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#execute-external-command" class="md-nav__link">
+    Execute External Command
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#writing-files" class="md-nav__link">
+    Writing Files
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#selecting-text-to-write" class="md-nav__link">
+    Selecting Text to Write
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#retrieving-and-merging-files" class="md-nav__link">
+    Retrieving and Merging Files
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#open-command" class="md-nav__link">
+    Open Command
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#append-command" class="md-nav__link">
+    Append Command
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#copy-and-paste" class="md-nav__link">
+    Copy and Paste
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#set-option" class="md-nav__link">
+    Set Option
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#getting-help" class="md-nav__link">
+    Getting Help
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#completion" class="md-nav__link">
+    Completion
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#comment-multiple-lines" class="md-nav__link">
+    Comment multiple lines
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#notes" class="md-nav__link">
+    Notes
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+  
+
+
+
+
+  <h1>Vim</h1>
+
+<p>Vim is a very powerful editor that has many commands, too many to explain in a tutor such as this.  This tutor is designed to describe enough of the commands that you will be able to easily use Vim as an all-purpose editor.</p>
+<h3 id="exiting-vim">Exiting Vim<a class="headerlink" href="#exiting-vim" title="Permanent link">&para;</a></h3>
+<ol>
+<li>
+<p>Press the <span class="keys"><kbd class="key-escape">Esc</kbd></span> key (to make sure you are in Normal mode).</p>
+</li>
+<li>
+<p>Type :q! <span class="keys"><kbd class="key-enter">Enter</kbd></span>
+   This exits the editor, DISCARDING any changes you have made.</p>
+</li>
+</ol>
+<h3 id="text-editing-deletion">Text Editing - Deletion<a class="headerlink" href="#text-editing-deletion" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Press  x  to delete the character under the cursor.</li>
+</ol>
+<h3 id="text-editing-insertion">Text Editing - Insertion<a class="headerlink" href="#text-editing-insertion" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Press  i  to insert text.</li>
+</ol>
+<h3 id="text-editing-appending">Text Editing - Appending<a class="headerlink" href="#text-editing-appending" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Press  A  to append text.</li>
+</ol>
+<p>It moves to end of line in insert mode.</p>
+<h3 id="save-and-quit">Save and Quit<a class="headerlink" href="#save-and-quit" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Use  :wq  to save a file and exit.</li>
+</ol>
+<h3 id="deletion-commands">Deletion Commands<a class="headerlink" href="#deletion-commands" title="Permanent link">&para;</a></h3>
+<ol>
+<li>
+<p>Type  dw  to delete a word.</p>
+</li>
+<li>
+<p>Type  d$ to delete to the end of the line.</p>
+</li>
+</ol>
+<h3 id="operators-and-motion">Operators and Motion<a class="headerlink" href="#operators-and-motion" title="Permanent link">&para;</a></h3>
+<p>Many commands that change text are made from an operator and a motion.
+The format for a delete command with the  d  delete operator is as follows:</p>
+<p><mark>d and motion</mark></p>
+<ul>
+<li>d      - is the delete operator.</li>
+<li>motion - is what the operator will operate on (listed below).</li>
+</ul>
+<p>A short list of motions:</p>
+<ul>
+<li>w - until the start of the next word, EXCLUDING its first character.</li>
+<li>e - to the end of the current word, INCLUDING the last character.</li>
+<li>$ - to the end of the line, INCLUDING the last character.                </li>
+<li>de - will delete from the cursor to the end of the word.     </li>
+</ul>
+<p>Using a Count for Motion:</p>
+<ol>
+<li>Typing a number before a motion repeats it that many times.</li>
+<li>2w  to move the cursor two words forward.</li>
+<li>3e  to move the cursor to the end of the third word forward.</li>
+<li>0  (zero) to move to the start of the line.</li>
+</ol>
+<p>Using a Count to Delete More:</p>
+<ol>
+<li>Typing a number with an operator repeats it that many times.</li>
+<li>d   number   motion</li>
+<li>Type d2w or 2dw to delete two words.</li>
+</ol>
+<p>Operating on Line:</p>
+<ol>
+<li>Type  dd   to delete a whole line.</li>
+<li>Type  2dd  to delete two lines.</li>
+</ol>
+<h3 id="undo">Undo<a class="headerlink" href="#undo" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Press  u to undo the last commands,  U  to fix a whole line.</li>
+<li>Now type CTRL-R (keeping CTRL key pressed while hitting R) a few times to redo the commands (undo the undo's).</li>
+</ol>
+<h3 id="delete-summary">Delete Summary<a class="headerlink" href="#delete-summary" title="Permanent link">&para;</a></h3>
+<ol>
+<li>To delete from the cursor up to the next word type:        dw</li>
+<li>To delete from the cursor up to the end of the word type:  de</li>
+<li>To delete from the cursor to the end of a line type:       d$</li>
+<li>To delete a whole line type:                               dd</li>
+</ol>
+<h3 id="put-command">Put Command<a class="headerlink" href="#put-command" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Type  dd  to delete the line and store it in a Vim register.</li>
+<li>Type p  to put previously deleted text after the cursor.</li>
+</ol>
+<h3 id="replace-command">Replace Command<a class="headerlink" href="#replace-command" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Type  rx  to replace the character at the cursor with  x .</li>
+<li>Another way to replace Type a capital  R  to replace more than one character.</li>
+<li>Replace mode is like Insert mode, but every typed character deletes an existing character.</li>
+</ol>
+<h3 id="change-operator">Change Operator<a class="headerlink" href="#change-operator" title="Permanent link">&para;</a></h3>
+<ol>
+<li>To change until the end of a word, type  ce .</li>
+<li>Type  ce  and the correct word.</li>
+<li>cc  does the same for the whole line.</li>
+<li>The change operator works in the same way as delete.  </li>
+<li>The format is:  c    [number]   motion</li>
+<li>The motions are the same, such as   w (word) and  $ (end of line).</li>
+</ol>
+<h3 id="cursor-location-and-file-status">Cursor Location and File Status<a class="headerlink" href="#cursor-location-and-file-status" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Type CTRL-G to show your location in the file and the file status.</li>
+<li>Press  G  to move you to the bottom of the file. Type  gg  to move you to the start of the file.</li>
+<li>Type the number of the line you were on and then  G, ex. 34G</li>
+</ol>
+<h3 id="search-command">Search Command<a class="headerlink" href="#search-command" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Type  /  followed by a phrase to search for the phrase.</li>
+<li>To search for the same phrase again, simply type  n .</li>
+<li>To search for the same phrase in the opposite direction, type  N .</li>
+<li>To search for a phrase in the backward direction, use  ?  instead of  / .</li>
+<li>To go back to where you came from press  CTRL-O  (Keep Ctrl down while pressing the letter o).  Repeat to go back further.  CTRL-I goes forward.</li>
+</ol>
+<h3 id="matching-parentheses-search">Matching Parentheses Search<a class="headerlink" href="#matching-parentheses-search" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Type  %  to find a matching ),], or } .</li>
+<li>The cursor will move to the matching parenthesis or bracket.</li>
+</ol>
+<h3 id="substitute-command">Substitute Command<a class="headerlink" href="#substitute-command" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Type  <mark>:s/old/new/g</mark>  to substitute 'new' for 'old'.</li>
+<li>Type  <mark>:s/thee/the</mark> <span class="keys"><kbd class="key-enter">Enter</kbd></span>  .  Note that this command only changes the first occurrence of "thee" in the line.</li>
+<li>Now type  <mark>:s/thee/the/g</mark> .  Adding the  g  flag means to substitute globally in the line, change all occurrences of "thee" in the line.</li>
+<li>To change every occurrence of a character string between two lines,</li>
+<li>Type  <mark>:#,#s/old/new/g</mark>    where #,# are the line numbers of the range of lines where the substitution is to be done.</li>
+<li>Type  <mark>:%s/old/new/g</mark>      to change every occurrence in the whole file.</li>
+<li>Type  <mark>:%s/old/new/gc</mark>     to find every occurrence in the whole file, with a prompt whether to substitute or not.</li>
+</ol>
+<h3 id="execute-external-command">Execute External Command<a class="headerlink" href="#execute-external-command" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Type  :! followed by an external command to execute that command.</li>
+<li>:!ls :!pwd for example.</li>
+</ol>
+<h3 id="writing-files">Writing Files<a class="headerlink" href="#writing-files" title="Permanent link">&para;</a></h3>
+<ol>
+<li>To save the changes made to the text, type  :w FILENAME</li>
+<li>Now remove the file by typing (Windows) <mark>:!del TEST</mark>   or (Unix):  :!rm TEST</li>
+</ol>
+<h3 id="selecting-text-to-write">Selecting Text to Write<a class="headerlink" href="#selecting-text-to-write" title="Permanent link">&para;</a></h3>
+<ol>
+<li>To save part of the file, type  v  motion  :w FILENAME</li>
+<li>Press  v  and move the cursor to the fifth item below.  Notice that the text is highlighted.</li>
+<li>Press the  :  character.  At the bottom of the screen  :'&lt;,'&gt; will appear.</li>
+<li>Type  w TEST  , where TEST is a filename that does not exist yet.  Verify that you see  :'&lt;,'&gt;w TEST  before you press <span class="keys"><kbd class="key-enter">Enter</kbd></span></li>
+</ol>
+<h3 id="retrieving-and-merging-files">Retrieving and Merging Files<a class="headerlink" href="#retrieving-and-merging-files" title="Permanent link">&para;</a></h3>
+<ol>
+<li>To insert the contents of a file, type  :r FILENAME</li>
+<li>You can also read the output of an external command.  For example, :r !ls  reads the output of the ls command and puts it below the cursor.</li>
+<li>:r FILENAME  retrieves disk file FILENAME and puts it below the cursor position.</li>
+<li>:r !dir  reads the output of the dir command and puts it below the cursor position.</li>
+</ol>
+<h3 id="open-command">Open Command<a class="headerlink" href="#open-command" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Type  o  to open a line below the cursor and place you in Insert mode.</li>
+<li>To open up a line ABOVE the cursor, simply type a capital    O</li>
+</ol>
+<h3 id="append-command">Append Command<a class="headerlink" href="#append-command" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Type  a  to insert text AFTER the cursor.</li>
+<li>Use  e  to move to the next incomplete word.</li>
+<li>a, i and A all go to the same Insert mode, the only difference is where the characters are inserted.</li>
+</ol>
+<h3 id="copy-and-paste">Copy and Paste<a class="headerlink" href="#copy-and-paste" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Use the  y  operator to copy text and  p  to paste it.</li>
+<li>You can also use  y  as an operator:  yw  yanks one word, yy  yanks the whole line, then  p  puts that line.</li>
+</ol>
+<h3 id="set-option">Set Option<a class="headerlink" href="#set-option" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Set an option so a search or substitute ignores case.</li>
+<li>Typing ":set xxx" sets the option "xxx".  Some options are:</li>
+<li>'ic' 'ignorecase'    ignore upper/lower case when searching</li>
+<li>'is' 'incsearch' show partial matches for a search phrase</li>
+<li>'hls' 'hlsearch' highlight all matching phrases, You can either use the long or the short option name.</li>
+<li>Prepend "no" to switch an option off.   <mark>:set noic</mark></li>
+</ol>
+<h3 id="getting-help">Getting Help<a class="headerlink" href="#getting-help" title="Permanent link">&para;</a></h3>
+<ol>
+<li>:help w</li>
+<li>:help c_CTRL-D</li>
+<li>:help insert-index</li>
+<li>:help user-manual</li>
+<li>Type  CTRL-W CTRL-W   to jump from one window to another.</li>
+<li>Type    :q <span class="keys"><kbd class="key-enter">Enter</kbd></span>    to close the help window.</li>
+</ol>
+<h3 id="completion">Completion<a class="headerlink" href="#completion" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Command line completion with CTRL-D and <span class="keys"><kbd class="key-tab">Tab</kbd></span></li>
+<li>Type the start of a command  :e   </li>
+<li>CTRL-D  and Vim will show a list of commands that start with "e".</li>
+</ol>
+<h3 id="comment-multiple-lines">Comment multiple lines<a class="headerlink" href="#comment-multiple-lines" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Press the Ctrl + V keys to enable visual mode.</li>
+<li>Select all the lines you wish to comment out.</li>
+<li>With the target lines selected, press Shift + I to enter insert mode.</li>
+<li>We need to insert the pound (#) symbol.</li>
+<li>Finally, press the ESC key, and Vim will comment out all the selected lines.</li>
+</ol>
+<h3 id="notes">Notes<a class="headerlink" href="#notes" title="Permanent link">&para;</a></h3>
+<ul>
+<li>:e! -- Discard unsavedchanges in file.</li>
+<li>:sh -- Switch to shell temporary, copy something. <mark>ctrl+d</mark>  return to vi file.</li>
+<li>X -- Remove left side chars.</li>
+<li>D -- Remove everything from cursor right side.</li>
+<li>dG -- Remove everything below</li>
+<li>d1G -- Remove everything above</li>
+<li>:set nu -- Set numbers</li>
+<li>:set nonu  -- Remove numbers</li>
+<li>:11,15d -- Remove everything between 11 to 15</li>
+<li>G -- last line</li>
+<li>1G -- first line</li>
+<li>60G -- to go to line</li>
+<li>L -- last line of display</li>
+<li>H -- top line of display</li>
+<li>M -- middle line</li>
+<li>cc -- Remove line and insert</li>
+<li>C -- Remove everything from cursor right side and insert.</li>
+<li>J -- Join 2 lines</li>
+<li>:1,5 co 9 -- after 9 th line 1 to 5 lines copied</li>
+<li>:4 m 2 -- after 2nd line 4 line will be moved.</li>
+<li>shift + o -- new line on top of cursor.</li>
+<li>:set ic -- ignore case sensitive</li>
+<li>:set noic -- case sensitive</li>
+</ul>
+
+  <hr>
+<div class="md-source-file">
+  <small>
+    
+      Last update:
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">October 26, 2022</span>
+      
+    
+  </small>
+</div>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+          <a href="#" class="md-top md-icon" data-md-component="top" hidden>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+            Back to top
+          </a>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+    <nav class="md-footer__inner md-grid" aria-label="Footer" >
+      
+        
+        <a href="../.." class="md-footer__link md-footer__link--prev" aria-label="Previous: Home" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Home
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../nano/" class="md-footer__link md-footer__link--next" aria-label="Next: Nano" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Nano
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.instant", "navigation.tracking", "navigation.tabs", "navigation.tabs.sticky", "navigation.expand", "navigation.top", "navigation.sections", "content.tooltips", "header.autohide"], "search": "../../assets/javascripts/workers/search.16e2a7d4.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.8492ddcf.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="../../javascripts/feedback.js"></script>
+      
+    
+  </body>
+</html>
