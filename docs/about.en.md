@@ -2,12 +2,146 @@
 title: Heading
 ---
 
-**Bold** 
+### MarkdownGuide Reference
+
+[Link](https://www.markdownguide.org/basic-syntax/#overview)
+
+### Markdown Cheat Sheet
+
+[Link](https://www.markdownguide.org/cheat-sheet/)
+
+### Extended Syntax
+
+[Link](https://www.markdownguide.org/extended-syntax/)
+
+### MkDocs Markdown Support
+
+[Link](https://www.markdownguide.org/tools/mkdocs/)
+
+
+### Markdown Hacks
+
+[Link](https://www.markdownguide.org/hacks/#overview)
+
+Some of these words <ins>will be underlined</ins>.
+
+
+[![Less Than Jake — Scott Farcas Takes It On The Chin](https://img.youtube.com/vi/PYCxct2e0zI/0.jpg)](https://www.youtube.com/watch?v=PYCxct2e0zI)
+
+Avatar
+
+[![Avatar](https://img.youtube.com/vi/d9MyW72ELq0/0.jpg)](https://www.youtube.com/watch?v=d9MyW72ELq0)
+
+
+### Material for MkDocs
+
+Reference:
+
+[Link](https://squidfunk.github.io/mkdocs-material/reference/)
+
+Setup:
+
+[Link](https://squidfunk.github.io/mkdocs-material/setup/changing-the-colors/)
+
+
+
+
+
+Blockquotes:
+
+> Dorothy followed her through many of the beautiful rooms in her castle.
+
+
+
+**Bold**
+
+
+> Dorothy followed her through many of the beautiful rooms in her castle.
+>
+> The Witch bade her clean the pots and kettles and sweep the floor and keep the fire fed with wood.
+
+
+
+Blockquotes with Other Elements:
+
+> #### The quarterly results look great!
+>
+> - Revenue was off the chart.
+> - Profits were higher than ever.
+>
+>  *Everything* is going according to **plan**.
+
+
+---
+
+Ordered List Best Practices:
+
+1. First item
+2. Second item
+
+Unordered Lists:
+
+- First item
+- Second item
+- Third item
+    - Indented item
+    - Indented item
+- Fourth item
+
+
+
+---
+
+Admonitions:
+ 
+ Options:
+
+abstract:  info: tip: success: question: warning: failure: 
+danger: bug: example: quote:
+
+!!! danger "danger" 
+
+    Each of the supported admonition types has a distinct icon
+
+
+---
+
+1. First item
+    - Indented item
+2. Second item
+
+---
 
 [Link](https://github.com/orgs/privacyguides/people) 
 
+My favorite search engine is [Duck Duck Go](https://duckduckgo.com "The best search engine for privacy").
+
+
+---
+
+URLs and Email Addresses
+
+To quickly turn a URL or email address into a link, enclose it in angle brackets.
+
+<https://www.markdownguide.org>
+
+<fake@example.com>
+
+---
+
+Formatting Links:
+
+I love supporting the **[EFF](https://eff.org)**.
+
+This is the *[Markdown Guide](https://www.markdownguide.org)*.
+
+See the section on [`code`](#code).
+
+---
 
 :fontawesome-brands-fedora: fedora brand
+
+---
 
 <mark> mark color</mark>
 
@@ -80,7 +214,8 @@ tags on separate lines and adding new lines between the tags and the content.
 
 
 []: # (Image)
-![Jurassic Park](https://preview.redd.it/nw5dvr5w85131.jpg?width=960&crop=smart&auto=webp&s=bfe6b035cfdb034b76be5a1cdf70850970683da3)
+  
+   ![Tux, the Linux mascot](https://mdg.imgix.net/assets/images/tux.png?auto=format&fit=clip&q=40&w=100)
 
 
 
