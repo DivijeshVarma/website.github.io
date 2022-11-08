@@ -1,0 +1,2676 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://www.privacyguides.org/redhat/access/">
+      
+      <link rel="icon" href="../../assets/img/layout/favicon.ico">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-8.5.9">
+    
+    
+      
+        <title>Accessing The Command Line - Divijesh Varma</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.20d9efc8.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.08040f6c.min.css">
+        
+      
+      
+
+    
+    
+    
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="teal">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#introduction-to-the-bash-shell" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Divijesh Varma" class="md-header__button md-logo" aria-label="Divijesh Varma" data-md-component="logo">
+      
+  <img src="../../assets/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Divijesh Varma
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Accessing The Command Line
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="teal"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 1 7 7c0 2.38-1.19 4.47-3 5.74V17a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 0 1 7-7M9 21v-1h6v1a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1m3-17a5 5 0 0 0-5 5c0 2.05 1.23 3.81 3 4.58V16h4v-2.42c1.77-.77 3-2.53 3-4.58a5 5 0 0 0-5-5Z"/></svg>
+            </label>
+          
+        
+          
+          
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="deep-purple" data-md-color-accent="deep-orange"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 2.38 1.19 4.47 3 5.74V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.26c1.81-1.27 3-3.36 3-5.74a7 7 0 0 0-7-7M9 21a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-1H9v1Z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../.." class="md-tabs__link">
+      Home
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../linux/vi/" class="md-tabs__link">
+        Linux
+      </a>
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../intro/" class="md-tabs__link md-tabs__link--active">
+        RedHat
+      </a>
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../english/vol1/" class="md-tabs__link">
+        English
+      </a>
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../basics/threat-modeling/" class="md-tabs__link">
+        Knowledge Base
+      </a>
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../tools/" class="md-tabs__link">
+        Recommendations
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../about/" class="md-tabs__link">
+        About
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Divijesh Varma" class="md-nav__button md-logo" aria-label="Divijesh Varma" data-md-component="logo">
+      
+  <img src="../../assets/logo.png" alt="logo">
+
+    </a>
+    Divijesh Varma
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          Linux
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Linux" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Linux
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_2_1" type="checkbox" id="__nav_2_1" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_1">
+          Editors
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Editors" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_1">
+          <span class="md-nav__icon md-icon"></span>
+          Editors
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/vi/" class="md-nav__link">
+        Vim
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/nano/" class="md-nav__link">
+        Nano
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_2_2" type="checkbox" id="__nav_2_2" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_2">
+          Notes
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Notes" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_2">
+          <span class="md-nav__icon md-icon"></span>
+          Notes
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/rhcsa/" class="md-nav__link">
+        Tritree
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/user/" class="md-nav__link">
+        User Management
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/acl/" class="md-nav__link">
+        Access control lists (ACLs)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/network/" class="md-nav__link">
+        Networking
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/ssh/" class="md-nav__link">
+        OpenSSH
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/process/" class="md-nav__link">
+        Process Management
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/software/" class="md-nav__link">
+        Software Management
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/systemd/" class="md-nav__link">
+        Systemd Management
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/cron/" class="md-nav__link">
+        Cron Jobs
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/logs/" class="md-nav__link">
+        Logs
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/disk/" class="md-nav__link">
+        Disk Management
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3">
+          RedHat
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="RedHat" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          RedHat
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+    
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_1" type="checkbox" id="__nav_3_1" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_1">
+          RHSA I (RH124)
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="RHSA I (RH124)" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_1">
+          <span class="md-nav__icon md-icon"></span>
+          RHSA I (RH124)
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../intro/" class="md-nav__link">
+        Introduction
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Accessing The Command Line
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Accessing The Command Line
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction-to-the-bash-shell" class="md-nav__link">
+    INTRODUCTION TO THE BASH SHELL
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#shell-basics" class="md-nav__link">
+    SHELL BASICS
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#logging-in-to-a-local-computer" class="md-nav__link">
+    LOGGING IN TO A LOCAL COMPUTER
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#logging-in-over-the-network" class="md-nav__link">
+    LOGGING IN OVER THE NETWORK
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#logging-out" class="md-nav__link">
+    LOGGING OUT
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#executing-commands-using-the-bash-shell" class="md-nav__link">
+    EXECUTING COMMANDS USING THE BASH SHELL
+  </a>
+  
+    <nav class="md-nav" aria-label="EXECUTING COMMANDS USING THE BASH SHELL">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#basic-command-syntax" class="md-nav__link">
+    BASIC COMMAND SYNTAX
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#examples-of-simple-commands" class="md-nav__link">
+    EXAMPLES OF SIMPLE COMMANDS
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#viewing-the-contents-of-files" class="md-nav__link">
+    VIEWING THE CONTENTS OF FILES
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#continuing-a-long-command-on-another-line" class="md-nav__link">
+    CONTINUING A LONG COMMAND ON ANOTHER LINE
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#command-history" class="md-nav__link">
+    COMMAND HISTORY
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#editing-the-command-line" class="md-nav__link">
+    EDITING THE COMMAND LINE
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#accessing-the-command-line" class="md-nav__link">
+    ACCESSING THE COMMAND LINE
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    SUMMARY
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4">
+          English
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="English" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          English
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_4_1" type="checkbox" id="__nav_4_1" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_1">
+          Tutorial
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Tutorial" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_1">
+          <span class="md-nav__icon md-icon"></span>
+          Tutorial
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../english/vol1/" class="md-nav__link">
+        Vol-1
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../english/vol2/" class="md-nav__link">
+        Vol-2
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../english/vol3/" class="md-nav__link">
+        Vol-3
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../english/vol4/" class="md-nav__link">
+        Vol-4
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5">
+          Knowledge Base
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Knowledge Base" data-md-level="1">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          Knowledge Base
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_5_1" type="checkbox" id="__nav_5_1" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5_1">
+          The Basics
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="The Basics" data-md-level="2">
+        <label class="md-nav__title" for="__nav_5_1">
+          <span class="md-nav__icon md-icon"></span>
+          The Basics
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../basics/threat-modeling/" class="md-nav__link">
+        Threat Modeling
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../basics/dns/" class="md-nav__link">
+        Introduction to DNS
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../basics/multi-factor-authentication/" class="md-nav__link">
+        Multi-factor Authentication
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../basics/account-deletion/" class="md-nav__link">
+        Account Deletion
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_5_2" type="checkbox" id="__nav_5_2" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5_2">
+          Android
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Android" data-md-level="2">
+        <label class="md-nav__title" for="__nav_5_2">
+          <span class="md-nav__icon md-icon"></span>
+          Android
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../android/overview/" class="md-nav__link">
+        Android Overview
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../android/grapheneos-vs-calyxos/" class="md-nav__link">
+        GrapheneOS vs CalyxOS
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_5_3" type="checkbox" id="__nav_5_3" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5_3">
+          Linux
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Linux" data-md-level="2">
+        <label class="md-nav__title" for="__nav_5_3">
+          <span class="md-nav__icon md-icon"></span>
+          Linux
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux-desktop/overview/" class="md-nav__link">
+        Linux Overview
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux-desktop/hardening/" class="md-nav__link">
+        System Hardening
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux-desktop/sandboxing/" class="md-nav__link">
+        Application Sandboxing
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_5_4" type="checkbox" id="__nav_5_4" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5_4">
+          Advanced
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Advanced" data-md-level="2">
+        <label class="md-nav__title" for="__nav_5_4">
+          <span class="md-nav__icon md-icon"></span>
+          Advanced
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setup/integrating-metadata-removal/" class="md-nav__link">
+        Integrating Metadata Removal
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_6" type="checkbox" id="__nav_6" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6">
+          Recommendations
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Recommendations" data-md-level="1">
+        <label class="md-nav__title" for="__nav_6">
+          <span class="md-nav__icon md-icon"></span>
+          Recommendations
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tools/" class="md-nav__link">
+        Privacy Tools
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_6_2" type="checkbox" id="__nav_6_2" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6_2">
+          Browsers
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Browsers" data-md-level="2">
+        <label class="md-nav__title" for="__nav_6_2">
+          <span class="md-nav__icon md-icon"></span>
+          Browsers
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../browsers/" class="md-nav__link">
+        Web Browsers
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_6_3" type="checkbox" id="__nav_6_3" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6_3">
+          Operating Systems
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Operating Systems" data-md-level="2">
+        <label class="md-nav__title" for="__nav_6_3">
+          <span class="md-nav__icon md-icon"></span>
+          Operating Systems
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../android/" class="md-nav__link">
+        Android
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux-desktop/" class="md-nav__link">
+        Linux
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../qubes/" class="md-nav__link">
+        Qubes OS
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../router/" class="md-nav__link">
+        Router Firmware
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_6_4" type="checkbox" id="__nav_6_4" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6_4">
+          Providers
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Providers" data-md-level="2">
+        <label class="md-nav__title" for="__nav_6_4">
+          <span class="md-nav__icon md-icon"></span>
+          Providers
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cloud/" class="md-nav__link">
+        Cloud Storage
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dns/" class="md-nav__link">
+        DNS Resolvers
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../email/" class="md-nav__link">
+        Email Services
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../search-engines/" class="md-nav__link">
+        Search Engines
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vpn/" class="md-nav__link">
+        VPN Services
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_6_5" type="checkbox" id="__nav_6_5" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6_5">
+          Software
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Software" data-md-level="2">
+        <label class="md-nav__title" for="__nav_6_5">
+          <span class="md-nav__icon md-icon"></span>
+          Software
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../calendar-contacts/" class="md-nav__link">
+        Calendar and Contact Sync
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../notebooks/" class="md-nav__link">
+        Notebooks
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../email-clients/" class="md-nav__link">
+        Email Clients
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../encryption/" class="md-nav__link">
+        Encryption Software
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../file-sharing/" class="md-nav__link">
+        File Sharing and Sync
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../metadata-removal-tools/" class="md-nav__link">
+        Metadata Removal Tools
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../multi-factor-authentication/" class="md-nav__link">
+        Multi-Factor Authenticators
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../passwords/" class="md-nav__link">
+        Password Managers
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../productivity/" class="md-nav__link">
+        Productivity Tools
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../real-time-communication/" class="md-nav__link">
+        Real-Time Communication
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../news-aggregators/" class="md-nav__link">
+        News Aggregators
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../self-contained-networks/" class="md-nav__link">
+        Self-Contained Networks
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../video-streaming/" class="md-nav__link">
+        Video Streaming
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_7" type="checkbox" id="__nav_7" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_7">
+          About
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="About" data-md-level="1">
+        <label class="md-nav__title" for="__nav_7">
+          <span class="md-nav__icon md-icon"></span>
+          About
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/" class="md-nav__link">
+        Heading
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction-to-the-bash-shell" class="md-nav__link">
+    INTRODUCTION TO THE BASH SHELL
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#shell-basics" class="md-nav__link">
+    SHELL BASICS
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#logging-in-to-a-local-computer" class="md-nav__link">
+    LOGGING IN TO A LOCAL COMPUTER
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#logging-in-over-the-network" class="md-nav__link">
+    LOGGING IN OVER THE NETWORK
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#logging-out" class="md-nav__link">
+    LOGGING OUT
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#executing-commands-using-the-bash-shell" class="md-nav__link">
+    EXECUTING COMMANDS USING THE BASH SHELL
+  </a>
+  
+    <nav class="md-nav" aria-label="EXECUTING COMMANDS USING THE BASH SHELL">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#basic-command-syntax" class="md-nav__link">
+    BASIC COMMAND SYNTAX
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#examples-of-simple-commands" class="md-nav__link">
+    EXAMPLES OF SIMPLE COMMANDS
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#viewing-the-contents-of-files" class="md-nav__link">
+    VIEWING THE CONTENTS OF FILES
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#continuing-a-long-command-on-another-line" class="md-nav__link">
+    CONTINUING A LONG COMMAND ON ANOTHER LINE
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#command-history" class="md-nav__link">
+    COMMAND HISTORY
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#editing-the-command-line" class="md-nav__link">
+    EDITING THE COMMAND LINE
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#accessing-the-command-line" class="md-nav__link">
+    ACCESSING THE COMMAND LINE
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    SUMMARY
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+  
+
+
+
+
+  <h1>Accessing The Command Line</h1>
+
+<h3 id="introduction-to-the-bash-shell">INTRODUCTION TO THE BASH SHELL<a class="headerlink" href="#introduction-to-the-bash-shell" title="Permanent link">&para;</a></h3>
+<p>A command line is a text-based interface which can be used to input instructions to a computer
+system. The Linux command line is provided by a program called the shell. Various options for the
+shell program have been developed over the years, and different users can be configured to use
+different shells. Most users, however, stick with the current default.</p>
+<p>The default shell for users in Red Hat Enterprise Linux is the <strong><em>GNU Bourne-Again Shell (bash)</em></strong>. Bash
+is an improved version of one of the most successful shells used on UNIX-like systems, the <strong><em>Bourne
+Shell (sh)</em></strong>.</p>
+<p>When a shell is used interactively, it displays a string when it is waiting for a command from the
+user. This is called the shell prompt. When a regular user starts a shell, the default prompt ends
+with a <strong>$</strong> character, as shown below.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ 
+</code></pre></div>
+<p>The <strong>$</strong> character is replaced by a <strong><em>#</em></strong> character if the shell is running as the superuser, root. This
+makes it more obvious that it is a superuser shell, which helps to avoid accidents and mistakes
+which can affect the whole system. The superuser shell prompt is shown below.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># </span>
+</code></pre></div>
+<p>Using <strong>bash</strong> to execute commands can be powerful. The bash shell provides a scripting language
+that can support automation of tasks. The shell has additional capabilities that can simplify or
+make possible operations that are hard to accomplish efficiently with graphical tools.</p>
+<div class="admonition info">
+<p class="admonition-title">NOTE</p>
+<p>The <strong>bash</strong> shell is similar in concept to the command-line interpreter found in recent
+versions of Microsoft Windows, cmd.exe, although bash has a more sophisticated
+scripting language. It is also similar to Windows PowerShell in Windows 7 and
+Windows Server 2008 R2 and later. Administrators using the Apple Mac who use the
+Terminal utility may be pleased to note that bash is the default shell in macOS.</p>
+</div>
+<h3 id="shell-basics">SHELL BASICS<a class="headerlink" href="#shell-basics" title="Permanent link">&para;</a></h3>
+<p>Commands entered at the shell prompt have three basic parts:</p>
+<ul>
+<li>
+<p>Command to run</p>
+</li>
+<li>
+<p>Options to adjust the behavior of the command</p>
+</li>
+<li>
+<p>Arguments, which are typically targets of the command</p>
+</li>
+</ul>
+<p>The command is the name of the program to run. It may be followed by one or more options, which
+adjust the behavior of the command or what it will do. Options normally start with one or two
+dashes (-a or --all, for example) to distinguish them from arguments. Commands may also
+be followed by one or more arguments, which often indicate a target that the command should
+operate upon.</p>
+<p>For example, the command <strong>usermod -L user01</strong> has a command (usermod), an option (-L), and
+an argument (user01). The effect of this command is to lock the password of the user01 user
+account.</p>
+<h3 id="logging-in-to-a-local-computer">LOGGING IN TO A LOCAL COMPUTER<a class="headerlink" href="#logging-in-to-a-local-computer" title="Permanent link">&para;</a></h3>
+<p>To run the shell, you need to log in to the computer on a terminal. A terminal is a text-based
+interface used to enter commands into and print output from a computer system. There are several
+ways to do this.</p>
+<p>The computer might have a hardware keyboard and display for input and output directly connected
+to it. This is the Linux machine's physical console. The physical console supports multiple virtual
+consoles, which can run separate terminals. Each virtual console supports an independent login
+session. You can switch between them by pressing <strong>Ctrl+Alt</strong> and a function key (F1 through F6)
+at the same time. Most of these virtual consoles run a terminal providing a text login prompt, and if
+you enter your username and password correctly, you will log in and get a shell prompt.</p>
+<p>The computer might provide a graphical login prompt on one of the virtual consoles. You can use
+this to log in to a graphical environment. The graphical environment also runs on a virtual console.
+To get a shell prompt you must start a terminal program in the graphical environment. The shell
+prompt is provided in an application window of your graphical terminal program.</p>
+<div class="admonition info">
+<p class="admonition-title">NOTE</p>
+<p>Many system administrators choose not to run a graphical environment on their
+servers. This allows resources which would be used by the graphical environment to
+be used by the server's services instead.</p>
+</div>
+<p>In Red Hat Enterprise Linux 8, if the graphical environment is available, the login screen will run
+on the first virtual console, called <em>tty1</em>. Five additional text login prompts are available on virtual
+consoles two through six.</p>
+<p>If you log in using the graphical login screen, your graphical environment will start on the first
+virtual console that is not currently being used by a login session. Normally, your graphical session
+will replace the login prompt on the second virtual console (<em>tty2</em>). However, if that console is in
+use by an active text login session (not just a login prompt), the next free virtual console is used
+instead.</p>
+<p>The graphical login screen continues to run on the first virtual console (<em>tty1</em>). If you are already
+logged in to a graphical session, and log in as another user on the graphical login screen or use the
+Switch User menu item to switch users in the graphical environment without logging out, another
+graphical environment will be started for that user on the next free virtual console.</p>
+<p>When you log out of a graphical environment, it will exit and the physical console will automatically
+switch back to the graphical login screen on the first virtual console.</p>
+<div class="admonition info">
+<p class="admonition-title">NOTE</p>
+<p>In Red Hat Enterprise Linux 6 and 7, the graphical login screen runs on the first
+virtual console, but when you log in your initial graphical environment replaces the
+login screen on the first virtual console instead of starting on a new virtual console.
+In Red Hat Enterprise Linux 5 and earlier, the first six virtual consoles always
+provided text login prompts. If the graphical environment is running, it is on virtual
+console seven (accessed through <strong>Ctrl+Alt+F7</strong>).</p>
+</div>
+<p>A <em>headless server</em> does not have a keyboard and display permanently connected to it. A data center
+may be filled with many racks of headless servers, and not providing each with a keyboard and
+display saves space and expense. To allow administrators to log in, a headless server might have
+a login prompt provided by its serial console, running on a serial port which is connected to a
+networked console server for remote access to the serial console.</p>
+<p>The <em>serial console</em> would normally be used to fix the server if its own network card became
+misconfigured and logging in over its own network connection became impossible. Most of the
+time, however, headless servers are accessed by other means over the network.</p>
+<h3 id="logging-in-over-the-network">LOGGING IN OVER THE NETWORK<a class="headerlink" href="#logging-in-over-the-network" title="Permanent link">&para;</a></h3>
+<p>Linux users and administrators often need to get shell access to a remote system by connecting
+to it over the network. In a modern computing environment, many headless servers are actually
+virtual machines or are running as public or private cloud instances. These systems are not
+physical and do not have real hardware consoles. They might not even provide access to their
+(simulated) physical console or serial console.</p>
+<p>In Linux, the most common way to get a shell prompt on a remote system is to use Secure Shell
+(SSH). Most Linux systems (including Red Hat Enterprise Linux) and macOS provide the <em>OpenSSH</em>
+command-line program <strong>ssh</strong> for this purpose.</p>
+<p>In this example, a user with a shell prompt on the machine host uses <strong>ssh</strong> to log in to the remote
+Linux system remotehost as the user remoteuser:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ ssh remoteuser@remotehost
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>remoteuser@remotehost<span class="err">&#39;</span>s password: password
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="o">[</span>remoteuser@remotehost ~<span class="o">]</span>$
+</code></pre></div>
+<p>The <strong>ssh</strong> command encrypts the connection to secure the communication against eavesdropping
+or hijacking of the passwords and content.</p>
+<p>Some systems (such as new cloud instances) do not allow users to use a password to log in with
+<strong>ssh</strong> for tighter security. An alternative way to authenticate to a remote machine without entering a
+password is through <em>public key authentication</em>.</p>
+<p>With this authentication method, users have a special identity file containing a private key, which
+is equivalent to a password, and which they keep secret. Their account on the server is configured
+with a matching public key, which does not have to be secret. When logging in, users can configure
+<strong>ssh</strong> to provide the private key and if their matching public key is installed in that account on that
+remote server, it will log them in without asking for a password.</p>
+<p>In the next example, a user with a shell prompt on the machine host logs in to remotehost
+as remoteuser using <strong>ssh</strong>, using public key authentication. The <strong>-i</strong> option is used to specify
+the user's private key file, which is mylab.pem. The matching public key is already set up as an
+authorized key in the remoteuser account.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ ssh -i mylab.pem remoteuser@remotehost
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="o">[</span>remoteuser@remotehost ~<span class="o">]</span>$
+</code></pre></div>
+<p>For this to work, the private key file must be readable only by the user that owns the file. In the
+preceding example, where the private key is in the mylab.pem file, the command <strong>chmod 600
+mylab.pem</strong> could be used to ensure this. How to set file permissions is discussed in more detail in
+a later chapter.</p>
+<p>Users might also have private keys configured that are tried automatically, but that discussion is
+beyond the scope of this section. The References at the end of this section contain links to more
+information on this topic.</p>
+<div class="admonition info">
+<p class="admonition-title">NOTE</p>
+<p>The first time you log in to a new machine, you will be prompted with a warning from
+<strong>ssh</strong> that it cannot establish the authenticity of the host:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ ssh -i mylab.pem remoteuser@remotehost
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>The authenticity of host <span class="s1">&#39;remotehost (192.0.2.42)&#39;</span> can<span class="err">&#39;</span>t be established.
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>ECDSA key fingerprint is <span class="m">47</span>:bf:82:cd:fa:68:06:ee:d8:83:03:1a:bb:29:14:a3.
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>Are you sure you want to <span class="k">continue</span> connecting <span class="o">(</span>yes/no<span class="o">)</span>? yes
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="o">[</span>remoteuser@remotehost ~<span class="o">]</span>$
+</code></pre></div>
+<p>Each time you connect to a remote host with ssh, the remote host sends ssh its
+host key to authenticate itself and to help set up encrypted communication. The ssh
+command compares that against a list of saved host keys to make sure it has not
+changed. If the host key has changed, this might indicate that someone is trying to
+pretend to be that host to hijack the connection which is also known as man-in-the-
+middle attack. In SSH, host keys protect against man-in-the-middle attacks, these
+host keys are unique for each server, and they need to be changed periodically and
+whenever a compromise is suspected.</p>
+<p>You will get this warning if your local machine does not have a host key saved for
+the remote host. If you enter yes, the host key that the remote host sent will be
+accepted and saved for future reference. Login will continue, and you should not see
+this message again when connecting to this host. If you enter no, the host key will be
+rejected and the connection closed.</p>
+<p>If the local machine does have a host key saved and it does not match the one
+actually sent by the remote host, the connection will automatically be closed with a
+warning.</p>
+</div>
+<h3 id="logging-out">LOGGING OUT<a class="headerlink" href="#logging-out" title="Permanent link">&para;</a></h3>
+<p>When you are finished using the shell and want to quit, you can choose one of several ways to end
+the session. You can enter the <strong>exit</strong> command to terminate the current shell session. Alternatively,
+finish a session by pressing <strong>Ctrl+D</strong>.</p>
+<p>The following is an example of a user logging out of an SSH session:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="o">[</span>remoteuser@remotehost ~<span class="o">]</span>$ <span class="nb">exit</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="nb">logout</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>Connection to remotehost closed.
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="o">[</span>user@host ~<span class="o">]</span>$
+</code></pre></div>
+<h3 id="executing-commands-using-the-bash-shell">EXECUTING COMMANDS USING THE BASH SHELL<a class="headerlink" href="#executing-commands-using-the-bash-shell" title="Permanent link">&para;</a></h3>
+<h4 id="basic-command-syntax">BASIC COMMAND SYNTAX<a class="headerlink" href="#basic-command-syntax" title="Permanent link">&para;</a></h4>
+<p>The GNU Bourne-Again Shell (<strong>bash</strong>) is a program that interprets commands typed in by the
+user. Each string typed into the shell can have up to three parts: the command, options (which
+usually begin with a - or --), and arguments. Each word typed into the shell is separated from each
+other with spaces. Commands are the names of programs that are installed on the system. Each
+command has its own options and arguments.</p>
+<p>When you are ready to execute a command, press the <strong>Enter</strong> key. Type each command on a
+separate line. The command output is displayed before the next shell prompt appears.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="o">[</span>user@host<span class="o">]</span>$ whoami
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>user
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="o">[</span>user@host<span class="o">]</span>$ 
+</code></pre></div>
+<p>If you want to type more than one command on a single line, use the semicolon (;) as a command
+separator. A semicolon is a member of a class of characters called metacharacters that have special
+meanings for <strong>bash</strong>. In this case the output of both commands will be displayed before the next
+shell prompt appears.</p>
+<p>The following example shows how to combine two commands (command1 and command2) on the
+command line.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="o">[</span>user@host<span class="o">]</span>$ command1<span class="p">;</span>command2
+</code></pre></div>
+<h4 id="examples-of-simple-commands">EXAMPLES OF SIMPLE COMMANDS<a class="headerlink" href="#examples-of-simple-commands" title="Permanent link">&para;</a></h4>
+<p>The <strong>date</strong> command displays the current date and time. It can also be used by the superuser to
+set the system clock. An argument that begins with a plus sign (+) specifies a format string for the
+date command.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ date
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>Sat Jan  <span class="m">26</span> <span class="m">08</span>:13:50 IST <span class="m">2019</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ date +%R
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="m">08</span>:13
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ date +%x
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="m">01</span>/26/2019
+</code></pre></div>
+<p>The <strong>passwd</strong> command changes a user's own password. The original password for the account
+must be specified before a change is allowed. By default, <strong>passwd</strong> is configured to require a strong
+password, consisting of lowercase letters, uppercase letters, numbers, and symbols, and is not
+based on a dictionary word. The superuser can use the <strong>passwd</strong> command to change other users'
+passwords.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ passwd
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>Changing password <span class="k">for</span> user user.
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>Current password: old_password
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>New password: new_password
+<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>Retype new password: new_password
+<a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a>passwd: all authentication tokens updated successfully.
+</code></pre></div>
+<p>Linux does not require file name extensions to classify files by type. The <strong>file</strong> command scans the
+beginning of a file's contents and displays what type it is. The files to be classified are passed as
+arguments to the command.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ file /etc/passwd
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>/etc/passwd: ASCII text
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ file /bin/passwd
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>/bin/passwd: setuid ELF <span class="m">64</span>-bit LSB shared object, x86-64, version <span class="m">1</span> 
+<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="o">(</span>SYSV<span class="o">)</span>, dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, 
+<a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="k">for</span> GNU/Linux <span class="m">3</span>.2.0, BuildID<span class="o">[</span>sha1<span class="o">]=</span>a3637110e27e9a48dced9f38b4ae43388d32d0e4,
+<a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a> stripped
+<a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ file /home
+<a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a>/home: directory
+</code></pre></div>
+<h3 id="viewing-the-contents-of-files">VIEWING THE CONTENTS OF FILES<a class="headerlink" href="#viewing-the-contents-of-files" title="Permanent link">&para;</a></h3>
+<p>One of the most simple and frequently used commands in Linux is <strong>cat</strong>. The <strong>cat</strong> command allows
+you to create single or multiple files, view the contents of files, concatenate the contents from
+multiple files, and redirect contents of the file to a terminal or files.</p>
+<p>The example shows how to view the contents of the <strong>/etc/passwd</strong> file.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ cat /etc/passwd
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>root:x:0:0:root:/root:/bin/bash
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>bin:x:1:1:bin:/bin:/sbin/nologin
+<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>daemon:x:2:2:daemon:/sbin:/sbin/nologin
+<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>adm:x:3:4:adm:/var/adm:/sbin/nologin
+<a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a>...output omitted...
+</code></pre></div>
+<p>Use the following command to display the contents of multiple files.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ cat file1 file2
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>Hello World!!
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>Introduction to Linux commands.
+</code></pre></div>
+<p>Some files are very long and can take up more room to display than that provided by the terminal.
+The <strong>cat</strong> command does not display the contents of a file as pages. The <strong>less</strong> command displays
+one page of a file at a time and lets you scroll at your leisure.</p>
+<p>The <strong>less</strong> command allows you to page forward and backward through files that are longer than
+can fit on one terminal window. Use the UpArrow key and the DownArrow key to scroll up and
+down. Press Q to exit the command.</p>
+<p>The <strong>head</strong> and <strong>tail</strong> commands display the beginning and end of a file, respectively. By default
+these commands display 10 lines of the file, but they both have a <strong>-n</strong> option that allows a different
+number of lines to be specified. The file to display is passed as an argument to these commands.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ head /etc/passwd
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>root:x:0:0:root:/root:/bin/bash
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>bin:x:1:1:bin:/bin:/sbin/nologin
+<a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>daemon:x:2:2:daemon:/sbin:/sbin/nologin
+<a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a>adm:x:3:4:adm:/var/adm:/sbin/nologin
+<a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a>lp:x:4:7:lp:/var/spool/lpd:/sbin/nologin
+<a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a>sync:x:5:0:sync:/sbin:/bin/sync
+<a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a>shutdown:x:6:0:shutdown:/sbin:/sbin/shutdown
+<a id="__codelineno-13-9" name="__codelineno-13-9" href="#__codelineno-13-9"></a>halt:x:7:0:halt:/sbin:/sbin/halt
+<a id="__codelineno-13-10" name="__codelineno-13-10" href="#__codelineno-13-10"></a>mail:x:8:12:mail:/var/spool/mail:/sbin/nologin
+<a id="__codelineno-13-11" name="__codelineno-13-11" href="#__codelineno-13-11"></a>operator:x:11:0:operator:/root:/sbin/nologin
+<a id="__codelineno-13-12" name="__codelineno-13-12" href="#__codelineno-13-12"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ tail -n <span class="m">3</span> /etc/passwd
+<a id="__codelineno-13-13" name="__codelineno-13-13" href="#__codelineno-13-13"></a>gdm:x:42:42::/var/lib/gdm:/sbin/nologin
+<a id="__codelineno-13-14" name="__codelineno-13-14" href="#__codelineno-13-14"></a>gnome-initial-setup:x:977:977::/run/gnome-initial-setup/:/sbin/nologin
+<a id="__codelineno-13-15" name="__codelineno-13-15" href="#__codelineno-13-15"></a>avahi:x:70:70:Avahi mDNS/DNS-SD Stack:/var/run/avahi-daemon:/sbin/nologin
+</code></pre></div>
+<p>The <strong>wc</strong> command counts lines, words, and characters in a file. It takes a -l, -w, or -c option to</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ wc /etc/passwd
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>  <span class="m">45</span>  <span class="m">102</span> <span class="m">2480</span> /etc/passwd
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ wc -l /etc/passwd <span class="p">;</span> wc -l /etc/group
+<a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a><span class="m">45</span> /etc/passwd
+<a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a><span class="m">70</span> /etc/group
+<a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ wc -c /etc/group /etc/hosts
+<a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a> <span class="m">966</span> /etc/group
+<a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a> <span class="m">516</span> /etc/hosts
+<a id="__codelineno-14-9" name="__codelineno-14-9" href="#__codelineno-14-9"></a><span class="m">1482</span> total
+</code></pre></div>
+<h3 id="continuing-a-long-command-on-another-line">CONTINUING A LONG COMMAND ON ANOTHER LINE<a class="headerlink" href="#continuing-a-long-command-on-another-line" title="Permanent link">&para;</a></h3>
+<p>Commands that support many options and arguments can quickly grow quite long and are
+automatically scrolled by the Bash shell. As soon as the cursor reaches the right margin of the
+window, the command continues on the next line. To make the readability of the command easier,
+you can break it up so that if fits on more than one line.</p>
+<p>To do this, add a backslash character () as the last character on the line. This tells the shell to
+ignore the newline character and treat the next line as if it were part of the current line. The Bash
+shell will start the next line with the continuation prompt, usually a greater-than character (&gt;),
+which indicates that the line is a continuation of the previous line. You can do this more than once.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="o">[</span>user@host<span class="o">]</span>$ head -n <span class="m">3</span> <span class="se">\</span>
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>&gt; /usr/share/dict/words <span class="se">\</span>
+<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>&gt; /usr/share/dict/linux.words
+<a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a><span class="o">==</span>&gt; /usr/share/dict/words &lt;<span class="o">==</span>
+<a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a><span class="m">1080</span>
+<a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a><span class="m">10</span>-point
+<a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a><span class="nv">10th</span>
+<a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a><span class="o">==</span>&gt; /usr/share/dict/linux.words &lt;<span class="o">==</span>
+<a id="__codelineno-15-9" name="__codelineno-15-9" href="#__codelineno-15-9"></a><span class="m">1080</span>
+<a id="__codelineno-15-10" name="__codelineno-15-10" href="#__codelineno-15-10"></a><span class="m">10</span>-point
+<a id="__codelineno-15-11" name="__codelineno-15-11" href="#__codelineno-15-11"></a>10th
+<a id="__codelineno-15-12" name="__codelineno-15-12" href="#__codelineno-15-12"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ 
+</code></pre></div>
+<h3 id="command-history">COMMAND HISTORY<a class="headerlink" href="#command-history" title="Permanent link">&para;</a></h3>
+<p>The <strong>history</strong> command displays a list of previously executed commands prefixed with a command
+number.</p>
+<p>The exclamation point character (!) is a metacharacter that is used to expand previous commands
+without having to retype them. The <strong>!number</strong> command expands to the command matching the
+number specified. The <strong>!string</strong> command expands to the most recent command that begins with
+the string specified.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ <span class="nb">history</span>
+<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>   ...output omitted...
+<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>   <span class="m">23</span>  clear
+<a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a>   <span class="m">24</span>  who
+<a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a>   <span class="m">25</span>  <span class="nb">pwd</span>
+<a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a>   <span class="m">26</span>  ls /etc
+<a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a>   <span class="m">27</span>  uptime
+<a id="__codelineno-16-8" name="__codelineno-16-8" href="#__codelineno-16-8"></a>   <span class="m">28</span>  ls -l
+<a id="__codelineno-16-9" name="__codelineno-16-9" href="#__codelineno-16-9"></a>   <span class="m">29</span>  date
+<a id="__codelineno-16-10" name="__codelineno-16-10" href="#__codelineno-16-10"></a>   <span class="m">30</span>  <span class="nb">history</span>
+<a id="__codelineno-16-11" name="__codelineno-16-11" href="#__codelineno-16-11"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ !ls
+<a id="__codelineno-16-12" name="__codelineno-16-12" href="#__codelineno-16-12"></a>ls -l
+<a id="__codelineno-16-13" name="__codelineno-16-13" href="#__codelineno-16-13"></a>total <span class="m">0</span>
+<a id="__codelineno-16-14" name="__codelineno-16-14" href="#__codelineno-16-14"></a>drwxr-xr-x. <span class="m">2</span> user user <span class="m">6</span> Mar <span class="m">29</span> <span class="m">21</span>:16 Desktop
+<a id="__codelineno-16-15" name="__codelineno-16-15" href="#__codelineno-16-15"></a>...output omitted...
+<a id="__codelineno-16-16" name="__codelineno-16-16" href="#__codelineno-16-16"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ !26
+<a id="__codelineno-16-17" name="__codelineno-16-17" href="#__codelineno-16-17"></a>ls /etc
+<a id="__codelineno-16-18" name="__codelineno-16-18" href="#__codelineno-16-18"></a>abrt                     hosts                     pulse
+<a id="__codelineno-16-19" name="__codelineno-16-19" href="#__codelineno-16-19"></a>adjtime                  hosts.allow               purple
+<a id="__codelineno-16-20" name="__codelineno-16-20" href="#__codelineno-16-20"></a>aliases                  hosts.deny                qemu-ga
+<a id="__codelineno-16-21" name="__codelineno-16-21" href="#__codelineno-16-21"></a>...output omitted...
+</code></pre></div>
+<p>The arrow keys can be used to navigate through previous commands in the shell's history.
+<strong>UpArrow</strong> edits the previous command in the history list. <strong>DownArrow</strong> edits the next command
+in the history list. <strong>LeftArrow</strong> and <strong>RightArrow</strong> move the cursor left and right in the current
+command from the history list, so that you can edit it before running it.</p>
+<p>You can use either the <strong>Esc+</strong>. or <strong>Alt+</strong>. key combination to insert the last word of the previous
+command at the cursor's current location. Repeated use of the key combination will replace that
+text with the last word of even earlier commands in the history. The Alt+. key combination
+is particularly convenient because you can hold down Alt and press . repeatedly to easily go
+through earlier and earlier commands.</p>
+<h3 id="editing-the-command-line">EDITING THE COMMAND LINE<a class="headerlink" href="#editing-the-command-line" title="Permanent link">&para;</a></h3>
+<p>When used interactively, <strong>bash</strong> has a command-line editing feature. This allows the user to use text
+editor commands to move around within and modify the current command being typed. Using the
+arrow keys to move within the current command and to step through the command history was
+introduced earlier in this session. More powerful editing commands are introduced in the following
+table.</p>
+<p><strong>Useful Command-line Editing Shortcuts</strong></p>
+<table>
+<thead>
+<tr>
+<th align="right">SHORTCUT</th>
+<th align="left">DESCRIPTION</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right">Ctrl+A</td>
+<td align="left">Jump to the beginning of the command line.</td>
+</tr>
+<tr>
+<td align="right">Ctrl+E</td>
+<td align="left">Jump to the end of the command line.</td>
+</tr>
+<tr>
+<td align="right">Ctrl+U</td>
+<td align="left">Clear from the cursor to the beginning of the command line.</td>
+</tr>
+<tr>
+<td align="right">Ctrl+K</td>
+<td align="left">Clear from the cursor to the end of the command line.</td>
+</tr>
+<tr>
+<td align="right">Ctrl+Left</td>
+<td align="left">Arrow Jump to the beginning of the previous word on the command line.</td>
+</tr>
+<tr>
+<td align="right">Ctrl+Right</td>
+<td align="left">Arrow Jump to the end of the next word on the command line.</td>
+</tr>
+<tr>
+<td align="right">Ctrl+R</td>
+<td align="left">Search the history list of commands for a pattern.</td>
+</tr>
+</tbody>
+</table>
+<p>There are several other command-line editing commands available, but these are the most useful
+commands for new users. The other commands can be found in the <strong>bash(1)</strong> man page.</p>
+<h3 id="accessing-the-command-line">ACCESSING THE COMMAND LINE<a class="headerlink" href="#accessing-the-command-line" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Use the date command to display the current time and date.</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="o">[</span>student@workstation ~<span class="o">]</span>$ date
+<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>Thu Jan <span class="m">22</span> <span class="m">10</span>:13:04 PDT <span class="m">2019</span>
+</code></pre></div>
+<ul>
+<li>Display the current time in 12-hour clock time (for example, 11:42:11 AM). Hint: The format
+string that displays that output is %r.</li>
+</ul>
+<p>Use the +%r argument with the date command to display the current time in 12-hour clock
+   time.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="o">[</span>student@workstation ~<span class="o">]</span>$ date +%r
+<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="m">10</span>:14:07 AM
+</code></pre></div>
+<ul>
+<li>What kind of file is /home/student/zcat? Is it readable by humans?
+Use the file command to determine its file type.</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="o">[</span>student@workstation ~<span class="o">]</span>$ file zcat
+<a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>zcat: POSIX shell script, ASCII text executable
+</code></pre></div>
+<ul>
+<li>Use the wc command and Bash shortcuts to display the size of zcat.</li>
+</ul>
+<p>The wc command can be used to display the number of lines, words, and bytes in the zcat
+script. Instead of retyping the file name, use the Bash history shortcut Esc+. (the keys Esc
+and . pressed at the same time) to reuse the argument from the previous command.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="o">[</span>student@workstation ~<span class="o">]</span>$ wc Esc+.
+<a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a><span class="o">[</span>student@workstation ~<span class="o">]</span>$ wc zcat
+</code></pre></div>
+<ul>
+<li>Display the first 10 lines of zcat.
+The head command displays the beginning of the file. Try using the Esc+. shortcut again.</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="o">[</span>student@workstation ~<span class="o">]</span>$ head Esc+.
+<a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a><span class="o">[</span>student@workstation ~<span class="o">]</span>$ head zcat
+<a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a><span class="c1">#!/bin/sh</span>
+<a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a><span class="c1"># Uncompress files to standard output.</span>
+<a id="__codelineno-21-5" name="__codelineno-21-5" href="#__codelineno-21-5"></a><span class="c1"># Copyright (C) 2007, 2010-2018 Free Software Foundation, Inc.</span>
+<a id="__codelineno-21-6" name="__codelineno-21-6" href="#__codelineno-21-6"></a><span class="c1"># This program is free software; you can redistribute it and/or modify</span>
+<a id="__codelineno-21-7" name="__codelineno-21-7" href="#__codelineno-21-7"></a><span class="c1"># it under the terms of the GNU General Public License as published by</span>
+<a id="__codelineno-21-8" name="__codelineno-21-8" href="#__codelineno-21-8"></a><span class="c1"># the Free Software Foundation; either version 3 of the License, or</span>
+<a id="__codelineno-21-9" name="__codelineno-21-9" href="#__codelineno-21-9"></a><span class="c1"># (at your option) any later version.</span>
+</code></pre></div>
+<ul>
+<li>Display the last 10 lines of the zcat file.
+Use the tail command to display the last 10 lines of the zcat file.</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="o">[</span>student@workstation ~<span class="o">]</span>$ tail Esc+.
+<a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a><span class="o">[</span>student@workstation ~<span class="o">]</span>$ tail zcat
+<a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a>With no FILE, or when FILE is -, <span class="nb">read</span> standard input.
+<a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a>Report bugs to &lt;bug-gzip@gnu.org&gt;.<span class="s2">&quot;</span>
+<a id="__codelineno-22-5" name="__codelineno-22-5" href="#__codelineno-22-5"></a><span class="s2">case </span><span class="nv">$1</span><span class="s2"> in</span>
+<a id="__codelineno-22-6" name="__codelineno-22-6" href="#__codelineno-22-6"></a><span class="s2">--help)    printf &#39;%s\n&#39; &quot;</span><span class="nv">$usage</span><span class="s2">&quot;   || exit 1;;</span>
+<a id="__codelineno-22-7" name="__codelineno-22-7" href="#__codelineno-22-7"></a><span class="s2">--version) printf &#39;%s\n&#39; &quot;</span><span class="nv">$version</span><span class="s2">&quot; || exit 1;;</span>
+<a id="__codelineno-22-8" name="__codelineno-22-8" href="#__codelineno-22-8"></a><span class="s2">esac</span>
+<a id="__codelineno-22-9" name="__codelineno-22-9" href="#__codelineno-22-9"></a><span class="s2">exec gzip -cd &quot;</span><span class="nv">$@</span><span class="s2">&quot;</span>
+</code></pre></div>
+<ul>
+<li>Repeat the previous command exactly with three or fewer keystrokes.</li>
+</ul>
+<p>Repeat the previous command exactly. Either press the UpArrow key once to scroll back
+through the command history one command and then press Enter (uses two keystrokes),
+or enter the shortcut command !! and then press Enter (uses three keystrokes) to run the
+most recent command in the command history . (Try both.)</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="o">[</span>student@workstation<span class="o">]</span>$ !!
+<a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a>tail zcat
+<a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a>With no FILE, or when FILE is -, <span class="nb">read</span> standard input.
+<a id="__codelineno-23-4" name="__codelineno-23-4" href="#__codelineno-23-4"></a>Report bugs to &lt;bug-gzip@gnu.org&gt;.<span class="s2">&quot;</span>
+<a id="__codelineno-23-5" name="__codelineno-23-5" href="#__codelineno-23-5"></a><span class="s2">case </span><span class="nv">$1</span><span class="s2"> in</span>
+<a id="__codelineno-23-6" name="__codelineno-23-6" href="#__codelineno-23-6"></a><span class="s2">--help)    printf &#39;%s\n&#39; &quot;</span><span class="nv">$usage</span><span class="s2">&quot;   || exit 1;;</span>
+<a id="__codelineno-23-7" name="__codelineno-23-7" href="#__codelineno-23-7"></a><span class="s2">--version) printf &#39;%s\n&#39; &quot;</span><span class="nv">$version</span><span class="s2">&quot; || exit 1;;</span>
+<a id="__codelineno-23-8" name="__codelineno-23-8" href="#__codelineno-23-8"></a><span class="s2">esac</span>
+<a id="__codelineno-23-9" name="__codelineno-23-9" href="#__codelineno-23-9"></a><span class="s2">exec gzip -cd &quot;</span><span class="nv">$@</span><span class="s2">&quot;</span>
+</code></pre></div>
+<ul>
+<li>Repeat the previous command, but use the -n 20 option to display the last 20 lines in the
+file. Use command-line editing to accomplish this with a minimal number of keystrokes.
+UpArrow displays the previous command. Ctrl+A makes the cursor jump to the beginning
+of the line. Ctrl+RightArrow jumps to the next word, then add the -n 20 option and hit
+Enter to execute the command.</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="o">[</span>student@workstation ~<span class="o">]</span>$ tail -n <span class="m">20</span> zcat
+<a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a>  -l, --list        list compressed file contents
+<a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a>  -q, --quiet       suppress all warnings
+<a id="__codelineno-24-4" name="__codelineno-24-4" href="#__codelineno-24-4"></a>  -r, --recursive   operate recursively on directories
+<a id="__codelineno-24-5" name="__codelineno-24-5" href="#__codelineno-24-5"></a>  -S, --suffix<span class="o">=</span>SUF  use suffix SUF on compressed files
+<a id="__codelineno-24-6" name="__codelineno-24-6" href="#__codelineno-24-6"></a>      --synchronous synchronous output <span class="o">(</span>safer <span class="k">if</span> system crashes, but slower<span class="o">)</span>
+<a id="__codelineno-24-7" name="__codelineno-24-7" href="#__codelineno-24-7"></a>  -t, --test        <span class="nb">test</span> compressed file integrity
+<a id="__codelineno-24-8" name="__codelineno-24-8" href="#__codelineno-24-8"></a>  -v, --verbose     verbose mode
+<a id="__codelineno-24-9" name="__codelineno-24-9" href="#__codelineno-24-9"></a>      --help        display this <span class="nb">help</span> and <span class="nb">exit</span>
+<a id="__codelineno-24-10" name="__codelineno-24-10" href="#__codelineno-24-10"></a>      --version     display version information and <span class="nb">exit</span>
+<a id="__codelineno-24-11" name="__codelineno-24-11" href="#__codelineno-24-11"></a>With no FILE, or when FILE is -, <span class="nb">read</span> standard input.
+<a id="__codelineno-24-12" name="__codelineno-24-12" href="#__codelineno-24-12"></a>Report bugs to &lt;bug-gzip@gnu.org&gt;.<span class="s2">&quot;</span>
+<a id="__codelineno-24-13" name="__codelineno-24-13" href="#__codelineno-24-13"></a><span class="s2">case </span><span class="nv">$1</span><span class="s2"> in</span>
+<a id="__codelineno-24-14" name="__codelineno-24-14" href="#__codelineno-24-14"></a><span class="s2">--help)    printf &#39;%s\n&#39; &quot;</span><span class="nv">$usage</span><span class="s2">&quot;   || exit 1; exit;;</span>
+<a id="__codelineno-24-15" name="__codelineno-24-15" href="#__codelineno-24-15"></a><span class="s2">--version) printf &#39;%s\n&#39; &quot;</span><span class="nv">$version</span><span class="s2">&quot; || exit 1; exit;;</span>
+<a id="__codelineno-24-16" name="__codelineno-24-16" href="#__codelineno-24-16"></a><span class="s2">esac</span>
+<a id="__codelineno-24-17" name="__codelineno-24-17" href="#__codelineno-24-17"></a><span class="s2">exec gzip -cd &quot;</span><span class="nv">$@</span><span class="s2">&quot;</span>
+</code></pre></div>
+<ul>
+<li>Use the shell history to run the date +%r command again.
+Use the history command to display the list of previous commands and to identify the
+specific date command to be executed. Use !number to run the command, where number is
+the command number to use from the output of the history command.
+Note that your shell history may be different from the following example. Determine the
+command number to use based on the output of your own history command.</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="o">[</span>student@workstation ~<span class="o">]</span>$ <span class="nb">history</span>
+<a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a><span class="m">1</span>   date
+<a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a><span class="m">2</span>   date +%r
+<a id="__codelineno-25-4" name="__codelineno-25-4" href="#__codelineno-25-4"></a><span class="m">3</span>   file zcat
+<a id="__codelineno-25-5" name="__codelineno-25-5" href="#__codelineno-25-5"></a><span class="m">4</span>   wc zcat
+<a id="__codelineno-25-6" name="__codelineno-25-6" href="#__codelineno-25-6"></a><span class="m">5</span>   head zcat
+<a id="__codelineno-25-7" name="__codelineno-25-7" href="#__codelineno-25-7"></a><span class="m">6</span>   tail zcat
+<a id="__codelineno-25-8" name="__codelineno-25-8" href="#__codelineno-25-8"></a><span class="m">7</span>   tail -n <span class="m">20</span> zcat
+<a id="__codelineno-25-9" name="__codelineno-25-9" href="#__codelineno-25-9"></a><span class="m">8</span>   <span class="nb">history</span>
+<a id="__codelineno-25-10" name="__codelineno-25-10" href="#__codelineno-25-10"></a><span class="o">[</span>student@workstation ~<span class="o">]</span>$ !2
+<a id="__codelineno-25-11" name="__codelineno-25-11" href="#__codelineno-25-11"></a>date +%r
+<a id="__codelineno-25-12" name="__codelineno-25-12" href="#__codelineno-25-12"></a><span class="m">10</span>:49:56 AM
+</code></pre></div>
+<h3 id="summary">SUMMARY<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h3>
+<p>In this chapter, you learned:</p>
+<ul>
+<li>
+<p>The Bash shell is a command interpreter that prompts interactive users to specify Linux
+commands.</p>
+</li>
+<li>
+<p>Many commands have a <strong>--help</strong> option that displays a usage message or screen.</p>
+</li>
+<li>
+<p>Using workspaces makes it easier to organize multiple application windows.</p>
+</li>
+<li>
+<p>The Activities button located at the upper-left corner of the top bar provides an overview mode
+that helps a user organize windows and start applications.</p>
+</li>
+<li>
+<p>The <strong>file</strong> command scans the beginning of a file's contents and displays what type it is.</p>
+</li>
+<li>
+<p>The <strong>head</strong> and <strong>tail</strong> commands display the beginning and end of a file, respectively.</p>
+</li>
+<li>
+<p>You can use <strong>Tab</strong> completion to complete file names when typing them as arguments to
+commands.</p>
+</li>
+</ul>
+
+  <hr>
+<div class="md-source-file">
+  <small>
+    
+      Last update:
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">November 8, 2022</span>
+      
+    
+  </small>
+</div>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+          <a href="#" class="md-top md-icon" data-md-component="top" hidden>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+            Back to top
+          </a>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+    <nav class="md-footer__inner md-grid" aria-label="Footer" >
+      
+        
+        <a href="../intro/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Introduction" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Introduction
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../../english/vol1/" class="md-footer__link md-footer__link--next" aria-label="Next: Vol-1" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Vol-1
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2022 Divijesh Varma. All rights reserved.
+    </div>
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.instant", "navigation.tracking", "navigation.tabs", "navigation.tabs.sticky", "navigation.expand", "navigation.top", "navigation.sections", "content.tooltips", "header.autohide"], "search": "../../assets/javascripts/workers/search.16e2a7d4.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d6c3db9e.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="../../javascripts/feedback.js"></script>
+      
+    
+  </body>
+</html>
