@@ -70,10 +70,10 @@ theme:
       quote: octicons/quote-16
   icon:
     repo: fontawesome/brands/github
-      #font: false
-  font:
-    text: Roboto
-    code: Roboto Mono
+  font: false
+  #font:
+   # text: Roboto
+   # code: Roboto Mono
   features:
     - navigation.instant
     - navigation.tracking
@@ -188,6 +188,10 @@ nav:
       - 'linux/cron.en.md'
       - 'linux/logs.en.md'
       - 'linux/disk.en.md'
+  - 'RedHat':
+    - 'RHSA I (RH124)':
+      - 'redhat/intro.en.md'
+      - 'redhat/access.en.md'
   - 'English':
     - 'Tutorial':
       - 'english/vol1.en.md'
