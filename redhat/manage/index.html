@@ -1,0 +1,3141 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://www.privacyguides.org/redhat/manage/">
+      
+      <link rel="icon" href="../../assets/img/layout/favicon.ico">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-8.5.10">
+    
+    
+      
+        <title>Managing Files From The Command Line - Divijesh Varma</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.472b142f.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.08040f6c.min.css">
+        
+      
+      
+
+    
+    
+    
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent="teal">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#describing-linux-file-system-hierarchy-concepts" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Divijesh Varma" class="md-header__button md-logo" aria-label="Divijesh Varma" data-md-component="logo">
+      
+  <img src="../../assets/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Divijesh Varma
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Managing Files From The Command Line
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent="teal"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 1 7 7c0 2.38-1.19 4.47-3 5.74V17a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 0 1 7-7M9 21v-1h6v1a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1m3-17a5 5 0 0 0-5 5c0 2.05 1.23 3.81 3 4.58V16h4v-2.42c1.77-.77 3-2.53 3-4.58a5 5 0 0 0-5-5Z"/></svg>
+            </label>
+          
+        
+          
+          
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="deep-purple" data-md-color-accent="deep-orange"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 2.38 1.19 4.47 3 5.74V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.26c1.81-1.27 3-3.36 3-5.74a7 7 0 0 0-7-7M9 21a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-1H9v1Z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../.." class="md-tabs__link">
+      Home
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../linux/vi/" class="md-tabs__link">
+        Linux
+      </a>
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../intro/" class="md-tabs__link md-tabs__link--active">
+        RedHat
+      </a>
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../english/vol1/" class="md-tabs__link">
+        English
+      </a>
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../basics/threat-modeling/" class="md-tabs__link">
+        Knowledge Base
+      </a>
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../tools/" class="md-tabs__link">
+        Recommendations
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../about/" class="md-tabs__link">
+        About
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Divijesh Varma" class="md-nav__button md-logo" aria-label="Divijesh Varma" data-md-component="logo">
+      
+  <img src="../../assets/logo.png" alt="logo">
+
+    </a>
+    Divijesh Varma
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          Linux
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Linux" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Linux
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_2_1" type="checkbox" id="__nav_2_1" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_1">
+          Editors
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Editors" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_1">
+          <span class="md-nav__icon md-icon"></span>
+          Editors
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/vi/" class="md-nav__link">
+        Vim
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/nano/" class="md-nav__link">
+        Nano
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_2_2" type="checkbox" id="__nav_2_2" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_2">
+          Notes
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Notes" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_2">
+          <span class="md-nav__icon md-icon"></span>
+          Notes
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/rhcsa/" class="md-nav__link">
+        Tritree
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/user/" class="md-nav__link">
+        User Management
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/acl/" class="md-nav__link">
+        Access control lists (ACLs)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/network/" class="md-nav__link">
+        Networking
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/ssh/" class="md-nav__link">
+        OpenSSH
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/process/" class="md-nav__link">
+        Process Management
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/software/" class="md-nav__link">
+        Software Management
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/systemd/" class="md-nav__link">
+        Systemd Management
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/cron/" class="md-nav__link">
+        Cron Jobs
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/logs/" class="md-nav__link">
+        Logs
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/disk/" class="md-nav__link">
+        Disk Management
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3">
+          RedHat
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="RedHat" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          RedHat
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+    
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_1" type="checkbox" id="__nav_3_1" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_1">
+          RHSA I (RH124)
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="RHSA I (RH124)" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_1">
+          <span class="md-nav__icon md-icon"></span>
+          RHSA I (RH124)
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../intro/" class="md-nav__link">
+        Introduction
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../access/" class="md-nav__link">
+        Accessing The Command Line
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Managing Files From The Command Line
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Managing Files From The Command Line
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#describing-linux-file-system-hierarchy-concepts" class="md-nav__link">
+    DESCRIBING LINUX FILE SYSTEM HIERARCHY CONCEPTS
+  </a>
+  
+    <nav class="md-nav" aria-label="DESCRIBING LINUX FILE SYSTEM HIERARCHY CONCEPTS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-file-system-hierarchy" class="md-nav__link">
+    THE FILE-SYSTEM HIERARCHY
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#specifying-files-by-name" class="md-nav__link">
+    SPECIFYING FILES BY NAME
+  </a>
+  
+    <nav class="md-nav" aria-label="SPECIFYING FILES BY NAME">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#absolute-paths-and-relative-paths" class="md-nav__link">
+    ABSOLUTE PATHS AND RELATIVE PATHS
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#navigating-paths" class="md-nav__link">
+    NAVIGATING PATHS
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#managing-files-using-command-line-tools" class="md-nav__link">
+    MANAGING FILES USING COMMAND-LINE TOOLS
+  </a>
+  
+    <nav class="md-nav" aria-label="MANAGING FILES USING COMMAND-LINE TOOLS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#command-line-file-management" class="md-nav__link">
+    COMMAND-LINE FILE MANAGEMENT
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#creating-directories" class="md-nav__link">
+    Creating Directories
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#copying-files" class="md-nav__link">
+    Copying Files
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#moving-files" class="md-nav__link">
+    Moving Files
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#removing-files-and-directories" class="md-nav__link">
+    Removing Files and Directories
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#making-links-between-files" class="md-nav__link">
+    MAKING LINKS BETWEEN FILES
+  </a>
+  
+    <nav class="md-nav" aria-label="MAKING LINKS BETWEEN FILES">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#managing-links-between-files" class="md-nav__link">
+    MANAGING LINKS BETWEEN FILES
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#limitations-of-hard-links" class="md-nav__link">
+    Limitations of Hard Links
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#creating-soft-links" class="md-nav__link">
+    Creating Soft Links
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#matching-file-names-with-shell-expansions" class="md-nav__link">
+    MATCHING FILE NAMES WITH SHELL EXPANSIONS
+  </a>
+  
+    <nav class="md-nav" aria-label="MATCHING FILE NAMES WITH SHELL EXPANSIONS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#command-line-expansions" class="md-nav__link">
+    COMMAND-LINE EXPANSIONS
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    SUMMARY
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4">
+          English
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="English" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          English
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_4_1" type="checkbox" id="__nav_4_1" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_1">
+          Tutorial
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Tutorial" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_1">
+          <span class="md-nav__icon md-icon"></span>
+          Tutorial
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../english/vol1/" class="md-nav__link">
+        Vol-1
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../english/vol2/" class="md-nav__link">
+        Vol-2
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../english/vol3/" class="md-nav__link">
+        Vol-3
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../english/vol4/" class="md-nav__link">
+        Vol-4
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5">
+          Knowledge Base
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Knowledge Base" data-md-level="1">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          Knowledge Base
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_5_1" type="checkbox" id="__nav_5_1" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5_1">
+          The Basics
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="The Basics" data-md-level="2">
+        <label class="md-nav__title" for="__nav_5_1">
+          <span class="md-nav__icon md-icon"></span>
+          The Basics
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../basics/threat-modeling/" class="md-nav__link">
+        Threat Modeling
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../basics/dns/" class="md-nav__link">
+        Introduction to DNS
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../basics/multi-factor-authentication/" class="md-nav__link">
+        Multi-factor Authentication
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../basics/account-deletion/" class="md-nav__link">
+        Account Deletion
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_5_2" type="checkbox" id="__nav_5_2" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5_2">
+          Android
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Android" data-md-level="2">
+        <label class="md-nav__title" for="__nav_5_2">
+          <span class="md-nav__icon md-icon"></span>
+          Android
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../android/overview/" class="md-nav__link">
+        Android Overview
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../android/grapheneos-vs-calyxos/" class="md-nav__link">
+        GrapheneOS vs CalyxOS
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_5_3" type="checkbox" id="__nav_5_3" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5_3">
+          Linux
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Linux" data-md-level="2">
+        <label class="md-nav__title" for="__nav_5_3">
+          <span class="md-nav__icon md-icon"></span>
+          Linux
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux-desktop/overview/" class="md-nav__link">
+        Linux Overview
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux-desktop/hardening/" class="md-nav__link">
+        System Hardening
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux-desktop/sandboxing/" class="md-nav__link">
+        Application Sandboxing
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_5_4" type="checkbox" id="__nav_5_4" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5_4">
+          Advanced
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Advanced" data-md-level="2">
+        <label class="md-nav__title" for="__nav_5_4">
+          <span class="md-nav__icon md-icon"></span>
+          Advanced
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setup/integrating-metadata-removal/" class="md-nav__link">
+        Integrating Metadata Removal
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_6" type="checkbox" id="__nav_6" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6">
+          Recommendations
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Recommendations" data-md-level="1">
+        <label class="md-nav__title" for="__nav_6">
+          <span class="md-nav__icon md-icon"></span>
+          Recommendations
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tools/" class="md-nav__link">
+        Privacy Tools
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_6_2" type="checkbox" id="__nav_6_2" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6_2">
+          Browsers
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Browsers" data-md-level="2">
+        <label class="md-nav__title" for="__nav_6_2">
+          <span class="md-nav__icon md-icon"></span>
+          Browsers
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../browsers/" class="md-nav__link">
+        Web Browsers
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_6_3" type="checkbox" id="__nav_6_3" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6_3">
+          Operating Systems
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Operating Systems" data-md-level="2">
+        <label class="md-nav__title" for="__nav_6_3">
+          <span class="md-nav__icon md-icon"></span>
+          Operating Systems
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../android/" class="md-nav__link">
+        Android
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux-desktop/" class="md-nav__link">
+        Linux
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../qubes/" class="md-nav__link">
+        Qubes OS
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../router/" class="md-nav__link">
+        Router Firmware
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_6_4" type="checkbox" id="__nav_6_4" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6_4">
+          Providers
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Providers" data-md-level="2">
+        <label class="md-nav__title" for="__nav_6_4">
+          <span class="md-nav__icon md-icon"></span>
+          Providers
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cloud/" class="md-nav__link">
+        Cloud Storage
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dns/" class="md-nav__link">
+        DNS Resolvers
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../email/" class="md-nav__link">
+        Email Services
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../search-engines/" class="md-nav__link">
+        Search Engines
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vpn/" class="md-nav__link">
+        VPN Services
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_6_5" type="checkbox" id="__nav_6_5" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6_5">
+          Software
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Software" data-md-level="2">
+        <label class="md-nav__title" for="__nav_6_5">
+          <span class="md-nav__icon md-icon"></span>
+          Software
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../calendar-contacts/" class="md-nav__link">
+        Calendar and Contact Sync
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../notebooks/" class="md-nav__link">
+        Notebooks
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../email-clients/" class="md-nav__link">
+        Email Clients
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../encryption/" class="md-nav__link">
+        Encryption Software
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../file-sharing/" class="md-nav__link">
+        File Sharing and Sync
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../metadata-removal-tools/" class="md-nav__link">
+        Metadata Removal Tools
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../multi-factor-authentication/" class="md-nav__link">
+        Multi-Factor Authenticators
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../passwords/" class="md-nav__link">
+        Password Managers
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../productivity/" class="md-nav__link">
+        Productivity Tools
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../real-time-communication/" class="md-nav__link">
+        Real-Time Communication
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../news-aggregators/" class="md-nav__link">
+        News Aggregators
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../self-contained-networks/" class="md-nav__link">
+        Self-Contained Networks
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../video-streaming/" class="md-nav__link">
+        Video Streaming
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_7" type="checkbox" id="__nav_7" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_7">
+          About
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="About" data-md-level="1">
+        <label class="md-nav__title" for="__nav_7">
+          <span class="md-nav__icon md-icon"></span>
+          About
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/" class="md-nav__link">
+        Heading
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#describing-linux-file-system-hierarchy-concepts" class="md-nav__link">
+    DESCRIBING LINUX FILE SYSTEM HIERARCHY CONCEPTS
+  </a>
+  
+    <nav class="md-nav" aria-label="DESCRIBING LINUX FILE SYSTEM HIERARCHY CONCEPTS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-file-system-hierarchy" class="md-nav__link">
+    THE FILE-SYSTEM HIERARCHY
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#specifying-files-by-name" class="md-nav__link">
+    SPECIFYING FILES BY NAME
+  </a>
+  
+    <nav class="md-nav" aria-label="SPECIFYING FILES BY NAME">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#absolute-paths-and-relative-paths" class="md-nav__link">
+    ABSOLUTE PATHS AND RELATIVE PATHS
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#navigating-paths" class="md-nav__link">
+    NAVIGATING PATHS
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#managing-files-using-command-line-tools" class="md-nav__link">
+    MANAGING FILES USING COMMAND-LINE TOOLS
+  </a>
+  
+    <nav class="md-nav" aria-label="MANAGING FILES USING COMMAND-LINE TOOLS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#command-line-file-management" class="md-nav__link">
+    COMMAND-LINE FILE MANAGEMENT
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#creating-directories" class="md-nav__link">
+    Creating Directories
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#copying-files" class="md-nav__link">
+    Copying Files
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#moving-files" class="md-nav__link">
+    Moving Files
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#removing-files-and-directories" class="md-nav__link">
+    Removing Files and Directories
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#making-links-between-files" class="md-nav__link">
+    MAKING LINKS BETWEEN FILES
+  </a>
+  
+    <nav class="md-nav" aria-label="MAKING LINKS BETWEEN FILES">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#managing-links-between-files" class="md-nav__link">
+    MANAGING LINKS BETWEEN FILES
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#limitations-of-hard-links" class="md-nav__link">
+    Limitations of Hard Links
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#creating-soft-links" class="md-nav__link">
+    Creating Soft Links
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#matching-file-names-with-shell-expansions" class="md-nav__link">
+    MATCHING FILE NAMES WITH SHELL EXPANSIONS
+  </a>
+  
+    <nav class="md-nav" aria-label="MATCHING FILE NAMES WITH SHELL EXPANSIONS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#command-line-expansions" class="md-nav__link">
+    COMMAND-LINE EXPANSIONS
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    SUMMARY
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+  
+
+
+
+
+  <h1>Managing Files From The Command Line</h1>
+
+<h3 id="describing-linux-file-system-hierarchy-concepts">DESCRIBING LINUX FILE SYSTEM HIERARCHY CONCEPTS<a class="headerlink" href="#describing-linux-file-system-hierarchy-concepts" title="Permanent link">&para;</a></h3>
+<h4 id="the-file-system-hierarchy">THE FILE-SYSTEM HIERARCHY<a class="headerlink" href="#the-file-system-hierarchy" title="Permanent link">&para;</a></h4>
+<p>All files on a Linux system are stored on file systems, which are organized into a single inverted
+tree of directories, known as a file-system hierarchy. This tree is inverted because the root of the
+tree is said to be at the top of the hierarchy, and the branches of directories and subdirectories
+stretch below the root.</p>
+<p><img alt="FileSystem" src="https://1.bp.blogspot.com/-na02ATcbQ-4/XyTlpyPsnOI/AAAAAAAABtc/cO29eDL5uskloIns66P5xUOyamM4oMXvACLcBGAsYHQ/s1600/ezgif-4-1fbe035f5efa.jpg" /></p>
+<p>The / directory is the root directory at the top of the file-system hierarchy. The / character is also
+used as a directory separator in file names. For example, if <strong>etc</strong> is a subdirectory of the / directory,
+you could refer to that directory as /etc. Likewise, if the /etc directory contained a file named
+issue, you could refer to that file as <strong>/etc/issue</strong>.</p>
+<p>Subdirectories of / are used for standardized purposes to organize files by type and purpose. This
+makes it easier to find files. For example, in the root directory, the subdirectory <strong>/boot</strong> is used for
+storing files needed to boot the system.</p>
+<div class="admonition info">
+<p class="admonition-title">NOTE</p>
+<p>The following terms help to describe file-system directory contents:</p>
+<ul>
+<li>
+<p>static content remains unchanged until explicitly edited or reconfigured.</p>
+</li>
+<li>
+<p>dynamic or variable content may be modified or appended by active processes.</p>
+</li>
+<li>
+<p>persistent content remains after a reboot, like configuration settings.</p>
+</li>
+<li>
+<p>runtime content is process- or system-specific content that is deleted by a reboot.</p>
+</li>
+</ul>
+</div>
+<p>The following table lists some of the most important directories on the system by name and
+purpose.</p>
+<p><strong>Important Red Hat Enterprise Linux Directories</strong></p>
+<p><strong>/usr</strong> </p>
+<p>Installed software, shared libraries, include files, and read-only program data.
+Important subdirectories include:</p>
+<ul>
+<li>
+<p><em>/usr/bin</em>: User commands.</p>
+</li>
+<li>
+<p><em>/usr/sbin</em>: System administration commands.</p>
+</li>
+<li>
+<p><em>/usr/local</em>: Locally customized software.</p>
+</li>
+</ul>
+<p><strong>/etc</strong></p>
+<p>Configuration files specific to this system.</p>
+<p><strong>/var</strong></p>
+<p>Variable data specific to this system that should persist between boots. Files
+that dynamically change, such as databases, cache directories, log files,
+printer-spooled documents, and website content may be found under <em>/var</em>.</p>
+<p><strong>/run</strong></p>
+<p>Runtime data for processes started since the last boot. This includes process
+ID files and lock files, among other things. The contents of this directory are
+recreated on reboot. This directory consolidates <em>/var/run</em> and <em>/var/lock</em>
+from earlier versions of Red Hat Enterprise Linux.</p>
+<p><strong>/home</strong></p>
+<p>Home directories are where regular users store their personal data and
+configuration files.</p>
+<p><strong>/root</strong></p>
+<p>Home directory for the administrative superuser, root.</p>
+<p><strong>/tmp</strong></p>
+<p>A world-writable space for temporary files. Files which have not been
+accessed, changed, or modified for 10 days are deleted from this directory
+automatically. Another temporary directory exists, <em>/var/tmp</em>, in which files
+that have not been accessed, changed, or modified in more than 30 days are
+deleted automatically.</p>
+<p><strong>/boot</strong></p>
+<p>Files needed in order to start the boot process.</p>
+<p><strong>/dev</strong></p>
+<p>Contains special <em>device files</em> that are used by the system to access hardware.</p>
+<div class="admonition danger">
+<p class="admonition-title">IMPORTANT</p>
+<p>In Red Hat Enterprise Linux 7 and later, four older directories in / have identical
+contents to their counterparts located in <strong>/usr</strong>:</p>
+<ul>
+<li>
+<p>/bin and /usr/bin</p>
+</li>
+<li>
+<p>/sbin and /usr/sbin</p>
+</li>
+<li>
+<p>/lib and /usr/lib</p>
+</li>
+<li>
+<p>/lib64 and /usr/lib64</p>
+</li>
+</ul>
+<p>In earlier versions of Red Hat Enterprise Linux, these were distinct directories
+containing different sets of files.
+In Red Hat Enterprise Linux 7 and later, the directories in / are symbolic links to the
+matching directories in <strong>/usr</strong>.</p>
+</div>
+<h3 id="specifying-files-by-name">SPECIFYING FILES BY NAME<a class="headerlink" href="#specifying-files-by-name" title="Permanent link">&para;</a></h3>
+<h4 id="absolute-paths-and-relative-paths">ABSOLUTE PATHS AND RELATIVE PATHS<a class="headerlink" href="#absolute-paths-and-relative-paths" title="Permanent link">&para;</a></h4>
+<p>The <em>path</em> of a file or directory specifies its unique file system location. Following a file path
+traverses one or more named subdirectories, delimited by a forward slash (/), until the destination
+is reached. Directories, also called folders, contain other files and other subdirectories. They can be
+referenced in the same manner as files.</p>
+<div class="admonition danger">
+<p class="admonition-title">IMPORTANT</p>
+<p>A space character is acceptable as part of a Linux file name. However, spaces are
+also used by the shell to separate options and arguments on the command line. If
+you enter a command that includes a file that has a space in its name, the shell can
+misinterpret the command and assume that you want to start a new file name or
+other argument at the space.</p>
+<p>It is possible to avoid this by putting file names in quotes. However, if you do not
+need to use spaces in file names, it can be simpler to simply avoid using them.</p>
+</div>
+<p><strong>Absolute Paths</strong></p>
+<p>An absolute path is a fully qualified name, specifying the files exact location in the file system
+hierarchy. It begins at the root (/) directory and specifies each subdirectory that must be traversed
+to reach the specific file. Every file in a file system has a unique absolute path name, recognized
+with a simple rule: A path name with a forward slash (/) as the first character is an absolute
+path name. For example, the absolute path name for the system message log file is <em>/var/log/messages</em>.</p>
+<p>Absolute path names can be long to type, so files may also be located relative to the
+current working directory for your shell prompt.</p>
+<p><strong>The Current Working Directory and Relative Paths</strong></p>
+<p>When a user logs in and opens a command window, the initial location is normally the user's home
+directory. System processes also have an initial directory. Users and processes navigate to other
+directories as needed; the terms working directory or current working directory refer to their current
+location.</p>
+<p>Like an absolute path, a relative path identifies a unique file, specifying only the path necessary to
+reach the file from the working directory. Recognizing relative path names follows a simple rule: A
+path name with anything other than a forward slash as the first character is a relative path name. A
+user in the /var directory could refer to the message log file relatively as <em>log/messages</em>.</p>
+<p>Linux file systems, including, but not limited to, ext4, XFS, GFS2, and GlusterFS, are case-sensitive.
+Creating <em>FileCase.txt</em> and <em>filecase.txt</em> in the same directory results in two unique files.</p>
+<p>Non-Linux file systems might work differently. For example, VFAT, Microsoft's NTFS, and Apple's
+HFS+ have case preserving behavior. Although these file systems are not case-sensitive, they do
+display file names with the original capitalization used when the file was created. Therefore, if
+you tried to make the files in the preceding example on a VFAT file system, both names would be
+treated as pointing to the same file instead of two different files.</p>
+<h3 id="navigating-paths">NAVIGATING PATHS<a class="headerlink" href="#navigating-paths" title="Permanent link">&para;</a></h3>
+<p>The <strong>pwd</strong> command displays the full path name of the current working directory for that shell. This
+can help you determine the syntax to reach files using relative path names. The ls command lists
+directory contents for the specified directory or, if no directory is given, for the current working
+directory.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ <span class="nb">pwd</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>/home/user
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ ls
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>Desktop  Documents  Downloads  Music  Pictures  Public  Templates  Videos
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="o">[</span>user@host ~<span class="o">]</span>$
+</code></pre></div>
+<p>Use the <strong>cd</strong> command to change your shell's current working directory. If you do not specify any
+arguments to the command, it will change to your home directory.</p>
+<p>In the following example, a mixture of absolute and relative paths are used with the cd command to
+change the current working directory for the shell.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ <span class="nb">pwd</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>/home/user
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ <span class="nb">cd</span> Videos
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="o">[</span>user@host Videos<span class="o">]</span>$ <span class="nb">pwd</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>/home/user/Videos
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="o">[</span>user@host Videos<span class="o">]</span>$ <span class="nb">cd</span> /home/user/Documents
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="o">[</span>user@host Documents<span class="o">]</span>$ <span class="nb">pwd</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>/home/user/Documents
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="o">[</span>user@host Documents<span class="o">]</span>$ <span class="nb">cd</span>
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ <span class="nb">pwd</span>
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>/home/user
+</code></pre></div>
+<p>As you can see in the preceding example, the default shell prompt also displays the last component
+of the absolute path to the current working directory. For example, for <strong>/home/user/Videos</strong>, only
+<strong>Videos</strong> displays. The prompt displays the tilde character (~) when your current working directory
+is your home directory.</p>
+<p>The <strong>touch</strong> command normally updates a file's timestamp to the current date and time without
+otherwise modifying it. This is useful for creating empty files, which can be used for practice,
+because "touching" a file name that does not exist causes the file to be created. In the following
+example, the touch command creates practice files in the Documents and Videos subdirectories.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ touch Videos/blockbuster1.ogg
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ touch Videos/blockbuster2.ogg
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ touch Documents/thesis_chapter1.odf
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ touch Documents/thesis_chapter2.odf
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="o">[</span>user@host ~<span class="o">]</span>$
+</code></pre></div>
+<p>The <strong>ls</strong> command has multiple options for displaying attributes on files. The most common and
+useful are -l (long listing format), -a (all files, including hidden files), and -R (recursive, to include
+the contents of all subdirectories).</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ ls -l
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>total <span class="m">15</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>drwxr-xr-x.  <span class="m">2</span> user user <span class="m">4096</span> Feb  <span class="m">7</span> <span class="m">14</span>:02 Desktop
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>drwxr-xr-x.  <span class="m">2</span> user user <span class="m">4096</span> Jan  <span class="m">9</span> <span class="m">15</span>:00 Documents
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>drwxr-xr-x.  <span class="m">3</span> user user <span class="m">4096</span> Jan  <span class="m">9</span> <span class="m">15</span>:00 Downloads
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>drwxr-xr-x.  <span class="m">2</span> user user <span class="m">4096</span> Jan  <span class="m">9</span> <span class="m">15</span>:00 Music
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>drwxr-xr-x.  <span class="m">2</span> user user <span class="m">4096</span> Jan  <span class="m">9</span> <span class="m">15</span>:00 Pictures
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>drwxr-xr-x.  <span class="m">2</span> user user <span class="m">4096</span> Jan  <span class="m">9</span> <span class="m">15</span>:00 Public
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>drwxr-xr-x.  <span class="m">2</span> user user <span class="m">4096</span> Jan  <span class="m">9</span> <span class="m">15</span>:00 Templates
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>drwxr-xr-x.  <span class="m">2</span> user user <span class="m">4096</span> Jan  <span class="m">9</span> <span class="m">15</span>:00 Videos
+<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ ls -la
+<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>total <span class="m">15</span>
+<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a>drwx------. <span class="m">16</span> user user   <span class="m">4096</span> Feb  <span class="m">8</span> <span class="m">16</span>:15 .
+<a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a>drwxr-xr-x.  <span class="m">6</span> root root   <span class="m">4096</span> Feb  <span class="m">8</span> <span class="m">16</span>:13 ..
+<a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a>-rw-------.  <span class="m">1</span> user user  <span class="m">22664</span> Feb  <span class="m">8</span> <span class="m">00</span>:37 .bash_history
+<a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a>-rw-r--r--.  <span class="m">1</span> user user     <span class="m">18</span> Jul  <span class="m">9</span>  <span class="m">2013</span> .bash_logout
+<a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a>-rw-r--r--.  <span class="m">1</span> user user    <span class="m">176</span> Jul  <span class="m">9</span>  <span class="m">2013</span> .bash_profile
+<a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a>-rw-r--r--.  <span class="m">1</span> user user    <span class="m">124</span> Jul  <span class="m">9</span>  <span class="m">2013</span> .bashrc
+<a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a>drwxr-xr-x.  <span class="m">4</span> user user   <span class="m">4096</span> Jan <span class="m">20</span> <span class="m">14</span>:02 .cache
+<a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a>drwxr-xr-x.  <span class="m">8</span> user user   <span class="m">4096</span> Feb  <span class="m">5</span> <span class="m">11</span>:45 .config
+<a id="__codelineno-3-21" name="__codelineno-3-21" href="#__codelineno-3-21"></a>drwxr-xr-x.  <span class="m">2</span> user user   <span class="m">4096</span> Feb  <span class="m">7</span> <span class="m">14</span>:02 Desktop
+<a id="__codelineno-3-22" name="__codelineno-3-22" href="#__codelineno-3-22"></a>drwxr-xr-x.  <span class="m">2</span> user user   <span class="m">4096</span> Jan  <span class="m">9</span> <span class="m">15</span>:00 Documents
+<a id="__codelineno-3-23" name="__codelineno-3-23" href="#__codelineno-3-23"></a>drwxr-xr-x.  <span class="m">3</span> user user   <span class="m">4096</span> Jan <span class="m">25</span> <span class="m">20</span>:48 Downloads
+<a id="__codelineno-3-24" name="__codelineno-3-24" href="#__codelineno-3-24"></a>drwxr-xr-x. <span class="m">11</span> user user   <span class="m">4096</span> Feb  <span class="m">6</span> <span class="m">13</span>:07 .gnome2
+<a id="__codelineno-3-25" name="__codelineno-3-25" href="#__codelineno-3-25"></a>drwx------.  <span class="m">2</span> user user   <span class="m">4096</span> Jan <span class="m">20</span> <span class="m">14</span>:02 .gnome2_private
+<a id="__codelineno-3-26" name="__codelineno-3-26" href="#__codelineno-3-26"></a>-rw-------.  <span class="m">1</span> user user  <span class="m">15190</span> Feb  <span class="m">8</span> <span class="m">09</span>:49 .ICEauthority
+<a id="__codelineno-3-27" name="__codelineno-3-27" href="#__codelineno-3-27"></a>drwxr-xr-x.  <span class="m">3</span> user user   <span class="m">4096</span> Jan  <span class="m">9</span> <span class="m">15</span>:00 .local
+<a id="__codelineno-3-28" name="__codelineno-3-28" href="#__codelineno-3-28"></a>drwxr-xr-x.  <span class="m">2</span> user user   <span class="m">4096</span> Jan  <span class="m">9</span> <span class="m">15</span>:00 Music
+<a id="__codelineno-3-29" name="__codelineno-3-29" href="#__codelineno-3-29"></a>drwxr-xr-x.  <span class="m">2</span> user user   <span class="m">4096</span> Jan  <span class="m">9</span> <span class="m">15</span>:00 Pictures
+<a id="__codelineno-3-30" name="__codelineno-3-30" href="#__codelineno-3-30"></a>drwxr-xr-x.  <span class="m">2</span> user user   <span class="m">4096</span> Jan  <span class="m">9</span> <span class="m">15</span>:00 Public
+<a id="__codelineno-3-31" name="__codelineno-3-31" href="#__codelineno-3-31"></a>drwxr-xr-x.  <span class="m">2</span> user user   <span class="m">4096</span> Jan  <span class="m">9</span> <span class="m">15</span>:00 Templates
+<a id="__codelineno-3-32" name="__codelineno-3-32" href="#__codelineno-3-32"></a>drwxr-xr-x.  <span class="m">2</span> user user   <span class="m">4096</span> Jan  <span class="m">9</span> <span class="m">15</span>:00 Videos
+</code></pre></div>
+<p>The two special directories at the top of the listing refer to the current directory (.) and the parent
+directory (..). These special directories exist in every directory on the system. You will discover
+their usefulness when you start using file management commands.</p>
+<div class="admonition danger">
+<p class="admonition-title">IMPORTANT</p>
+<p>File names beginning with a dot (.) indicate hidden files; you cannot see them in the
+normal view using <strong>ls</strong> and other commands. This is not a security feature. Hidden
+files keep necessary user configuration files from cluttering home directories. Many
+commands process hidden files only with specific command-line options, preventing
+one user's configuration from being accidentally copied to other directories or users.</p>
+<p>To protect file <strong>contents</strong> from improper viewing requires the use of <em>file permissions</em>.</p>
+</div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ ls -R
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>.:
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>Desktop  Documents  Downloads  Music  Pictures  Public  Templates  Videos
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>./Desktop:
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>./Documents:
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>thesis_chapter1.odf  thesis_chapter2.odf
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>
+<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>./Downloads:
+<a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a>
+<a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a>./Music:
+<a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a>
+<a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a>./Pictures:
+<a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a>
+<a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a>./Public:
+<a id="__codelineno-4-17" name="__codelineno-4-17" href="#__codelineno-4-17"></a>
+<a id="__codelineno-4-18" name="__codelineno-4-18" href="#__codelineno-4-18"></a>./Templates:
+<a id="__codelineno-4-19" name="__codelineno-4-19" href="#__codelineno-4-19"></a>
+<a id="__codelineno-4-20" name="__codelineno-4-20" href="#__codelineno-4-20"></a>./Videos:
+<a id="__codelineno-4-21" name="__codelineno-4-21" href="#__codelineno-4-21"></a>blockbuster1.ogg  blockbuster2.ogg
+<a id="__codelineno-4-22" name="__codelineno-4-22" href="#__codelineno-4-22"></a><span class="o">[</span>user@host ~<span class="o">]</span>$
+</code></pre></div>
+<p>The <strong>cd</strong> command has many options. A few are so useful as to be worth practicing early and using
+often. The command <strong>cd -</strong> changes to the previous directory; where the user was previously to
+the current directory. The following example illustrates this behavior, alternating between two
+directories, which is useful when processing a series of similar tasks.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ <span class="nb">cd</span> Videos
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="o">[</span>user@host Videos<span class="o">]</span>$ <span class="nb">pwd</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>/home/user/Videos
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="o">[</span>user@host Videos<span class="o">]</span>$ <span class="nb">cd</span> /home/user/Documents
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="o">[</span>user@host Documents<span class="o">]</span>$ <span class="nb">pwd</span>
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>/home/user/Documents
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="o">[</span>user@host Documents<span class="o">]</span>$ <span class="nb">cd</span> -
+<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="o">[</span>user@host Videos<span class="o">]</span>$ <span class="nb">pwd</span>
+<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>/home/user/Videos
+<a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="o">[</span>user@host Videos<span class="o">]</span>$ <span class="nb">cd</span> -
+<a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a><span class="o">[</span>user@host Documents<span class="o">]</span>$ <span class="nb">pwd</span>
+<a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a>/home/user/Documents
+<a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a><span class="o">[</span>user@host Documents<span class="o">]</span>$ <span class="nb">cd</span> -
+<a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a><span class="o">[</span>user@host Videos<span class="o">]</span>$ <span class="nb">pwd</span>
+<a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a>/home/user/Videos
+<a id="__codelineno-5-16" name="__codelineno-5-16" href="#__codelineno-5-16"></a><span class="o">[</span>user@host Videos<span class="o">]</span>$ <span class="nb">cd</span>
+<a id="__codelineno-5-17" name="__codelineno-5-17" href="#__codelineno-5-17"></a><span class="o">[</span>user@host ~<span class="o">]</span>$
+</code></pre></div>
+<p>The cd .. command uses the .. hidden directory to move up one level to the parent directory,
+without needing to know the exact parent name. The other hidden directory (.) specifies the
+current directory on commands in which the current location is either the source or destination
+argument, avoiding the need to type out the directory's absolute path name.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="o">[</span>user@host Videos<span class="o">]</span>$ <span class="nb">pwd</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>/home/user/Videos
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="o">[</span>user@host Videos<span class="o">]</span>$ <span class="nb">cd</span> .
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="o">[</span>user@host Videos<span class="o">]</span>$ <span class="nb">pwd</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>/home/user/Videos
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="o">[</span>user@host Videos<span class="o">]</span>$ <span class="nb">cd</span> ..
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ <span class="nb">pwd</span>
+<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>/home/user
+<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ <span class="nb">cd</span> ..
+<a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a><span class="o">[</span>user@host home<span class="o">]</span>$ <span class="nb">pwd</span>
+<a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a>/home
+<a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a><span class="o">[</span>user@host home<span class="o">]</span>$ <span class="nb">cd</span> ..
+<a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a><span class="o">[</span>user@host /<span class="o">]</span>$ <span class="nb">pwd</span>
+<a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a>/
+<a id="__codelineno-6-15" name="__codelineno-6-15" href="#__codelineno-6-15"></a><span class="o">[</span>user@host /<span class="o">]</span>$ <span class="nb">cd</span>
+<a id="__codelineno-6-16" name="__codelineno-6-16" href="#__codelineno-6-16"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ <span class="nb">pwd</span>
+<a id="__codelineno-6-17" name="__codelineno-6-17" href="#__codelineno-6-17"></a>/home/user
+<a id="__codelineno-6-18" name="__codelineno-6-18" href="#__codelineno-6-18"></a><span class="o">[</span>user@host ~<span class="o">]</span>$
+</code></pre></div>
+<h3 id="managing-files-using-command-line-tools">MANAGING FILES USING COMMAND-LINE TOOLS<a class="headerlink" href="#managing-files-using-command-line-tools" title="Permanent link">&para;</a></h3>
+<h4 id="command-line-file-management">COMMAND-LINE FILE MANAGEMENT<a class="headerlink" href="#command-line-file-management" title="Permanent link">&para;</a></h4>
+<p>To manage files, you need to be able to create, remove, copy, and move them. You also need to
+organize them logically into directories, which you also need to be able to create, remove, copy,
+and move.</p>
+<p>The following table summarizes some of the most common file management commands. The
+remainder of this section will discuss ways to use these commands in more detail.</p>
+<p><strong>Common file management commands</strong></p>
+<p>Create a directory</p>
+<p><mark><em>mkdir directory</em><mark></p>
+<p>Copy a file</p>
+<p><mark><em>cp file new-file</em><mark></p>
+<p>Copy a directory and its contents</p>
+<p><mark><em>cp -r directory new-directory</em><mark></p>
+<p>Move or rename a file or directory</p>
+<p><mark><em>mv file new-file</em><mark></p>
+<p>Remove a file</p>
+<p><mark><em>rm file</em><mark></p>
+<p>Remove a directory containing files</p>
+<p><mark><em>rm -r directory</em><mark></p>
+<p>Remove an empty directory</p>
+<p><mark><em>rmdir directory</em><mark></p>
+<h4 id="creating-directories">Creating Directories<a class="headerlink" href="#creating-directories" title="Permanent link">&para;</a></h4>
+<p>The <strong>mkdir</strong> command creates one or more directories or subdirectories. It takes as arguments a list
+of paths to the directories you want to create.</p>
+<p>The <strong>mkdir</strong> command will fail with an error if the directory already exists, or if you are trying to
+create a subdirectory in a directory that does not exist. The -p (parent) option creates missing
+parent directories for the requested destination. Use the <strong>mkdir -p</strong> command with caution,
+because spelling mistakes can create unintended directories without generating error messages.</p>
+<p>In the following example, pretend that you are trying to create a directory in the Videos directory</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ mkdir Video/Watched
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>mkdir: cannot create directory <span class="sb">`</span>Video/Watched<span class="err">&#39;</span>: No such file or directory
+</code></pre></div>
+<p>The <strong>mkdir</strong> command failed because Videos was misspelled and the directory Video does not
+exist. If you had used the mkdir command with the -p option, the directory Video would be
+created, which was not what you had intended, and the subdirectory Watched would be created in
+that incorrect directory.</p>
+<p>After correctly spelling the Videos parent directory, creating the Watched subdirectory will
+succeed.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ mkdir Videos/Watched
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ ls -R Videos
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>Videos/:
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>blockbuster1.ogg  blockbuster2.ogg  Watched
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>Videos/Watched:
+</code></pre></div>
+<p>In the following example, files and directories are organized beneath the /home/user/
+Documents directory. Use the <strong>mkdir</strong> command and a space-delimited list of the directory names
+to create multiple directories.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ <span class="nb">cd</span> Documents
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="o">[</span>user@host Documents<span class="o">]</span>$ mkdir ProjectX ProjectY
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="o">[</span>user@host Documents<span class="o">]</span>$ ls
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>ProjectX  ProjectY
+</code></pre></div>
+<p>Use the <strong>mkdir -p</strong> command and space-delimited relative paths for each of the subdirectory
+names to create multiple parent directories with subdirectories.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="o">[</span>user@host Documents<span class="o">]</span>$ mkdir -p Thesis/Chapter1 Thesis/Chapter2 Thesis/Chapter3
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="o">[</span>user@host Documents<span class="o">]</span>$ <span class="nb">cd</span>
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ ls -R Videos Documents
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>Documents:
+<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>ProjectX  ProjectY  Thesis
+<a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>Documents/ProjectX:
+<a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a>Documents/ProjectY:
+<a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a>Documents/Thesis:
+<a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a>Chapter1  Chapter2  Chapter3
+<a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a>Documents/Thesis/Chapter1:
+<a id="__codelineno-10-11" name="__codelineno-10-11" href="#__codelineno-10-11"></a>Documents/Thesis/Chapter2:
+<a id="__codelineno-10-12" name="__codelineno-10-12" href="#__codelineno-10-12"></a>Documents/Thesis/Chapter3:
+<a id="__codelineno-10-13" name="__codelineno-10-13" href="#__codelineno-10-13"></a>Videos:
+<a id="__codelineno-10-14" name="__codelineno-10-14" href="#__codelineno-10-14"></a>blockbuster1.ogg  blockbuster2.ogg  Watched
+<a id="__codelineno-10-15" name="__codelineno-10-15" href="#__codelineno-10-15"></a>Videos/Watched:
+</code></pre></div>
+<p>The last <strong>mkdir</strong> command created three ChapterN subdirectories with one command. The -p
+option created the missing parent directory Thesis.</p>
+<h4 id="copying-files">Copying Files<a class="headerlink" href="#copying-files" title="Permanent link">&para;</a></h4>
+<p>The <em>cp</em> command copies a file, creating a new file either in the current directory or in a specified
+directory. It can also copy multiple files to a directory.</p>
+<div class="admonition danger">
+<p class="admonition-title">WARNING</p>
+<p>If the destination file already exists, the cp command overwrites the file.</p>
+</div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ <span class="nb">cd</span> Videos
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="o">[</span>user@host Videos<span class="o">]</span>$ cp blockbuster1.ogg blockbuster3.ogg
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="o">[</span>user@host Videos<span class="o">]</span>$ ls -l
+<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>total <span class="m">0</span>
+<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>-rw-rw-r--. <span class="m">1</span> user user    <span class="m">0</span> Feb  <span class="m">8</span> <span class="m">16</span>:23 blockbuster1.ogg
+<a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a>-rw-rw-r--. <span class="m">1</span> user user    <span class="m">0</span> Feb  <span class="m">8</span> <span class="m">16</span>:24 blockbuster2.ogg
+<a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a>-rw-rw-r--. <span class="m">1</span> user user    <span class="m">0</span> Feb  <span class="m">8</span> <span class="m">16</span>:34 blockbuster3.ogg
+<a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a>drwxrwxr-x. <span class="m">2</span> user user <span class="m">4096</span> Feb  <span class="m">8</span> <span class="m">16</span>:05 Watched
+<a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a><span class="o">[</span>user@host Videos<span class="o">]</span>$
+</code></pre></div>
+<p>When copying multiple files with one command, the last argument must be a directory. Copied files
+retain their original names in the new directory. If a file with the same name exists in the target
+directory, the existing file is overwritten. By default, the <em>cp</em> does not copy directories; it ignores
+them.</p>
+<p>In the following example, two directories are listed, Thesis and ProjectX. Only the last
+argument, ProjectX is valid as a destination. The Thesis directory is ignored.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="o">[</span>user@host Videos<span class="o">]</span>$ <span class="nb">cd</span> ../Documents
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="o">[</span>user@host Documents<span class="o">]</span>$ cp thesis_chapter1.odf thesis_chapter2.odf Thesis ProjectX
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>cp: omitting directory <span class="sb">`</span>Thesis<span class="err">&#39;</span>
+<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="o">[</span>user@host Documents<span class="o">]</span>$ ls Thesis ProjectX
+<a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>ProjectX:
+<a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a>thesis_chapter1.odf  thesis_chapter2.odf
+<a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a>Thesis:
+<a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a>Chapter1  Chapter2  Chapter3
+</code></pre></div>
+<p>In the first <em>cp</em> command, the Thesis directory failed to copy, but the <em>thesis_chapter1.odf</em>
+and <em>thesis_chapter2.odf</em> files succeeded.</p>
+<p>If you want to copy a file to the current working directory, you can use the special . directory:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ cp /etc/hostname .
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ cat hostname
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>host.example.com
+<a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a><span class="o">[</span>user@host ~<span class="o">]</span>$
+</code></pre></div>
+<p>Use the copy command with the -r (recursive) option, to copy the Thesis directory and its
+contents to the ProjectX directory.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="o">[</span>user@host Documents<span class="o">]</span>$ cp -r Thesis ProjectX
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="o">[</span>user@host Documents<span class="o">]</span>$ ls -R ProjectX
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>ProjectX:
+<a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a>Thesis  thesis_chapter1.odf  thesis_chapter2.odf
+<a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a>
+<a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a>ProjectX/Thesis:
+<a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a>Chapter1  Chapter2  Chapter3
+<a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a>
+<a id="__codelineno-14-9" name="__codelineno-14-9" href="#__codelineno-14-9"></a>ProjectX/Thesis/Chapter1:
+<a id="__codelineno-14-10" name="__codelineno-14-10" href="#__codelineno-14-10"></a>
+<a id="__codelineno-14-11" name="__codelineno-14-11" href="#__codelineno-14-11"></a>ProjectX/Thesis/Chapter2:
+<a id="__codelineno-14-12" name="__codelineno-14-12" href="#__codelineno-14-12"></a>thesis_chapter2.odf
+<a id="__codelineno-14-13" name="__codelineno-14-13" href="#__codelineno-14-13"></a>
+<a id="__codelineno-14-14" name="__codelineno-14-14" href="#__codelineno-14-14"></a>ProjectX/Thesis/Chapter3:
+</code></pre></div>
+<h4 id="moving-files">Moving Files<a class="headerlink" href="#moving-files" title="Permanent link">&para;</a></h4>
+<p>The <em>mv</em> command moves files from one location to another. If you think of the absolute path to a
+file as its full name, moving a file is effectively the same as renaming a file. File contents remain
+unchanged.</p>
+<p>Use the mv command to rename a file.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="o">[</span>user@host Videos<span class="o">]</span>$ <span class="nb">cd</span> ../Documents
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="o">[</span>user@host Documents<span class="o">]</span>$ ls -l thesis*
+<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>-rw-rw-r--. <span class="m">1</span> user user <span class="m">0</span> Feb  <span class="m">6</span> <span class="m">21</span>:16 thesis_chapter1.odf
+<a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a>-rw-rw-r--. <span class="m">1</span> user user <span class="m">0</span> Feb  <span class="m">6</span> <span class="m">21</span>:16 thesis_chapter2.odf
+<a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a><span class="o">[</span>user@host Documents<span class="o">]</span>$ mv thesis_chapter2.odf thesis_chapter2_reviewed.odf
+<a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a><span class="o">[</span>user@host Documents<span class="o">]</span>$ ls -l thesis*
+<a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a>-rw-rw-r--. <span class="m">1</span> user user <span class="m">0</span> Feb  <span class="m">6</span> <span class="m">21</span>:16 thesis_chapter1.odf
+<a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a>-rw-rw-r--. <span class="m">1</span> user user <span class="m">0</span> Feb  <span class="m">6</span> <span class="m">21</span>:16 thesis_chapter2_reviewed.odf
+</code></pre></div>
+<p>Use the <strong>mv</strong> command to move a file to a different directory.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="o">[</span>user@host Documents<span class="o">]</span>$ ls Thesis/Chapter1
+<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="o">[</span>user@host Documents<span class="o">]</span>$
+<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a><span class="o">[</span>user@host Documents<span class="o">]</span>$ mv thesis_chapter1.odf Thesis/Chapter1
+<a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a><span class="o">[</span>user@host Documents<span class="o">]</span>$ ls Thesis/Chapter1
+<a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a>thesis_chapter1.odf
+<a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a><span class="o">[</span>user@host Documents<span class="o">]</span>$ ls -l thesis*
+<a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a>-rw-rw-r--. <span class="m">1</span> user user <span class="m">0</span> Feb  <span class="m">6</span> <span class="m">21</span>:16 thesis_chapter2_reviewed.odf
+</code></pre></div>
+<h4 id="removing-files-and-directories">Removing Files and Directories<a class="headerlink" href="#removing-files-and-directories" title="Permanent link">&para;</a></h4>
+<p>The <em>rm</em> command removes files. By default, rm will not remove directories that contain files, unless
+you add the -r or --recursive option.</p>
+<div class="admonition danger">
+<p class="admonition-title">IMPORTANT</p>
+<p>There is no command-line undelete feature, nor a "trash bin" from which you can
+restore files staged for deletion.</p>
+</div>
+<p>It is a good idea to verify your current working directory before removing a file or directory.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="o">[</span>user@host Documents<span class="o">]</span>$ <span class="nb">pwd</span>
+<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>/home/student/Documents
+</code></pre></div>
+<p>Use the <strong>rm</strong> command to remove a single file from your working directory.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="o">[</span>user@host Documents<span class="o">]</span>$ ls -l thesis*
+<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>-rw-rw-r--. <span class="m">1</span> user user <span class="m">0</span> Feb  <span class="m">6</span> <span class="m">21</span>:16 thesis_chapter2_reviewed.odf
+<a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a><span class="o">[</span>user@host Documents<span class="o">]</span>$ rm thesis_chapter2_reviewed.odf
+<a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a><span class="o">[</span>user@host Documents<span class="o">]</span>$ ls -l thesis*
+<a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a>ls: cannot access <span class="s1">&#39;thesis*&#39;</span>: No such file or directory
+</code></pre></div>
+<p>If you attempt to use the <strong>rm</strong> command to remove a directory without using the -r option, the
+command will fail.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="o">[</span>user@host Documents<span class="o">]</span>$ rm Thesis/Chapter1
+<a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>rm: cannot remove <span class="sb">`</span>Thesis/Chapter1<span class="err">&#39;</span>: Is a directory
+</code></pre></div>
+<p>Use the <strong>rm -r</strong> command to remove a subdirectory and its contents.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="o">[</span>user@host Documents<span class="o">]</span>$ ls -R Thesis
+<a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>Thesis/:
+<a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a>Chapter1  Chapter2  Chapter3
+<a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a>Thesis/Chapter1:
+<a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a>thesis_chapter1.odf
+<a id="__codelineno-20-6" name="__codelineno-20-6" href="#__codelineno-20-6"></a>Thesis/Chapter2:
+<a id="__codelineno-20-7" name="__codelineno-20-7" href="#__codelineno-20-7"></a>thesis_chapter2.odf
+<a id="__codelineno-20-8" name="__codelineno-20-8" href="#__codelineno-20-8"></a>Thesis/Chapter3:
+<a id="__codelineno-20-9" name="__codelineno-20-9" href="#__codelineno-20-9"></a><span class="o">[</span>user@host Documents<span class="o">]</span>$ rm -r Thesis/Chapter1
+<a id="__codelineno-20-10" name="__codelineno-20-10" href="#__codelineno-20-10"></a><span class="o">[</span>user@host Documents<span class="o">]</span>$ ls -l Thesis
+<a id="__codelineno-20-11" name="__codelineno-20-11" href="#__codelineno-20-11"></a>total <span class="m">8</span>
+<a id="__codelineno-20-12" name="__codelineno-20-12" href="#__codelineno-20-12"></a>drwxrwxr-x. <span class="m">2</span> user user <span class="m">4096</span> Feb <span class="m">11</span> <span class="m">12</span>:47 Chapter2
+<a id="__codelineno-20-13" name="__codelineno-20-13" href="#__codelineno-20-13"></a>drwxrwxr-x. <span class="m">2</span> user user <span class="m">4096</span> Feb <span class="m">11</span> <span class="m">12</span>:48 Chapter3
+</code></pre></div>
+<p>The <strong>rm -r</strong> command traverses each subdirectory first, individually removing their files before
+removing each directory. You can use the <strong>rm -ri</strong> command to interactively prompt for
+confirmation before deleting. This is essentially the opposite of using the -f option, which forces
+the removal without prompting the user for confirmation.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="o">[</span>user@host Documents<span class="o">]</span>$ rm -ri Thesis
+<a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a>rm: descend into directory <span class="sb">`</span>Thesis<span class="s1">&#39;? y</span>
+<a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a><span class="s1">rm: descend into directory `Thesis/Chapter2&#39;</span>? y
+<a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a>rm: remove regular empty file <span class="sb">`</span>Thesis/Chapter2/thesis_chapter2.odf<span class="s1">&#39;? y</span>
+<a id="__codelineno-21-5" name="__codelineno-21-5" href="#__codelineno-21-5"></a><span class="s1">rm: remove directory `Thesis/Chapter2&#39;</span>? y
+<a id="__codelineno-21-6" name="__codelineno-21-6" href="#__codelineno-21-6"></a>rm: remove directory <span class="sb">`</span>Thesis/Chapter3<span class="s1">&#39;? y</span>
+<a id="__codelineno-21-7" name="__codelineno-21-7" href="#__codelineno-21-7"></a><span class="s1">rm: remove directory `Thesis&#39;</span>? y
+</code></pre></div>
+<div class="admonition danger">
+<p class="admonition-title">WARNING</p>
+<p>If you specify both the -i and -f options, the -f option takes priority and you will
+not be prompted for confirmation before <strong>rm</strong> deletes files.</p>
+</div>
+<p>In the following example, the <strong>rmdir</strong> command only removes the directory that is empty. Just
+like the earlier example, you must use the rm -r command to remove a directory that contains
+content.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="o">[</span>user@host Documents<span class="o">]</span>$ <span class="nb">pwd</span>
+<a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a>/home/student/Documents
+<a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a><span class="o">[</span>user@host Documents<span class="o">]</span>$ rmdir ProjectY
+<a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a><span class="o">[</span>user@host Documents<span class="o">]</span>$ rmdir ProjectX
+<a id="__codelineno-22-5" name="__codelineno-22-5" href="#__codelineno-22-5"></a>rmdir: failed to remove <span class="sb">`</span>ProjectX<span class="err">&#39;</span>: Directory not empty
+<a id="__codelineno-22-6" name="__codelineno-22-6" href="#__codelineno-22-6"></a><span class="o">[</span>user@host Documents<span class="o">]</span>$ rm -r ProjectX
+<a id="__codelineno-22-7" name="__codelineno-22-7" href="#__codelineno-22-7"></a><span class="o">[</span>user@host Documents<span class="o">]</span>$ ls -lR
+<a id="__codelineno-22-8" name="__codelineno-22-8" href="#__codelineno-22-8"></a>.:
+<a id="__codelineno-22-9" name="__codelineno-22-9" href="#__codelineno-22-9"></a>total <span class="m">0</span>
+<a id="__codelineno-22-10" name="__codelineno-22-10" href="#__codelineno-22-10"></a><span class="o">[</span>user@host Documents<span class="o">]</span>$
+</code></pre></div>
+<div class="admonition info">
+<p class="admonition-title">NOTE</p>
+<p>The rm command with no options cannot remove an empty directory. You must use
+the rmdir command, rm -d (which is equivalent to rmdir), or rm -r.</p>
+</div>
+<h3 id="making-links-between-files">MAKING LINKS BETWEEN FILES<a class="headerlink" href="#making-links-between-files" title="Permanent link">&para;</a></h3>
+<h4 id="managing-links-between-files">MANAGING LINKS BETWEEN FILES<a class="headerlink" href="#managing-links-between-files" title="Permanent link">&para;</a></h4>
+<p><strong>Hard Links and Soft Links</strong></p>
+<p>It is possible to create multiple names that point to the same file. There are two ways to do this: by
+creating a hard link to the file, or by creating a <em>soft link</em> (sometimes called a symbolic link) to the file.
+Each has its advantages and disadvantages.</p>
+<p><strong>Creating Hard Links</strong></p>
+<p>Every file starts with a single hard link, from its initial name to the data on the file system. When
+you create a new hard link to a file, you create another name that points to that same data. The
+new hard link acts exactly like the original file name. Once created, you cannot tell the difference
+between the new hard link and the original name of the file.</p>
+<p>You can find out if a file has multiple hard links with the ls -l command. One of the things it
+reports is each file's link count, the number of hard links the file has.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ <span class="nb">pwd</span>
+<a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a>/home/user
+<a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ ls -l newfile.txt
+<a id="__codelineno-23-4" name="__codelineno-23-4" href="#__codelineno-23-4"></a>-rw-r--r--. <span class="m">1</span> user user <span class="m">0</span> Mar <span class="m">11</span> <span class="m">19</span>:19 newfile.txt
+</code></pre></div>
+<p>In the preceding example, the link count of newfile.txt is 1. It has exactly one absolute path,
+which is /home/user/newfile.txt.</p>
+<p>You can use the ln command to create a new hard link (another name) that points to an existing
+file. The command needs at least two arguments, a path to the existing file, and the path to the
+hard link that you want to create.</p>
+<p>The following example creates a hard link named newfile-link2.txt for the existing file
+newfile.txt in the <em>/tmp</em> directory.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ ln newfile.txt /tmp/newfile-hlink2.txt
+<a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ ls -l newfile.txt /tmp/newfile-hlink2.txt
+<a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a>-rw-rw-r--. <span class="m">2</span> user user <span class="m">12</span> Mar <span class="m">11</span> <span class="m">19</span>:19 newfile.txt
+<a id="__codelineno-24-4" name="__codelineno-24-4" href="#__codelineno-24-4"></a>-rw-rw-r--. <span class="m">2</span> user user <span class="m">12</span> Mar <span class="m">11</span> <span class="m">19</span>:19 /tmp/newfile-hlink2.txt
+</code></pre></div>
+<p>If you want to find out whether two files are hard links of each other, one way is to use the -i
+option with the ls command to list the files' inode number. If the files are on the same file system
+(discussed in a moment) and their inode numbers are the same, the files are hard links pointing to
+the same data.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ ls -il newfile.txt /tmp/newfile-hlink2.txt
+<a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a><span class="m">8924107</span> -rw-rw-r--. <span class="m">2</span> user user <span class="m">12</span> Mar <span class="m">11</span> <span class="m">19</span>:19 newfile.txt
+<a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a><span class="m">8924107</span> -rw-rw-r--. <span class="m">2</span> user user <span class="m">12</span> Mar <span class="m">11</span> <span class="m">19</span>:19 /tmp/newfile-hlink2.txt
+</code></pre></div>
+<div class="admonition danger">
+<p class="admonition-title">IMPORTANT</p>
+<p>All hard links that reference the same file will have the same link count, access
+permissions, user and group ownerships, time stamps, and file content. If any of that
+information is changed using one hard link, all other hard links pointing to the same
+file will show the new information as well. This is because each hard link points to the
+same data on the storage device.</p>
+</div>
+<p>Even if the original file gets deleted, the contents of the file are still available as long as at least one
+hard link exists. Data is only deleted from storage when the last hard link is deleted.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ rm -f newfile.txt
+<a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ ls -l /tmp/newfile-hlink2.txt
+<a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a>-rw-rw-r--. <span class="m">1</span> user user <span class="m">12</span> Mar <span class="m">11</span> <span class="m">19</span>:19 /tmp/newfile-hlink2.txt
+<a id="__codelineno-26-4" name="__codelineno-26-4" href="#__codelineno-26-4"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ cat /tmp/newfile-hlink2.txt
+<a id="__codelineno-26-5" name="__codelineno-26-5" href="#__codelineno-26-5"></a>Hello World
+</code></pre></div>
+<h4 id="limitations-of-hard-links">Limitations of Hard Links<a class="headerlink" href="#limitations-of-hard-links" title="Permanent link">&para;</a></h4>
+<p>Hard links have some limitations. Firstly, hard links can only be used with regular files. You cannot
+use <strong>ln</strong> to create a hard link to a directory or special file.</p>
+<p>Secondly, hard links can only be used if both files are on the same file system. The file-system
+hierarchy can be made up of multiple storage devices. Depending on the configuration of your
+system, when you change into a new directory, that directory and its contents may be stored on a
+different file system.</p>
+<p>You can use the <strong>df</strong> command to list the directories that are on different file systems. For example,
+you might see output like the following:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ df
+<a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a>Filesystem                   1K-blocks    Used Available Use% Mounted on
+<a id="__codelineno-27-3" name="__codelineno-27-3" href="#__codelineno-27-3"></a>devtmpfs                        <span class="m">886788</span>       <span class="m">0</span>    <span class="m">886788</span>   <span class="m">0</span>% /dev
+<a id="__codelineno-27-4" name="__codelineno-27-4" href="#__codelineno-27-4"></a>tmpfs                           <span class="m">902108</span>       <span class="m">0</span>    <span class="m">902108</span>   <span class="m">0</span>% /dev/shm
+<a id="__codelineno-27-5" name="__codelineno-27-5" href="#__codelineno-27-5"></a>tmpfs                           <span class="m">902108</span>    <span class="m">8696</span>    <span class="m">893412</span>   <span class="m">1</span>% /run
+<a id="__codelineno-27-6" name="__codelineno-27-6" href="#__codelineno-27-6"></a>tmpfs                           <span class="m">902108</span>       <span class="m">0</span>    <span class="m">902108</span>   <span class="m">0</span>% /sys/fs/cgroup
+<a id="__codelineno-27-7" name="__codelineno-27-7" href="#__codelineno-27-7"></a>/dev/mapper/rhel_rhel8--root  <span class="m">10258432</span> <span class="m">1630460</span>   <span class="m">8627972</span>  <span class="m">16</span>% /
+<a id="__codelineno-27-8" name="__codelineno-27-8" href="#__codelineno-27-8"></a>/dev/sda1                      <span class="m">1038336</span>  <span class="m">167128</span>    <span class="m">871208</span>  <span class="m">17</span>% /boot
+<a id="__codelineno-27-9" name="__codelineno-27-9" href="#__codelineno-27-9"></a>tmpfs                           <span class="m">180420</span>       <span class="m">0</span>    <span class="m">180420</span>   <span class="m">0</span>% /run/user/1000
+<a id="__codelineno-27-10" name="__codelineno-27-10" href="#__codelineno-27-10"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ 
+</code></pre></div>
+<p>Files in two different "Mounted on" directories and their subdirectories are on different file
+systems. (The most specific match wins.) So, the system in this example, you can create a hard
+link between /var/tmp/link1 and /home/user/file because they are both subdirectories
+of / but not any other directory on the list. But you cannot create a hard link between /boot/
+test/badlink and /home/user/file because the first file is in a subdirectory of /boot (on
+the "Mounted on" list) and the second file is not.</p>
+<h4 id="creating-soft-links">Creating Soft Links<a class="headerlink" href="#creating-soft-links" title="Permanent link">&para;</a></h4>
+<p>The <strong>ln -s</strong> command creates a soft link, which is also called a "symbolic link." A soft link is not a
+regular file, but a special type of file that points to an existing file or directory.</p>
+<p>Soft links have some advantages over hard links:
+- They can link two files on different file systems.
+- They can point to a directory or special file, not just a regular file.</p>
+<p>In the following example, the ln -s command is used to create a new soft link for the existing file
+/home/user/newfile-link2.txt that will be named /tmp/newfile-symlink.txt.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ ln -s /home/user/newfile-link2.txt /tmp/newfile-symlink.txt
+<a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ ls -l newfile-link2.txt /tmp/newfile-symlink.txt
+<a id="__codelineno-28-3" name="__codelineno-28-3" href="#__codelineno-28-3"></a>-rw-rw-r--. <span class="m">1</span> user user <span class="m">12</span> Mar <span class="m">11</span> <span class="m">19</span>:19 newfile-link2.txt
+<a id="__codelineno-28-4" name="__codelineno-28-4" href="#__codelineno-28-4"></a>lrwxrwxrwx. <span class="m">1</span> user user <span class="m">11</span> Mar <span class="m">11</span> <span class="m">20</span>:59 /tmp/newfile-symlink.txt -&gt; /home/user/
+<a id="__codelineno-28-5" name="__codelineno-28-5" href="#__codelineno-28-5"></a>newfile-link2.txt
+<a id="__codelineno-28-6" name="__codelineno-28-6" href="#__codelineno-28-6"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ cat /tmp/newfile-symlink.txt
+<a id="__codelineno-28-7" name="__codelineno-28-7" href="#__codelineno-28-7"></a>Soft Hello World
+</code></pre></div>
+<p>In the preceding example, the first character of the long listing for /tmp/newfile-symlink.txt
+is l instead of -. This indicates that the file is a soft link and not a regular file. (A d would indicate
+that the file is a directory.)</p>
+<p>When the original regular file gets deleted, the soft link will still point to the file but the target is
+gone. A soft link pointing to a missing file is called a "dangling soft link."</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ rm -f newfile-link2.txt
+<a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ ls -l /tmp/newfile-symlink.txt
+<a id="__codelineno-29-3" name="__codelineno-29-3" href="#__codelineno-29-3"></a>lrwxrwxrwx. <span class="m">1</span> user user <span class="m">11</span> Mar <span class="m">11</span> <span class="m">20</span>:59 /tmp/newfile-symlink.txt -&gt; /home/user/
+<a id="__codelineno-29-4" name="__codelineno-29-4" href="#__codelineno-29-4"></a>newfile-link2.txt
+<a id="__codelineno-29-5" name="__codelineno-29-5" href="#__codelineno-29-5"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ cat /tmp/newfile-symlink.txt
+<a id="__codelineno-29-6" name="__codelineno-29-6" href="#__codelineno-29-6"></a>cat: /tmp/newfile-symlink.txt: No such file or directory
+</code></pre></div>
+<div class="admonition danger">
+<p class="admonition-title">IMPORTANT</p>
+<p>One side-effect of the dangling soft link in the preceding example is that if you later
+create a new file with the same name as the deleted file (/home/user/newfile-
+link2.txt), the soft link will no longer be "dangling" and will point to the new file.
+Hard links do not work like this. If you delete a hard link and then use normal tools
+(rather than ln) to create a new file with the same name, the new file will not be
+linked to the old file.</p>
+<p>One way to compare hard links and soft links that might help you understand how
+they work:</p>
+<ul>
+<li>A hard link points a name to data on a storage device</li>
+<li>A soft link points a name to another name, that points to data on a storage device</li>
+</ul>
+</div>
+<p>A soft link can point to a directory. The soft link then acts like a directory. Changing to the soft
+link with <strong>cd</strong> will make the current working directory the linked directory. Some tools may keep
+track of the fact that you followed a soft link to get there. For example, by default <strong>cd</strong> will update
+your current working directory using the name of the soft link rather than the name of the actual
+directory. (There is an option, -P, that will update it with the name of the actual directory instead.)</p>
+<p>In the following example, a soft link named /home/user/configfiles is created that points to
+the /etc directory.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ ln -s /etc /home/user/configfiles
+<a id="__codelineno-30-2" name="__codelineno-30-2" href="#__codelineno-30-2"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ <span class="nb">cd</span> /home/user/configfiles
+<a id="__codelineno-30-3" name="__codelineno-30-3" href="#__codelineno-30-3"></a><span class="o">[</span>user@host configfiles<span class="o">]</span>$ <span class="nb">pwd</span>
+<a id="__codelineno-30-4" name="__codelineno-30-4" href="#__codelineno-30-4"></a>/home/user/configfiles
+</code></pre></div>
+<h3 id="matching-file-names-with-shell-expansions">MATCHING FILE NAMES WITH SHELL EXPANSIONS<a class="headerlink" href="#matching-file-names-with-shell-expansions" title="Permanent link">&para;</a></h3>
+<h4 id="command-line-expansions">COMMAND-LINE EXPANSIONS<a class="headerlink" href="#command-line-expansions" title="Permanent link">&para;</a></h4>
+<p>The Bash shell has multiple ways of expanding a command line including <em>pattern matching</em>, home
+directory expansion, string expansion, and variable substitution. Perhaps the most powerful of
+these is the path name-matching capability, historically called <em>globbing</em>. The Bash globbing feature,
+sometimes called “wildcards”, makes managing large numbers of files easier. Using <em>metacharacters</em>
+that “expand” to match file and path names being sought, commands perform on a focused set of
+files at once.</p>
+<p><strong>Pattern Matching</strong></p>
+<p>Globbing is a shell command-parsing operation that expands a wildcard pattern into a list of
+matching path names. Command-line metacharacters are replaced by the match list prior to
+command execution. Patterns that do not return matches display the original pattern request as
+literal text. The following are common metacharacters and pattern classes.</p>
+<p>Table of Metacharacters and Matches</p>
+<table>
+<thead>
+<tr>
+<th align="center">PATTERN</th>
+<th align="center">MATCHES</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">*</td>
+<td align="center">Any string of zero or more characters.</td>
+</tr>
+<tr>
+<td align="center">?</td>
+<td align="center">Any single character.</td>
+</tr>
+<tr>
+<td align="center">[abc...]</td>
+<td align="center">Any one character in the enclosed class (between the square brackets).</td>
+</tr>
+<tr>
+<td align="center">[!abc...]</td>
+<td align="center">Any one character not in the enclosed class.</td>
+</tr>
+<tr>
+<td align="center">[^abc...]</td>
+<td align="center">Any one character not in the enclosed class.</td>
+</tr>
+<tr>
+<td align="center">[[:alpha:]]</td>
+<td align="center">Any alphabetic character.</td>
+</tr>
+<tr>
+<td align="center">[[:lower:]]</td>
+<td align="center">Any lowercase character.</td>
+</tr>
+<tr>
+<td align="center">[[:upper:]]</td>
+<td align="center">Any uppercase character.</td>
+</tr>
+<tr>
+<td align="center">[[:alnum:]]</td>
+<td align="center">Any alphabetic character or digit.</td>
+</tr>
+<tr>
+<td align="center">[[:punct:]]</td>
+<td align="center">Any printable character not a space or alphanumeric.</td>
+</tr>
+<tr>
+<td align="center">[[:digit:]]</td>
+<td align="center">Any single digit from 0 to 9.</td>
+</tr>
+<tr>
+<td align="center">[[:space:]]</td>
+<td align="center">Any single white space character. This may include tabs, newlines, carriage returns, form feeds, or spaces.</td>
+</tr>
+</tbody>
+</table>
+<p>For the next few examples, pretend that you have run the following commands to create some
+sample files.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ mkdir glob<span class="p">;</span> <span class="nb">cd</span> glob
+<a id="__codelineno-31-2" name="__codelineno-31-2" href="#__codelineno-31-2"></a><span class="o">[</span>user@host glob<span class="o">]</span>$ touch alfa bravo charlie delta <span class="nb">echo</span> able baker cast dog easy
+<a id="__codelineno-31-3" name="__codelineno-31-3" href="#__codelineno-31-3"></a><span class="o">[</span>user@host glob<span class="o">]</span>$ ls
+<a id="__codelineno-31-4" name="__codelineno-31-4" href="#__codelineno-31-4"></a>able  alfa  baker  bravo  cast  charlie  delta  dog  easy  <span class="nb">echo</span>
+<a id="__codelineno-31-5" name="__codelineno-31-5" href="#__codelineno-31-5"></a><span class="o">[</span>user@host glob<span class="o">]</span>$ 
+</code></pre></div>
+<p>The first example will use simple pattern matches with the asterisk (*) and question mark (?)
+characters, and a class of characters, to match some of those file names.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a><span class="o">[</span>user@host glob<span class="o">]</span>$ ls a*
+<a id="__codelineno-32-2" name="__codelineno-32-2" href="#__codelineno-32-2"></a>able  alfa
+<a id="__codelineno-32-3" name="__codelineno-32-3" href="#__codelineno-32-3"></a><span class="o">[</span>user@host glob<span class="o">]</span>$ ls *a*
+<a id="__codelineno-32-4" name="__codelineno-32-4" href="#__codelineno-32-4"></a>able  alfa  baker  bravo  cast  charlie  delta  easy
+<a id="__codelineno-32-5" name="__codelineno-32-5" href="#__codelineno-32-5"></a><span class="o">[</span>user@host glob<span class="o">]</span>$ ls <span class="o">[</span>ac<span class="o">]</span>*
+<a id="__codelineno-32-6" name="__codelineno-32-6" href="#__codelineno-32-6"></a>able  alfa  cast  charlie
+<a id="__codelineno-32-7" name="__codelineno-32-7" href="#__codelineno-32-7"></a><span class="o">[</span>user@host glob<span class="o">]</span>$ ls ????
+<a id="__codelineno-32-8" name="__codelineno-32-8" href="#__codelineno-32-8"></a>able  alfa  cast  easy  <span class="nb">echo</span>
+<a id="__codelineno-32-9" name="__codelineno-32-9" href="#__codelineno-32-9"></a><span class="o">[</span>user@host glob<span class="o">]</span>$ ls ?????
+<a id="__codelineno-32-10" name="__codelineno-32-10" href="#__codelineno-32-10"></a>baker  bravo  delta
+<a id="__codelineno-32-11" name="__codelineno-32-11" href="#__codelineno-32-11"></a><span class="o">[</span>user@host glob<span class="o">]</span>$ 
+</code></pre></div>
+<p><strong>Tilde Expansion</strong></p>
+<p>The tilde character (~), matches the current user's home directory. If it starts a string of characters
+other than a slash (/), the shell will interpret the string up to that slash as a user name, if one
+matches, and replace the string with the absolute path to that user's home directory. If no user
+name matches, then an actual tilde followed by the string of characters will be used instead.</p>
+<p>In the following example the echo command is used to display the value of the tilde character. The
+echo command can also be used to display the values of brace and variable expansion characters,
+and others.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a><span class="o">[</span>user@host glob<span class="o">]</span>$ ls ~root
+<a id="__codelineno-33-2" name="__codelineno-33-2" href="#__codelineno-33-2"></a>/root
+<a id="__codelineno-33-3" name="__codelineno-33-3" href="#__codelineno-33-3"></a><span class="o">[</span>user@host glob<span class="o">]</span>$ ls ~user
+<a id="__codelineno-33-4" name="__codelineno-33-4" href="#__codelineno-33-4"></a>/home/user
+<a id="__codelineno-33-5" name="__codelineno-33-5" href="#__codelineno-33-5"></a><span class="o">[</span>user@host glob<span class="o">]</span>$ ls ~/glob
+<a id="__codelineno-33-6" name="__codelineno-33-6" href="#__codelineno-33-6"></a>able  alfa  baker  bravo  cast  charlie  delta  dog  easy  <span class="nb">echo</span>
+<a id="__codelineno-33-7" name="__codelineno-33-7" href="#__codelineno-33-7"></a><span class="o">[</span>user@host glob<span class="o">]</span>$ <span class="nb">echo</span> ~/glob
+<a id="__codelineno-33-8" name="__codelineno-33-8" href="#__codelineno-33-8"></a>/home/user/glob
+<a id="__codelineno-33-9" name="__codelineno-33-9" href="#__codelineno-33-9"></a><span class="o">[</span>user@host glob<span class="o">]</span>$ 
+</code></pre></div>
+<p><strong>Brace Expansion</strong></p>
+<p>Brace expansion is used to generate discretionary strings of characters. Braces contain a comma-
+separated list of strings, or a sequence expression. The result includes the text preceding or
+following the brace definition. Brace expansions may be nested, one inside another. Also double-
+dot syntax (..) expands to a sequence such that {m..p} will expand to m n o p.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a><span class="o">[</span>user@host glob<span class="o">]</span>$ <span class="nb">echo</span> <span class="o">{</span>Sunday,Monday,Tuesday,Wednesday<span class="o">}</span>.log
+<a id="__codelineno-34-2" name="__codelineno-34-2" href="#__codelineno-34-2"></a>Sunday.log Monday.log Tuesday.log Wednesday.log
+<a id="__codelineno-34-3" name="__codelineno-34-3" href="#__codelineno-34-3"></a><span class="o">[</span>user@host glob<span class="o">]</span>$ <span class="nb">echo</span> file<span class="o">{</span><span class="m">1</span>..3<span class="o">}</span>.txt
+<a id="__codelineno-34-4" name="__codelineno-34-4" href="#__codelineno-34-4"></a>file1.txt file2.txt file3.txt
+<a id="__codelineno-34-5" name="__codelineno-34-5" href="#__codelineno-34-5"></a><span class="o">[</span>user@host glob<span class="o">]</span>$ <span class="nb">echo</span> file<span class="o">{</span>a..c<span class="o">}</span>.txt
+<a id="__codelineno-34-6" name="__codelineno-34-6" href="#__codelineno-34-6"></a>filea.txt fileb.txt filec.txt
+<a id="__codelineno-34-7" name="__codelineno-34-7" href="#__codelineno-34-7"></a><span class="o">[</span>user@host glob<span class="o">]</span>$ <span class="nb">echo</span> file<span class="o">{</span>a,b<span class="o">}{</span><span class="m">1</span>,2<span class="o">}</span>.txt
+<a id="__codelineno-34-8" name="__codelineno-34-8" href="#__codelineno-34-8"></a>filea1.txt filea2.txt fileb1.txt fileb2.txt
+<a id="__codelineno-34-9" name="__codelineno-34-9" href="#__codelineno-34-9"></a><span class="o">[</span>user@host glob<span class="o">]</span>$ <span class="nb">echo</span> file<span class="o">{</span>a<span class="o">{</span><span class="m">1</span>,2<span class="o">}</span>,b,c<span class="o">}</span>.txt
+<a id="__codelineno-34-10" name="__codelineno-34-10" href="#__codelineno-34-10"></a>filea1.txt filea2.txt fileb.txt filec.txt
+<a id="__codelineno-34-11" name="__codelineno-34-11" href="#__codelineno-34-11"></a><span class="o">[</span>user@host glob<span class="o">]</span>$ 
+</code></pre></div>
+<p>A practical use of brace expansion is to quickly create a number of files or directories.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a><span class="o">[</span>user@host glob<span class="o">]</span>$ mkdir ../RHEL<span class="o">{</span><span class="m">6</span>,7,8<span class="o">}</span>
+<a id="__codelineno-35-2" name="__codelineno-35-2" href="#__codelineno-35-2"></a><span class="o">[</span>user@host glob<span class="o">]</span>$ ls ../RHEL*
+<a id="__codelineno-35-3" name="__codelineno-35-3" href="#__codelineno-35-3"></a>RHEL6 RHEL7 RHEL8
+<a id="__codelineno-35-4" name="__codelineno-35-4" href="#__codelineno-35-4"></a><span class="o">[</span>user@host glob<span class="o">]</span>$ 
+</code></pre></div>
+<p><strong>Variable Expansion</strong></p>
+<p>A variable acts like a named container that can store a value in memory. Variables make it easy to
+access and modify the stored data either from the command line or within a shell script.</p>
+<p>You can assign data as a value to a variable using the following syntax:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ <span class="nv">VARIABLENAME</span><span class="o">=</span>value
+</code></pre></div>
+<p>You can use variable expansion to convert the variable name to its value on the command line. If a
+string starts with a dollar sign ($), then the shell will try to use the rest of that string as a variable
+name and replace it with whatever value the variable has.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-37-1" name="__codelineno-37-1" href="#__codelineno-37-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ <span class="nv">USERNAME</span><span class="o">=</span>operator
+<a id="__codelineno-37-2" name="__codelineno-37-2" href="#__codelineno-37-2"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ <span class="nb">echo</span> <span class="nv">$USERNAME</span>
+<a id="__codelineno-37-3" name="__codelineno-37-3" href="#__codelineno-37-3"></a>operator
+</code></pre></div>
+<p>To help avoid mistakes due to other shell expansions, you can put the name of the variable in curly
+braces, for example ${VARIABLENAME}.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-38-1" name="__codelineno-38-1" href="#__codelineno-38-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ <span class="nv">USERNAME</span><span class="o">=</span>operator
+<a id="__codelineno-38-2" name="__codelineno-38-2" href="#__codelineno-38-2"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ <span class="nb">echo</span> <span class="si">${</span><span class="nv">USERNAME</span><span class="si">}</span>
+<a id="__codelineno-38-3" name="__codelineno-38-3" href="#__codelineno-38-3"></a>operator
+</code></pre></div>
+<p>Shell variables and ways to use them will be covered in more depth later in this course.</p>
+<p><strong>Command Substitution</strong></p>
+<p>Command substitution allows the output of a command to replace the command itself on the
+command line. Command substitution occurs when a command is enclosed in parentheses, and
+preceded by a dollar sign ($). The $(command) form can nest multiple command expansions
+inside each other.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-39-1" name="__codelineno-39-1" href="#__codelineno-39-1"></a><span class="o">[</span>user@host glob<span class="o">]</span>$ <span class="nb">echo</span> Today is <span class="k">$(</span>date +%A<span class="k">)</span>.
+<a id="__codelineno-39-2" name="__codelineno-39-2" href="#__codelineno-39-2"></a>Today is Wednesday.
+<a id="__codelineno-39-3" name="__codelineno-39-3" href="#__codelineno-39-3"></a><span class="o">[</span>user@host glob<span class="o">]</span>$ <span class="nb">echo</span> The <span class="nb">time</span> is <span class="k">$(</span>date +%M<span class="k">)</span> minutes past <span class="k">$(</span>date +%l%p<span class="k">)</span>.
+<a id="__codelineno-39-4" name="__codelineno-39-4" href="#__codelineno-39-4"></a>The <span class="nb">time</span> is <span class="m">26</span> minutes past 11AM.
+<a id="__codelineno-39-5" name="__codelineno-39-5" href="#__codelineno-39-5"></a><span class="o">[</span>user@host glob<span class="o">]</span>$ 
+</code></pre></div>
+<div class="admonition info">
+<p class="admonition-title">NOTE</p>
+<p>An older form of command substitution uses backticks. Disadvantages
+to the backticks form include: 1) it can be easy to visually confuse backticks with
+single quote marks, and 2) backticks cannot be nested.</p>
+</div>
+<p><strong>Protecting Arguments from Expansion</strong></p>
+<p>Many characters have special meaning in the Bash shell. To keep the shell from performing shell
+expansions on parts of your command line, you can quote and escape characters and strings.</p>
+<p>The backslash () is an escape character in the Bash shell. It will protect the character immediately
+following it from expansion.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-40-1" name="__codelineno-40-1" href="#__codelineno-40-1"></a><span class="o">[</span>user@host glob<span class="o">]</span>$ <span class="nb">echo</span> The value of <span class="nv">$HOME</span> is your home directory.
+<a id="__codelineno-40-2" name="__codelineno-40-2" href="#__codelineno-40-2"></a>The value of /home/user is your home directory.
+<a id="__codelineno-40-3" name="__codelineno-40-3" href="#__codelineno-40-3"></a><span class="o">[</span>user@host glob<span class="o">]</span>$ <span class="nb">echo</span> The value of <span class="se">\$</span>HOME is your home directory.
+<a id="__codelineno-40-4" name="__codelineno-40-4" href="#__codelineno-40-4"></a>The value of <span class="nv">$HOME</span> is your home directory.
+<a id="__codelineno-40-5" name="__codelineno-40-5" href="#__codelineno-40-5"></a><span class="o">[</span>user@host glob<span class="o">]</span>$
+</code></pre></div>
+<p>In the preceding example, protecting the dollar sign from expansion caused Bash to treat it as a
+regular character and it did not perform variable expansion on <em>$HOME</em>.</p>
+<p>To protect longer character strings, single quotes (') or double quotes (") are used to enclose
+strings. They have slightly different effects. Single quotes stop all shell expansion. Double quotes
+stop most shell expansion.</p>
+<p>Use double quotation marks to suppress globbing and shell expansion, but still allow command and
+variable substitution.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-41-1" name="__codelineno-41-1" href="#__codelineno-41-1"></a><span class="o">[</span>user@host glob<span class="o">]</span>$ <span class="nv">myhost</span><span class="o">=</span><span class="k">$(</span>hostname -s<span class="k">)</span><span class="p">;</span> <span class="nb">echo</span> <span class="nv">$myhost</span>
+<a id="__codelineno-41-2" name="__codelineno-41-2" href="#__codelineno-41-2"></a>host
+<a id="__codelineno-41-3" name="__codelineno-41-3" href="#__codelineno-41-3"></a><span class="o">[</span>user@host glob<span class="o">]</span>$ <span class="nb">echo</span> <span class="s2">&quot;***** hostname is </span><span class="si">${</span><span class="nv">myhost</span><span class="si">}</span><span class="s2"> *****&quot;</span>
+<a id="__codelineno-41-4" name="__codelineno-41-4" href="#__codelineno-41-4"></a>***** hostname is host *****
+<a id="__codelineno-41-5" name="__codelineno-41-5" href="#__codelineno-41-5"></a><span class="o">[</span>user@host glob<span class="o">]</span>$ 
+</code></pre></div>
+<p>Use single quotation marks to interpret all text literally.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-42-1" name="__codelineno-42-1" href="#__codelineno-42-1"></a><span class="o">[</span>user@host glob<span class="o">]</span>$ <span class="nb">echo</span> <span class="s2">&quot;Will variable </span><span class="nv">$myhost</span><span class="s2"> evaluate to </span><span class="k">$(</span>hostname -s<span class="k">)</span><span class="s2">?&quot;</span>
+<a id="__codelineno-42-2" name="__codelineno-42-2" href="#__codelineno-42-2"></a>Will variable myhost evaluate to host?
+<a id="__codelineno-42-3" name="__codelineno-42-3" href="#__codelineno-42-3"></a><span class="o">[</span>user@host glob<span class="o">]</span>$ <span class="nb">echo</span> <span class="s1">&#39;Will variable $myhost evaluate to $(hostname -s)?&#39;</span>
+<a id="__codelineno-42-4" name="__codelineno-42-4" href="#__codelineno-42-4"></a>Will variable <span class="nv">$myhost</span> evaluate to <span class="k">$(</span>hostname -s<span class="k">)</span>?
+<a id="__codelineno-42-5" name="__codelineno-42-5" href="#__codelineno-42-5"></a><span class="o">[</span>user@host glob<span class="o">]</span>$ 
+</code></pre></div>
+<div class="admonition danger">
+<p class="admonition-title">IMPORTANT</p>
+<p>The single quote (') and the command substitution backtick (`) can be easy to
+confuse, both on the screen and on the keyboard. Using one when you mean to use</p>
+</div>
+<h3 id="summary">SUMMARY<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h3>
+<p>In this chapter, you learned:</p>
+<ul>
+<li>
+<p>Files on a Linux system are organized into a single inverted tree of directories, known as a file-
+system hierarchy.</p>
+</li>
+<li>
+<p>Absolute paths start with a / and specify the location of a file in the file-system hierarchy.</p>
+</li>
+<li>
+<p>Relative paths do not start with a / and specify the location of a file relative to the current
+working directory.</p>
+</li>
+<li>
+<p>Five key commands are used to manage files: mkdir, rmdir, cp, mv, and rm.</p>
+</li>
+<li>
+<p>Hard links and soft links are different ways to have multiple file names point to the same data.</p>
+</li>
+<li>
+<p>The Bash shell provides pattern matching, expansion, and substitution features to help you
+efficiently run commands.</p>
+</li>
+</ul>
+
+  <hr>
+<div class="md-source-file">
+  <small>
+    
+      Last update:
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">November 12, 2022</span>
+      
+    
+  </small>
+</div>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+          <a href="#" class="md-top md-icon" data-md-component="top" hidden>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+            Back to top
+          </a>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+    <nav class="md-footer__inner md-grid" aria-label="Footer" >
+      
+        
+        <a href="../access/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Accessing The Command Line" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Accessing The Command Line
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../../english/vol1/" class="md-footer__link md-footer__link--next" aria-label="Next: Vol-1" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Vol-1
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2022 Divijesh Varma. All rights reserved.
+    </div>
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.instant", "navigation.tracking", "navigation.tabs", "navigation.tabs.sticky", "navigation.expand", "navigation.top", "navigation.sections", "content.tooltips", "header.autohide"], "search": "../../assets/javascripts/workers/search.16e2a7d4.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d6c3db9e.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="../../javascripts/feedback.js"></script>
+      
+    
+  </body>
+</html>
