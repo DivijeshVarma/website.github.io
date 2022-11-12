@@ -192,6 +192,7 @@ nav:
     - 'RHSA I (RH124)':
       - 'redhat/intro.en.md'
       - 'redhat/access.en.md'
+      - 'redhat/manage.en.md'
   - 'English':
     - 'Tutorial':
       - 'english/vol1.en.md'
