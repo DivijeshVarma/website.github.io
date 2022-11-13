@@ -1009,7 +1009,7 @@ The time is 26 minutes past 11AM.
 Many characters have special meaning in the Bash shell. To keep the shell from performing shell
 expansions on parts of your command line, you can quote and escape characters and strings.
 
-The backslash (\) is an escape character in the Bash shell. It will protect the character immediately
+The backslash "\" is an escape character in the Bash shell. It will protect the character immediately
 following it from expansion.
 
 ``` bash

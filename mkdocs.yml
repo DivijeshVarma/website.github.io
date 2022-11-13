@@ -193,6 +193,10 @@ nav:
       - 'redhat/intro.en.md'
       - 'redhat/access.en.md'
       - 'redhat/manage.en.md'
+      - 'redhat/help.en.md'
+      - 'redhat/edit.en.md'
+      - 'redhat/users.en.md'
+      - 'redhat/control.en.md'
   - 'English':
     - 'Tutorial':
       - 'english/vol1.en.md'
