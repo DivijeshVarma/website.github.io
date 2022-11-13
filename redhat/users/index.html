@@ -1,0 +1,2988 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://www.privacyguides.org/redhat/users/">
+      
+      <link rel="icon" href="../../assets/img/layout/favicon.ico">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-8.5.10">
+    
+    
+      
+        <title>Managing Local Users And Groups - Divijesh Varma</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.472b142f.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.08040f6c.min.css">
+        
+      
+      
+
+    
+    
+    
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent="teal">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#describing-user-and-group-concepts" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Divijesh Varma" class="md-header__button md-logo" aria-label="Divijesh Varma" data-md-component="logo">
+      
+  <img src="../../assets/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Divijesh Varma
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Managing Local Users And Groups
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent="teal"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 1 7 7c0 2.38-1.19 4.47-3 5.74V17a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 0 1 7-7M9 21v-1h6v1a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1m3-17a5 5 0 0 0-5 5c0 2.05 1.23 3.81 3 4.58V16h4v-2.42c1.77-.77 3-2.53 3-4.58a5 5 0 0 0-5-5Z"/></svg>
+            </label>
+          
+        
+          
+          
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="deep-purple" data-md-color-accent="deep-orange"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 2.38 1.19 4.47 3 5.74V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.26c1.81-1.27 3-3.36 3-5.74a7 7 0 0 0-7-7M9 21a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-1H9v1Z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../.." class="md-tabs__link">
+      Home
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../linux/vi/" class="md-tabs__link">
+        Linux
+      </a>
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../intro/" class="md-tabs__link md-tabs__link--active">
+        RedHat
+      </a>
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../english/vol1/" class="md-tabs__link">
+        English
+      </a>
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../basics/threat-modeling/" class="md-tabs__link">
+        Knowledge Base
+      </a>
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../tools/" class="md-tabs__link">
+        Recommendations
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../about/" class="md-tabs__link">
+        About
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Divijesh Varma" class="md-nav__button md-logo" aria-label="Divijesh Varma" data-md-component="logo">
+      
+  <img src="../../assets/logo.png" alt="logo">
+
+    </a>
+    Divijesh Varma
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          Linux
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Linux" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Linux
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_2_1" type="checkbox" id="__nav_2_1" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_1">
+          Editors
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Editors" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_1">
+          <span class="md-nav__icon md-icon"></span>
+          Editors
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/vi/" class="md-nav__link">
+        Vim
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/nano/" class="md-nav__link">
+        Nano
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_2_2" type="checkbox" id="__nav_2_2" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_2">
+          Notes
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Notes" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_2">
+          <span class="md-nav__icon md-icon"></span>
+          Notes
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/rhcsa/" class="md-nav__link">
+        Tritree
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/user/" class="md-nav__link">
+        User Management
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/acl/" class="md-nav__link">
+        Access control lists (ACLs)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/network/" class="md-nav__link">
+        Networking
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/ssh/" class="md-nav__link">
+        OpenSSH
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/process/" class="md-nav__link">
+        Process Management
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/software/" class="md-nav__link">
+        Software Management
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/systemd/" class="md-nav__link">
+        Systemd Management
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/cron/" class="md-nav__link">
+        Cron Jobs
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/logs/" class="md-nav__link">
+        Logs
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/disk/" class="md-nav__link">
+        Disk Management
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3">
+          RedHat
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="RedHat" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          RedHat
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+    
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_1" type="checkbox" id="__nav_3_1" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_1">
+          RHSA I (RH124)
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="RHSA I (RH124)" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_1">
+          <span class="md-nav__icon md-icon"></span>
+          RHSA I (RH124)
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../intro/" class="md-nav__link">
+        Introduction
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../access/" class="md-nav__link">
+        Accessing The Command Line
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../manage/" class="md-nav__link">
+        Managing Files From The Command Line
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../help/" class="md-nav__link">
+        Getting Help In Red Hat Enterprise Linux
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../edit/" class="md-nav__link">
+        Creating, Viewing, And Editing Text Files
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Managing Local Users And Groups
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Managing Local Users And Groups
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#describing-user-and-group-concepts" class="md-nav__link">
+    DESCRIBING USER AND GROUP CONCEPTS
+  </a>
+  
+    <nav class="md-nav" aria-label="DESCRIBING USER AND GROUP CONCEPTS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-is-a-user" class="md-nav__link">
+    WHAT IS A USER?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-is-a-group" class="md-nav__link">
+    WHAT IS A GROUP?
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#gaining-superuser-access" class="md-nav__link">
+    GAINING SUPERUSER ACCESS
+  </a>
+  
+    <nav class="md-nav" aria-label="GAINING SUPERUSER ACCESS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-superuser" class="md-nav__link">
+    THE SUPERUSER
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#switching-users" class="md-nav__link">
+    SWITCHING USERS
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#running-commands-with-sudo" class="md-nav__link">
+    RUNNING COMMANDS WITH SUDO
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#managing-local-user-accounts" class="md-nav__link">
+    MANAGING LOCAL USER ACCOUNTS
+  </a>
+  
+    <nav class="md-nav" aria-label="MANAGING LOCAL USER ACCOUNTS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#managing-local-users" class="md-nav__link">
+    MANAGING LOCAL USERS
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#managing-local-group-accounts" class="md-nav__link">
+    MANAGING LOCAL GROUP ACCOUNTS
+  </a>
+  
+    <nav class="md-nav" aria-label="MANAGING LOCAL GROUP ACCOUNTS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#managing-local-groups" class="md-nav__link">
+    MANAGING LOCAL GROUPS
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#managing-user-passwords-objectives" class="md-nav__link">
+    MANAGING USER PASSWORDS OBJECTIVES
+  </a>
+  
+    <nav class="md-nav" aria-label="MANAGING USER PASSWORDS OBJECTIVES">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#shadow-passwords-and-password-policy" class="md-nav__link">
+    SHADOW PASSWORDS AND PASSWORD POLICY
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuring-password-aging" class="md-nav__link">
+    CONFIGURING PASSWORD AGING
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#restricting-access" class="md-nav__link">
+    RESTRICTING ACCESS
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    SUMMARY
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../control/" class="md-nav__link">
+        Controlling Access To Files
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4">
+          English
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="English" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          English
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_4_1" type="checkbox" id="__nav_4_1" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_1">
+          Tutorial
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Tutorial" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_1">
+          <span class="md-nav__icon md-icon"></span>
+          Tutorial
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../english/vol1/" class="md-nav__link">
+        Vol-1
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../english/vol2/" class="md-nav__link">
+        Vol-2
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../english/vol3/" class="md-nav__link">
+        Vol-3
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../english/vol4/" class="md-nav__link">
+        Vol-4
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5">
+          Knowledge Base
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Knowledge Base" data-md-level="1">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          Knowledge Base
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_5_1" type="checkbox" id="__nav_5_1" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5_1">
+          The Basics
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="The Basics" data-md-level="2">
+        <label class="md-nav__title" for="__nav_5_1">
+          <span class="md-nav__icon md-icon"></span>
+          The Basics
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../basics/threat-modeling/" class="md-nav__link">
+        Threat Modeling
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../basics/dns/" class="md-nav__link">
+        Introduction to DNS
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../basics/multi-factor-authentication/" class="md-nav__link">
+        Multi-factor Authentication
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../basics/account-deletion/" class="md-nav__link">
+        Account Deletion
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_5_2" type="checkbox" id="__nav_5_2" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5_2">
+          Android
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Android" data-md-level="2">
+        <label class="md-nav__title" for="__nav_5_2">
+          <span class="md-nav__icon md-icon"></span>
+          Android
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../android/overview/" class="md-nav__link">
+        Android Overview
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../android/grapheneos-vs-calyxos/" class="md-nav__link">
+        GrapheneOS vs CalyxOS
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_5_3" type="checkbox" id="__nav_5_3" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5_3">
+          Linux
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Linux" data-md-level="2">
+        <label class="md-nav__title" for="__nav_5_3">
+          <span class="md-nav__icon md-icon"></span>
+          Linux
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux-desktop/overview/" class="md-nav__link">
+        Linux Overview
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux-desktop/hardening/" class="md-nav__link">
+        System Hardening
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux-desktop/sandboxing/" class="md-nav__link">
+        Application Sandboxing
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_5_4" type="checkbox" id="__nav_5_4" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5_4">
+          Advanced
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Advanced" data-md-level="2">
+        <label class="md-nav__title" for="__nav_5_4">
+          <span class="md-nav__icon md-icon"></span>
+          Advanced
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setup/integrating-metadata-removal/" class="md-nav__link">
+        Integrating Metadata Removal
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_6" type="checkbox" id="__nav_6" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6">
+          Recommendations
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Recommendations" data-md-level="1">
+        <label class="md-nav__title" for="__nav_6">
+          <span class="md-nav__icon md-icon"></span>
+          Recommendations
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tools/" class="md-nav__link">
+        Privacy Tools
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_6_2" type="checkbox" id="__nav_6_2" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6_2">
+          Browsers
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Browsers" data-md-level="2">
+        <label class="md-nav__title" for="__nav_6_2">
+          <span class="md-nav__icon md-icon"></span>
+          Browsers
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../browsers/" class="md-nav__link">
+        Web Browsers
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_6_3" type="checkbox" id="__nav_6_3" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6_3">
+          Operating Systems
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Operating Systems" data-md-level="2">
+        <label class="md-nav__title" for="__nav_6_3">
+          <span class="md-nav__icon md-icon"></span>
+          Operating Systems
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../android/" class="md-nav__link">
+        Android
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux-desktop/" class="md-nav__link">
+        Linux
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../qubes/" class="md-nav__link">
+        Qubes OS
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../router/" class="md-nav__link">
+        Router Firmware
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_6_4" type="checkbox" id="__nav_6_4" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6_4">
+          Providers
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Providers" data-md-level="2">
+        <label class="md-nav__title" for="__nav_6_4">
+          <span class="md-nav__icon md-icon"></span>
+          Providers
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cloud/" class="md-nav__link">
+        Cloud Storage
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dns/" class="md-nav__link">
+        DNS Resolvers
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../email/" class="md-nav__link">
+        Email Services
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../search-engines/" class="md-nav__link">
+        Search Engines
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vpn/" class="md-nav__link">
+        VPN Services
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_6_5" type="checkbox" id="__nav_6_5" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6_5">
+          Software
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Software" data-md-level="2">
+        <label class="md-nav__title" for="__nav_6_5">
+          <span class="md-nav__icon md-icon"></span>
+          Software
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../calendar-contacts/" class="md-nav__link">
+        Calendar and Contact Sync
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../notebooks/" class="md-nav__link">
+        Notebooks
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../email-clients/" class="md-nav__link">
+        Email Clients
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../encryption/" class="md-nav__link">
+        Encryption Software
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../file-sharing/" class="md-nav__link">
+        File Sharing and Sync
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../metadata-removal-tools/" class="md-nav__link">
+        Metadata Removal Tools
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../multi-factor-authentication/" class="md-nav__link">
+        Multi-Factor Authenticators
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../passwords/" class="md-nav__link">
+        Password Managers
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../productivity/" class="md-nav__link">
+        Productivity Tools
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../real-time-communication/" class="md-nav__link">
+        Real-Time Communication
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../news-aggregators/" class="md-nav__link">
+        News Aggregators
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../self-contained-networks/" class="md-nav__link">
+        Self-Contained Networks
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../video-streaming/" class="md-nav__link">
+        Video Streaming
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_7" type="checkbox" id="__nav_7" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_7">
+          About
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="About" data-md-level="1">
+        <label class="md-nav__title" for="__nav_7">
+          <span class="md-nav__icon md-icon"></span>
+          About
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/" class="md-nav__link">
+        Heading
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#describing-user-and-group-concepts" class="md-nav__link">
+    DESCRIBING USER AND GROUP CONCEPTS
+  </a>
+  
+    <nav class="md-nav" aria-label="DESCRIBING USER AND GROUP CONCEPTS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-is-a-user" class="md-nav__link">
+    WHAT IS A USER?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-is-a-group" class="md-nav__link">
+    WHAT IS A GROUP?
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#gaining-superuser-access" class="md-nav__link">
+    GAINING SUPERUSER ACCESS
+  </a>
+  
+    <nav class="md-nav" aria-label="GAINING SUPERUSER ACCESS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-superuser" class="md-nav__link">
+    THE SUPERUSER
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#switching-users" class="md-nav__link">
+    SWITCHING USERS
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#running-commands-with-sudo" class="md-nav__link">
+    RUNNING COMMANDS WITH SUDO
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#managing-local-user-accounts" class="md-nav__link">
+    MANAGING LOCAL USER ACCOUNTS
+  </a>
+  
+    <nav class="md-nav" aria-label="MANAGING LOCAL USER ACCOUNTS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#managing-local-users" class="md-nav__link">
+    MANAGING LOCAL USERS
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#managing-local-group-accounts" class="md-nav__link">
+    MANAGING LOCAL GROUP ACCOUNTS
+  </a>
+  
+    <nav class="md-nav" aria-label="MANAGING LOCAL GROUP ACCOUNTS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#managing-local-groups" class="md-nav__link">
+    MANAGING LOCAL GROUPS
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#managing-user-passwords-objectives" class="md-nav__link">
+    MANAGING USER PASSWORDS OBJECTIVES
+  </a>
+  
+    <nav class="md-nav" aria-label="MANAGING USER PASSWORDS OBJECTIVES">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#shadow-passwords-and-password-policy" class="md-nav__link">
+    SHADOW PASSWORDS AND PASSWORD POLICY
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuring-password-aging" class="md-nav__link">
+    CONFIGURING PASSWORD AGING
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#restricting-access" class="md-nav__link">
+    RESTRICTING ACCESS
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    SUMMARY
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+  
+
+
+
+
+  <h1>Managing Local Users And Groups</h1>
+
+<h3 id="describing-user-and-group-concepts">DESCRIBING USER AND GROUP CONCEPTS<a class="headerlink" href="#describing-user-and-group-concepts" title="Permanent link">&para;</a></h3>
+<h4 id="what-is-a-user">WHAT IS A USER?<a class="headerlink" href="#what-is-a-user" title="Permanent link">&para;</a></h4>
+<p>A <em>user</em> account is used to provide security boundaries between different people and programs that
+can run commands.</p>
+<p>Users have user names to identify them to human users and make them easier to work with.
+Internally, the system distinguishes user accounts by the unique identification number assigned to
+them, the user ID or UID. If a user account is used by humans, it will generally be assigned a secret
+password that the user will use to prove that they are the actual authorized user when logging in.</p>
+<p>User accounts are fundamental to system security. Every process (running program) on the system
+runs as a particular user. Every file has a particular user as its owner. File ownership helps the
+system enforce access control for users of the files. The user associated with a running process
+determines the files and directories accessible to that process.</p>
+<p>There are three main types of user account: the <em>superuser, system users</em>, and <em>regular users</em>.</p>
+<ul>
+<li>
+<p>The superuser account is for administration of the system. The name of the superuser is root
+and the account has UID 0. The superuser has full access to the system.</p>
+</li>
+<li>
+<p>The system has system user accounts which are used by processes that provide supporting
+services. These processes, or daemons, usually do not need to run as the superuser. They are
+assiged non-privileged accounts that allow them to secure their files and other resources from
+each other and from regular users on the system. Users do not interactively log in using a system
+user account.</p>
+</li>
+<li>
+<p>Most users have regular user accounts which they use for their day-to-day work. Like system</p>
+</li>
+</ul>
+<p>You can use the <strong>id</strong> command to show information about the currently logged-in user.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="o">[</span>user01@host ~<span class="o">]</span>$ id
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="nv">uid</span><span class="o">=</span><span class="m">1000</span><span class="o">(</span>user01<span class="o">)</span> <span class="nv">gid</span><span class="o">=</span><span class="m">1000</span><span class="o">(</span>user01<span class="o">)</span> <span class="nv">groups</span><span class="o">=</span><span class="m">1000</span><span class="o">(</span>user01<span class="o">)</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a> <span class="nv">context</span><span class="o">=</span>unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023
+</code></pre></div>
+<p>To view basic information about another user, pass the username to the id command as an
+argument.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="o">[</span>user01@host<span class="o">]</span>$ id user02
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="nv">uid</span><span class="o">=</span><span class="m">1002</span><span class="o">(</span>user02<span class="o">)</span> <span class="nv">gid</span><span class="o">=</span><span class="m">1001</span><span class="o">(</span>user02<span class="o">)</span> <span class="nv">groups</span><span class="o">=</span><span class="m">1001</span><span class="o">(</span>user02<span class="o">)</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a> <span class="nv">context</span><span class="o">=</span>unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023
+</code></pre></div>
+<p>To view the owner of a file use the <strong>ls -l</strong> command. To view the owner of a directory use the <strong>ls -
+ld</strong> command. In the following output, the third column shows the username.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="o">[</span>user01@host ~<span class="o">]</span>$ ls -l file1
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>-rw-rw-r--. <span class="m">1</span> user01 user01 <span class="m">0</span> Feb  <span class="m">5</span> <span class="m">11</span>:10 file1
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="o">[</span>user01@host<span class="o">]</span>$ ls -ld dir1
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>drwxrwxr-x. <span class="m">2</span> user01 user01 <span class="m">6</span> Feb  <span class="m">5</span> <span class="m">11</span>:10 dir1
+</code></pre></div>
+<p>To view process information, use the <strong>ps</strong> command. The default is to show only processes in the
+current shell. Add the a option to view all processes with a terminal. To view the user associated
+with a process, include the u option. In the following output, the first column shows the username.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="o">[</span>user01@host<span class="o">]</span>$ ps -au
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>root       <span class="m">777</span>  <span class="m">0</span>.0  <span class="m">0</span>.0 <span class="m">225752</span>  <span class="m">1496</span> tty1     Ss+  <span class="m">11</span>:03   <span class="m">0</span>:00 /sbin/agetty -o -
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>p -- <span class="se">\u</span> --noclear tty1 linux
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>root       <span class="m">780</span>  <span class="m">0</span>.0  <span class="m">0</span>.1 <span class="m">225392</span>  <span class="m">2064</span> ttyS0    Ss+  <span class="m">11</span>:03   <span class="m">0</span>:00 /sbin/agetty -o -
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>p -- <span class="se">\u</span> --keep-baud <span class="m">115200</span>,38400,9600
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>user01      <span class="m">1207</span>  <span class="m">0</span>.0  <span class="m">0</span>.2 <span class="m">234044</span>  <span class="m">5104</span> pts/0    Ss   <span class="m">11</span>:09   <span class="m">0</span>:00 -bash
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>user01      <span class="m">1319</span>  <span class="m">0</span>.0  <span class="m">0</span>.2 <span class="m">266904</span>  <span class="m">3876</span> pts/0    R+   <span class="m">11</span>:33   <span class="m">0</span>:00 ps au
+</code></pre></div>
+<p>The output of the preceding command displays users by name, but internally the operating system
+uses the UIDs to track users. The mapping of usernames to UIDs is defined in databases of account
+information. By default, systems use the <strong>/etc/passwd</strong> file to store information about local users.</p>
+<p>Each line in the <strong>/etc/passwd</strong> file contains information about one user. It is divided up into seven
+colon-separated fields. Here is an example of a line from <strong>/etc/passwd</strong>:</p>
+<p><code>user01:x:1000:1000:User One:/home/user01:/bin/bash</code></p>
+<blockquote>
+<p>user01 --&gt; Username for this user (user01).</p>
+<p>x --&gt; The user's password used to be stored here in encrypted format. That has been moved to the
+<strong>/etc/shadow</strong> file, which will be covered later. This field should always be x.</p>
+<p>1000 --&gt; The UID number for this user account (1000).</p>
+<p>1000 --&gt; The GID number for this user account's primary group (1000). Groups will be discussed later
+in this section.</p>
+<p>User One --&gt; The real name for this user (User One).</p>
+<p>/home/user01 --&gt; The home directory for this user (<strong>/home/user01</strong>). This is the initial working directory when
+the shell starts and contains the user's data and configuration settings.</p>
+<p>/bin/bash --&gt; The default shell program for this user, which runs on login (<strong>/bin/bash</strong>). For a regular user,
+this is normally the program that provides the user's command-line prompt. A system user
+might use <strong>/sbin/nologin</strong> if interactive logins are not allowed for that user.</p>
+</blockquote>
+<h4 id="what-is-a-group">WHAT IS A GROUP?<a class="headerlink" href="#what-is-a-group" title="Permanent link">&para;</a></h4>
+<p>A group is a collection of users that need to share access to files and other system resources.
+Groups can be used to grant access to files to a set of users instead of just a single user.
+Like users, groups have group names to make them easier to work with. Internally, the system
+distinguishes groups by the unique identification number assigned to them, the group ID or GID.
+The mapping of group names to GIDs is defined in databases of group account information. By
+default, systems use the <strong>/etc/group</strong> file to store information about local groups.</p>
+<p>Each line in the /etc/group file contains information about one group. Each group entry is
+divided into four colon-separated fields. Here is an example of a line from /etc/group:</p>
+<p><code>group01:x:10000:user01,user02,user03</code></p>
+<blockquote>
+<p>group01 --&gt; Group name for this group (group01).</p>
+<p>x --&gt; Obsolete group password field. This field should always be x.</p>
+<p>10000 --&gt; The GID number for this group (10000).</p>
+<p>user01 --&gt; A list of users who are members of this group as a supplementary group (user01, user02,
+user03). Primary (or default) and supplementary groups are discussed later in this section.</p>
+</blockquote>
+<p><strong>Primary Groups and Supplementary Groups</strong></p>
+<p>Every user has exactly one primary group. For local users, this is the group listed by GID number in
+the <em>/etc/passwd</em> file. By default, this is the group that will own new files created by the user.</p>
+<p>Normally, when you create a new regular user, a new group with the same name as that user
+is created. That group is used as the primary group for the new user, and that user is the
+only member of this User Private Group. It turns out that this helps make management of file
+permissions simpler, which will be discussed later in this course.</p>
+<p>Users may also have supplementary groups. Membership in supplementary groups is determined
+by the <em>/etc/group</em> file. Users are granted access to files based on whether any of their
+groups have access. It doesn't matter if the group or groups that have access are primary or
+supplementary for the user.</p>
+<p>For example, if the user user01 has a primary group user01 and supplementary groups wheel
+and webadmin, then that user can read files readable by any of those three groups.</p>
+<p>The <strong>id</strong> command can also be used to find out about group membership for a user.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="o">[</span>user03@host ~<span class="o">]</span>$ id
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="nv">uid</span><span class="o">=</span><span class="m">1003</span><span class="o">(</span>user03<span class="o">)</span> <span class="nv">gid</span><span class="o">=</span><span class="m">1003</span><span class="o">(</span>user03<span class="o">)</span> <span class="nv">groups</span><span class="o">=</span><span class="m">1003</span><span class="o">(</span>user03<span class="o">)</span>,10<span class="o">(</span>wheel<span class="o">)</span>,10000<span class="o">(</span>group01<span class="o">)</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a> <span class="nv">context</span><span class="o">=</span>unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023
+</code></pre></div>
+<p>In the preceding example, user03 has the group user03 as their primary group (<strong>gid</strong>). The
+<strong>groups</strong> item lists all groups for this user, and other than the primary group user03, the user has
+groups wheel and group01 as supplementary groups.</p>
+<h3 id="gaining-superuser-access">GAINING SUPERUSER ACCESS<a class="headerlink" href="#gaining-superuser-access" title="Permanent link">&para;</a></h3>
+<h4 id="the-superuser">THE SUPERUSER<a class="headerlink" href="#the-superuser" title="Permanent link">&para;</a></h4>
+<p>Most operating systems have some sort of superuser, a user that has all power over the system.
+In Red Hat Enterprise Linux this is the root user. This user has the power to override normal
+privileges on the file system, and is used to manage and administer the system. To perform tasks
+such as installing or removing software and to manage system files and directories, users must
+escalate their privileges to the root user.</p>
+<p>The root user only among normal users can control most devices, but there are a few exceptions.
+For example, normal users can control removable devices, such as USB devices. Thus, normal users
+can add and remove files and otherwise manage a removable device, but only root can manage
+"fixed" hard drives by default.</p>
+<p>This unlimited privilege, however, comes with responsibility. The root user has unlimited power
+to damage the system: remove files and directories, remove user accounts, add back doors, and so
+on. If the root user's account is compromised, someone else would have administrative control of
+the system. Throughout this course, administrators are encouraged to log in as a normal user and
+escalate privileges to root only when needed.</p>
+<p>The root account on Linux is roughly equivalent to the local Administrator account on Microsoft
+Windows. In Linux, most system administrators log in to the system as an unprivileged user and
+use various tools to temporarily gain root privileges.</p>
+<div class="admonition danger">
+<p class="admonition-title">WARNING</p>
+<p>One common practice on Microsoft Windows in the past was for the local
+Administrator user to log in directly to perform system administrator duties.
+Although this is possible on Linux, Red Hat recommends that system administrators
+do not log in directly as root. Instead, system administrators should log in as a
+normal user and use other mechanisms (<strong>su, sudo</strong>, or PolicyKit, for example) to
+temporarily gain superuser privileges.</p>
+<p>By logging in as the superuser, the entire desktop environment unnecessarily runs
+with administrative privileges. In that situation, any security vulnerability which
+would normally only compromise the user account has the potential to compromise
+the entire system.</p>
+</div>
+<h4 id="switching-users">SWITCHING USERS<a class="headerlink" href="#switching-users" title="Permanent link">&para;</a></h4>
+<p>The <strong>su</strong> command allows users to switch to a different user account. If you run <strong>su</strong> from a regular
+user account, you will be prompted for the password of the account to which you want to switch.
+When root runs <strong>su</strong>, you do not need to enter the user's password.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="o">[</span>user01@host ~<span class="o">]</span>$ su - user02
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>Password: 
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="o">[</span>user02@host ~<span class="o">]</span>$ 
+</code></pre></div>
+<p>If you omit the user name, the su or su - command attempts to switch to root by default.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="o">[</span>user01@host ~<span class="o">]</span>$ su -
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>Password: 
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># </span>
+</code></pre></div>
+<p>The command <strong>su</strong> starts a non-login shell, while the command <strong>su -</strong> (with the dash option) starts
+a login shell. The main distinction between the two commands is that <strong>su -</strong> sets up the shell
+environment as if it were a new login as that user, while <strong>su</strong> just starts a shell as that user, but uses
+the original user's environment settings.</p>
+<p>In most cases, administrators should run su - to get a shell with the target user's normal
+environment settings. For more information, see the bash(1) man page.</p>
+<div class="admonition info">
+<p class="admonition-title">NOTE</p>
+<p>The <strong>su</strong> command is most frequently used to get a command-line interface (shell
+prompt) which is running as another user, typically root. However, with the <strong>-c</strong>
+option, it can be used like the Windows utility runas to run an arbitrary program as
+another user. Run <strong>info su</strong> to view more details.</p>
+</div>
+<h4 id="running-commands-with-sudo">RUNNING COMMANDS WITH SUDO<a class="headerlink" href="#running-commands-with-sudo" title="Permanent link">&para;</a></h4>
+<p>In some cases, the root user's account may not have a valid password at all for security reasons.
+In this case, users cannot log in to the system as root directly with a password, and <strong>su</strong> cannot be
+used to get an interactive shell. One tool that can be used to get root access in this case is <strong>sudo</strong>.</p>
+<p>Unlike <strong>su, sudo</strong> normally requires users to enter their own password for authentication, not
+the password of the user account they are trying to access. That is, users who use sudo to
+run commands as root do not need to know the root password. Instead, they use their own
+passwords to authenticate access.</p>
+<p>Additionally, <strong>sudo</strong> can be configured to allow specific users to run any command as some other
+user, or only some commands as that user.</p>
+<p>For example, when <strong>sudo</strong> is configured to allow the user01 user to run the command <strong>usermod</strong> as
+root, user01 could run the following command to lock or unlock a user account:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="o">[</span>user01@host ~<span class="o">]</span>$ sudo usermod -L user02
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="o">[</span>sudo<span class="o">]</span> password <span class="k">for</span> user01: 
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="o">[</span>user01@host ~<span class="o">]</span>$ su - user02
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>Password: 
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>su: Authentication failure
+<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="o">[</span>user01@host ~<span class="o">]</span>$ 
+</code></pre></div>
+<p>If a user tries to run a command as another user, and the <strong>sudo</strong> configuration does not permit it,
+the command will be blocked, the attempt will be logged, and by default an email will be sent to the
+root user.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="o">[</span>user02@host ~<span class="o">]</span>$ sudo tail /var/log/secure
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="o">[</span>sudo<span class="o">]</span> password <span class="k">for</span> user02: 
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>user02 is not <span class="k">in</span> the sudoers file.  This incident will be reported.
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="o">[</span>user02@host ~<span class="o">]</span>$ 
+</code></pre></div>
+<p>One additional benefit to using <strong>sudo</strong> is that all commands executed are logged by default to <strong>/
+var/log/secure</strong>.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="o">[</span>user01@host ~<span class="o">]</span>$ sudo tail /var/log/secure
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>...output omitted...
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>Feb  <span class="m">6</span> <span class="m">20</span>:45:46 host sudo<span class="o">[</span><span class="m">2577</span><span class="o">]</span>:  user01 : <span class="nv">TTY</span><span class="o">=</span>pts/0 <span class="p">;</span> <span class="nv">PWD</span><span class="o">=</span>/home/user01 <span class="p">;</span>
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a> <span class="nv">USER</span><span class="o">=</span>root <span class="p">;</span> <span class="nv">COMMAND</span><span class="o">=</span>/sbin/usermod -L user02
+<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>...output omitted...
+</code></pre></div>
+<p>In Red Hat Enterprise Linux 7 and Red Hat Enterprise Linux 8, all members of the wheel group
+can use sudo to run commands as any user, including root. The user is prompted for their own
+password. This is a change from Red Hat Enterprise Linux 6 and earlier, where users who were
+members of the wheel group did not get this administrative access by default.</p>
+<div class="admonition danger">
+<p class="admonition-title">WARNING</p>
+<p>RHEL 6 did not grant the wheel group any special privileges by default. Sites that
+have been using this group for a non-standard purpose might be surprised when
+RHEL 7 and RHEL 8 automatically grants all members of wheel full <strong>sudo</strong> privileges.
+This could lead to unauthorized users getting administrative access to RHEL 7 and
+RHEL 8 systems.</p>
+<p>Historically, UNIX-like systems use membership in the wheel group to grant or
+control superuser access.</p>
+</div>
+<p><strong>Getting an Interactive Root Shell with Sudo</strong></p>
+<p>If there is a nonadministrative user account on the system that can use <em>sudo</em> to run the <em>su</em>
+command, you can run <em>sudo su -</em> from that account to get an interactive root user shell. This
+works because <em>sudo</em> will run <em>su -</em> as root, and root does not need to enter a password to use
+<em>su</em>.</p>
+<p>Another way to access the root account with <em>sudo</em> is to use the <em>sudo -i</em> command. This will
+switch to the root account and run that user's default shell (usually <em>bash</em>) and associated shell
+login scripts. If you just want to run the shell, you can use the <em>sudo -s</em> command.</p>
+<p>For example, an administrator might get an interactive shell as root on an AWS EC2 instance by
+using SSH public-key authentication to log in as the normal user ec2-user, and then by running
+<em>sudo -i</em> to get the root user's shell.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="o">[</span>ec2-user@host ~<span class="o">]</span>$ sudo -i
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="o">[</span>sudo<span class="o">]</span> password <span class="k">for</span> ec2-user: 
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># </span>
+</code></pre></div>
+<p>The <em>sudo su -</em> command and <em>sudo -i</em> do not behave exactly the same. This will be discussed
+briefly at the end of the section.</p>
+<p><strong>Configuring Sudo</strong></p>
+<p>The main configuration file for sudo is <em>/etc/sudoers</em>. To avoid problems if multiple
+administrators try to edit it at the same time, it should only be edited with the special <em>visudo</em>
+command.</p>
+<p>For example, the following line from the <em>/etc/sudoers</em> file enables sudo access for members of
+group <em>wheel</em>.</p>
+<p><code>%wheel        ALL=(ALL)       ALL</code></p>
+<p>In this line, <em>%wheel</em> is the user or group to whom the rule applies. A % specifies that this is a group,
+group wheel. The <em>ALL=(ALL)</em> specifies that on any host that might have this file, wheel can run
+any command. The final ALL specifies that wheel can run those commands as any user on the
+system.</p>
+<p>By default, <em>/etc/sudoers</em> also includes the contents of any files in the <em>/etc/sudoers.d</em>
+directory as part of the configuration file. This allows an administrator to add sudo access for a
+user simply by putting an appropriate file in that directory.</p>
+<div class="admonition info">
+<p class="admonition-title">NOTE</p>
+<p>Using supplementary files under the <strong>/etc/sudoers.d</strong> directory is convenient
+and simple. You can enable or disable <strong>sudo</strong> access simply by copying a file into the
+directory or removing it from the directory.</p>
+<p>In this course, you will create and remove files in the <strong>/etc/sudoers.d</strong> directory to
+configure <strong>sudo</strong> access for users and groups.</p>
+</div>
+<p>To enable full <strong>sudo</strong> access for the user user01, you could create <strong>/etc/sudoers.d/user01</strong> with
+the following content:</p>
+<p><code>user01  ALL=(ALL)  ALL</code></p>
+<p>To enable full <strong>sudo</strong> access for the group group01, you could create <strong>/etc/sudoers.d/group01</strong>
+with the following content:</p>
+<p><code>%group01  ALL=(ALL)  ALL</code></p>
+<p>It is also possible to set up <strong>sudo</strong> to allow a user to run commands as another user without entering
+their password:</p>
+<p><code>ansible  ALL=(ALL)  NOPASSWD:ALL</code></p>
+<p>While there are obvious security risks to granting this level of access to a user or group, it is
+frequently used with cloud instances, virtual machines, and provisioning systems to help configure
+servers. The account with this access must be carefully protected and might require SSH public-
+key authentication in order for a user on a remote system to access it at all.</p>
+<p>For example, the official AMI for Red Hat Enterprise Linux in the Amazon Web Services Marketplace
+ships with the root and the ec2-user users' passwords locked. The ec2-user user account is
+set up to allow remote interactive access through SSH public-key authentication. The user ec2-
+user can also run any command as root without a password because the last line of the AMI's <strong>/
+etc/sudoers</strong> file is set up as follows:</p>
+<p><code>ec2-user  ALL=(ALL)  NOPASSWD: ALL</code></p>
+<p>The requirement to enter a password for <strong>sudo</strong> can be re-enabled or other changes may be made to
+tighten security as part of the process of configuring the system.</p>
+<div class="admonition info">
+<p class="admonition-title">NOTE</p>
+<p>In this course, you will frequently see <strong>sudo su -</strong> used instead of <strong>sudo -i</strong>. Both
+commands work, but there are some subtle differences between them.</p>
+<p>The <strong>sudo su -</strong> command sets up the root environment exactly like a normal login
+because the <strong>su -</strong> command ignores the settings made by sudo and sets up the
+environment from scratch.</p>
+<p>The default configuration of the <strong>sudo -i</strong> command actually sets up some details of
+the root user's environment differently than a normal login. For example, it sets the
+PATH environment variable slightly differently. This affects where the shell will look
+to find commands.</p>
+<p>You can make <strong>sudo -i</strong> behave more like <strong>su -</strong> by editing <strong>/etc/sudoers</strong> with
+<strong>visudo</strong>. Find the line</p>
+<p><code>Defaults    secure_path = /sbin:/bin:/usr/sbin:/usr/bin</code></p>
+<p>and replace it with the following two lines:</p>
+<p><code>Defaults      secure_path = /usr/local/bin:/usr/bin</code></p>
+<p><code>Defaults&gt;root secure_path = /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin</code></p>
+<p>For most purposes, this is not a major difference. However, for consistency of PATH
+settings on systems with the default <strong>/etc/sudoers</strong> file, the authors of this course
+mostly use <strong>sudo su -</strong> in examples.</p>
+</div>
+<h3 id="managing-local-user-accounts">MANAGING LOCAL USER ACCOUNTS<a class="headerlink" href="#managing-local-user-accounts" title="Permanent link">&para;</a></h3>
+<h4 id="managing-local-users">MANAGING LOCAL USERS<a class="headerlink" href="#managing-local-users" title="Permanent link">&para;</a></h4>
+<p>A number of command-line tools can be used to manage local user accounts.</p>
+<p><strong>Creating Users from the Command Line</strong></p>
+<ul>
+<li>
+<p>The <em>useradd username</em> command creates a new user named username. It sets up the
+user's home directory and account information, and creates a private group for the user named
+username. At this point the account does not have a valid password set, and the user cannot log
+in until a password is set.</p>
+</li>
+<li>
+<p>The <em>useradd --help</em> command displays the basic options that can be used to override the
+defaults. In most cases, the same options can be used with the <em>usermod</em> command to modify an
+existing user.</p>
+</li>
+<li>
+<p>Some defaults, such as the range of valid UID numbers and default password aging rules, are
+read from the <em>/etc/login.defs</em> file. Values in this file are only used when creating new users.
+A change to this file does not affect existing users.</p>
+</li>
+</ul>
+<p><strong>Modifying Existing Users from the Command Line</strong></p>
+<ul>
+<li>The <em>usermod --help</em> command displays the basic options that can be used to modify an
+account. Some common options include:</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="left">USERMOD OPTIONS:</th>
+<th align="left">USAGE</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left"><strong>-c, --comment COMMENT</strong></td>
+<td align="left">Add the user's real name to the comment field.</td>
+</tr>
+<tr>
+<td align="left"><strong>-g, --gid GROUP</strong></td>
+<td align="left">Specify the primary group for the user account.</td>
+</tr>
+<tr>
+<td align="left"><strong>-G, --groups GROUPS</strong></td>
+<td align="left">Specify a comma-separated list of supplementary groups for the user account.</td>
+</tr>
+<tr>
+<td align="left"><strong>-a, --append</strong></td>
+<td align="left">Used with the -G option to add the supplementary groups to the user's current set of group memberships instead of replacing the set of supplementary groups with a new set.</td>
+</tr>
+<tr>
+<td align="left"><strong>-d, --home HOME_DIR</strong></td>
+<td align="left">Specify a particular home directory for the user account.</td>
+</tr>
+<tr>
+<td align="left"><strong>-m, --move-home</strong></td>
+<td align="left">Move the user's home directory to a new location. Must be used with the -d option.</td>
+</tr>
+<tr>
+<td align="left"><strong>-s, --shell SHELL</strong></td>
+<td align="left">Specify a particular login shell for the user account.</td>
+</tr>
+<tr>
+<td align="left"><strong>-L, --lock</strong></td>
+<td align="left">Lock the user account.</td>
+</tr>
+<tr>
+<td align="left"><strong>-U, --unlock</strong></td>
+<td align="left">Unlock the user account.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Deleting Users from the Command Line</strong></p>
+<ul>
+<li>
+<p>The userdel username command removes the details of username from /etc/passwd, but
+leaves the user's home directory intact.</p>
+</li>
+<li>
+<p>The userdel -r username command removes the details of username from /etc/passwd
+and also deletes the user's home directory.</p>
+</li>
+</ul>
+<div class="admonition danger">
+<p class="admonition-title">WARNING</p>
+<p>When a user is removed with <strong>userdel</strong> without the <strong>-r</strong> option specified, the system
+will have files that are owned by an unassigned UID. This can also happen when a
+file, having a deleted user as its owner, exists outside that user's home directory.
+This situation can lead to information leakage and other security issues.</p>
+<p>In Red Hat Enterprise Linux 7 and Red Hat Enterprise Linux 8, the <strong>useradd</strong>
+command assigns new users the first free UID greater than or equal to 1000, unless
+you explicitly specify one using the <strong>-u</strong> option.</p>
+<p>This is how information leakage can occur. If the first free UID had been previously
+assigned to a user account which has since been removed from the system, the old
+user's UID will get reassigned to the new user, giving the new user ownership of the
+old user's remaining files.</p>
+<p>The following scenario demonstrates this situation.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># useradd user01</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># ls -l /home</span>
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>drwx------. <span class="m">3</span> user01  user01    <span class="m">74</span> Feb  <span class="m">4</span> <span class="m">15</span>:22 user01
+<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># userdel user01</span>
+<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># ls -l /home</span>
+<a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a>drwx------. <span class="m">3</span>    <span class="m">1000</span>    <span class="m">1000</span>   <span class="m">74</span> Feb  <span class="m">4</span> <span class="m">15</span>:22 user01
+<a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># useradd user02</span>
+<a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># ls -l /home</span>
+<a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a>drwx------. <span class="m">3</span> user02     user02       <span class="m">74</span> Feb  <span class="m">4</span> <span class="m">15</span>:23 user02
+<a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a>drwx------. <span class="m">3</span> user02     user02       <span class="m">74</span> Feb  <span class="m">4</span> <span class="m">15</span>:22 user01
+</code></pre></div>
+<p>Notice that user02 now owns all files that user01 previously owned.</p>
+<p>Depending on the situation, one solution to this problem is to remove all unowned
+files from the system when the user that created them is deleted. Another solution
+is to manually assign the unowned files to a different user. The root user can use
+the <strong>find / -nouser -o -nogroup</strong> command to find all unowned files and
+directories.</p>
+</div>
+<p><strong>Setting Passwords from the Command Line</strong></p>
+<ul>
+<li>
+<p>The <strong>passwd username</strong> command sets the initial password or changes the existing password of
+username.</p>
+</li>
+<li>
+<p>The root user can set a password to any value. A message is displayed if the password does
+not meet the minimum recommended criteria, but is followed by a prompt to retype the new
+password and all tokens are updated successfully.</p>
+</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># passwd user01</span>
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>Changing password <span class="k">for</span> user user01.
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>New password: redhat
+<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>BAD PASSWORD: The password fails the dictionary check - it is based on a
+<a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a> dictionary word
+<a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a>Retype new password: redhat
+<a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a>passwd: all authentication tokens updated successfully.
+<a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># </span>
+</code></pre></div>
+<ul>
+<li>A regular user must choose a password at least eight characters long and is also not based on a
+dictionary word, the username, or the previous password.</li>
+</ul>
+<p><strong>UID Ranges</strong></p>
+<p>Specific UID numbers and ranges of numbers are used for specific purposes by Red Hat
+Enterprise Linux.</p>
+<ul>
+<li>
+<p>UID 0 is always assigned to the superuser account, <strong>root</strong>.</p>
+</li>
+<li>
+<p>UID 1-200 is a range of "system users" assigned statically to system processes by Red Hat.</p>
+</li>
+<li>
+<p>UID 201-999 is a range of "system users" used by system processes that do not own files on the
+file system. They are typically assigned dynamically from the available pool when the software
+that needs them is installed. Programs run as these "unprivileged" system users in order to limit
+their access to only the resources they need to function.</p>
+</li>
+</ul>
+<p>• UID 1000+ is the range available for assignment to regular users.</p>
+<div class="admonition info">
+<p class="admonition-title">NOTE</p>
+<p>Prior to RHEL 7, the convention was that UID 1-499 was used for system users and
+UID 500+ for regular users. Default ranges used by <strong>useradd</strong> and <strong>groupadd</strong> can be
+changed in the <strong>/etc/login.defs</strong> file.</p>
+</div>
+<h3 id="managing-local-group-accounts">MANAGING LOCAL GROUP ACCOUNTS<a class="headerlink" href="#managing-local-group-accounts" title="Permanent link">&para;</a></h3>
+<h4 id="managing-local-groups">MANAGING LOCAL GROUPS<a class="headerlink" href="#managing-local-groups" title="Permanent link">&para;</a></h4>
+<p>A group must exist before a user can be added to that group. Several command-line tools are used
+to manage local group accounts.</p>
+<p><strong>Creating Groups from the Command Line</strong></p>
+<ul>
+<li>
+<p>The <em>groupadd</em> command creates groups. Without options the <em>groupadd</em> command uses the
+next available GID from the range specified in the <em>/etc/login.defs</em> file while creating the
+groups.</p>
+</li>
+<li>
+<p>The -g option specifies a particular GID for the group to use.</p>
+</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="o">[</span>user01@host ~<span class="o">]</span>$ sudo groupadd -g <span class="m">10000</span> group01
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="o">[</span>user01@host ~<span class="o">]</span>$ tail /etc/group
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>...output omitted...
+<a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>group01:x:10000:
+</code></pre></div>
+<div class="admonition info">
+<p class="admonition-title">NOTE</p>
+<p>Given the automatic creation of user private groups (GID 1000+), it is generally
+recommended to set aside a range of GIDs to be used for supplementary groups. A
+higher range will avoid a collision with a system group (GID 0-999).</p>
+</div>
+<ul>
+<li>The <strong>-r</strong> option creates a system group using a GID from the range of valid system GIDs listed in
+the <strong>/etc/login.defs</strong> file. The <em>SYSGIDMIN</em> and <em>SYSGIDMAX</em> configuration items in <strong>/
+etc/login.defs</strong> define the range of system GIDs.</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="o">[</span>user01@host ~<span class="o">]</span>$ sudo groupadd -r group02
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="o">[</span>user01@host ~<span class="o">]</span>$ tail /etc/group
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>...output omitted...
+<a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a>group01:x:10000:
+<a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a>group02:x:988:
+</code></pre></div>
+<p><strong>Modifying Existing Groups from the Command Line</strong></p>
+<ul>
+<li>The <em>groupmod</em> command changes the properties of an existing group. The -n option specifies a
+new name for the group.</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="o">[</span>user01@host ~<span class="o">]</span>$ sudo groupmod -n group0022 group02
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="o">[</span>user01@host ~<span class="o">]</span>$ tail /etc/group
+<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>...output omitted...
+<a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a>group0022:x:988:
+</code></pre></div>
+<p>Notice that the group name is updated to group0022 from group02.</p>
+<ul>
+<li>The <strong>-g</strong> option specifies a new GID.</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="o">[</span>user01@host ~<span class="o">]</span>$ sudo groupmod -g <span class="m">20000</span> group0022
+<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="o">[</span>user01@host ~<span class="o">]</span>$ tail /etc/group
+<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>...output omitted...
+<a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a>group0022:x:20000:
+</code></pre></div>
+<p>Notice that the GID is updated to 20000 from 988.</p>
+<p>Deleting Groups from the Command Line</p>
+<ul>
+<li>The groupdel command removes groups.</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="o">[</span>user01@host ~<span class="o">]</span>$ sudo groupdel group0022
+</code></pre></div>
+<div class="admonition info">
+<p class="admonition-title">NOTE</p>
+<p>You cannot remove a group if it is the primary group of any existing user. As with
+<strong>userdel</strong>, check all file systems to ensure that no files remain on the system that are
+owned by the group.</p>
+</div>
+<p><strong>Changing Group Membership from the Command Line</strong></p>
+<ul>
+<li>The membership of a group is controlled with user management. Use the <em>usermod -g</em>
+command to change a user's primary group.</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="o">[</span>user01@host ~<span class="o">]</span>$ id user02
+<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="nv">uid</span><span class="o">=</span><span class="m">1006</span><span class="o">(</span>user02<span class="o">)</span> <span class="nv">gid</span><span class="o">=</span><span class="m">1008</span><span class="o">(</span>user02<span class="o">)</span> <span class="nv">groups</span><span class="o">=</span><span class="m">1008</span><span class="o">(</span>user02<span class="o">)</span>
+<a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a><span class="o">[</span>user01@host ~<span class="o">]</span>$ sudo usermod -g group01 user02
+<a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a><span class="o">[</span>user01@host ~<span class="o">]</span>$ id user02
+<a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a><span class="nv">uid</span><span class="o">=</span><span class="m">1006</span><span class="o">(</span>user02<span class="o">)</span> <span class="nv">gid</span><span class="o">=</span><span class="m">10000</span><span class="o">(</span>group01<span class="o">)</span> <span class="nv">groups</span><span class="o">=</span><span class="m">10000</span><span class="o">(</span>group01<span class="o">)</span>
+</code></pre></div>
+<ul>
+<li>Use the <em>usermod -aG</em> command to add a user to a supplementary group.</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="o">[</span>user01@host ~<span class="o">]</span>$ id user03
+<a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a><span class="nv">uid</span><span class="o">=</span><span class="m">1007</span><span class="o">(</span>user03<span class="o">)</span> <span class="nv">gid</span><span class="o">=</span><span class="m">1009</span><span class="o">(</span>user03<span class="o">)</span> <span class="nv">groups</span><span class="o">=</span><span class="m">1009</span><span class="o">(</span>user03<span class="o">)</span>
+<a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a><span class="o">[</span>user01@host ~<span class="o">]</span>$ sudo usermod -aG group01 user03
+<a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a><span class="o">[</span>user01@host ~<span class="o">]</span>$ id user03
+<a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a><span class="nv">uid</span><span class="o">=</span><span class="m">1007</span><span class="o">(</span>user03<span class="o">)</span> <span class="nv">gid</span><span class="o">=</span><span class="m">1009</span><span class="o">(</span>user03<span class="o">)</span> <span class="nv">groups</span><span class="o">=</span><span class="m">1009</span><span class="o">(</span>user03<span class="o">)</span>,10000<span class="o">(</span>group01<span class="o">)</span>
+</code></pre></div>
+<div class="admonition danger">
+<p class="admonition-title">IMPORTANT</p>
+<p>The use of the <strong>-a</strong> option makes <strong>usermod</strong> function in append mode. Without <strong>-a</strong>, the
+user will be removed from any of their current supplementary groups that are not
+included in the <strong>-G</strong> option's list.</p>
+</div>
+<h3 id="managing-user-passwords-objectives">MANAGING USER PASSWORDS OBJECTIVES<a class="headerlink" href="#managing-user-passwords-objectives" title="Permanent link">&para;</a></h3>
+<h4 id="shadow-passwords-and-password-policy">SHADOW PASSWORDS AND PASSWORD POLICY<a class="headerlink" href="#shadow-passwords-and-password-policy" title="Permanent link">&para;</a></h4>
+<p>At one time, encrypted passwords were stored in the world-readable <strong>/etc/passwd</strong> file. This was
+thought to be reasonably secure until dictionary attacks on encrypted passwords became common.
+At that point, the encrypted passwords were moved to a separate <strong>/etc/shadow</strong> file which is
+readable only by root. This new file also allowed password aging and expiration features to be
+implemented.</p>
+<p>Like <strong>/etc/passwd</strong>, each user has a line in the <strong>/etc/shadow</strong> file. A sample line from <strong>/etc/
+shadow</strong> with its nine colon-separated fields is shown below.</p>
+<p><code>user03:$6$CSsX...output omitted...:17933:0:99999:7:2:18113:</code></p>
+<blockquote>
+<p>user03 --&gt; Username of the account this password belongs to.
+<span class="arithmatex">\(6\)</span>CSsX...output omitted... --&gt; The <em>encrypted password</em> of the user. The format of encrypted passwords is discussed later in
+this section.</p>
+<p>17933 --&gt; The day on which the password was last changed. This is set in days since 1970-01-01, and is
+calculated in the UTC time zone.</p>
+<p>0 --&gt; The minimum number of days that have to elapse since the last password change before the
+user can change it again.</p>
+<p>99999 --&gt; The maximum number of days that can pass without a password change before the password
+expires. An empty field means it does not expire based on time since the last change.</p>
+<p>7 --&gt; Warning period. The user will be warned about an expiring password when they login for this
+number of days before the deadline.</p>
+<p>2 --&gt; Inactivity period. Once the password has expired, it will still be accepted for login for this
+many days. After this period has elapsed, the account will be locked.</p>
+<dl>
+<dt>18113 --&gt; The day on which the password expires. This is set in days since 1970-01-01, and is calculated</dt>
+<dt>in the UTC time zone. An empty field means it does not expire on a particular date.</dt>
+<dd>
+<p>--&gt; The last field is usually empty and is reserved for future use.</p>
+</dd>
+</dl>
+</blockquote>
+<p><strong>Format of an Encrypted Password</strong></p>
+<p>The encrypted password field stores three pieces of information: the <em>hashing algorithm</em> used, the
+<em>salt</em>, and the <em>encrypted hash</em>. Each piece of information is delimited by the <em>$</em> sign.</p>
+<p><code>$6$CSsXcYG1L/4ZfHr/$2W6evvJahUfzfHpc9X.45Jc6H30E...output omitted...</code></p>
+<blockquote>
+<p>6 --&gt; The hashing algorithm used for this password. The number 6 indicates it is a SHA-512 hash,
+which is the default in Red Hat Enterprise Linux 8. A 1 would indicate MD5, a 5 SHA-256.</p>
+<p>CSsXcYG1L/4ZfHr/ --&gt; The salt used to encrypt the password. This is originally chosen at random.</p>
+<p>2W6evvJahUfzfHpc9X.45Jc6H30E...output omitted... --&gt;  The encrypted hash of the user's password. The salt and the unencrypted password are combined and encrypted to generate the encrypted hash of the password.</p>
+</blockquote>
+<p>The use of a salt prevents two users with the same password from having identical entries in the /
+<strong>etc/shadow</strong> file. For example, even if user01 and user02 both use redhat as their passwords,
+their encrypted passwords in <strong>/etc/shadow</strong> will be different if their salts are different.</p>
+<p><strong>Password Verification</strong></p>
+<p>When a user tries to log in, the system looks up the entry for the user in <strong>/etc/shadow</strong>, combines
+the salt for the user with the unencrypted password that was typed in, and encrypts them using the
+hashing algorithm specified. If the result matches the encrypted hash, the user typed in the right
+password. If the result does not match the encrypted hash, the user typed in the wrong password
+and the login attempt fails. This method allows the system to determine if the user typed in the
+correct password without storing that password in a form usable for logging in.</p>
+<h4 id="configuring-password-aging">CONFIGURING PASSWORD AGING<a class="headerlink" href="#configuring-password-aging" title="Permanent link">&para;</a></h4>
+<p>The following diagram relates the relevant password aging parameters, which can be adjusted
+using the <strong>chage</strong> command to implement a password aging policy.</p>
+<p><img alt="password" src="https://computingforgeeks.com/wp-content/uploads/2020/02/linux-password-aging.png?ezimgfmt=rs%3Adevice%2Frscb23-1" title="password" /></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="o">[</span>user01@host ~<span class="o">]</span>$ sudo chage -m <span class="m">0</span> -M <span class="m">90</span> -W <span class="m">7</span> -I <span class="m">14</span> user03
+</code></pre></div>
+<p>The preceding <strong>chage</strong> command uses the <strong>-m, -M, -W</strong>, and <strong>-I</strong> options to set the minimum age,
+maximum age, warning period, and inactivity period of the user's password, respectively.</p>
+<p>The <strong>chage -d 0 user03</strong> command forces the user03 user to update its password on the next
+login.</p>
+<p>The <strong>chage -l user03</strong> command displays the password aging details of user03.</p>
+<p>The <strong>chage -E 2019-08-05 user03</strong> command causes the user03 user's account to expire on
+2019-08-05 (in YYYY-MM-DD format).</p>
+<div class="admonition info">
+<p class="admonition-title">NOTE</p>
+<p>The <strong>date</strong> command can be used to calculate a date in the future. The <strong>-u</strong> option
+reports the time in UTC.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="o">[</span>user01@host ~<span class="o">]</span>$ date -d <span class="s2">&quot;+45 days&quot;</span> -u
+<a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a>Thu May <span class="m">23</span> <span class="m">17</span>:01:20 UTC <span class="m">2019</span>
+</code></pre></div>
+</div>
+<p>Edit the password aging configuration items in the <strong>/etc/login.defs</strong> file to set the default
+password aging policies. The <em>PASSMAXDAYS</em> sets the default maximum age of the password. The
+<em>PASSMINDAYS</em> sets the default minimum age of the password. The <em>PASSWARNAGE</em> sets the
+default warning period of the password. Any change in the default password aging policies will be
+effective for new users only. The existing users will continue to use the old password aging settings
+rather than the new ones.</p>
+<h3 id="restricting-access">RESTRICTING ACCESS<a class="headerlink" href="#restricting-access" title="Permanent link">&para;</a></h3>
+<p>You can use the <strong>chage</strong> command to set account expiration dates. When that date is reached, the
+user cannot log in to the system interactively. The <strong>usermod</strong> command can lock an account with
+the <strong>-L</strong> option.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="o">[</span>user01@host ~<span class="o">]</span>$ sudo usermod -L user03
+<a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a><span class="o">[</span>user01@host ~<span class="o">]</span>$ su - user03
+<a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a>Password: redhat
+<a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a>su: Authentication failure
+</code></pre></div>
+<p>If a user leaves the company, the administrator may lock and expire an account with a single
+<strong>usermod</strong> command. The date must be given as the number of days since 1970-01-01, or in the
+YYYY-MM-DD format.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="o">[</span>user01@host ~<span class="o">]</span>$ sudo usermod -L -e <span class="m">2019</span>-10-05 user03
+</code></pre></div>
+<p>The preceding <strong>usermod</strong> command uses the <strong>-e</strong> option to set the account expiry date for the given
+user account. The <strong>-L</strong> option locks the user's password.</p>
+<p>Locking the account prevents the user from authenticating with a password to the system. It is
+the recommended method of preventing access to an account by an employee who has left the
+company. If the employee returns, the account can later be unlocked with <strong>usermod -U</strong>. If the
+account was also expired, be sure to also change the expiration date.</p>
+<p><strong>The nologin Shell</strong></p>
+<p>The <em>nologin</em> shell acts as a replacement shell for the user accounts not intended to interactively
+log into the system. It is wise from the security standpoint to disable the user account from logging
+into the system when the user acount serves a responsibility that does not require the user to log
+into the system. For example, a mail server may require an account to store mail and a password
+for the user to authenticate with a mail client used to retrieve mail. That user does not need to log
+directly into the system.</p>
+<p>A common solution to this situation is to set the user's login shell to <em>/sbin/nologin</em>. If the user
+attempts to log in to the system directly, the <em>nologin</em> shell closes the connection.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="o">[</span>user01@host ~<span class="o">]</span>$ usermod -s /sbin/nologin user03
+<a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a><span class="o">[</span>user01@host ~<span class="o">]</span>$ su - user03
+<a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a>Last login: Wed Feb  <span class="m">6</span> <span class="m">17</span>:03:06 IST <span class="m">2019</span> on pts/0
+<a id="__codelineno-24-4" name="__codelineno-24-4" href="#__codelineno-24-4"></a>This account is currently not available.
+</code></pre></div>
+<div class="admonition danger">
+<p class="admonition-title">IMPORTANT</p>
+<p>The <strong>nologin</strong> shell prevents interactive use of the system, but does not prevent
+all access. Users might be able to authenticate and upload or retrieve files through
+applications such as web applications, file transfer programs, or mail readers if they
+use the user's password for authentication.</p>
+</div>
+<h3 id="summary">SUMMARY<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h3>
+<p>In this chapter, you learned:</p>
+<ul>
+<li>
+<p>There are three main types of user account: the superuser, system users, and regular users.</p>
+</li>
+<li>
+<p>A user must have a primary group and may be a member of one or more supplementary groups.</p>
+</li>
+<li>
+<p>The three critical files containing user and group information are <strong>/etc/passwd, /etc/group</strong>,
+and <strong>/etc/shadow</strong>.</p>
+</li>
+<li>
+<p>The <strong>su</strong> and <strong>sudo</strong> commands can be used to run commands as the superuser.</p>
+</li>
+<li>
+<p>The <strong>useradd, usermod</strong>, and <strong>userdel</strong> commands can be used to manage users.</p>
+</li>
+<li>
+<p>The <strong>groupadd, groupmod</strong>, and <strong>groupdel</strong> commands can be used to manage groups.</p>
+</li>
+<li>
+<p>The <strong>chage</strong> command can be used to configure and view password expiration settings for users.</p>
+</li>
+</ul>
+
+  <hr>
+<div class="md-source-file">
+  <small>
+    
+      Last update:
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">November 13, 2022</span>
+      
+    
+  </small>
+</div>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+          <a href="#" class="md-top md-icon" data-md-component="top" hidden>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+            Back to top
+          </a>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+    <nav class="md-footer__inner md-grid" aria-label="Footer" >
+      
+        
+        <a href="../edit/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Creating, Viewing, And Editing Text Files" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Creating, Viewing, And Editing Text Files
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../control/" class="md-footer__link md-footer__link--next" aria-label="Next: Controlling Access To Files" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Controlling Access To Files
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2022 Divijesh Varma. All rights reserved.
+    </div>
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.instant", "navigation.tracking", "navigation.tabs", "navigation.tabs.sticky", "navigation.expand", "navigation.top", "navigation.sections", "content.tooltips", "header.autohide"], "search": "../../assets/javascripts/workers/search.16e2a7d4.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d6c3db9e.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="../../javascripts/feedback.js"></script>
+      
+    
+  </body>
+</html>

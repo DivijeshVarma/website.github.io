@@ -1,0 +1,2797 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://www.privacyguides.org/redhat/edit/">
+      
+      <link rel="icon" href="../../assets/img/layout/favicon.ico">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-8.5.10">
+    
+    
+      
+        <title>Creating, Viewing, And Editing Text Files - Divijesh Varma</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.472b142f.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.08040f6c.min.css">
+        
+      
+      
+
+    
+    
+    
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent="teal">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#redirecting-output-to-a-file-or-program" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Divijesh Varma" class="md-header__button md-logo" aria-label="Divijesh Varma" data-md-component="logo">
+      
+  <img src="../../assets/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Divijesh Varma
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Creating, Viewing, And Editing Text Files
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent="teal"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 1 7 7c0 2.38-1.19 4.47-3 5.74V17a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 0 1 7-7M9 21v-1h6v1a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1m3-17a5 5 0 0 0-5 5c0 2.05 1.23 3.81 3 4.58V16h4v-2.42c1.77-.77 3-2.53 3-4.58a5 5 0 0 0-5-5Z"/></svg>
+            </label>
+          
+        
+          
+          
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="deep-purple" data-md-color-accent="deep-orange"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 2.38 1.19 4.47 3 5.74V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.26c1.81-1.27 3-3.36 3-5.74a7 7 0 0 0-7-7M9 21a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-1H9v1Z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../.." class="md-tabs__link">
+      Home
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../linux/vi/" class="md-tabs__link">
+        Linux
+      </a>
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../intro/" class="md-tabs__link md-tabs__link--active">
+        RedHat
+      </a>
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../english/vol1/" class="md-tabs__link">
+        English
+      </a>
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../basics/threat-modeling/" class="md-tabs__link">
+        Knowledge Base
+      </a>
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../tools/" class="md-tabs__link">
+        Recommendations
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../about/" class="md-tabs__link">
+        About
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Divijesh Varma" class="md-nav__button md-logo" aria-label="Divijesh Varma" data-md-component="logo">
+      
+  <img src="../../assets/logo.png" alt="logo">
+
+    </a>
+    Divijesh Varma
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          Linux
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Linux" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Linux
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_2_1" type="checkbox" id="__nav_2_1" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_1">
+          Editors
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Editors" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_1">
+          <span class="md-nav__icon md-icon"></span>
+          Editors
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/vi/" class="md-nav__link">
+        Vim
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/nano/" class="md-nav__link">
+        Nano
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_2_2" type="checkbox" id="__nav_2_2" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_2">
+          Notes
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Notes" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_2">
+          <span class="md-nav__icon md-icon"></span>
+          Notes
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/rhcsa/" class="md-nav__link">
+        Tritree
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/user/" class="md-nav__link">
+        User Management
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/acl/" class="md-nav__link">
+        Access control lists (ACLs)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/network/" class="md-nav__link">
+        Networking
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/ssh/" class="md-nav__link">
+        OpenSSH
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/process/" class="md-nav__link">
+        Process Management
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/software/" class="md-nav__link">
+        Software Management
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/systemd/" class="md-nav__link">
+        Systemd Management
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/cron/" class="md-nav__link">
+        Cron Jobs
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/logs/" class="md-nav__link">
+        Logs
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/disk/" class="md-nav__link">
+        Disk Management
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3">
+          RedHat
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="RedHat" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          RedHat
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+    
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_1" type="checkbox" id="__nav_3_1" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_1">
+          RHSA I (RH124)
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="RHSA I (RH124)" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_1">
+          <span class="md-nav__icon md-icon"></span>
+          RHSA I (RH124)
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../intro/" class="md-nav__link">
+        Introduction
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../access/" class="md-nav__link">
+        Accessing The Command Line
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../manage/" class="md-nav__link">
+        Managing Files From The Command Line
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../help/" class="md-nav__link">
+        Getting Help In Red Hat Enterprise Linux
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Creating, Viewing, And Editing Text Files
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Creating, Viewing, And Editing Text Files
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#redirecting-output-to-a-file-or-program" class="md-nav__link">
+    REDIRECTING OUTPUT TO A FILE OR PROGRAM
+  </a>
+  
+    <nav class="md-nav" aria-label="REDIRECTING OUTPUT TO A FILE OR PROGRAM">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#standard-input-standard-output-and-standard-error" class="md-nav__link">
+    STANDARD INPUT, STANDARD OUTPUT, AND STANDARD ERROR
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#redirecting-output-to-a-file" class="md-nav__link">
+    REDIRECTING OUTPUT TO A FILE
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#constructing-pipelines" class="md-nav__link">
+    CONSTRUCTING PIPELINES
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#editing-text-files-from-the-shell-prompt" class="md-nav__link">
+    EDITING TEXT FILES FROM THE SHELL PROMPT
+  </a>
+  
+    <nav class="md-nav" aria-label="EDITING TEXT FILES FROM THE SHELL PROMPT">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#editing-files-with-vim" class="md-nav__link">
+    EDITING FILES WITH VIM
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#changing-the-shell-environment" class="md-nav__link">
+    CHANGING THE SHELL ENVIRONMENT
+  </a>
+  
+    <nav class="md-nav" aria-label="CHANGING THE SHELL ENVIRONMENT">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#using-shell-variables" class="md-nav__link">
+    USING SHELL VARIABLES
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuring-programs-with-environment-variables" class="md-nav__link">
+    CONFIGURING PROGRAMS WITH ENVIRONMENT VARIABLES
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#setting-variables-automatically" class="md-nav__link">
+    SETTING VARIABLES AUTOMATICALLY
+  </a>
+  
+    <nav class="md-nav" aria-label="SETTING VARIABLES AUTOMATICALLY">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#unsetting-and-unexporting-variables" class="md-nav__link">
+    UNSETTING AND UNEXPORTING VARIABLES
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    SUMMARY
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../users/" class="md-nav__link">
+        Managing Local Users And Groups
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../control/" class="md-nav__link">
+        Controlling Access To Files
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4">
+          English
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="English" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          English
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_4_1" type="checkbox" id="__nav_4_1" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_1">
+          Tutorial
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Tutorial" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_1">
+          <span class="md-nav__icon md-icon"></span>
+          Tutorial
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../english/vol1/" class="md-nav__link">
+        Vol-1
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../english/vol2/" class="md-nav__link">
+        Vol-2
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../english/vol3/" class="md-nav__link">
+        Vol-3
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../english/vol4/" class="md-nav__link">
+        Vol-4
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5">
+          Knowledge Base
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Knowledge Base" data-md-level="1">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          Knowledge Base
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_5_1" type="checkbox" id="__nav_5_1" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5_1">
+          The Basics
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="The Basics" data-md-level="2">
+        <label class="md-nav__title" for="__nav_5_1">
+          <span class="md-nav__icon md-icon"></span>
+          The Basics
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../basics/threat-modeling/" class="md-nav__link">
+        Threat Modeling
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../basics/dns/" class="md-nav__link">
+        Introduction to DNS
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../basics/multi-factor-authentication/" class="md-nav__link">
+        Multi-factor Authentication
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../basics/account-deletion/" class="md-nav__link">
+        Account Deletion
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_5_2" type="checkbox" id="__nav_5_2" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5_2">
+          Android
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Android" data-md-level="2">
+        <label class="md-nav__title" for="__nav_5_2">
+          <span class="md-nav__icon md-icon"></span>
+          Android
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../android/overview/" class="md-nav__link">
+        Android Overview
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../android/grapheneos-vs-calyxos/" class="md-nav__link">
+        GrapheneOS vs CalyxOS
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_5_3" type="checkbox" id="__nav_5_3" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5_3">
+          Linux
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Linux" data-md-level="2">
+        <label class="md-nav__title" for="__nav_5_3">
+          <span class="md-nav__icon md-icon"></span>
+          Linux
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux-desktop/overview/" class="md-nav__link">
+        Linux Overview
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux-desktop/hardening/" class="md-nav__link">
+        System Hardening
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux-desktop/sandboxing/" class="md-nav__link">
+        Application Sandboxing
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_5_4" type="checkbox" id="__nav_5_4" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5_4">
+          Advanced
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Advanced" data-md-level="2">
+        <label class="md-nav__title" for="__nav_5_4">
+          <span class="md-nav__icon md-icon"></span>
+          Advanced
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setup/integrating-metadata-removal/" class="md-nav__link">
+        Integrating Metadata Removal
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_6" type="checkbox" id="__nav_6" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6">
+          Recommendations
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Recommendations" data-md-level="1">
+        <label class="md-nav__title" for="__nav_6">
+          <span class="md-nav__icon md-icon"></span>
+          Recommendations
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tools/" class="md-nav__link">
+        Privacy Tools
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_6_2" type="checkbox" id="__nav_6_2" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6_2">
+          Browsers
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Browsers" data-md-level="2">
+        <label class="md-nav__title" for="__nav_6_2">
+          <span class="md-nav__icon md-icon"></span>
+          Browsers
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../browsers/" class="md-nav__link">
+        Web Browsers
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_6_3" type="checkbox" id="__nav_6_3" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6_3">
+          Operating Systems
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Operating Systems" data-md-level="2">
+        <label class="md-nav__title" for="__nav_6_3">
+          <span class="md-nav__icon md-icon"></span>
+          Operating Systems
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../android/" class="md-nav__link">
+        Android
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux-desktop/" class="md-nav__link">
+        Linux
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../qubes/" class="md-nav__link">
+        Qubes OS
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../router/" class="md-nav__link">
+        Router Firmware
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_6_4" type="checkbox" id="__nav_6_4" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6_4">
+          Providers
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Providers" data-md-level="2">
+        <label class="md-nav__title" for="__nav_6_4">
+          <span class="md-nav__icon md-icon"></span>
+          Providers
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cloud/" class="md-nav__link">
+        Cloud Storage
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dns/" class="md-nav__link">
+        DNS Resolvers
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../email/" class="md-nav__link">
+        Email Services
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../search-engines/" class="md-nav__link">
+        Search Engines
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vpn/" class="md-nav__link">
+        VPN Services
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_6_5" type="checkbox" id="__nav_6_5" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6_5">
+          Software
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Software" data-md-level="2">
+        <label class="md-nav__title" for="__nav_6_5">
+          <span class="md-nav__icon md-icon"></span>
+          Software
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../calendar-contacts/" class="md-nav__link">
+        Calendar and Contact Sync
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../notebooks/" class="md-nav__link">
+        Notebooks
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../email-clients/" class="md-nav__link">
+        Email Clients
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../encryption/" class="md-nav__link">
+        Encryption Software
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../file-sharing/" class="md-nav__link">
+        File Sharing and Sync
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../metadata-removal-tools/" class="md-nav__link">
+        Metadata Removal Tools
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../multi-factor-authentication/" class="md-nav__link">
+        Multi-Factor Authenticators
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../passwords/" class="md-nav__link">
+        Password Managers
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../productivity/" class="md-nav__link">
+        Productivity Tools
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../real-time-communication/" class="md-nav__link">
+        Real-Time Communication
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../news-aggregators/" class="md-nav__link">
+        News Aggregators
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../self-contained-networks/" class="md-nav__link">
+        Self-Contained Networks
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../video-streaming/" class="md-nav__link">
+        Video Streaming
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_7" type="checkbox" id="__nav_7" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_7">
+          About
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="About" data-md-level="1">
+        <label class="md-nav__title" for="__nav_7">
+          <span class="md-nav__icon md-icon"></span>
+          About
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/" class="md-nav__link">
+        Heading
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#redirecting-output-to-a-file-or-program" class="md-nav__link">
+    REDIRECTING OUTPUT TO A FILE OR PROGRAM
+  </a>
+  
+    <nav class="md-nav" aria-label="REDIRECTING OUTPUT TO A FILE OR PROGRAM">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#standard-input-standard-output-and-standard-error" class="md-nav__link">
+    STANDARD INPUT, STANDARD OUTPUT, AND STANDARD ERROR
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#redirecting-output-to-a-file" class="md-nav__link">
+    REDIRECTING OUTPUT TO A FILE
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#constructing-pipelines" class="md-nav__link">
+    CONSTRUCTING PIPELINES
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#editing-text-files-from-the-shell-prompt" class="md-nav__link">
+    EDITING TEXT FILES FROM THE SHELL PROMPT
+  </a>
+  
+    <nav class="md-nav" aria-label="EDITING TEXT FILES FROM THE SHELL PROMPT">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#editing-files-with-vim" class="md-nav__link">
+    EDITING FILES WITH VIM
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#changing-the-shell-environment" class="md-nav__link">
+    CHANGING THE SHELL ENVIRONMENT
+  </a>
+  
+    <nav class="md-nav" aria-label="CHANGING THE SHELL ENVIRONMENT">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#using-shell-variables" class="md-nav__link">
+    USING SHELL VARIABLES
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuring-programs-with-environment-variables" class="md-nav__link">
+    CONFIGURING PROGRAMS WITH ENVIRONMENT VARIABLES
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#setting-variables-automatically" class="md-nav__link">
+    SETTING VARIABLES AUTOMATICALLY
+  </a>
+  
+    <nav class="md-nav" aria-label="SETTING VARIABLES AUTOMATICALLY">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#unsetting-and-unexporting-variables" class="md-nav__link">
+    UNSETTING AND UNEXPORTING VARIABLES
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    SUMMARY
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+  
+
+
+
+
+  <h1>Creating, Viewing, And Editing Text Files</h1>
+
+<h3 id="redirecting-output-to-a-file-or-program">REDIRECTING OUTPUT TO A FILE OR PROGRAM<a class="headerlink" href="#redirecting-output-to-a-file-or-program" title="Permanent link">&para;</a></h3>
+<h4 id="standard-input-standard-output-and-standard-error">STANDARD INPUT, STANDARD OUTPUT, AND STANDARD ERROR<a class="headerlink" href="#standard-input-standard-output-and-standard-error" title="Permanent link">&para;</a></h4>
+<p>A running program, or <em>process</em>, needs to read input from somewhere and write output to
+somewhere. A command run from the shell prompt normally reads its input from the keyboard and
+sends its output to its terminal window.</p>
+<p>A process uses numbered channels called <em>file descriptors</em> to get input and send output. All
+processes start with at least three file descriptors. <em>Standard input</em> (channel 0) reads input from the
+keyboard. <em>Standard output</em> (channel 1) sends normal output to the terminal. <em>Standard error</em> (channel
+2) sends error messages to the terminal. If a program opens separate connections to other files, it
+may use higher-numbered file descriptors.</p>
+<p><img alt="Process I/O channels (file descriptors)" src="https://www.thegeeksearch.com/images/post/wp-content-uploads-2020-10-linux-file-redirection_hub4aac9916d24ff7778403105fc9a6da8_20977_750x0_resize_q100_h2_box.webp" title="Process I/O channels (file descriptors)" /></p>
+<p><strong>Channels (File Descriptors)</strong></p>
+<table>
+<thead>
+<tr>
+<th align="center">NUMBER</th>
+<th align="left">CHANNEL NAME</th>
+<th>DESCRIPTION</th>
+<th>DEFAULT CONNECTION</th>
+<th>USAGE</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">0</td>
+<td align="left">stdin</td>
+<td>Standard input</td>
+<td>Keyboard</td>
+<td>read only</td>
+</tr>
+<tr>
+<td align="center">1</td>
+<td align="left">stdout</td>
+<td>Standard output</td>
+<td>Terminal</td>
+<td>write only</td>
+</tr>
+<tr>
+<td align="center">2</td>
+<td align="left">stderr</td>
+<td>Standard error</td>
+<td>Terminal</td>
+<td>write only</td>
+</tr>
+<tr>
+<td align="center">3+</td>
+<td align="left">filename</td>
+<td>Other files</td>
+<td>none</td>
+<td>read and/or write</td>
+</tr>
+</tbody>
+</table>
+<h3 id="redirecting-output-to-a-file">REDIRECTING OUTPUT TO A FILE<a class="headerlink" href="#redirecting-output-to-a-file" title="Permanent link">&para;</a></h3>
+<p><em>I/O</em> redirection changes how the process gets its input or output. Instead of getting input from
+the keyboard, or sending output and errors to the terminal, the process reads from or writes to
+files. Redirection lets you save messages to a file that are normally sent to the terminal window.
+Alternatively, you can use redirection to discard output or errors, so they are not displayed on the
+terminal or saved.</p>
+<p>Redirecting <strong>stdout</strong> suppresses process output from appearing on the terminal. As seen in
+the following table, redirecting only <strong>stdout</strong> does not suppress <strong>stderr</strong> error messages from
+displaying on the terminal. If the file does not exist, it will be created. If the file does exist and the
+redirection is not one that appends to the file, the file's contents will be overwritten.
+If you want to discard messages, the special file <strong>/dev/null</strong> quietly discards channel output
+redirected to it and is always an empty file.</p>
+<table>
+<thead>
+<tr>
+<th align="center">USAGE</th>
+<th align="left">EXPLANATION</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">&gt; file</td>
+<td align="left">redirect stdout to overwrite a file</td>
+</tr>
+<tr>
+<td align="center">&gt;&gt; file</td>
+<td align="left">redirect stdout to append to a file</td>
+</tr>
+<tr>
+<td align="center">2&gt; file</td>
+<td align="left">redirect stderr to overwrite a file</td>
+</tr>
+<tr>
+<td align="center">2&gt; /dev/null</td>
+<td align="left">stderr error messages by redirecting to /dev/null</td>
+</tr>
+<tr>
+<td align="center">&gt; file  2&gt;&amp;1</td>
+<td align="left">redirect stdout and stderr to overwrite the same file</td>
+</tr>
+<tr>
+<td align="center">&amp;&gt; file</td>
+<td align="left">redirect stdout and stderr to overwrite the same file</td>
+</tr>
+<tr>
+<td align="center">&gt;&gt; file  2&gt;&amp;1</td>
+<td align="left">redirect stdout and stderr to append to the same file</td>
+</tr>
+<tr>
+<td align="center">&amp;&gt;&gt; file</td>
+<td align="left">redirect stdout and stderr to append to the same file</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition danger">
+<p class="admonition-title">IMPORTANT</p>
+<p>The order of redirection operations is important. The following sequence redirects
+standard output to file and then redirects standard error to the same place as
+standard output (file).</p>
+<p><code>&gt; file 2&gt;&amp;1</code></p>
+<p>However, the next sequence does redirection in the opposite order. This redirects
+standard error to the default place for standard output (the terminal window, so no
+change) and then redirects only standard output to file.</p>
+<p><code>2&gt;&amp;1 &gt; file</code></p>
+<p>Because of this, some people prefer to use the merging redirection operators:</p>
+<p><code>&amp;&gt;file instead of &gt;file 2&gt;&amp;1</code></p>
+<p><code>&amp;&gt;&gt;file instead of &gt;&gt;file 2&gt;&amp;1(in Bash 4 / RHEL 6 and later)</code></p>
+<p>However, other system administrators and programmers who also use other shells
+related to <strong>bash</strong> (known as Bourne-compatible shells) for scripting commands think
+that the newer merging redirection operators should be avoided, because they are
+not standardized or implemented in all of those shells and have other limitations.
+The authors of this course take a neutral stance on this topic, and both syntaxes are
+likely to be encountered in the field.</p>
+</div>
+<p><strong>Examples for Output Redirection</strong></p>
+<p>Many routine administration tasks are simplified by using redirection. Use the previous table to
+assist while considering the following examples:</p>
+<ul>
+<li>Save a time stamp for later reference.</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ date &gt; /tmp/saved-timestamp
+</code></pre></div>
+<ul>
+<li>Copy the last 100 lines from a log file to another file.</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ tail -n <span class="m">100</span> /var/log/dmesg &gt; /tmp/last-100-boot-messages
+</code></pre></div>
+<ul>
+<li>Concatenate four files into one.</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ cat file1 file2 file3 file4 &gt; /tmp/all-four-in-one
+</code></pre></div>
+<ul>
+<li>List the home directory's hidden and regular file names into a file.</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ ls -a &gt; /tmp/my-file-names
+</code></pre></div>
+<ul>
+<li>Append output to an existing file.</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ <span class="nb">echo</span> <span class="s2">&quot;new line of information&quot;</span> &gt;&gt; /tmp/many-lines-of-information
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ diff previous-file current-file &gt;&gt; /tmp/tracking-changes-made
+</code></pre></div>
+<ul>
+<li>The next few commands generate error messages because some system directories are
+inaccessible to normal users. Observe as the error messages are redirected. Redirect errors to a
+file while viewing normal command output on the terminal.</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>[user@host ~]$ find /etc -name passwd 2&gt; /tmp/errors
+</code></pre></div>
+<ul>
+<li>Save process output and error messages to separate files.</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ find /etc -name passwd &gt; /tmp/output <span class="m">2</span>&gt; /tmp/errors
+</code></pre></div>
+<ul>
+<li>Ignore and discard error messages.</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ find /etc -name passwd &gt; /tmp/output <span class="m">2</span>&gt; /dev/null
+</code></pre></div>
+<ul>
+<li>Store output and generated errors together.</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ find /etc -name passwd <span class="p">&amp;</span>&gt; /tmp/save-both
+</code></pre></div>
+<ul>
+<li>Append output and generated errors to an existing file.</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ find /etc -name passwd &gt;&gt; /tmp/save-both <span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span>
+</code></pre></div>
+<h3 id="constructing-pipelines">CONSTRUCTING PIPELINES<a class="headerlink" href="#constructing-pipelines" title="Permanent link">&para;</a></h3>
+<p>A <strong>pipeline</strong> is a sequence of one or more commands separated by the pipe character (|). A pipe
+connects the standard output of the first command to the standard input of the next command.</p>
+<p><img alt="Process I/O piping" src="https://www.thegeeksearch.com/images/post/wp-content-uploads-2020-10-linux-pipelines-basics_hu35331ae3cd8d08fad9a0ab1501e7bdf9_7345_623x0_resize_q100_h2_box.webp" title="Process I/O piping" /></p>
+<p>Pipelines allow the output of a process to be manipulated and formatted by other processes before
+it is output to the terminal. One useful mental image is to imagine that data is "flowing" through
+the pipeline from one process to another, being altered slightly by each command in the pipeline
+through which it flows.</p>
+<div class="admonition info">
+<p class="admonition-title">NOTE</p>
+<p>Pipelines and I/O redirection both manipulate standard output and standard input.
+Redirection sends standard output to files or gets standard input from files. Pipes
+send the standard output from one process to the standard input of another process.</p>
+</div>
+<p><strong>Pipeline Examples</strong></p>
+<p>This example takes the output of the <em>ls</em> command and uses less to display it on the terminal one
+screen at a time.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ ls -l /usr/bin <span class="p">|</span> less
+</code></pre></div>
+<p>The output of the ls command is piped to <em>wc -l</em>, which counts the number of lines received from
+ls and prints that to the terminal.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ ls <span class="p">|</span> wc -l
+</code></pre></div>
+<p>In this pipeline, <em>head</em> will output the first 10 lines of output from <em>ls -t</em>, with the final result
+redirected to a file.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ ls -t <span class="p">|</span> head -n <span class="m">10</span> &gt; /tmp/ten-last-changed-files
+</code></pre></div>
+<p><strong>Pipelines, Redirection, and the tee Command</strong></p>
+<p>When redirection is combined with a pipeline, the shell sets up the entire pipeline first, then it
+redirects input/output. If output redirection is used in the middle of a pipeline, the output will go to
+the file and not to the next command in the pipeline.</p>
+<p>In this example, the output of the <em>ls</em> command goes to the file, and <em>less</em> displays nothing on the
+terminal.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ ls &gt; /tmp/saved-output <span class="p">|</span> less
+</code></pre></div>
+<p>The <em>tee</em> command overcomes this limitation. In a pipeline, <em>tee</em> copies its standard input to its
+standard output and also redirects its standard output to the files named as arguments to the
+command. If you imagine data as water flowing through a pipeline, <em>tee</em> can be visualized as a "T"
+joint in the pipe which directs output in two directions.</p>
+<p><img alt="Process I/O piping with tee" src="https://www.thegeeksearch.com/images/post/_huf90ae59f9e7f9c3ca94da3a0ea3a6dd0_9839_a2160b7f0a2b09d22a52058172bcbb6d.webp" title="Process I/O piping with tee" /></p>
+<p><strong>Pipeline Examples Using the tee Command</strong></p>
+<p>This example redirects the output of the ls command to the file and passes it to less to be
+displayed on the terminal one screen at a time.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ ls -l <span class="p">|</span> tee /tmp/saved-output <span class="p">|</span> less
+</code></pre></div>
+<p>If <em>tee</em> is used at the end of a pipeline, then the final output of a command can be saved and output
+to the terminal at the same time.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ ls -t <span class="p">|</span> head -n <span class="m">10</span> <span class="p">|</span> tee /tmp/ten-last-changed-files
+</code></pre></div>
+<div class="admonition danger">
+<p class="admonition-title">IMPORTANT</p>
+<p>Standard error can be redirected through a pipe, but the merging redirection
+operators (<strong>&amp;&gt;</strong> and <strong>&amp;&gt;&gt;</strong>) cannot be used to do this.</p>
+<p>The following is the correct way to redirect both standard output and standard error
+through a pipe:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ find -name / passwd <span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span> <span class="p">|</span> less
+</code></pre></div>
+</div>
+<h3 id="editing-text-files-from-the-shell-prompt">EDITING TEXT FILES FROM THE SHELL PROMPT<a class="headerlink" href="#editing-text-files-from-the-shell-prompt" title="Permanent link">&para;</a></h3>
+<h4 id="editing-files-with-vim">EDITING FILES WITH VIM<a class="headerlink" href="#editing-files-with-vim" title="Permanent link">&para;</a></h4>
+<p>A key design principle of Linux is that information and configuration settings are commonly stored
+in text-based files. These files can be structured in various ways, as lists of settings, in INI-like
+formats, as structured XML or YAML, and so on. However, the advantage of text files is that they
+can be viewed and edited using any simple text editor.</p>
+<p>Vim is an improved version of the <strong>vi</strong> editor distributed with Linux and UNIX systems. Vim is highly
+configurable and efficient for practiced users, including such features as split screen editing, color
+formatting, and highlighting for editing text.</p>
+<p><strong>Why Learn Vim?</strong></p>
+<p>You should know how to use at least one text editor that can be used from a text-only shell prompt.
+If you do, you can edit text-based configuration files from a terminal window, or from remote logins
+through <em>ssh</em> or the Web Console. Then you do not need access to a graphical desktop in order to
+edit files on a server, and in fact that server might not need to run a graphical desktop environment
+at all.</p>
+<p>But then, why learn Vim instead of other possible options? The key reason is that Vim is almost
+always installed on a server, if any text editor is present. This is because <em>vi</em> was specified by the
+POSIX standard that Linux and many other UNIX-like operating systems comply with in large part.</p>
+<p>In addition, Vim is often used as the <em>vi</em> implementation on other common operating systems or
+distributions. For example, macOS currently includes a lightweight installation of Vim by default.
+So Vim skills learned for Linux might also help you get things done elsewhere.</p>
+<p><strong>Starting Vim</strong></p>
+<p>Vim may be installed in Red Hat Enterprise Linux in two different ways. This can affect the features
+and Vim commands available to you.</p>
+<p>Your server might only have the vim-minimal package installed. This is a very lightweight
+installation that includes only the core feature set and the basic <em>vi</em> command. In this case, you can
+open a file for editing with <em>vi filename</em>, and all the core features discussed in this section will be
+available to you.</p>
+<p>Alternatively, your server might have the vim-enhanced package installed. This provides a much
+more comprehensive set of features, an on-line help system, and a tutorial program. In order to
+start Vim in this enhanced mode, you use the <strong><em>vim</em></strong> command.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ vim filename
+</code></pre></div>
+<p>Either way, the core features that we will discuss in this section will work with both commands.</p>
+<div class="admonition info">
+<p class="admonition-title">NOTE</p>
+<p>If vim-enhanced is installed, regular users will have a shell alias set so that if they run
+the <strong>vi</strong> command, they will automatically get the <strong>vim</strong> command instead. This does
+not apply to root and other users with UIDs below 200 (which are used by system
+services).</p>
+<p>If you are editing files as the root user and you expect vi to run in enhanced mode,
+this can be a surprise. Likewise, if vim-enhanced is installed and a regular user wants
+the simple vi for some reason, they might need to use <strong>\vi</strong> to override the alias
+temporarily.</p>
+<p>Advanced users can use <strong>\vi --version</strong> and <strong>vim --version</strong> to compare the
+feature sets of the two commands.</p>
+</div>
+<p><strong>Vim Operating Modes</strong></p>
+<p>An unusual characteristic of Vim is that it has several modes of operation, including <em>command
+mode, extended command mode, edit mode</em>, and <em>visual mode</em>. Depending on the mode, you may
+be issuing commands, editing text, or working with blocks of text. As a new Vim user, you should
+always be aware of your current mode as keystrokes have different effects in different modes.</p>
+<p><img alt="Moving between Vim modes" src="https://www.linuxprobe.com/links/RH124/images/edit/vim_modes_essential.png" title="Moving between Vim modes" /></p>
+<p>When you first open Vim, it starts in command mode, which is used for navigation, cut and paste,
+and other text manipulation. Enter each of the other modes with single character keystrokes to
+access specific editing functionality:</p>
+<ul>
+<li>
+<p>An <em>i</em> keystroke enters insert mode, where all text typed becomes file content. Pressing <em>Esc</em>
+returns to command mode.</p>
+</li>
+<li>
+<p>A <em>v</em> keystroke enters visual mode, where multiple characters may be selected for text
+manipulation. Use <em>Shift+V</em> for multiline and <em>Ctrl+V</em> for block selection. The same keystroke
+used to enter visual mode (<em>v, Shift+V or Ctrl+V</em>) is used to exit.</p>
+</li>
+<li>
+<p>The : keystroke begins extended command mode for tasks such as writing the file (to save it),
+and quitting the Vim editor.</p>
+</li>
+</ul>
+<div class="admonition info">
+<p class="admonition-title">NOTE</p>
+<p>If you are not sure what mode Vim is in, you can try pressing <strong>Esc</strong> a few times to get
+back into command mode. Pressing <strong>Esc</strong> in command mode is harmless, so a few
+extra key presses are okay.</p>
+</div>
+<p><strong>The Minimum, Basic Vim Workflow</strong></p>
+<p>Vim has efficient, coordinated keystrokes for advanced editing tasks. Although considered useful
+with practice, Vim's capabilities can overwhelm new users.</p>
+<p>The <em>i</em> key puts Vim into insert mode. All text entered after this is treated as file contents until you
+exit insert mode. The <em>Esc</em> key exits insert mode and returns Vim to command mode. The u key will
+undo the most recent edit. Press the <em>x</em> key to delete a single character. The <em>:w</em> command writes
+(saves) the file and remains in command mode for more editing. The <em>:wq</em> command writes (saves)
+the file and quits Vim. The <em>:q!</em> command quits Vim, discarding all file changes since the last write.
+The Vim user must learn these commands to accomplish any editing task.</p>
+<p><strong>Rearranging Existing Text</strong></p>
+<p>In Vim, copy and paste is known as yank and put, using command characters <em>Y</em> and <em>P</em>. Begin by
+positioning the cursor on the first character to be selected, and then enter visual mode. Use the
+arrow keys to expand the visual selection. When ready, press <em>y</em> to yank the selection into memory.
+Position the cursor at the new location, and then press <em>p</em> to put the selection at the cursor.</p>
+<p><strong>Visual Mode in Vim</strong></p>
+<p>Visual mode is a great way to highlight and manipulate text. There are three keystrokes:</p>
+<ul>
+<li>
+<p>Character mode: v</p>
+</li>
+<li>
+<p>Line mode: Shift+V</p>
+</li>
+<li>
+<p>Block mode: Ctrl+V</p>
+</li>
+</ul>
+<p>Character mode highlights sentences in a block of text. The word <em>VISUAL</em> will appear at the bottom
+of the screen. Press <em>v</em> to enter visual character mode. <em>Shift+V</em> enters line mode. <em>VISUAL LINE</em>
+will appear at the bottom of the screen.</p>
+<p>Visual block mode is perfect for manipulating data files. From the cursor, press the <em>Ctrl+V</em> to
+enter visual block. <em>VISUAL BLOCK</em> will appear at the bottom of the screen. Use the arrow keys to
+highlight the section to change.</p>
+<div class="admonition info">
+<p class="admonition-title">NOTE</p>
+<p>Vim has a lot of capabilities, but you should master the basic workflow first. You do
+not need to quickly understand the entire editor and its capabilities. Get comfortable
+with those basics through practice and then you can expand your Vim vocabulary by
+learning additional Vim commands (keystrokes).</p>
+<p>The exercise for this section will introduce you to the <strong>vimtutor</strong> command. This
+tutorial, which ships with vim-enhanced, is an excellent way to learn the core
+functionality of Vim.</p>
+</div>
+<h3 id="changing-the-shell-environment">CHANGING THE SHELL ENVIRONMENT<a class="headerlink" href="#changing-the-shell-environment" title="Permanent link">&para;</a></h3>
+<h4 id="using-shell-variables">USING SHELL VARIABLES<a class="headerlink" href="#using-shell-variables" title="Permanent link">&para;</a></h4>
+<p>The Bash shell allows you to set <em>shell variables</em> that you can use to help run commands or to modify
+the behavior of the shell. You can also export shell variables as environment variables, which are
+automatically copied to programs run from that shell when they start. You can use variables to help
+make it easier to run a command with a long argument, or to apply a common setting to commands
+run from that shell.</p>
+<p>Shell variables are unique to a particular shell session. If you have two terminal windows open, or
+two independent login sessions to the same remote server, you are running two shells. Each shell
+has its own set of values for its shell variables.</p>
+<p><strong>Assigning Values to Variables</strong></p>
+<p>Assign a value to a shell variable using the following syntax:</p>
+<p><code>VARIABLENAME=value</code></p>
+<p>Variable names can contain uppercase or lowercase letters, digits, and the underscore character
+(_). For example, the following commands set shell variables:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ <span class="nv">COUNT</span><span class="o">=</span><span class="m">40</span>
+<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ <span class="nv">first_name</span><span class="o">=</span>John
+<a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ <span class="nv">file1</span><span class="o">=</span>/tmp/abc
+<a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ <span class="nv">_ID</span><span class="o">=</span>RH123
+</code></pre></div>
+<p>Remember, this change only affects the shell in which you run the command, not any other shells
+you may be running on that server.</p>
+<p>You can use the <em>set</em> command to list all shell variables that are currently set. (It also lists all shell
+functions, which you can ignore.) This list is long enough that you may want to pipe the output into
+the <em>less</em> command so that you can view it one page at a time.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ <span class="nb">set</span> <span class="p">|</span> less
+<a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a><span class="nv">BASH</span><span class="o">=</span>/usr/bin/bash
+<a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a><span class="nv">BASHOPTS</span><span class="o">=</span>checkwinsize:cmdhist:complete_fullquote:expand_aliases:extglob:extquote:
+<a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a>force_fignore:histappend:interactive_comments:progcomp:promptvars:sourcepath
+<a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a><span class="nv">BASHRCSOURCED</span><span class="o">=</span>Y
+<a id="__codelineno-19-6" name="__codelineno-19-6" href="#__codelineno-19-6"></a>...output omitted...
+</code></pre></div>
+<p><strong>Retrieving Values with Variable Expansion</strong></p>
+<p>You can use variable expansion to refer to the value of a variable that you have set. To do this,
+precede the name of the variable with a dollar sign ($). In the following example, the <em>echo</em>
+command prints out the rest of the command line entered, but after variable expansion is
+performed.</p>
+<p>For example, the following command sets the variable COUNT to 40.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ <span class="nv">COUNT</span><span class="o">=</span><span class="m">40</span>
+</code></pre></div>
+<p>If you enter the command echo COUNT, it will print out the string COUNT.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ <span class="nb">echo</span> COUNT
+<a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a>COUNT
+</code></pre></div>
+<p>But if you enter the command <em>echo $COUNT</em>, it will print out the value of the variable COUNT.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ <span class="nb">echo</span> <span class="nv">$COUNT</span>
+<a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a><span class="m">40</span>
+</code></pre></div>
+<p>A more practical example might be to use a variable to refer to a long file name for multiple
+commands.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ <span class="nv">file1</span><span class="o">=</span>/tmp/tmp.z9pXW0HqcC
+<a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ ls -l <span class="nv">$file1</span>
+<a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a>-rw-------. <span class="m">1</span> student student <span class="m">1452</span> Jan <span class="m">22</span> <span class="m">14</span>:39 /tmp/tmp.z9pXW0HqcC
+<a id="__codelineno-23-4" name="__codelineno-23-4" href="#__codelineno-23-4"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ rm <span class="nv">$file1</span>
+<a id="__codelineno-23-5" name="__codelineno-23-5" href="#__codelineno-23-5"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ ls -l <span class="nv">$file1</span>
+<a id="__codelineno-23-6" name="__codelineno-23-6" href="#__codelineno-23-6"></a>total <span class="m">0</span>
+</code></pre></div>
+<div class="admonition danger">
+<p class="admonition-title">IMPORTANT</p>
+<p>If there are any trailing characters adjacent to the variable name, you might need
+to protect the variable name with curly braces. You can always use curly braces
+in variable expansion, but you will also see many examples in which they are not
+needed and are omitted.</p>
+<p>In the following example, the first <strong>echo</strong> command tries to expand the nonexistent
+variable COUNTx, which does not cause an error but instead returns nothing.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ <span class="nb">echo</span> Repeat <span class="nv">$COUNTx</span>
+<a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a>Repeat
+<a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ <span class="nb">echo</span> Repeat <span class="si">${</span><span class="nv">COUNT</span><span class="si">}</span>x
+<a id="__codelineno-24-4" name="__codelineno-24-4" href="#__codelineno-24-4"></a>Repeat 40x
+</code></pre></div>
+</div>
+<p><strong>Configuring Bash with Shell Variables</strong></p>
+<p>Some shell variables are set when Bash starts but can be modified to adjust the shell's behavior.
+For example, two shell variables that affect the shell history and the <em>history</em> command are
+HISTFILE and HISTFILESIZE. If HISTFILE is set, it specifies the location of a file to save
+the shell history in when it exits. By default this is the user's <em>~/.bash_history</em> file. The
+HISTFILESIZE variable specifies how many commands should be saved in that file from the
+history.</p>
+<p>Another example is PS1, which is a shell variable that controls the appearance of the shell prompt.
+If you change this value, it will change the appearance of your shell prompt. A number of special
+character expansions supported by the prompt are listed in the "PROMPTING" section of the
+bash(1) man page.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ <span class="nv">PS1</span><span class="o">=</span><span class="s2">&quot;bash\$ &quot;</span>
+<a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a>bash$ <span class="nv">PS1</span><span class="o">=</span><span class="s2">&quot;[\u@\h \W]\$ &quot;</span>
+<a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ 
+</code></pre></div>
+<p>Two items to note about the above example: first, because the value set by PS1 is a prompt, it is
+virtually always desirable to end the prompt with a trailing space. Second, whenever the value of
+a variable contains some form of space, including a space, a tab, or a return, the value must be
+surrounded by quotes, either single or double; this is not optional. Unexpected results will occur
+if the quotes are omitted. Examine the PS1 example above and note that it conforms to both the
+recommendation (trailing space) and the rule (quotes).</p>
+<h3 id="configuring-programs-with-environment-variables">CONFIGURING PROGRAMS WITH ENVIRONMENT VARIABLES<a class="headerlink" href="#configuring-programs-with-environment-variables" title="Permanent link">&para;</a></h3>
+<p>The shell provides an <em>environment</em> to the programs you run from that shell. Among other things,
+this environment includes information on the current working directory on the file system, the
+command-line options passed to the program, and the values of <em>environment variables</em>. The
+programs may use these environment variables to change their behavior or their default settings.</p>
+<p>Shell variables that are not environment variables can only be used by the shell. Environment
+variables can be used by the shell and by programs run from that shell.</p>
+<div class="admonition info">
+<p class="admonition-title">NOTE</p>
+<p>HISTFILE, HISTFILESIZE, and PS1, learned in the previous section, do not need
+to be exported as environment variables because they are only used by the shell
+itself, not by the programs that you run from the shell.</p>
+</div>
+<p>You can make any variable defined in the shell into an environment variable by marking it for
+export with the <strong>export</strong> command.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ <span class="nv">EDITOR</span><span class="o">=</span>vim
+<a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ <span class="nb">export</span> EDITOR
+</code></pre></div>
+<p>You can set and export a variable in one step:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ <span class="nb">export</span> <span class="nv">EDITOR</span><span class="o">=</span>vim
+</code></pre></div>
+<p>Applications and sessions use these variables to determine their behavior. For example, the shell
+automatically sets the HOME variable to the file name of the user's home directory when it starts.
+This can be used to help programs determine where to save files.</p>
+<p>Another example is LANG, which sets the locale. This adjusts the preferred language for program
+output; the character set; the formatting of dates, numbers, and currency; and the sort order
+for programs. If it is set to <strong>en_US.UTF-8</strong>, the locale will use US English with UTF-8 Unicode
+character encoding. If it is set to something else, for example <strong>fr_FR.UTF-8</strong>, it will use French
+UTF-8 Unicode encoding.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ date
+<a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a>Tue Jan <span class="m">22</span> <span class="m">16</span>:37:45 CST <span class="m">2019</span>
+<a id="__codelineno-28-3" name="__codelineno-28-3" href="#__codelineno-28-3"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ <span class="nb">export</span> <span class="nv">LANG</span><span class="o">=</span>fr_FR.UTF-8
+<a id="__codelineno-28-4" name="__codelineno-28-4" href="#__codelineno-28-4"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ date
+<a id="__codelineno-28-5" name="__codelineno-28-5" href="#__codelineno-28-5"></a>mar. janv. <span class="m">22</span> <span class="m">16</span>:38:14 CST <span class="m">2019</span>
+</code></pre></div>
+<p>Another important environment variable is PATH. The PATH variable contains a list of colon-
+separated directories that contain programs:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ <span class="nb">echo</span> <span class="nv">$PATH</span>
+<a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a>/home/user/.local/bin:/home/user/bin:/usr/share/Modules/bin:/usr/local/bin:/usr/
+<a id="__codelineno-29-3" name="__codelineno-29-3" href="#__codelineno-29-3"></a>bin:/usr/local/sbin:/usr/sbin
+</code></pre></div>
+<p>When you run a command such as <strong>ls</strong>, the shell looks for the executable file ls in each of those
+directories in order, and runs the first matching file it finds. (On a typical system, this is /usr/
+bin/ls.)</p>
+<p>You can easily add additional directories to the end of your PATH. For example, perhaps you have
+executable programs or scripts that you want to run like regular commands in <strong>/home/user/sbin</strong>.
+You can add <strong>/home/user/sbin</strong> to the end of your PATH for the current session like this:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ <span class="nb">export</span> <span class="nv">PATH</span><span class="o">=</span><span class="si">${</span><span class="nv">PATH</span><span class="si">}</span>:/home/user/sbin
+</code></pre></div>
+<p>To list all the environment variables for a particular shell, run the <strong>env</strong> command:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ env
+<a id="__codelineno-31-2" name="__codelineno-31-2" href="#__codelineno-31-2"></a>...output omitted...
+<a id="__codelineno-31-3" name="__codelineno-31-3" href="#__codelineno-31-3"></a><span class="nv">LANG</span><span class="o">=</span>en_US.UTF-8
+<a id="__codelineno-31-4" name="__codelineno-31-4" href="#__codelineno-31-4"></a><span class="nv">HISTCONTROL</span><span class="o">=</span>ignoredups
+<a id="__codelineno-31-5" name="__codelineno-31-5" href="#__codelineno-31-5"></a><span class="nv">HOSTNAME</span><span class="o">=</span>host.example.com
+<a id="__codelineno-31-6" name="__codelineno-31-6" href="#__codelineno-31-6"></a><span class="nv">XDG_SESSION_ID</span><span class="o">=</span><span class="m">4</span>
+<a id="__codelineno-31-7" name="__codelineno-31-7" href="#__codelineno-31-7"></a>...output omitted...
+</code></pre></div>
+<p><strong>Setting the Default Text Editor</strong></p>
+<p>The EDITOR environment variable specifies the program you want to use as your default text
+editor for command-line programs. Many programs use <strong>vi</strong> or <strong>vim</strong> if it is not specified, but you can
+override this preference if required:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ <span class="nb">export</span> <span class="nv">EDITOR</span><span class="o">=</span>nano
+</code></pre></div>
+<div class="admonition danger">
+<p class="admonition-title">IMPORTANT</p>
+<p>By convention, environment variables and shell variables that are automatically set
+by the shell have names that use all uppercase characters. If you are setting your
+own variables, you may want to use names made up of lowercase characters to help
+avoid naming collisions.</p>
+</div>
+<h3 id="setting-variables-automatically">SETTING VARIABLES AUTOMATICALLY<a class="headerlink" href="#setting-variables-automatically" title="Permanent link">&para;</a></h3>
+<p>If you want to set shell or environment variables automatically when your shell starts, you can edit
+the Bash startup scripts. When Bash starts, several text files containing shell commands are run
+which initialize the shell environment.</p>
+<p>The exact scripts that run depend on how the shell was started, whether it is an interactive login
+shell, an interactive non-login shell, or a shell script.</p>
+<p>Assuming the default <strong>/etc/profile</strong>, <strong>/etc/bashrc</strong>, and <strong>~/.bash_profile</strong> files, if you want
+to make a change to your user account that affects all your interactive shell prompts at startup,
+edit your <strong>~/.bashrc</strong> file. For example, you could set that account's default editor to <strong>nano</strong> by
+editing the file to read:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a># .bashrc
+<a id="__codelineno-33-2" name="__codelineno-33-2" href="#__codelineno-33-2"></a># Source global definitions
+<a id="__codelineno-33-3" name="__codelineno-33-3" href="#__codelineno-33-3"></a>if [ -f /etc/bashrc ]; then
+<a id="__codelineno-33-4" name="__codelineno-33-4" href="#__codelineno-33-4"></a> . /etc/bashrc
+<a id="__codelineno-33-5" name="__codelineno-33-5" href="#__codelineno-33-5"></a>fi
+<a id="__codelineno-33-6" name="__codelineno-33-6" href="#__codelineno-33-6"></a># User specific environment
+<a id="__codelineno-33-7" name="__codelineno-33-7" href="#__codelineno-33-7"></a>PATH=&quot;$HOME/.local/bin:$HOME/bin:$PATH&quot;
+<a id="__codelineno-33-8" name="__codelineno-33-8" href="#__codelineno-33-8"></a>export PATH
+<a id="__codelineno-33-9" name="__codelineno-33-9" href="#__codelineno-33-9"></a># User specific aliases and functions
+<a id="__codelineno-33-10" name="__codelineno-33-10" href="#__codelineno-33-10"></a>export EDITOR=nano
+</code></pre></div>
+<div class="admonition info">
+<p class="admonition-title">NOTE</p>
+<p>The best way to adjust settings that affect all user accounts is by adding a file with a
+name ending in <strong>.sh</strong> containing the changes to the <strong>/etc/profile.d</strong> directory. To
+do this, you need to be logged in as the root user.</p>
+</div>
+<h4 id="unsetting-and-unexporting-variables">UNSETTING AND UNEXPORTING VARIABLES<a class="headerlink" href="#unsetting-and-unexporting-variables" title="Permanent link">&para;</a></h4>
+<p>To unset and unexport a variable entirely, use the <strong>unset</strong> command:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ <span class="nb">echo</span> <span class="nv">$file1</span>
+<a id="__codelineno-34-2" name="__codelineno-34-2" href="#__codelineno-34-2"></a>/tmp/tmp.z9pXW0HqcC
+<a id="__codelineno-34-3" name="__codelineno-34-3" href="#__codelineno-34-3"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ <span class="nb">unset</span> file1
+<a id="__codelineno-34-4" name="__codelineno-34-4" href="#__codelineno-34-4"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ <span class="nb">echo</span> <span class="nv">$file1</span>
+<a id="__codelineno-34-5" name="__codelineno-34-5" href="#__codelineno-34-5"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ 
+</code></pre></div>
+<p>To unexport a variable without unsetting it, use the export -n command:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ <span class="nb">export</span> -n PS1
+</code></pre></div>
+<h3 id="summary">SUMMARY<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h3>
+<p>In this chapter, you learned:</p>
+<ul>
+<li>
+<p>Running programs, or processes, have three standard communication channels, standard input,
+standard output, and standard error.</p>
+</li>
+<li>
+<p>You can use I/O redirection to read standard input from a file or write the output or errors from a
+process to a file.</p>
+</li>
+<li>
+<p>Pipelines can be used to connect standard output from one process to standard input of another
+process, and can be used to format output or build complex commands.</p>
+</li>
+<li>
+<p>You should know how to use at least one command-line text editor, and Vim is generally
+installed.</p>
+</li>
+<li>
+<p>Shell variables can help you run commands and are unique to a particular shell session.</p>
+</li>
+<li>
+<p>Environment variables can help you configure the behavior of the shell or the processes it starts.</p>
+</li>
+</ul>
+
+  <hr>
+<div class="md-source-file">
+  <small>
+    
+      Last update:
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">November 13, 2022</span>
+      
+    
+  </small>
+</div>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+          <a href="#" class="md-top md-icon" data-md-component="top" hidden>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+            Back to top
+          </a>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+    <nav class="md-footer__inner md-grid" aria-label="Footer" >
+      
+        
+        <a href="../help/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Getting Help In Red Hat Enterprise Linux" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Getting Help In Red Hat Enterprise Linux
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../users/" class="md-footer__link md-footer__link--next" aria-label="Next: Managing Local Users And Groups" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Managing Local Users And Groups
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2022 Divijesh Varma. All rights reserved.
+    </div>
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.instant", "navigation.tracking", "navigation.tabs", "navigation.tabs.sticky", "navigation.expand", "navigation.top", "navigation.sections", "content.tooltips", "header.autohide"], "search": "../../assets/javascripts/workers/search.16e2a7d4.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d6c3db9e.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="../../javascripts/feedback.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,2754 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://www.privacyguides.org/redhat/control/">
+      
+      <link rel="icon" href="../../assets/img/layout/favicon.ico">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-8.5.10">
+    
+    
+      
+        <title>Controlling Access To Files - Divijesh Varma</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.472b142f.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.08040f6c.min.css">
+        
+      
+      
+
+    
+    
+    
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent="teal">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#interpreting-linux-file-system-permissions" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Divijesh Varma" class="md-header__button md-logo" aria-label="Divijesh Varma" data-md-component="logo">
+      
+  <img src="../../assets/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Divijesh Varma
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Controlling Access To Files
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent="teal"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 1 7 7c0 2.38-1.19 4.47-3 5.74V17a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 0 1 7-7M9 21v-1h6v1a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1m3-17a5 5 0 0 0-5 5c0 2.05 1.23 3.81 3 4.58V16h4v-2.42c1.77-.77 3-2.53 3-4.58a5 5 0 0 0-5-5Z"/></svg>
+            </label>
+          
+        
+          
+          
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="deep-purple" data-md-color-accent="deep-orange"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 2.38 1.19 4.47 3 5.74V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.26c1.81-1.27 3-3.36 3-5.74a7 7 0 0 0-7-7M9 21a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-1H9v1Z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../.." class="md-tabs__link">
+      Home
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../linux/vi/" class="md-tabs__link">
+        Linux
+      </a>
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../intro/" class="md-tabs__link md-tabs__link--active">
+        RedHat
+      </a>
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../english/vol1/" class="md-tabs__link">
+        English
+      </a>
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../basics/threat-modeling/" class="md-tabs__link">
+        Knowledge Base
+      </a>
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../tools/" class="md-tabs__link">
+        Recommendations
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../about/" class="md-tabs__link">
+        About
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Divijesh Varma" class="md-nav__button md-logo" aria-label="Divijesh Varma" data-md-component="logo">
+      
+  <img src="../../assets/logo.png" alt="logo">
+
+    </a>
+    Divijesh Varma
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          Linux
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Linux" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Linux
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_2_1" type="checkbox" id="__nav_2_1" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_1">
+          Editors
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Editors" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_1">
+          <span class="md-nav__icon md-icon"></span>
+          Editors
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/vi/" class="md-nav__link">
+        Vim
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/nano/" class="md-nav__link">
+        Nano
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_2_2" type="checkbox" id="__nav_2_2" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_2">
+          Notes
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Notes" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_2">
+          <span class="md-nav__icon md-icon"></span>
+          Notes
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/rhcsa/" class="md-nav__link">
+        Tritree
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/user/" class="md-nav__link">
+        User Management
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/acl/" class="md-nav__link">
+        Access control lists (ACLs)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/network/" class="md-nav__link">
+        Networking
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/ssh/" class="md-nav__link">
+        OpenSSH
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/process/" class="md-nav__link">
+        Process Management
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/software/" class="md-nav__link">
+        Software Management
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/systemd/" class="md-nav__link">
+        Systemd Management
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/cron/" class="md-nav__link">
+        Cron Jobs
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/logs/" class="md-nav__link">
+        Logs
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/disk/" class="md-nav__link">
+        Disk Management
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3">
+          RedHat
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="RedHat" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          RedHat
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+    
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_1" type="checkbox" id="__nav_3_1" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_1">
+          RHSA I (RH124)
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="RHSA I (RH124)" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_1">
+          <span class="md-nav__icon md-icon"></span>
+          RHSA I (RH124)
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../intro/" class="md-nav__link">
+        Introduction
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../access/" class="md-nav__link">
+        Accessing The Command Line
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../manage/" class="md-nav__link">
+        Managing Files From The Command Line
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../help/" class="md-nav__link">
+        Getting Help In Red Hat Enterprise Linux
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../edit/" class="md-nav__link">
+        Creating, Viewing, And Editing Text Files
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../users/" class="md-nav__link">
+        Managing Local Users And Groups
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Controlling Access To Files
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Controlling Access To Files
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#interpreting-linux-file-system-permissions" class="md-nav__link">
+    INTERPRETING LINUX FILE SYSTEM PERMISSIONS
+  </a>
+  
+    <nav class="md-nav" aria-label="INTERPRETING LINUX FILE SYSTEM PERMISSIONS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#linux-file-system-permissions" class="md-nav__link">
+    LINUX FILE-SYSTEM PERMISSIONS
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#viewing-file-and-directory-permissions-and-ownership" class="md-nav__link">
+    VIEWING FILE AND DIRECTORY PERMISSIONS AND OWNERSHIP
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#examples-of-permission-effects" class="md-nav__link">
+    EXAMPLES OF PERMISSION EFFECTS
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#managing-file-system-permissions-from-the-command-line" class="md-nav__link">
+    MANAGING FILE SYSTEM PERMISSIONS FROM THE COMMAND LINE
+  </a>
+  
+    <nav class="md-nav" aria-label="MANAGING FILE SYSTEM PERMISSIONS FROM THE COMMAND LINE">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#changing-file-and-directory-permissions" class="md-nav__link">
+    CHANGING FILE AND DIRECTORY PERMISSIONS
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#changing-file-and-directory-user-or-group-ownership" class="md-nav__link">
+    CHANGING FILE AND DIRECTORY USER OR GROUP OWNERSHIP
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#managing-default-permissions-and-file-access" class="md-nav__link">
+    MANAGING DEFAULT PERMISSIONS AND FILE ACCESS
+  </a>
+  
+    <nav class="md-nav" aria-label="MANAGING DEFAULT PERMISSIONS AND FILE ACCESS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#special-permissions" class="md-nav__link">
+    SPECIAL PERMISSIONS
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#default-file-permissions" class="md-nav__link">
+    DEFAULT FILE PERMISSIONS
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    SUMMARY
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4">
+          English
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="English" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          English
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_4_1" type="checkbox" id="__nav_4_1" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_1">
+          Tutorial
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Tutorial" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_1">
+          <span class="md-nav__icon md-icon"></span>
+          Tutorial
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../english/vol1/" class="md-nav__link">
+        Vol-1
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../english/vol2/" class="md-nav__link">
+        Vol-2
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../english/vol3/" class="md-nav__link">
+        Vol-3
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../english/vol4/" class="md-nav__link">
+        Vol-4
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5">
+          Knowledge Base
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Knowledge Base" data-md-level="1">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          Knowledge Base
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_5_1" type="checkbox" id="__nav_5_1" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5_1">
+          The Basics
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="The Basics" data-md-level="2">
+        <label class="md-nav__title" for="__nav_5_1">
+          <span class="md-nav__icon md-icon"></span>
+          The Basics
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../basics/threat-modeling/" class="md-nav__link">
+        Threat Modeling
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../basics/dns/" class="md-nav__link">
+        Introduction to DNS
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../basics/multi-factor-authentication/" class="md-nav__link">
+        Multi-factor Authentication
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../basics/account-deletion/" class="md-nav__link">
+        Account Deletion
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_5_2" type="checkbox" id="__nav_5_2" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5_2">
+          Android
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Android" data-md-level="2">
+        <label class="md-nav__title" for="__nav_5_2">
+          <span class="md-nav__icon md-icon"></span>
+          Android
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../android/overview/" class="md-nav__link">
+        Android Overview
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../android/grapheneos-vs-calyxos/" class="md-nav__link">
+        GrapheneOS vs CalyxOS
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_5_3" type="checkbox" id="__nav_5_3" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5_3">
+          Linux
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Linux" data-md-level="2">
+        <label class="md-nav__title" for="__nav_5_3">
+          <span class="md-nav__icon md-icon"></span>
+          Linux
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux-desktop/overview/" class="md-nav__link">
+        Linux Overview
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux-desktop/hardening/" class="md-nav__link">
+        System Hardening
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux-desktop/sandboxing/" class="md-nav__link">
+        Application Sandboxing
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_5_4" type="checkbox" id="__nav_5_4" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5_4">
+          Advanced
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Advanced" data-md-level="2">
+        <label class="md-nav__title" for="__nav_5_4">
+          <span class="md-nav__icon md-icon"></span>
+          Advanced
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setup/integrating-metadata-removal/" class="md-nav__link">
+        Integrating Metadata Removal
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_6" type="checkbox" id="__nav_6" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6">
+          Recommendations
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Recommendations" data-md-level="1">
+        <label class="md-nav__title" for="__nav_6">
+          <span class="md-nav__icon md-icon"></span>
+          Recommendations
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tools/" class="md-nav__link">
+        Privacy Tools
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_6_2" type="checkbox" id="__nav_6_2" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6_2">
+          Browsers
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Browsers" data-md-level="2">
+        <label class="md-nav__title" for="__nav_6_2">
+          <span class="md-nav__icon md-icon"></span>
+          Browsers
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../browsers/" class="md-nav__link">
+        Web Browsers
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_6_3" type="checkbox" id="__nav_6_3" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6_3">
+          Operating Systems
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Operating Systems" data-md-level="2">
+        <label class="md-nav__title" for="__nav_6_3">
+          <span class="md-nav__icon md-icon"></span>
+          Operating Systems
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../android/" class="md-nav__link">
+        Android
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux-desktop/" class="md-nav__link">
+        Linux
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../qubes/" class="md-nav__link">
+        Qubes OS
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../router/" class="md-nav__link">
+        Router Firmware
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_6_4" type="checkbox" id="__nav_6_4" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6_4">
+          Providers
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Providers" data-md-level="2">
+        <label class="md-nav__title" for="__nav_6_4">
+          <span class="md-nav__icon md-icon"></span>
+          Providers
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cloud/" class="md-nav__link">
+        Cloud Storage
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dns/" class="md-nav__link">
+        DNS Resolvers
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../email/" class="md-nav__link">
+        Email Services
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../search-engines/" class="md-nav__link">
+        Search Engines
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vpn/" class="md-nav__link">
+        VPN Services
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_6_5" type="checkbox" id="__nav_6_5" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6_5">
+          Software
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Software" data-md-level="2">
+        <label class="md-nav__title" for="__nav_6_5">
+          <span class="md-nav__icon md-icon"></span>
+          Software
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../calendar-contacts/" class="md-nav__link">
+        Calendar and Contact Sync
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../notebooks/" class="md-nav__link">
+        Notebooks
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../email-clients/" class="md-nav__link">
+        Email Clients
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../encryption/" class="md-nav__link">
+        Encryption Software
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../file-sharing/" class="md-nav__link">
+        File Sharing and Sync
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../metadata-removal-tools/" class="md-nav__link">
+        Metadata Removal Tools
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../multi-factor-authentication/" class="md-nav__link">
+        Multi-Factor Authenticators
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../passwords/" class="md-nav__link">
+        Password Managers
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../productivity/" class="md-nav__link">
+        Productivity Tools
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../real-time-communication/" class="md-nav__link">
+        Real-Time Communication
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../news-aggregators/" class="md-nav__link">
+        News Aggregators
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../self-contained-networks/" class="md-nav__link">
+        Self-Contained Networks
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../video-streaming/" class="md-nav__link">
+        Video Streaming
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_7" type="checkbox" id="__nav_7" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_7">
+          About
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="About" data-md-level="1">
+        <label class="md-nav__title" for="__nav_7">
+          <span class="md-nav__icon md-icon"></span>
+          About
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/" class="md-nav__link">
+        Heading
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#interpreting-linux-file-system-permissions" class="md-nav__link">
+    INTERPRETING LINUX FILE SYSTEM PERMISSIONS
+  </a>
+  
+    <nav class="md-nav" aria-label="INTERPRETING LINUX FILE SYSTEM PERMISSIONS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#linux-file-system-permissions" class="md-nav__link">
+    LINUX FILE-SYSTEM PERMISSIONS
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#viewing-file-and-directory-permissions-and-ownership" class="md-nav__link">
+    VIEWING FILE AND DIRECTORY PERMISSIONS AND OWNERSHIP
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#examples-of-permission-effects" class="md-nav__link">
+    EXAMPLES OF PERMISSION EFFECTS
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#managing-file-system-permissions-from-the-command-line" class="md-nav__link">
+    MANAGING FILE SYSTEM PERMISSIONS FROM THE COMMAND LINE
+  </a>
+  
+    <nav class="md-nav" aria-label="MANAGING FILE SYSTEM PERMISSIONS FROM THE COMMAND LINE">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#changing-file-and-directory-permissions" class="md-nav__link">
+    CHANGING FILE AND DIRECTORY PERMISSIONS
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#changing-file-and-directory-user-or-group-ownership" class="md-nav__link">
+    CHANGING FILE AND DIRECTORY USER OR GROUP OWNERSHIP
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#managing-default-permissions-and-file-access" class="md-nav__link">
+    MANAGING DEFAULT PERMISSIONS AND FILE ACCESS
+  </a>
+  
+    <nav class="md-nav" aria-label="MANAGING DEFAULT PERMISSIONS AND FILE ACCESS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#special-permissions" class="md-nav__link">
+    SPECIAL PERMISSIONS
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#default-file-permissions" class="md-nav__link">
+    DEFAULT FILE PERMISSIONS
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    SUMMARY
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+  
+
+
+
+
+  <h1>Controlling Access To Files</h1>
+
+<h3 id="interpreting-linux-file-system-permissions">INTERPRETING LINUX FILE SYSTEM PERMISSIONS<a class="headerlink" href="#interpreting-linux-file-system-permissions" title="Permanent link">&para;</a></h3>
+<h4 id="linux-file-system-permissions">LINUX FILE-SYSTEM PERMISSIONS<a class="headerlink" href="#linux-file-system-permissions" title="Permanent link">&para;</a></h4>
+<p><em>File permissions</em> control access to files. The Linux file permissions system is simple but flexible,
+which makes it easy to understand and apply, yet still able to handle most normal permission cases
+easily.</p>
+<p>Files have three categories of user to which permissions apply. The file is owned by a user, normally
+the one who created the file. The file is also owned by a single group, usually the primary group
+of the user who created the file, but this can be changed. Different permissions can be set for the
+owning user, the owning group, and for all other users on the system that are not the user or a
+member of the owning group.</p>
+<p>The most specific permissions take precedence. User permissions override group permissions,
+which override other permissions.</p>
+<p>In Figure, joshua is a member of the groups joshua and web, and allison is a member of
+allison, wheel, and web. When joshua and allison need to collaborate, the files should be
+associated with the group web and group permissions should allow the desired access.</p>
+<p><img alt="Example group membership to facilitate collaboration" src="https://www.linuxprobe.com/links/RH124/images/perms/usersandgroups.png" title="Example group membership to facilitate collaboration" /></p>
+<p>Three categories of permissions apply: read, write, and execute. The following table explains how
+these permissions affect access to files and directories.</p>
+<p><strong>Effects of Permissions on Files and Directories</strong></p>
+<table>
+<thead>
+<tr>
+<th align="center">PERMISSION</th>
+<th align="left">EFFECT ON FILES</th>
+<th>EFFECT ON DIRECTORIES</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">r (read)</td>
+<td align="left">Contents of the file can be read.</td>
+<td>Contents of the directory (the filenames) can be listed.</td>
+</tr>
+<tr>
+<td align="center">w (write)</td>
+<td align="left">Contents of the file can be changed.</td>
+<td>Any file in the directory can be created or deleted.</td>
+</tr>
+<tr>
+<td align="center">x (execute)</td>
+<td align="left">Files can be executed as commands.</td>
+<td>Contents of the directory can be accessed. (You can change into the directory, read information about its files, and access its files if the files'permissions allow it.)</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="left"></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>Note that users normally have both read and execute permissions on read-only directories so that
+they can list the directory and have full read-only access to its contents. If a user only has read
+access on a directory, the names of the files in it can be listed, but no other information, including
+permissions or time stamps, are available, nor can they be accessed. If a user only has execute
+access on a directory, they cannot list the names of the files in the directory, but if they already
+know the name of a file that they have permission to read, then they can access the contents of
+that file by explicitly specifying the file name.</p>
+<p>A file may be removed by anyone who has write permission to the directory in which the file
+resides, regardless of the ownership or permissions on the file itself. This can be overridden with a
+special permission, the <em>sticky bit</em>, discussed later in this chapter.</p>
+<div class="admonition info">
+<p class="admonition-title">NOTE</p>
+<p>Linux file permissions work differently than the permissions system used by the
+NTFS file system for Microsoft Windows.</p>
+<p>On Linux, permissions apply only to the file or directory on which they are set. That
+is, permissions on a directory are not inherited automatically by the subdirectories
+and files within it. However, permissions on a directory can block access to the
+contents of the directory depending on how restrictive they are.</p>
+<p>The read permission on a directory in Linux is roughly equivalent to List folder
+contents in Windows.</p>
+<p>The write permission on a directory in Linux is equivalent to Modify in Windows; it
+implies the ability to delete files and subdirectories. In Linux, if write and the sticky
+bit are both set on a directory, then only the user that owns a file or subdirectory
+in the directory may delete it, which is close to the behavior of the Windows Write
+permission.</p>
+<p>The root user on Linux has the equivalent of the Windows Full Control permission
+on all files. However, root may still have access restricted by the system's SELinux
+policy and the security context of the process and files in question. SELinux will be
+discussed in a later course.</p>
+</div>
+<h3 id="viewing-file-and-directory-permissions-and-ownership">VIEWING FILE AND DIRECTORY PERMISSIONS AND OWNERSHIP<a class="headerlink" href="#viewing-file-and-directory-permissions-and-ownership" title="Permanent link">&para;</a></h3>
+<p>The <strong>-l</strong> option of the <strong>ls</strong> command shows more detailed information about file permissions and
+ownership:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="o">[</span>user@host~<span class="o">]</span>$ ls -l <span class="nb">test</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>-rw-rw-r--. <span class="m">1</span> student student <span class="m">0</span> Feb  <span class="m">8</span> <span class="m">17</span>:36 <span class="nb">test</span>
+</code></pre></div>
+<p>You can use the <strong>-d</strong> option to to show detailed information about a directory itself, and not its
+contents.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ ls -ld /home
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>drwxr-xr-x. <span class="m">5</span> root root <span class="m">4096</span> Jan <span class="m">31</span> <span class="m">22</span>:00 /home
+</code></pre></div>
+<p>The first character of the long listing is the file type. You interpret it like this:</p>
+<ul>
+<li>
+<p><code>- is a regular file.</code></p>
+</li>
+<li>
+<p><code>d is a directory.</code></p>
+</li>
+<li>
+<p><code>l is a soft link.</code></p>
+</li>
+<li>
+<p><code>Other characters represent hardware devices (b and c) or other special-purpose files (p and s).</code></p>
+</li>
+</ul>
+<p>The next nine characters are the file permissions. These are in three sets of three characters:
+permissions that apply to the user that owns the file, the group that owns the file, and all other
+users. If the set shows <strong>rwx</strong>, that category has all three permissions, read, write, and execute. If a
+letter has been replaced by -, then that category does not have that permission.</p>
+<p>After the link count, the first name specifies the user that owns the file, and the second name the
+group that owns the file.</p>
+<p>So in the example above, the permissions for user student are specified by the first set of three
+characters. User student has read and write on test, but not execute.</p>
+<p>Group student is specified by the second set of three characters: it also has read and write on
+test, but not execute.</p>
+<p>Any other user's permissions are specified by the third set of three characters: they only have read
+permission on test.</p>
+<p>The most specific set of permissions apply. So if user student has different permissions than
+group student, and user student is also a member of that group, then the user permissions will
+be the ones that apply.</p>
+<h3 id="examples-of-permission-effects">EXAMPLES OF PERMISSION EFFECTS<a class="headerlink" href="#examples-of-permission-effects" title="Permanent link">&para;</a></h3>
+<p>The following examples will help illustrate how file permissions interact. For these examples, we
+have four users with the following group memberships:</p>
+<table>
+<thead>
+<tr>
+<th align="center">USER</th>
+<th align="left">GROUP MEMBERSHIPS</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">operator1</td>
+<td align="left">operator1, consultant1</td>
+</tr>
+<tr>
+<td align="center">database1</td>
+<td align="left">database1, consultant1</td>
+</tr>
+<tr>
+<td align="center">database2</td>
+<td align="left">database2, operator2</td>
+</tr>
+<tr>
+<td align="center">contractor1</td>
+<td align="left">contractor1, operator2</td>
+</tr>
+</tbody>
+</table>
+<p>Those users will be working with files in the <strong>dir</strong> directory. This is a long listing of the files in that
+directory:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="o">[</span>database1@host dir<span class="o">]</span>$ ls -la
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>total <span class="m">24</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>drwxrwxr-x.  <span class="m">2</span> database1 consultant1   <span class="m">4096</span> Apr  <span class="m">4</span> <span class="m">10</span>:23 .
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>drwxr-xr-x. <span class="m">10</span> root      root          <span class="m">4096</span> Apr  <span class="m">1</span> <span class="m">17</span>:34 ..
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>-rw-rw-r--.  <span class="m">1</span> operator1 operator1     <span class="m">1024</span> Apr  <span class="m">4</span> <span class="m">11</span>:02 lfile1
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>-rw-r--rw-.  <span class="m">1</span> operator1 consultant1   <span class="m">3144</span> Apr  <span class="m">4</span> <span class="m">11</span>:02 lfile2
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>-rw-rw-r--.  <span class="m">1</span> database1 consultant1  <span class="m">10234</span> Apr  <span class="m">4</span> <span class="m">10</span>:14 rfile1
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>-rw-r-----.  <span class="m">1</span> database1 consultant1   <span class="m">2048</span> Apr  <span class="m">4</span> <span class="m">10</span>:18 rfile2
+</code></pre></div>
+<p>The <strong>-a</strong> option shows the permissions of hidden files, including the special files used to represent
+the directory and its parent. In this example, . reflects the permissions of <strong>dir</strong> itself, and .. the
+permissions of its parent directory.</p>
+<p>What are the permissions of <strong>rfile1</strong>? The user that owns the file (database1) has read and write
+but not execute. The group that owns the file (consultant1) has read and write but not execute.
+All other users have read but not write or execute.</p>
+<p>The following table explores some of the effects of this set of permissions for these users:</p>
+<table>
+<thead>
+<tr>
+<th align="left">EFFECT</th>
+<th align="left">WHY IS THIS TRUE?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">The user operator1 can change the contents of <strong>rfile1</strong>.</td>
+<td align="left">User operator1 is a member of the consultant1 group, and that group has both read and write permissions on <strong>rfile1</strong>.</td>
+</tr>
+<tr>
+<td align="left">The user database1 can view and modify the contents of <strong>rfile2</strong>.</td>
+<td align="left">User database1 owns the file and has both read and write access to <strong>rfile2</strong>.</td>
+</tr>
+<tr>
+<td align="left">The user operator1 can view but not modify the contents of <strong>rfile2</strong> (without deleting it and recreating it).</td>
+<td align="left">User operator1 is a member of the consultant1 group, and that group only has read access to <strong>rfile2</strong>.</td>
+</tr>
+<tr>
+<td align="left">The users database2 and contractor1 do not have any access to the contents of <strong>rfile2</strong>.</td>
+<td align="left"><strong>other</strong> permissions apply to users database2 and contractor1, and those permissions do not include read or write permission.</td>
+</tr>
+<tr>
+<td align="left">operator1 is the only user who can change the contents of <strong>lfile1</strong> (without deleting it and recreating it).</td>
+<td align="left">User and group operator1 have write permission on the file, other users do not. But the only member of group operator1 is user operator1.</td>
+</tr>
+<tr>
+<td align="left">The user database2 can change the contents of <strong>lfile2</strong>.</td>
+<td align="left">User database2 is not the user that owns the file and is not in group consultant1, so <strong>other</strong> permissions apply. Those grant write permission.</td>
+</tr>
+<tr>
+<td align="left">The user database1 can view the contents of <strong>lfile2</strong>, but cannot modify the contents of <strong>lfile2</strong> (without deleting it and recreating it).</td>
+<td align="left">User database1 is a member of the group consultant1, and that group only has read permissions on <strong>lfile2</strong>. Even though <strong>other</strong> has write permission, the group permissions take precedence.</td>
+</tr>
+<tr>
+<td align="left">The user database1 can delete <strong>lfile1</strong> and <strong>lfile2</strong>.</td>
+<td align="left">User database1 has write permissions on the directory containing both files (shown by .), and therefore can delete any file in that directory. This is true even if database1 does not have write permission on the file itself.</td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+</tbody>
+</table>
+<h3 id="managing-file-system-permissions-from-the-command-line">MANAGING FILE SYSTEM PERMISSIONS FROM THE COMMAND LINE<a class="headerlink" href="#managing-file-system-permissions-from-the-command-line" title="Permanent link">&para;</a></h3>
+<h4 id="changing-file-and-directory-permissions">CHANGING FILE AND DIRECTORY PERMISSIONS<a class="headerlink" href="#changing-file-and-directory-permissions" title="Permanent link">&para;</a></h4>
+<p>The command used to change permissions from the command line is <strong>chmod</strong>, which means "change
+mode" (permissions are also called the mode of a file). The <strong>chmod</strong> command takes a permission
+instruction followed by a list of files or directories to change. The permission instruction can be
+issued either symbolically (the symbolic method) or numerically (the numeric method).</p>
+<p><strong>Changing Permissions with the Symbolic Method</strong></p>
+<p><code>chmod WhoWhatWhich file|directory</code></p>
+<ul>
+<li>
+<p>Who is u, g, o, a (for user, group, other, all)</p>
+</li>
+<li>
+<p>What is +, -, = (for add, remove, set exactly)</p>
+</li>
+<li>
+<p>Which is r, w, x (for read, write, execute)</p>
+</li>
+</ul>
+<p>The <em>symbolic</em> method of changing file permissions uses letters to represent the different groups of
+permissions: u for user, g for group, o for other, and a for all.</p>
+<p>With the symbolic method, it is not necessary to set a complete new group of permissions. Instead,
+you can change one or more of the existing permissions. Use + or - to add or remove permissions,
+respectively, or use = to replace the entire set for a group of permissions.</p>
+<p>The permissions themselves are represented by a single letter: r for read, w for write, and x for
+execute. When using chmod to change permissions with the symbolic method, using a capital X as
+the permission flag will add execute permission only if the file is a directory or already has execute
+set for user, group, or other.</p>
+<div class="admonition info">
+<p class="admonition-title">NOTE</p>
+<p>The <strong>chmod</strong> command supports the -R option to recursively set permissions on
+the files in an entire directory tree. When using the -R option, it can be useful to
+set permissions symbolically using the X option. This allows the execute (search)
+permission to be set on directories so that their contents can be accessed, without
+changing permissions on most files. Be cautious with the X option, however, because
+if a file has any execute permission set, X will set the specified execute permission on
+that file as well. For example, the following command recursively sets read and write
+access on <strong>demodir</strong> and all its children for their group owner, but only applies group
+execute permissions to directories and files that already have execute set for user,
+group, or other.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="o">[</span>root@host opt<span class="o">]</span><span class="c1"># chmod -R g+rwX demodir</span>
+</code></pre></div>
+</div>
+<p><strong>Examples</strong></p>
+<ul>
+<li>Remove read and write permission for group and other on file1:</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ chmod go-rw file1
+</code></pre></div>
+<ul>
+<li>Add execute permission for everyone on file2:</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ chmod a+x file2
+</code></pre></div>
+<p><strong>Changing Permissions with the Numeric Method</strong></p>
+<p>In the example below the # character represents a digit.</p>
+<p><code>chmod ### file|directory</code></p>
+<ul>
+<li>
+<p>Each digit represents permissions for an access level: user, group, other.</p>
+</li>
+<li>
+<p>The digit is calculated by adding together numbers for each permission you want to add, 4 for
+read, 2 for write, and 1 for execute.</p>
+</li>
+</ul>
+<p>Using the numeric method, permissions are represented by a 3-digit (or 4-digit, when setting
+advanced permissions) octal number. A single octal digit can represent any single value from 0-7.</p>
+<p>In the 3-digit octal (numeric) representation of permissions, each digit stands for one access level,
+from left to right: user, group, and other. To determine each digit:</p>
+<ol>
+<li>
+<p>Start with 0.</p>
+</li>
+<li>
+<p>If the read permission should be present for this access level, add 4.</p>
+</li>
+<li>
+<p>If the write permission should be present, add 2.</p>
+</li>
+<li>
+<p>If the execute permission should be present, add 1.</p>
+</li>
+</ol>
+<p>Examine the permissions -rwxr-x---. For the user, rwx is calculated as 4+2+1=7. For the group,
+r-x is calculated as 4+0+1=5, and for other users, --- is represented with 0. Putting these three
+together, the numeric representation of those permissions is 750.</p>
+<p>This calculation can also be performed in the opposite direction. Look at the permissions 640. For
+the user permissions, 6 represents read (4) and write (2), which displays as rw-. For the group
+part, 4 only includes read (4) and displays as r--. The 0 for other provides no permissions (---)
+and the final set of symbolic permissions for this file is -rw-r-----.</p>
+<p>Experienced administrators often use numeric permissions because they are shorter to type and
+pronounce, while still giving full control over all permissions.</p>
+<p><strong>Examples</strong></p>
+<ul>
+<li>Set read and write permissions for user, read permission for group and other, on samplefile:</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ chmod <span class="m">644</span> samplefile
+</code></pre></div>
+<ul>
+<li>Set read, write, and execute permissions for user, read and execute permissions for group, and no
+permission for other on <em>sampledir</em>:</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ chmod <span class="m">750</span> sampledir
+</code></pre></div>
+<h4 id="changing-file-and-directory-user-or-group-ownership">CHANGING FILE AND DIRECTORY USER OR GROUP OWNERSHIP<a class="headerlink" href="#changing-file-and-directory-user-or-group-ownership" title="Permanent link">&para;</a></h4>
+<p>A newly created file is owned by the user who creates that file. By default, new files have a group
+ownership that is the primary group of the user creating the file. In Red Hat Enterprise Linux, a
+user's primary group is usually a private group with only that user as a member. To grant access to
+a file based on group membership, the group that owns the file may need to be changed.</p>
+<p>Only root can change the user that owns a file. Group ownership, however, can be set by root or
+by the file's owner. root can grant file ownership to any group, but regular users can make a group
+the owner of a file only if they are a member of that group.</p>
+<p>File ownership can be changed with the <strong>chown</strong> (change owner) command. For example, to grant
+ownership of the test_file file to the student user, use the following command:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># chown student test_file</span>
+</code></pre></div>
+<p>chown can be used with the -R option to recursively change the ownership of an entire directory
+tree. The following command grants ownership of test_dir and all files and subdirectories within
+it to student:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># chown -R student test_dir</span>
+</code></pre></div>
+<p>The <strong>chown</strong> command can also be used to change group ownership of a file by preceding the
+group name with a colon (:). For example, the following command changes the group test_dir to
+admins:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># chown :admins test_dir</span>
+</code></pre></div>
+<p>The <strong>chown</strong> command can also be used to change both owner and group at the same time by using
+the owner:group syntax. For example, to change the ownership of test_dir to visitor and the
+group to guests, use the following command:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># chown visitor:guests test_dir</span>
+</code></pre></div>
+<p>Instead of using <strong>chown</strong>, some users change the group ownership by using the <strong>chgrp</strong> command.
+This command works just like <strong>chown</strong>, except that it is only used to change group ownership and the
+colon (:) before the group name is not required.</p>
+<div class="admonition danger">
+<p class="admonition-title">IMPORTANT</p>
+<p>You may encounter examples of <strong>chown</strong> commands using an alternative syntax that
+separates owner and group with a period instead of a colon:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># chown owner.group filename</span>
+</code></pre></div>
+<p>You should not use this syntax. Always use a colon.</p>
+<p>A period is a valid character in a user name, but a colon is not. If the user
+enoch.root, the user enoch, and the group root exist on the system, the result
+of <strong>chown enoch.root filename</strong> will be to have <strong>filename</strong> owned by the user
+enoch.root. You may have been trying to set the file ownership to the user enoch
+and group root. This can be confusing.</p>
+<p>If you always use the <strong>chown</strong> colon syntax when setting the user and group at the
+same time, the results are always easy to predict.</p>
+</div>
+<h3 id="managing-default-permissions-and-file-access">MANAGING DEFAULT PERMISSIONS AND FILE ACCESS<a class="headerlink" href="#managing-default-permissions-and-file-access" title="Permanent link">&para;</a></h3>
+<h4 id="special-permissions">SPECIAL PERMISSIONS<a class="headerlink" href="#special-permissions" title="Permanent link">&para;</a></h4>
+<p><em>Special permissions</em> constitute a fourth permission type in addition to the basic user, group, and
+other types. As the name implies, these permissions provide additional access-related features
+over and above what the basic permission types allow. This section details the impact of special
+permissions, summarized in the table below.</p>
+<p><strong>Effects of Special Permissions on Files and Directories</strong></p>
+<table>
+<thead>
+<tr>
+<th align="center">SPECIAL PERMISSION</th>
+<th align="left">EFFECT ON FILES</th>
+<th>EFFECT ON DIRECTORIES</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">u+s (suid)</td>
+<td align="left">File executes as the user that owns the file, not the user that ran the file.</td>
+<td>No effect.</td>
+</tr>
+<tr>
+<td align="center">g+s (sgid)</td>
+<td align="left">File executes as the group that owns the file.</td>
+<td>Files newly created in the directory have their group owner set to match the group owner of the directory.</td>
+</tr>
+<tr>
+<td align="center">o+t (sticky)</td>
+<td align="left">No effect.</td>
+<td>Users with write access to the directory can only remove files that they own; they cannot remove or force saves to files owned by other users.</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="left"></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>The setuid permission on an executable file means that commands run as the user owning the file,
+not as the user that ran the command. One example is the <strong>passwd</strong> command:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ ls -l /usr/bin/passwd
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>-rwsr-xr-x. <span class="m">1</span> root root <span class="m">35504</span> Jul <span class="m">16</span>  <span class="m">2010</span> /usr/bin/passwd
+</code></pre></div>
+<p>In a long listing, you can identify the setuid permissions by a lowercase s where you would
+normally expect the x (owner execute permissions) to be. If the owner does not have execute
+permissions, this is replaced by an uppercase S.</p>
+<p>The special permission setgid on a directory means that files created in the directory inherit
+their group ownership from the directory, rather than inheriting it from the creating user. This is
+commonly used on group collaborative directories to automatically change a file from the default
+private group to the shared group, or if files in a directory should be always owned by a specific
+group. An example of this is the <strong>/run/log/journal</strong> directory:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ ls -ld /run/log/journal
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>drwxr-sr-x. <span class="m">3</span> root systemd-journal <span class="m">60</span> May <span class="m">18</span> <span class="m">09</span>:15 /run/log/journal
+</code></pre></div>
+<p>If setgid is set on an executable file, commands run as the group that owns that file, not as the user
+that ran the command, in a similar way to setuid works. One example is the locate command:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ ls -ld /usr/bin/locate
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>-rwx--s--x. <span class="m">1</span> root slocate <span class="m">47128</span> Aug <span class="m">12</span> <span class="m">17</span>:17 /usr/bin/locate
+</code></pre></div>
+<p>In a long listing, you can identify the setgid permissions by a lowercase s where you would
+normally expect the x (group execute permissions) to be. If the group does not have execute
+permissions, this is replaced by an uppercase S.</p>
+<p>Lastly, the sticky bit for a directory sets a special restriction on deletion of files. Only the owner of
+the file (and root) can delete files within the directory. An example is /tmp:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ ls -ld /tmp
+<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>drwxrwxrwt. <span class="m">39</span> root root <span class="m">4096</span> Feb  <span class="m">8</span> <span class="m">20</span>:52 /tmp
+</code></pre></div>
+<p>In a long listing, you can identify the sticky permissions by a lowercase t where you would normally
+expect the x (other execute permissions) to be. If other does not have execute permissions, this is
+replaced by an uppercase T.</p>
+<p><strong>Setting Special Permissions</strong></p>
+<ul>
+<li>
+<p>Symbolically: setuid = u+s; setgid = g+s; sticky = o+t</p>
+</li>
+<li>
+<p>Numerically (fourth preceding digit): setuid = 4; setgid = 2; sticky = 1</p>
+</li>
+</ul>
+<p><strong>Examples</strong></p>
+<ul>
+<li>Add the setgid bit on directory:</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="o">[</span>user@host ~<span class="o">]</span><span class="c1"># chmod g+s directory</span>
+</code></pre></div>
+<ul>
+<li>Set the setgid bit and add read/write/execute permissions for user and group, with no access for
+others, on directory:</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="o">[</span>user@host ~<span class="o">]</span><span class="c1"># chmod 2770 directory</span>
+</code></pre></div>
+<h3 id="default-file-permissions">DEFAULT FILE PERMISSIONS<a class="headerlink" href="#default-file-permissions" title="Permanent link">&para;</a></h3>
+<p>When you create a new file or directory, it is assigned initial permissions. There are two things that
+affect these initial permissions. The first is whether you are creating a regular file or a directory.
+The second is the current <strong>umask</strong>.</p>
+<p>If you create a new directory, the operating system starts by assigning it octal permissions 0777
+(<strong>drwxrwxrwx</strong>). If you create a new regular file, the operating system assignes it octal permissions
+0666 (<strong>-rw-rw-rw-</strong>). You always have to explicitly add execute permission to a regular file. This
+makes it harder for an attacker to compromise a network service so that it creates a new file and
+immediately executes it as a program.</p>
+<p>However, the shell session will also set a umask to further restrict the permissions that are initially
+set. This is an octal bitmask used to clear the permissions of new files and directories created by
+a process. If a bit is set in the umask, then the corresponding permission is cleared on new files.
+For example, the umask 0002 clears the write bit for other users. The leading zeros indicate the
+special, user, and group permissions are not cleared. A umask of 0077 clears all the group and
+other permissions of newly created files.</p>
+<p>The <strong>umask</strong> command without arguments will display the current value of the shell's umask:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ <span class="nb">umask</span>
+<a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a><span class="m">0002</span>
+</code></pre></div>
+<p>Use the <strong>umask</strong> command with a single numeric argument to change the umask of the current shell.
+The numeric argument should be an octal value corresponding to the new umask value. You can
+omit any leading zeros in the umask.</p>
+<p>The system's default umask values for Bash shell users are defined in the <strong>/etc/profile</strong> and <strong>/
+etc/bashrc</strong> files. Users can override the system defaults in the <strong>.bash_profile</strong> and <strong>.bashrc</strong>
+files in their home directories.</p>
+<p><strong>umask Example</strong></p>
+<p>The following example explains how the umask affects the permissions of files and directories.
+Look at the default umask permissions for both files and directories in the current shell. The owner
+and group both have read and write permission on files, and other is set to read. The owner and
+group both have read, write, and execute permissions on directories. The only permission for other
+is read.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ <span class="nb">umask</span>
+<a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a><span class="m">0002</span>
+<a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ touch default
+<a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ ls -l default.txt
+<a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a>-rw-rw-r--. <span class="m">1</span> user user <span class="m">0</span> May  <span class="m">9</span> <span class="m">01</span>:54 default.txt
+<a id="__codelineno-20-6" name="__codelineno-20-6" href="#__codelineno-20-6"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ mkdir default
+<a id="__codelineno-20-7" name="__codelineno-20-7" href="#__codelineno-20-7"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ ls -ld default
+<a id="__codelineno-20-8" name="__codelineno-20-8" href="#__codelineno-20-8"></a>drwxrwxr-x. <span class="m">2</span> user user <span class="m">0</span> May  <span class="m">9</span> <span class="m">01</span>:54 default 
+</code></pre></div>
+<p>By setting the umask value to 0, the file permissions for other change from read to read and write.
+The directory permissions for other changes from read and execute to read, write, and execute.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ <span class="nb">umask</span> <span class="m">0</span>
+<a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ touch zero.txt
+<a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ ls -l zero.txt
+<a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a>-rw-rw-rw-. <span class="m">1</span> user user <span class="m">0</span> May  <span class="m">9</span> <span class="m">01</span>:54 zero.txt
+<a id="__codelineno-21-5" name="__codelineno-21-5" href="#__codelineno-21-5"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ mkdir zero
+<a id="__codelineno-21-6" name="__codelineno-21-6" href="#__codelineno-21-6"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ ls -ld zero
+<a id="__codelineno-21-7" name="__codelineno-21-7" href="#__codelineno-21-7"></a>drwxrwxrwx. <span class="m">2</span> user user <span class="m">0</span> May  <span class="m">9</span> <span class="m">01</span>:54 zero 
+</code></pre></div>
+<p>To mask all file and directory permissions for other, set the umask value to 007.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ <span class="nb">umask</span> <span class="m">007</span>
+<a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ touch seven.txt
+<a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ ls -l seven.txt
+<a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a>-rw-rw----. <span class="m">1</span> user user <span class="m">0</span> May  <span class="m">9</span> <span class="m">01</span>:55 seven.txt
+<a id="__codelineno-22-5" name="__codelineno-22-5" href="#__codelineno-22-5"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ mkdir seven
+<a id="__codelineno-22-6" name="__codelineno-22-6" href="#__codelineno-22-6"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ ls -ld seven
+<a id="__codelineno-22-7" name="__codelineno-22-7" href="#__codelineno-22-7"></a>drwxrwx---. <span class="m">2</span> user user <span class="m">0</span> May  <span class="m">9</span> <span class="m">01</span>:54 seven
+</code></pre></div>
+<p>A umask of 027 ensures that new files have read and write permissions for user and read
+permission for group. New directories have read and write access for group and no permissions for
+other.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ <span class="nb">umask</span> <span class="m">027</span>
+<a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ touch two-seven.txt
+<a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ ls -l two-seven.txt
+<a id="__codelineno-23-4" name="__codelineno-23-4" href="#__codelineno-23-4"></a>-rw-r-----. <span class="m">1</span> user user <span class="m">0</span> May  <span class="m">9</span> <span class="m">01</span>:55 two-seven.txt
+<a id="__codelineno-23-5" name="__codelineno-23-5" href="#__codelineno-23-5"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ mkdir two-seven
+<a id="__codelineno-23-6" name="__codelineno-23-6" href="#__codelineno-23-6"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ ls -ld two-seven
+<a id="__codelineno-23-7" name="__codelineno-23-7" href="#__codelineno-23-7"></a>drwxr-x---. <span class="m">2</span> user user <span class="m">0</span> May  <span class="m">9</span> <span class="m">01</span>:54 two-seven 
+</code></pre></div>
+<p>The default umask for users is set by the shell startup scripts. By default, if your account's UID is
+200 or more and your username and primary group name are the same, you will be assigned a
+umask of 002. Otherwise, your umask will be 022.</p>
+<p>As root, you can change this by adding a shell startup script named <strong>/etc/profile.d/local-
+umask.sh</strong> that looks something like the output in this example:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># cat /etc/profile.d/local-umask.sh</span>
+<a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a><span class="c1"># Overrides default umask configuration</span>
+<a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a><span class="k">if</span> <span class="o">[</span> <span class="nv">$UID</span> -gt <span class="m">199</span> <span class="o">]</span> <span class="o">&amp;&amp;</span> <span class="o">[</span> <span class="s2">&quot;`id -gn`&quot;</span> <span class="o">=</span> <span class="s2">&quot;`id -un`&quot;</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+<a id="__codelineno-24-4" name="__codelineno-24-4" href="#__codelineno-24-4"></a>    <span class="nb">umask</span> <span class="m">007</span>
+<a id="__codelineno-24-5" name="__codelineno-24-5" href="#__codelineno-24-5"></a><span class="k">else</span>
+<a id="__codelineno-24-6" name="__codelineno-24-6" href="#__codelineno-24-6"></a>    <span class="nb">umask</span> <span class="m">022</span>
+<a id="__codelineno-24-7" name="__codelineno-24-7" href="#__codelineno-24-7"></a><span class="k">fi</span>
+</code></pre></div>
+<p>The preceding example will set the umask to 007 for users with a UID greater than 199 and with a
+username and primary group name that match, and to 022 for everyone else. If you just wanted to
+set the umask for everyone to 022, you could create that file with just the following content:</p>
+<p><code># Overrides default umask configuration</code></p>
+<p><code>umask 022</code></p>
+<p>To ensure that global umask changes take effect you must log out of the shell and log back in. Until
+that time the umask configured in the current shell is still in effect.</p>
+<h3 id="summary">SUMMARY<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h3>
+<p>In this chapter, you learned:</p>
+<ul>
+<li>
+<p>Files have three categories to which permissions apply. A file is owned by a user, a single
+group, and other users. The most specific permission applies. User permissions override group
+permissions and group permissions override other permissions.</p>
+</li>
+<li>
+<p>The <strong>ls</strong> command with the <strong>-l</strong> option expands the file listing to include both the file permissions
+and ownership.</p>
+</li>
+<li>
+<p>The <strong>chmod</strong> command changes file permissions from the command line. There are two methods
+to represent permissions, symbolic (letters) and numeric (digits).</p>
+</li>
+<li>
+<p>The <strong>chown</strong> command changes file ownership. The <strong>-R</strong> option recursively changes the ownership
+of a directory tree.</p>
+</li>
+<li>
+<p>The <strong>umask</strong> command without arguments displays the current umask value of the shell. Every
+process on the system has a umask. The default umask values for Bash are defined in the <strong>/etc/
+profile</strong> and <strong>/etc/bashrc</strong> files.</p>
+</li>
+</ul>
+
+  <hr>
+<div class="md-source-file">
+  <small>
+    
+      Last update:
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">November 13, 2022</span>
+      
+    
+  </small>
+</div>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+          <a href="#" class="md-top md-icon" data-md-component="top" hidden>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+            Back to top
+          </a>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+    <nav class="md-footer__inner md-grid" aria-label="Footer" >
+      
+        
+        <a href="../users/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Managing Local Users And Groups" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Managing Local Users And Groups
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../../english/vol1/" class="md-footer__link md-footer__link--next" aria-label="Next: Vol-1" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Vol-1
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2022 Divijesh Varma. All rights reserved.
+    </div>
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.instant", "navigation.tracking", "navigation.tabs", "navigation.tabs.sticky", "navigation.expand", "navigation.top", "navigation.sections", "content.tooltips", "header.autohide"], "search": "../../assets/javascripts/workers/search.16e2a7d4.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d6c3db9e.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="../../javascripts/feedback.js"></script>
+      
+    
+  </body>
+</html>
