@@ -197,6 +197,9 @@ nav:
       - 'redhat/edit.en.md'
       - 'redhat/users.en.md'
       - 'redhat/control.en.md'
+      - 'redhat/monitor.en.md'
+      - 'redhat/service.en.md'
+      - 'redhat/secssh.en.md'
   - 'English':
     - 'Tutorial':
       - 'english/vol1.en.md'

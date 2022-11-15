@@ -664,6 +664,7 @@ shadow** with its nine colon-separated fields is shown below.
 `user03:$6$CSsX...output omitted...:17933:0:99999:7:2:18113:`
 
 > user03 --> Username of the account this password belongs to.
+
 > $6$CSsX...output omitted... --> The *encrypted password* of the user. The format of encrypted passwords is discussed later in
 this section.
 
@@ -682,7 +683,7 @@ number of days before the deadline.
 > 2 --> Inactivity period. Once the password has expired, it will still be accepted for login for this
 many days. After this period has elapsed, the account will be locked.
 
-> 18113 --> The day on which the password expires. This is set in days since 1970-01-01, and is calculated
+> 18113 --> The day on which the password expires. This is set in days since 1970-01-01, and is calculated 
 in the UTC time zone. An empty field means it does not expire on a particular date.
 
 > :   --> The last field is usually empty and is reserved for future use.
@@ -719,7 +720,7 @@ correct password without storing that password in a form usable for logging in.
 The following diagram relates the relevant password aging parameters, which can be adjusted
 using the **chage** command to implement a password aging policy.
 
-![password](https://computingforgeeks.com/wp-content/uploads/2020/02/linux-password-aging.png?ezimgfmt=rs%3Adevice%2Frscb23-1 "password")
+![password](https://computingforgeeks.com/wp-content/uploads/2020/02/linux-password-aging.png "password")
 
 ``` bash
 [user01@host ~]$ sudo chage -m 0 -M 90 -W 7 -I 14 user03
