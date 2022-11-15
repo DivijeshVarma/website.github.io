@@ -979,6 +979,48 @@
 
             
           
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../monitor/" class="md-nav__link">
+        Monitoring And Managing Linux Processes
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../service/" class="md-nav__link">
+        Controlling Services And Daemons
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../secssh/" class="md-nav__link">
+        Configuring And Securing Ssh
+      </a>
+    </li>
+  
+
+            
+          
         </ul>
       </nav>
     </li>
@@ -2751,8 +2793,8 @@ implemented.</p>
 shadow</strong> with its nine colon-separated fields is shown below.</p>
 <p><code>user03:$6$CSsX...output omitted...:17933:0:99999:7:2:18113:</code></p>
 <blockquote>
-<p>user03 --&gt; Username of the account this password belongs to.
-<span class="arithmatex">\(6\)</span>CSsX...output omitted... --&gt; The <em>encrypted password</em> of the user. The format of encrypted passwords is discussed later in
+<p>user03 --&gt; Username of the account this password belongs to.</p>
+<p><span class="arithmatex">\(6\)</span>CSsX...output omitted... --&gt; The <em>encrypted password</em> of the user. The format of encrypted passwords is discussed later in
 this section.</p>
 <p>17933 --&gt; The day on which the password was last changed. This is set in days since 1970-01-01, and is
 calculated in the UTC time zone.</p>
@@ -2765,7 +2807,7 @@ number of days before the deadline.</p>
 <p>2 --&gt; Inactivity period. Once the password has expired, it will still be accepted for login for this
 many days. After this period has elapsed, the account will be locked.</p>
 <dl>
-<dt>18113 --&gt; The day on which the password expires. This is set in days since 1970-01-01, and is calculated</dt>
+<dt>18113 --&gt; The day on which the password expires. This is set in days since 1970-01-01, and is calculated </dt>
 <dt>in the UTC time zone. An empty field means it does not expire on a particular date.</dt>
 <dd>
 <p>--&gt; The last field is usually empty and is reserved for future use.</p>
@@ -2795,7 +2837,7 @@ correct password without storing that password in a form usable for logging in.<
 <h4 id="configuring-password-aging">CONFIGURING PASSWORD AGING<a class="headerlink" href="#configuring-password-aging" title="Permanent link">&para;</a></h4>
 <p>The following diagram relates the relevant password aging parameters, which can be adjusted
 using the <strong>chage</strong> command to implement a password aging policy.</p>
-<p><img alt="password" src="https://computingforgeeks.com/wp-content/uploads/2020/02/linux-password-aging.png?ezimgfmt=rs%3Adevice%2Frscb23-1" title="password" /></p>
+<p><img alt="password" src="https://computingforgeeks.com/wp-content/uploads/2020/02/linux-password-aging.png" title="password" /></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="o">[</span>user01@host ~<span class="o">]</span>$ sudo chage -m <span class="m">0</span> -M <span class="m">90</span> -W <span class="m">7</span> -I <span class="m">14</span> user03
 </code></pre></div>
 <p>The preceding <strong>chage</strong> command uses the <strong>-m, -M, -W</strong>, and <strong>-I</strong> options to set the minimum age,
@@ -2892,7 +2934,7 @@ and <strong>/etc/shadow</strong>.</p>
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">November 13, 2022</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">November 15, 2022</span>
       
     
   </small>

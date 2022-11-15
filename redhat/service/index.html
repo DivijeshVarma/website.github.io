@@ -1,0 +1,2702 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://www.privacyguides.org/redhat/service/">
+      
+      <link rel="icon" href="../../assets/img/layout/favicon.ico">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-8.5.10">
+    
+    
+      
+        <title>Controlling Services And Daemons - Divijesh Varma</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.472b142f.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.08040f6c.min.css">
+        
+      
+      
+
+    
+    
+    
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent="teal">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#identifying-automatically-started-system-processes" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Divijesh Varma" class="md-header__button md-logo" aria-label="Divijesh Varma" data-md-component="logo">
+      
+  <img src="../../assets/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Divijesh Varma
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Controlling Services And Daemons
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent="teal"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 1 7 7c0 2.38-1.19 4.47-3 5.74V17a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 0 1 7-7M9 21v-1h6v1a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1m3-17a5 5 0 0 0-5 5c0 2.05 1.23 3.81 3 4.58V16h4v-2.42c1.77-.77 3-2.53 3-4.58a5 5 0 0 0-5-5Z"/></svg>
+            </label>
+          
+        
+          
+          
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="deep-purple" data-md-color-accent="deep-orange"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 2.38 1.19 4.47 3 5.74V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.26c1.81-1.27 3-3.36 3-5.74a7 7 0 0 0-7-7M9 21a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-1H9v1Z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../.." class="md-tabs__link">
+      Home
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../linux/vi/" class="md-tabs__link">
+        Linux
+      </a>
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../intro/" class="md-tabs__link md-tabs__link--active">
+        RedHat
+      </a>
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../english/vol1/" class="md-tabs__link">
+        English
+      </a>
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../basics/threat-modeling/" class="md-tabs__link">
+        Knowledge Base
+      </a>
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../tools/" class="md-tabs__link">
+        Recommendations
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../about/" class="md-tabs__link">
+        About
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Divijesh Varma" class="md-nav__button md-logo" aria-label="Divijesh Varma" data-md-component="logo">
+      
+  <img src="../../assets/logo.png" alt="logo">
+
+    </a>
+    Divijesh Varma
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          Linux
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Linux" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Linux
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_2_1" type="checkbox" id="__nav_2_1" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_1">
+          Editors
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Editors" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_1">
+          <span class="md-nav__icon md-icon"></span>
+          Editors
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/vi/" class="md-nav__link">
+        Vim
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/nano/" class="md-nav__link">
+        Nano
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_2_2" type="checkbox" id="__nav_2_2" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_2">
+          Notes
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Notes" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_2">
+          <span class="md-nav__icon md-icon"></span>
+          Notes
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/rhcsa/" class="md-nav__link">
+        Tritree
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/user/" class="md-nav__link">
+        User Management
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/acl/" class="md-nav__link">
+        Access control lists (ACLs)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/network/" class="md-nav__link">
+        Networking
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/ssh/" class="md-nav__link">
+        OpenSSH
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/process/" class="md-nav__link">
+        Process Management
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/software/" class="md-nav__link">
+        Software Management
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/systemd/" class="md-nav__link">
+        Systemd Management
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/cron/" class="md-nav__link">
+        Cron Jobs
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/logs/" class="md-nav__link">
+        Logs
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/disk/" class="md-nav__link">
+        Disk Management
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3">
+          RedHat
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="RedHat" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          RedHat
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+    
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_1" type="checkbox" id="__nav_3_1" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_1">
+          RHSA I (RH124)
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="RHSA I (RH124)" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_1">
+          <span class="md-nav__icon md-icon"></span>
+          RHSA I (RH124)
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../intro/" class="md-nav__link">
+        Introduction
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../access/" class="md-nav__link">
+        Accessing The Command Line
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../manage/" class="md-nav__link">
+        Managing Files From The Command Line
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../help/" class="md-nav__link">
+        Getting Help In Red Hat Enterprise Linux
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../edit/" class="md-nav__link">
+        Creating, Viewing, And Editing Text Files
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../users/" class="md-nav__link">
+        Managing Local Users And Groups
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../control/" class="md-nav__link">
+        Controlling Access To Files
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../monitor/" class="md-nav__link">
+        Monitoring And Managing Linux Processes
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Controlling Services And Daemons
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Controlling Services And Daemons
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#identifying-automatically-started-system-processes" class="md-nav__link">
+    IDENTIFYING AUTOMATICALLY STARTED SYSTEM PROCESSES
+  </a>
+  
+    <nav class="md-nav" aria-label="IDENTIFYING AUTOMATICALLY STARTED SYSTEM PROCESSES">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#introduction-to-systemd" class="md-nav__link">
+    INTRODUCTION TO systemd
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#describing-service-units" class="md-nav__link">
+    DESCRIBING SERVICE UNITS
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#listing-service-units" class="md-nav__link">
+    LISTING SERVICE UNITS
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#viewing-service-states" class="md-nav__link">
+    VIEWING SERVICE STATES
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#verifying-the-status-of-a-service" class="md-nav__link">
+    VERIFYING THE STATUS OF A SERVICE
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#controlling-system-services" class="md-nav__link">
+    CONTROLLING SYSTEM SERVICES
+  </a>
+  
+    <nav class="md-nav" aria-label="CONTROLLING SYSTEM SERVICES">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#starting-and-stopping-services" class="md-nav__link">
+    STARTING AND STOPPING SERVICES
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#restarting-and-reloading-services" class="md-nav__link">
+    RESTARTING AND RELOADING SERVICES
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#listing-unit-dependencies" class="md-nav__link">
+    LISTING UNIT DEPENDENCIES
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#masking-and-unmasking-services" class="md-nav__link">
+    MASKING AND UNMASKING SERVICES
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#enabling-services-to-start-or-stop-at-boot" class="md-nav__link">
+    ENABLING SERVICES TO START OR STOP AT BOOT
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#summary-of-systemctl-commands" class="md-nav__link">
+    SUMMARY OF systemctl COMMANDS
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    SUMMARY
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../secssh/" class="md-nav__link">
+        Configuring And Securing Ssh
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4">
+          English
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="English" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          English
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_4_1" type="checkbox" id="__nav_4_1" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_1">
+          Tutorial
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Tutorial" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_1">
+          <span class="md-nav__icon md-icon"></span>
+          Tutorial
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../english/vol1/" class="md-nav__link">
+        Vol-1
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../english/vol2/" class="md-nav__link">
+        Vol-2
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../english/vol3/" class="md-nav__link">
+        Vol-3
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../english/vol4/" class="md-nav__link">
+        Vol-4
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5">
+          Knowledge Base
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Knowledge Base" data-md-level="1">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          Knowledge Base
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_5_1" type="checkbox" id="__nav_5_1" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5_1">
+          The Basics
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="The Basics" data-md-level="2">
+        <label class="md-nav__title" for="__nav_5_1">
+          <span class="md-nav__icon md-icon"></span>
+          The Basics
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../basics/threat-modeling/" class="md-nav__link">
+        Threat Modeling
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../basics/dns/" class="md-nav__link">
+        Introduction to DNS
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../basics/multi-factor-authentication/" class="md-nav__link">
+        Multi-factor Authentication
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../basics/account-deletion/" class="md-nav__link">
+        Account Deletion
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_5_2" type="checkbox" id="__nav_5_2" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5_2">
+          Android
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Android" data-md-level="2">
+        <label class="md-nav__title" for="__nav_5_2">
+          <span class="md-nav__icon md-icon"></span>
+          Android
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../android/overview/" class="md-nav__link">
+        Android Overview
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../android/grapheneos-vs-calyxos/" class="md-nav__link">
+        GrapheneOS vs CalyxOS
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_5_3" type="checkbox" id="__nav_5_3" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5_3">
+          Linux
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Linux" data-md-level="2">
+        <label class="md-nav__title" for="__nav_5_3">
+          <span class="md-nav__icon md-icon"></span>
+          Linux
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux-desktop/overview/" class="md-nav__link">
+        Linux Overview
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux-desktop/hardening/" class="md-nav__link">
+        System Hardening
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux-desktop/sandboxing/" class="md-nav__link">
+        Application Sandboxing
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_5_4" type="checkbox" id="__nav_5_4" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5_4">
+          Advanced
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Advanced" data-md-level="2">
+        <label class="md-nav__title" for="__nav_5_4">
+          <span class="md-nav__icon md-icon"></span>
+          Advanced
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setup/integrating-metadata-removal/" class="md-nav__link">
+        Integrating Metadata Removal
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_6" type="checkbox" id="__nav_6" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6">
+          Recommendations
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Recommendations" data-md-level="1">
+        <label class="md-nav__title" for="__nav_6">
+          <span class="md-nav__icon md-icon"></span>
+          Recommendations
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tools/" class="md-nav__link">
+        Privacy Tools
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_6_2" type="checkbox" id="__nav_6_2" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6_2">
+          Browsers
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Browsers" data-md-level="2">
+        <label class="md-nav__title" for="__nav_6_2">
+          <span class="md-nav__icon md-icon"></span>
+          Browsers
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../browsers/" class="md-nav__link">
+        Web Browsers
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_6_3" type="checkbox" id="__nav_6_3" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6_3">
+          Operating Systems
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Operating Systems" data-md-level="2">
+        <label class="md-nav__title" for="__nav_6_3">
+          <span class="md-nav__icon md-icon"></span>
+          Operating Systems
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../android/" class="md-nav__link">
+        Android
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux-desktop/" class="md-nav__link">
+        Linux
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../qubes/" class="md-nav__link">
+        Qubes OS
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../router/" class="md-nav__link">
+        Router Firmware
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_6_4" type="checkbox" id="__nav_6_4" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6_4">
+          Providers
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Providers" data-md-level="2">
+        <label class="md-nav__title" for="__nav_6_4">
+          <span class="md-nav__icon md-icon"></span>
+          Providers
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cloud/" class="md-nav__link">
+        Cloud Storage
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dns/" class="md-nav__link">
+        DNS Resolvers
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../email/" class="md-nav__link">
+        Email Services
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../search-engines/" class="md-nav__link">
+        Search Engines
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vpn/" class="md-nav__link">
+        VPN Services
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_6_5" type="checkbox" id="__nav_6_5" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6_5">
+          Software
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Software" data-md-level="2">
+        <label class="md-nav__title" for="__nav_6_5">
+          <span class="md-nav__icon md-icon"></span>
+          Software
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../calendar-contacts/" class="md-nav__link">
+        Calendar and Contact Sync
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../notebooks/" class="md-nav__link">
+        Notebooks
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../email-clients/" class="md-nav__link">
+        Email Clients
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../encryption/" class="md-nav__link">
+        Encryption Software
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../file-sharing/" class="md-nav__link">
+        File Sharing and Sync
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../metadata-removal-tools/" class="md-nav__link">
+        Metadata Removal Tools
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../multi-factor-authentication/" class="md-nav__link">
+        Multi-Factor Authenticators
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../passwords/" class="md-nav__link">
+        Password Managers
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../productivity/" class="md-nav__link">
+        Productivity Tools
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../real-time-communication/" class="md-nav__link">
+        Real-Time Communication
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../news-aggregators/" class="md-nav__link">
+        News Aggregators
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../self-contained-networks/" class="md-nav__link">
+        Self-Contained Networks
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../video-streaming/" class="md-nav__link">
+        Video Streaming
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_7" type="checkbox" id="__nav_7" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_7">
+          About
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="About" data-md-level="1">
+        <label class="md-nav__title" for="__nav_7">
+          <span class="md-nav__icon md-icon"></span>
+          About
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/" class="md-nav__link">
+        Heading
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#identifying-automatically-started-system-processes" class="md-nav__link">
+    IDENTIFYING AUTOMATICALLY STARTED SYSTEM PROCESSES
+  </a>
+  
+    <nav class="md-nav" aria-label="IDENTIFYING AUTOMATICALLY STARTED SYSTEM PROCESSES">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#introduction-to-systemd" class="md-nav__link">
+    INTRODUCTION TO systemd
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#describing-service-units" class="md-nav__link">
+    DESCRIBING SERVICE UNITS
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#listing-service-units" class="md-nav__link">
+    LISTING SERVICE UNITS
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#viewing-service-states" class="md-nav__link">
+    VIEWING SERVICE STATES
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#verifying-the-status-of-a-service" class="md-nav__link">
+    VERIFYING THE STATUS OF A SERVICE
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#controlling-system-services" class="md-nav__link">
+    CONTROLLING SYSTEM SERVICES
+  </a>
+  
+    <nav class="md-nav" aria-label="CONTROLLING SYSTEM SERVICES">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#starting-and-stopping-services" class="md-nav__link">
+    STARTING AND STOPPING SERVICES
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#restarting-and-reloading-services" class="md-nav__link">
+    RESTARTING AND RELOADING SERVICES
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#listing-unit-dependencies" class="md-nav__link">
+    LISTING UNIT DEPENDENCIES
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#masking-and-unmasking-services" class="md-nav__link">
+    MASKING AND UNMASKING SERVICES
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#enabling-services-to-start-or-stop-at-boot" class="md-nav__link">
+    ENABLING SERVICES TO START OR STOP AT BOOT
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#summary-of-systemctl-commands" class="md-nav__link">
+    SUMMARY OF systemctl COMMANDS
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    SUMMARY
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+  
+
+
+
+
+  <h1>Controlling Services And Daemons</h1>
+
+<h3 id="identifying-automatically-started-system-processes">IDENTIFYING AUTOMATICALLY STARTED SYSTEM PROCESSES<a class="headerlink" href="#identifying-automatically-started-system-processes" title="Permanent link">&para;</a></h3>
+<h4 id="introduction-to-systemd">INTRODUCTION TO systemd<a class="headerlink" href="#introduction-to-systemd" title="Permanent link">&para;</a></h4>
+<p>The systemd daemon manages startup for Linux, including service startup and service
+management in general. It activates system resources, server daemons, and other processes both
+at boot time and on a running system.</p>
+<p>Daemons are processes that either wait or run in the background, performing various tasks.
+Generally, daemons start automatically at boot time and continue to run until shutdown or until
+they are manually stopped. It is a convention for names of many daemon programs to end in the
+letter <strong>d</strong>.</p>
+<p>A service in the systemd sense often refers to one or more daemons, but starting or stopping a
+service may instead make a one-time change to the state of the system, which does not involve
+leaving a daemon process running afterward (called oneshot).</p>
+<p>In Red Hat Enterprise Linux, the first process that starts (PID 1) is systemd. A few of the features
+provided by systemd include:</p>
+<ul>
+<li>
+<p>Parallelization capabilities (starting multiple services simultaneously), which increase the boot
+speed of a system.</p>
+</li>
+<li>
+<p>On-demand starting of daemons without requiring a separate service.</p>
+</li>
+<li>
+<p>Automatic service dependency management, which can prevent long timeouts. For example, a
+network-dependent service will not attempt to start up until the network is available.</p>
+</li>
+<li>
+<p>A method of tracking related processes together by using Linux control groups.</p>
+</li>
+</ul>
+<h4 id="describing-service-units">DESCRIBING SERVICE UNITS<a class="headerlink" href="#describing-service-units" title="Permanent link">&para;</a></h4>
+<p>systemd uses units to manage different types of objects. Some common unit types are listed
+below:</p>
+<ul>
+<li>
+<p>Service units have a <strong>.service</strong> extension and represent system services. This type of unit is
+used to start frequently accessed daemons, such as a web server.</p>
+</li>
+<li>
+<p>Socket units have a <strong>.socket</strong> extension and represent inter-process communication (IPC)
+sockets that systemd should monitor. If a client connects to the socket, systemd will start a
+daemon and pass the connection to it. Socket units are used to delay the start of a service at
+boot time and to start less frequently used services on demand.</p>
+</li>
+<li>
+<p>Path units have a <strong>.path</strong> extension and are used to delay the activation of a service until
+a specific file system change occurs. This is commonly used for services which use spool
+directories such as a printing system.</p>
+</li>
+</ul>
+<p>The <strong>systemctl</strong> command is used to manage units. For example, display available unit types with
+the <strong>systemctl -t help</strong> command.</p>
+<div class="admonition danger">
+<p class="admonition-title">IMPORTANT</p>
+<p>When using <strong>systemctl</strong>, you can abbreviate unit names, process tree entries, and
+unit descriptions.</p>
+</div>
+<h4 id="listing-service-units">LISTING SERVICE UNITS<a class="headerlink" href="#listing-service-units" title="Permanent link">&para;</a></h4>
+<p>You use the <strong>systemctl</strong> command to explore the current state of the system. For example, the
+following command lists all currently loaded service units, paginating the output using <strong>less</strong>.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># systemctl list-units --type=service</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>UNIT                               LOAD   ACTIVE SUB     DESCRIPTION
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>atd.service                        loaded active running Job spooling tools
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>auditd.service                     loaded active running Security Auditing Service
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>chronyd.service                    loaded active running NTP client/server
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>crond.service                      loaded active running Command Scheduler
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>dbus.service                       loaded active running D-Bus System Message Bus
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>...output omitted...
+</code></pre></div>
+<p>The above output limits the type of unit listed to service units with the --type=service option.
+The output has the following columns:</p>
+<p><strong>Columns in the systemctl list-units Command Output</strong></p>
+<p><strong>UNIT</strong></p>
+<div class="highlight"><pre><span></span><code>The service unit name.
+</code></pre></div>
+<p><strong>LOAD</strong></p>
+<div class="highlight"><pre><span></span><code>Whether systemd properly parsed the unit&#39;s configuration and loaded the unit into memory.
+</code></pre></div>
+<p><strong>ACTIVE</strong></p>
+<div class="highlight"><pre><span></span><code>The high-level activation state of the unit. This information indicates whether the unit has
+started successfully or not.
+</code></pre></div>
+<p><strong>SUB</strong></p>
+<div class="highlight"><pre><span></span><code>The low-level activation state of the unit. This information indicates more detailed information
+about the unit. The information varies based on unit type, state, and how the unit is executed.
+</code></pre></div>
+<p><strong>DESCRIPTION</strong></p>
+<div class="highlight"><pre><span></span><code>The short description of the unit.
+</code></pre></div>
+<p>By default, the <strong>systemctl list-units --type=service</strong> command lists only the service
+units with active activation states. The <strong>--all</strong> option lists all service units regardless of the
+activation states. Use the <strong>--state=</strong> option to filter by the values in the <strong>LOAD, ACTIVE</strong>, or <strong>SUB</strong>
+fields.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># systemctl list-units --type=service --all</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>UNIT                          LOAD      ACTIVE   SUB     DESCRIPTION
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>  atd.service                 loaded    active   running Job spooling tools
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>  auditd.service              loaded    active   running Security Auditing ...
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>  auth-rpcgss-module.service  loaded    inactive dead    Kernel Module ...
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>  chronyd.service             loaded    active   running NTP client/server
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>  cpupower.service            loaded    inactive dead    Configure CPU power ...
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>  crond.service               loaded    active   running Command Scheduler
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>  dbus.service                loaded    active   running D-Bus System Message Bus
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>●display-manager.service     not-found inactive dead    display-manager.service
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>...output omitted...
+</code></pre></div>
+<p>The <strong>systemctl</strong> command without any arguments lists units that are both loaded and active.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># systemctl</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>UNIT                                 LOAD   ACTIVE SUB       DESCRIPTION
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>proc-sys-fs-binfmt_misc.automount    loaded active waiting   Arbitrary...
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>sys-devices-....device               loaded active plugged   Virtio network...
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>sys-subsystem-net-devices-ens3.deviceloaded active plugged   Virtio network...
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>...
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>-.mount                              loaded active mounted   Root Mount
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>boot.mount                           loaded active mounted   /boot
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>...
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>systemd-ask-password-plymouth.path   loaded active waiting   Forward Password...
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>systemd-ask-password-wall.path       loaded active waiting   Forward Password...
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>init.scope                           loaded active running   System and Servi...
+<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>session-1.scope                      loaded active running   Session <span class="m">1</span> of...
+<a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>atd.service                          loaded active running   Job spooling tools
+<a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a>auditd.service                       loaded active running   Security Auditing...
+<a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a>chronyd.service                      loaded active running   NTP client/server
+<a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a>crond.service                        loaded active running   Command Scheduler
+<a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a>...output omitted...
+</code></pre></div>
+<p>The <strong>systemctl list-units</strong> command displays units that the systemd service attempts to
+parse and load into memory; it does not display installed, but not enabled, services. To see the
+state of all unit files installed, use the <strong>systemctl list-unit-files</strong> command. For example:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># systemctl list-unit-files --type=service</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>UNIT FILE                                   STATE
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>arp-ethers.service                          disabled
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>atd.service                                 enabled
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>auditd.service                              enabled
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>auth-rpcgss-module.service                  static
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>autovt@.service                             enabled
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>blk-availability.service                    disabled
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>...output omitted...
+</code></pre></div>
+<p>In the output of the <strong>systemctl list-units-files</strong> command, valid entries for the <strong>STATE</strong> field
+are <strong>enabled, disabled, static</strong>, and <strong>masked</strong>.</p>
+<h4 id="viewing-service-states">VIEWING SERVICE STATES<a class="headerlink" href="#viewing-service-states" title="Permanent link">&para;</a></h4>
+<p>View the status of a specific unit with <strong>systemctl status name.type</strong>. If the unit type is not
+provided, <strong>systemctl</strong> will show the status of a service unit, if one exists.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># systemctl status sshd.service</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>● sshd.service - OpenSSH server daemon
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>   Loaded: loaded <span class="o">(</span>/usr/lib/systemd/system/sshd.service<span class="p">;</span> enabled<span class="p">;</span> vendor preset:
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a> enabled<span class="o">)</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>   Active: active <span class="o">(</span>running<span class="o">)</span> since Thu <span class="m">2019</span>-02-14 <span class="m">12</span>:07:45 IST<span class="p">;</span> 7h ago
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a> Main PID: <span class="m">1073</span> <span class="o">(</span>sshd<span class="o">)</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>    CGroup: /system.slice/sshd.service
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>           └─1073 /usr/sbin/sshd -D ...
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>Feb <span class="m">14</span> <span class="m">11</span>:51:39 host.example.com systemd<span class="o">[</span><span class="m">1</span><span class="o">]</span>: Started OpenSSH server daemon.
+<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>Feb <span class="m">14</span> <span class="m">11</span>:51:39 host.example.com sshd<span class="o">[</span><span class="m">1073</span><span class="o">]</span>: Could not load host key: /et...y
+<a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a>Feb <span class="m">14</span> <span class="m">11</span>:51:39 host.example.com sshd<span class="o">[</span><span class="m">1073</span><span class="o">]</span>: Server listening on <span class="m">0</span>.0.0.0 ....
+<a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a>Feb <span class="m">14</span> <span class="m">11</span>:51:39 host.example.com sshd<span class="o">[</span><span class="m">1073</span><span class="o">]</span>: Server listening on :: port <span class="m">22</span>.
+<a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a>Feb <span class="m">14</span> <span class="m">11</span>:53:21 host.example.com sshd<span class="o">[</span><span class="m">1270</span><span class="o">]</span>: error: Could not load host k...y
+<a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a>Feb <span class="m">14</span> <span class="m">11</span>:53:22 host.example.com sshd<span class="o">[</span><span class="m">1270</span><span class="o">]</span>: Accepted password <span class="k">for</span> root f...2
+<a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a>...output omitted...
+</code></pre></div>
+<p>This command displays the current status of the service. The meaning of the fields are:</p>
+<p><strong>Service Unit Information</strong></p>
+<table>
+<thead>
+<tr>
+<th align="center">FIELD</th>
+<th align="left">DESCRIPTION</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">Loaded</td>
+<td align="left">Whether the service unit is loaded into memory.</td>
+</tr>
+<tr>
+<td align="center">Active</td>
+<td align="left">Whether the service unit is running and if so, how long it has been running.</td>
+</tr>
+<tr>
+<td align="center">Main PID</td>
+<td align="left">The main process ID of the service, including the command name.</td>
+</tr>
+<tr>
+<td align="center">Status</td>
+<td align="left">Additional information about the service.</td>
+</tr>
+</tbody>
+</table>
+<p>Several keywords indicating the state of the service can be found in the status output:</p>
+<p><strong>Service States in the Output of systemctl</strong></p>
+<table>
+<thead>
+<tr>
+<th align="center">KEYWORD</th>
+<th align="left">DESCRIPTION</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">loaded</td>
+<td align="left">Unit configuration file has been processed.</td>
+</tr>
+<tr>
+<td align="center">active (running)</td>
+<td align="left">Running with one or more continuing processes.</td>
+</tr>
+<tr>
+<td align="center">active (exited)</td>
+<td align="left">Successfully completed a one-time configuration.</td>
+</tr>
+<tr>
+<td align="center">active (waiting)</td>
+<td align="left">Running but waiting for an event.</td>
+</tr>
+<tr>
+<td align="center">inactive</td>
+<td align="left">Not running.</td>
+</tr>
+<tr>
+<td align="center">enabled</td>
+<td align="left">Is started at boot time.</td>
+</tr>
+<tr>
+<td align="center">disabled</td>
+<td align="left">Is not set to be started at boot time.</td>
+</tr>
+<tr>
+<td align="center">static</td>
+<td align="left">Cannot be enabled, but may be started by an enabled unit automatically.</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition info">
+<p class="admonition-title">NOTE</p>
+<p>The <strong>systemctl status NAME</strong> command replaces the <strong>service NAME status</strong>
+command used in Red Hat Enterprise Linux 6 and earlier.</p>
+</div>
+<h4 id="verifying-the-status-of-a-service">VERIFYING THE STATUS OF A SERVICE<a class="headerlink" href="#verifying-the-status-of-a-service" title="Permanent link">&para;</a></h4>
+<p>The <strong>systemctl</strong> command provides methods for verifying the specific states of a service. For
+example, use the following command to verify that the a service unit is currently active (running):</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># systemctl is-active sshd.service</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>active
+</code></pre></div>
+<p>The command returns state of the service unit, which is usually <strong>active</strong> or <strong>inactive</strong>.</p>
+<p>Run the following command to verify whether a service unit is enabled to start automatically
+during system boot:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># systemctl is-enabled sshd.service</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>enabled
+</code></pre></div>
+<p>The command returns whether the service unit is enabled to start at boot time, which is usually
+<strong>enabled</strong> or <strong>disabled</strong>.</p>
+<p>To verify whether the unit failed during startup, run the following command:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># systemctl is-failed sshd.service</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>active
+</code></pre></div>
+<p>The command either returns <strong>active</strong> if it is properly running or <strong>failed</strong> if an error has occurred
+during startup. In case the unit was stopped, it returns <strong>unknown</strong> or <strong>inactive</strong>.</p>
+<p>To list all the failed units, run the <strong>systemctl --failed --type=service</strong> command.</p>
+<h3 id="controlling-system-services">CONTROLLING SYSTEM SERVICES<a class="headerlink" href="#controlling-system-services" title="Permanent link">&para;</a></h3>
+<h4 id="starting-and-stopping-services">STARTING AND STOPPING SERVICES<a class="headerlink" href="#starting-and-stopping-services" title="Permanent link">&para;</a></h4>
+<p>Services need to be stopped or started manually for a number of reasons: perhaps the service
+needs to be updated; the configuration file may need to be changed; or a service may need to be
+uninstalled; or an administrator may manually start an infrequently used service.</p>
+<p>To start a service, first verify that it is not running with <strong>systemctl status</strong>. Then, use the
+<strong>systemctl start</strong> command as the root user (using <strong>sudo</strong> if necessary). The example below
+shows how to start the sshd.service service:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># systemctl start sshd.service</span>
+</code></pre></div>
+<p>The systemd service looks for .service files for service management in commands in the
+absence of the service type with the service name. Thus the above command can be executed as:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># systemctl start sshd</span>
+</code></pre></div>
+<p>To stop a currently running service, use the stop argument with the systemctl command. The
+example below shows how to stop the sshd.service service:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># systemctl stop sshd.service</span>
+</code></pre></div>
+<h4 id="restarting-and-reloading-services">RESTARTING AND RELOADING SERVICES<a class="headerlink" href="#restarting-and-reloading-services" title="Permanent link">&para;</a></h4>
+<p>During a restart of a running service, the service is stopped and then started. On the restart of
+service, the process ID changes and a new process ID gets associated during the startup. To restart
+a running service, use the <strong>restart</strong> argument with the <strong>systemctl</strong> command. The example below
+shows how to restart the sshd.service service:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># systemctl restart sshd.service</span>
+</code></pre></div>
+<p>Some services have the ability to reload their configuration files without requiring a restart. This
+process is called a service reload. Reloading a service does not change the process ID associated
+with various service processes. To reload a running service, use the <strong>reload</strong> argument with the
+<strong>systemctl</strong> command. The example below shows how to reload the sshd.service service after
+configuration changes:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># systemctl reload sshd.service</span>
+</code></pre></div>
+<p>In case you are not sure whether the service has the functionality to reload the configuration
+file changes, use the <strong>reload-or-restart</strong> argument with the <strong>systemctl</strong> command. The
+command reloads the configuration changes if the reloading functionality is available. Otherwise,
+the command restarts the service to implements the new configuration changes:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># systemctl reload-or-restart sshd.service</span>
+</code></pre></div>
+<h4 id="listing-unit-dependencies">LISTING UNIT DEPENDENCIES<a class="headerlink" href="#listing-unit-dependencies" title="Permanent link">&para;</a></h4>
+<p>Some services require that other services be running first, creating dependencies on the other
+services. Other services are not started at boot time but rather only on demand. In both cases,
+systemd and <strong>systemctl</strong> start services as needed whether to resolve the dependency or to
+start an infrequently used service. For example, if the CUPS print service is not running and a
+file is placed into the print spool directory, then the system will start CUPS-related daemons or
+commands to satisfy the print request.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># systemctl stop cups.service</span>
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>Warning: Stopping cups, but it can still be activated by:
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>  cups.path
+<a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a>  cups.socket
+</code></pre></div>
+<p>To completely stop printing services on a system, stop all three units. Disabling the service disables
+the dependencies.</p>
+<p>The <strong>systemctl list-dependencies UNIT</strong> command displays a hierarchy mapping of
+dependencies to start the service unit. To list reverse dependencies (units that depend on the
+specified unit), use the <strong>--reverse</strong> option with the command.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># systemctl list-dependencies sshd.service</span>
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>sshd.service
+<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>● ├─system.slice
+<a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a>● ├─sshd-keygen.target
+<a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a>● │ ├─sshd-keygen@ecdsa.service
+<a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a>● │ ├─sshd-keygen@ed25519.service
+<a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a>● │ └─sshd-keygen@rsa.service
+<a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a>● └─sysinit.target
+<a id="__codelineno-15-9" name="__codelineno-15-9" href="#__codelineno-15-9"></a>...output omitted...
+</code></pre></div>
+<h4 id="masking-and-unmasking-services">MASKING AND UNMASKING SERVICES<a class="headerlink" href="#masking-and-unmasking-services" title="Permanent link">&para;</a></h4>
+<p>At times, a system may have different services installed that are conflicting with each other.
+For example, there are multiple methods to manage mail servers (postfix and sendmail, for
+example). Masking a service prevents an administrator from accidentally starting a service that
+conflicts with others. Masking creates a link in the configuration directories to the <strong>/dev/null</strong> file
+which prevents the service from starting.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># systemctl mask sendmail.service</span>
+<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>Created symlink /etc/systemd/system/sendmail.service → /dev/null.
+<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># systemctl list-unit-files --type=service</span>
+<a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a>UNIT FILE                                   STATE
+<a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a>...output omitted...
+<a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a>sendmail.service                            masked
+<a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a>...output omitted...
+</code></pre></div>
+<p>Attempting to start a masked service unit fails with the following output:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># systemctl start sendmail.service</span>
+</code></pre></div>
+<p>Failed to start sendmail.service: Unit sendmail.service is masked.
+Use the systemctl unmask command to unmask the service unit.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># systemctl unmask sendmail</span>
+<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>Removed /etc/systemd/system/sendmail.service.
+</code></pre></div>
+<div class="admonition danger">
+<p class="admonition-title">IMPORTANT</p>
+<p>A disabled service can be started manually or by other unit files but it does not start
+automatically at boot. A masked service does not start manually or automatically.</p>
+</div>
+<h4 id="enabling-services-to-start-or-stop-at-boot">ENABLING SERVICES TO START OR STOP AT BOOT<a class="headerlink" href="#enabling-services-to-start-or-stop-at-boot" title="Permanent link">&para;</a></h4>
+<p>Starting a service on a running system does not guarantee that the service automatically starts
+when the system reboots. Similarly, stopping a service on a running system does not keep it from
+starting again when the system reboots. Creating links in the systemd configuration directories
+enables the service to start at boot. The <strong>systemctl</strong> commands creates and removes these links.
+To start a service at boot, use the <strong>systemctl enable</strong> command.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="o">[</span>root@root ~<span class="o">]</span><span class="c1"># systemctl enable sshd.service</span>
+<a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>Created symlink /etc/systemd/system/multi-user.target.wants/sshd.service → /usr/
+<a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a>lib/systemd/system/sshd.service.
+</code></pre></div>
+<p>The above command creates a symbolic link from the service unit file, usually in the <strong>/usr/lib/
+systemd/system</strong> directory, to the location on disk where systemd looks for files, which is in the
+<strong>/etc/systemd/system/TARGETNAME.target.wants</strong> directory. Enabling a service does not
+start the service in the current session. To start the service and enable it to start automatically
+during boot, execute both the <strong>systemctl start</strong> and <strong>systemctl enable</strong> commands.</p>
+<p>To disable the service from starting automatically, use the following command, which removes
+the symbolic link created while enabling a service. Note that disabling a service does not stop the
+service.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># systemctl disable sshd.service</span>
+<a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>Removed /etc/systemd/system/multi-user.target.wants/sshd.service.
+</code></pre></div>
+<p>To verify whether the service is enabled or disable, use the <strong>systemctl is-enabled</strong> command.</p>
+<h4 id="summary-of-systemctl-commands">SUMMARY OF <em>systemctl</em> COMMANDS<a class="headerlink" href="#summary-of-systemctl-commands" title="Permanent link">&para;</a></h4>
+<p>Services can be started and stopped on a running system and enabled or disabled for an automatic
+start at boot time.</p>
+<p><strong>Useful Service Management Commands</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left">TASK</th>
+<th align="left">COMMAND</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">View detailed information about a unit state.</td>
+<td align="left"><strong>systemctl status UNIT</strong></td>
+</tr>
+<tr>
+<td align="left">Stop a service on a running system.</td>
+<td align="left"><strong>systemctl stop UNIT</strong></td>
+</tr>
+<tr>
+<td align="left">Start a service on a running system.</td>
+<td align="left"><strong>systemctl start UNIT</strong></td>
+</tr>
+<tr>
+<td align="left">Restart a service on a running system.</td>
+<td align="left"><strong>systemctl restart UNIT</strong></td>
+</tr>
+<tr>
+<td align="left">Reload the configuration file of a running service.</td>
+<td align="left"><strong>systemctl reload UNIT</strong></td>
+</tr>
+<tr>
+<td align="left">Completely disable a service from being started, both manually and at boot.</td>
+<td align="left"><strong>systemctl mask UNIT</strong></td>
+</tr>
+<tr>
+<td align="left">Make a masked service available.</td>
+<td align="left"><strong>systemctl unmask UNIT</strong></td>
+</tr>
+<tr>
+<td align="left">Configure a service to start at boot time.</td>
+<td align="left"><strong>systemctl enable UNIT</strong></td>
+</tr>
+<tr>
+<td align="left">Disable a service from starting at boot time.</td>
+<td align="left"><strong>systemctl disable UNIT</strong></td>
+</tr>
+<tr>
+<td align="left">List units required and wanted by the specified unit.</td>
+<td align="left"><strong>systemctl list-dependencies UNIT</strong></td>
+</tr>
+</tbody>
+</table>
+<h3 id="summary">SUMMARY<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h3>
+<p>In this chapter, you learned:</p>
+<ul>
+<li>
+<p>systemd provides a method for activating system resources, server daemons, and other
+processes, both at boot time and on a running system.</p>
+</li>
+<li>
+<p>Use the <strong>systemctl</strong> to start, stop, reload, enable, and disable services.</p>
+</li>
+<li>
+<p>Use the <strong>systemctl status</strong> command to determine the status of system daemons and
+network services started by systemd.</p>
+</li>
+<li>
+<p>The <strong>systemctl list-dependencies</strong> command lists all service units upon which a specific
+service unit depends.</p>
+</li>
+<li>
+<p>systemd can mask a service unit so that it does not run even to satisfy dependencies.</p>
+</li>
+</ul>
+
+  <hr>
+<div class="md-source-file">
+  <small>
+    
+      Last update:
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">November 15, 2022</span>
+      
+    
+  </small>
+</div>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+          <a href="#" class="md-top md-icon" data-md-component="top" hidden>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+            Back to top
+          </a>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+    <nav class="md-footer__inner md-grid" aria-label="Footer" >
+      
+        
+        <a href="../monitor/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Monitoring And Managing Linux Processes" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Monitoring And Managing Linux Processes
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../secssh/" class="md-footer__link md-footer__link--next" aria-label="Next: Configuring And Securing Ssh" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Configuring And Securing Ssh
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2022 Divijesh Varma. All rights reserved.
+    </div>
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.instant", "navigation.tracking", "navigation.tabs", "navigation.tabs.sticky", "navigation.expand", "navigation.top", "navigation.sections", "content.tooltips", "header.autohide"], "search": "../../assets/javascripts/workers/search.16e2a7d4.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d6c3db9e.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="../../javascripts/feedback.js"></script>
+      
+    
+  </body>
+</html>

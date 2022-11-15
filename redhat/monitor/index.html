@@ -1,0 +1,3093 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://www.privacyguides.org/redhat/monitor/">
+      
+      <link rel="icon" href="../../assets/img/layout/favicon.ico">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-8.5.10">
+    
+    
+      
+        <title>Monitoring And Managing Linux Processes - Divijesh Varma</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.472b142f.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.08040f6c.min.css">
+        
+      
+      
+
+    
+    
+    
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent="teal">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#listing-processes" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Divijesh Varma" class="md-header__button md-logo" aria-label="Divijesh Varma" data-md-component="logo">
+      
+  <img src="../../assets/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Divijesh Varma
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Monitoring And Managing Linux Processes
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent="teal"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 1 7 7c0 2.38-1.19 4.47-3 5.74V17a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 0 1 7-7M9 21v-1h6v1a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1m3-17a5 5 0 0 0-5 5c0 2.05 1.23 3.81 3 4.58V16h4v-2.42c1.77-.77 3-2.53 3-4.58a5 5 0 0 0-5-5Z"/></svg>
+            </label>
+          
+        
+          
+          
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="deep-purple" data-md-color-accent="deep-orange"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 2.38 1.19 4.47 3 5.74V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.26c1.81-1.27 3-3.36 3-5.74a7 7 0 0 0-7-7M9 21a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-1H9v1Z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../.." class="md-tabs__link">
+      Home
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../linux/vi/" class="md-tabs__link">
+        Linux
+      </a>
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../intro/" class="md-tabs__link md-tabs__link--active">
+        RedHat
+      </a>
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../english/vol1/" class="md-tabs__link">
+        English
+      </a>
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../basics/threat-modeling/" class="md-tabs__link">
+        Knowledge Base
+      </a>
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../tools/" class="md-tabs__link">
+        Recommendations
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../about/" class="md-tabs__link">
+        About
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Divijesh Varma" class="md-nav__button md-logo" aria-label="Divijesh Varma" data-md-component="logo">
+      
+  <img src="../../assets/logo.png" alt="logo">
+
+    </a>
+    Divijesh Varma
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          Linux
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Linux" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Linux
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_2_1" type="checkbox" id="__nav_2_1" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_1">
+          Editors
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Editors" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_1">
+          <span class="md-nav__icon md-icon"></span>
+          Editors
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/vi/" class="md-nav__link">
+        Vim
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/nano/" class="md-nav__link">
+        Nano
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_2_2" type="checkbox" id="__nav_2_2" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_2">
+          Notes
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Notes" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_2">
+          <span class="md-nav__icon md-icon"></span>
+          Notes
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/rhcsa/" class="md-nav__link">
+        Tritree
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/user/" class="md-nav__link">
+        User Management
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/acl/" class="md-nav__link">
+        Access control lists (ACLs)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/network/" class="md-nav__link">
+        Networking
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/ssh/" class="md-nav__link">
+        OpenSSH
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/process/" class="md-nav__link">
+        Process Management
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/software/" class="md-nav__link">
+        Software Management
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/systemd/" class="md-nav__link">
+        Systemd Management
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/cron/" class="md-nav__link">
+        Cron Jobs
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/logs/" class="md-nav__link">
+        Logs
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/disk/" class="md-nav__link">
+        Disk Management
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3">
+          RedHat
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="RedHat" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          RedHat
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+    
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_1" type="checkbox" id="__nav_3_1" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_1">
+          RHSA I (RH124)
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="RHSA I (RH124)" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_1">
+          <span class="md-nav__icon md-icon"></span>
+          RHSA I (RH124)
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../intro/" class="md-nav__link">
+        Introduction
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../access/" class="md-nav__link">
+        Accessing The Command Line
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../manage/" class="md-nav__link">
+        Managing Files From The Command Line
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../help/" class="md-nav__link">
+        Getting Help In Red Hat Enterprise Linux
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../edit/" class="md-nav__link">
+        Creating, Viewing, And Editing Text Files
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../users/" class="md-nav__link">
+        Managing Local Users And Groups
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../control/" class="md-nav__link">
+        Controlling Access To Files
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Monitoring And Managing Linux Processes
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Monitoring And Managing Linux Processes
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#listing-processes" class="md-nav__link">
+    LISTING PROCESSES
+  </a>
+  
+    <nav class="md-nav" aria-label="LISTING PROCESSES">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#definition-of-a-process" class="md-nav__link">
+    DEFINITION OF A PROCESS
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#describing-process-states" class="md-nav__link">
+    DESCRIBING PROCESS STATES
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#listing-processes_1" class="md-nav__link">
+    LISTING PROCESSES
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#controlling-jobs" class="md-nav__link">
+    CONTROLLING JOBS
+  </a>
+  
+    <nav class="md-nav" aria-label="CONTROLLING JOBS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#describing-jobs-and-sessions" class="md-nav__link">
+    DESCRIBING JOBS AND SESSIONS
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#running-jobs-in-the-background" class="md-nav__link">
+    RUNNING JOBS IN THE BACKGROUND
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#killing-processes" class="md-nav__link">
+    KILLING PROCESSES
+  </a>
+  
+    <nav class="md-nav" aria-label="KILLING PROCESSES">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#process-control-using-signals" class="md-nav__link">
+    PROCESS CONTROL USING SIGNALS
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#logging-users-out-administratively" class="md-nav__link">
+    LOGGING USERS OUT ADMINISTRATIVELY
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#monitoring-process-activity" class="md-nav__link">
+    MONITORING PROCESS ACTIVITY
+  </a>
+  
+    <nav class="md-nav" aria-label="MONITORING PROCESS ACTIVITY">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#describing-load-average" class="md-nav__link">
+    DESCRIBING LOAD AVERAGE
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#real-time-process-monitoring" class="md-nav__link">
+    REAL-TIME PROCESS MONITORING
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    SUMMARY
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../service/" class="md-nav__link">
+        Controlling Services And Daemons
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../secssh/" class="md-nav__link">
+        Configuring And Securing Ssh
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4">
+          English
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="English" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          English
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_4_1" type="checkbox" id="__nav_4_1" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_1">
+          Tutorial
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Tutorial" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_1">
+          <span class="md-nav__icon md-icon"></span>
+          Tutorial
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../english/vol1/" class="md-nav__link">
+        Vol-1
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../english/vol2/" class="md-nav__link">
+        Vol-2
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../english/vol3/" class="md-nav__link">
+        Vol-3
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../english/vol4/" class="md-nav__link">
+        Vol-4
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5">
+          Knowledge Base
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Knowledge Base" data-md-level="1">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          Knowledge Base
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_5_1" type="checkbox" id="__nav_5_1" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5_1">
+          The Basics
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="The Basics" data-md-level="2">
+        <label class="md-nav__title" for="__nav_5_1">
+          <span class="md-nav__icon md-icon"></span>
+          The Basics
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../basics/threat-modeling/" class="md-nav__link">
+        Threat Modeling
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../basics/dns/" class="md-nav__link">
+        Introduction to DNS
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../basics/multi-factor-authentication/" class="md-nav__link">
+        Multi-factor Authentication
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../basics/account-deletion/" class="md-nav__link">
+        Account Deletion
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_5_2" type="checkbox" id="__nav_5_2" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5_2">
+          Android
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Android" data-md-level="2">
+        <label class="md-nav__title" for="__nav_5_2">
+          <span class="md-nav__icon md-icon"></span>
+          Android
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../android/overview/" class="md-nav__link">
+        Android Overview
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../android/grapheneos-vs-calyxos/" class="md-nav__link">
+        GrapheneOS vs CalyxOS
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_5_3" type="checkbox" id="__nav_5_3" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5_3">
+          Linux
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Linux" data-md-level="2">
+        <label class="md-nav__title" for="__nav_5_3">
+          <span class="md-nav__icon md-icon"></span>
+          Linux
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux-desktop/overview/" class="md-nav__link">
+        Linux Overview
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux-desktop/hardening/" class="md-nav__link">
+        System Hardening
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux-desktop/sandboxing/" class="md-nav__link">
+        Application Sandboxing
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_5_4" type="checkbox" id="__nav_5_4" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5_4">
+          Advanced
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Advanced" data-md-level="2">
+        <label class="md-nav__title" for="__nav_5_4">
+          <span class="md-nav__icon md-icon"></span>
+          Advanced
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setup/integrating-metadata-removal/" class="md-nav__link">
+        Integrating Metadata Removal
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_6" type="checkbox" id="__nav_6" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6">
+          Recommendations
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Recommendations" data-md-level="1">
+        <label class="md-nav__title" for="__nav_6">
+          <span class="md-nav__icon md-icon"></span>
+          Recommendations
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tools/" class="md-nav__link">
+        Privacy Tools
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_6_2" type="checkbox" id="__nav_6_2" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6_2">
+          Browsers
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Browsers" data-md-level="2">
+        <label class="md-nav__title" for="__nav_6_2">
+          <span class="md-nav__icon md-icon"></span>
+          Browsers
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../browsers/" class="md-nav__link">
+        Web Browsers
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_6_3" type="checkbox" id="__nav_6_3" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6_3">
+          Operating Systems
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Operating Systems" data-md-level="2">
+        <label class="md-nav__title" for="__nav_6_3">
+          <span class="md-nav__icon md-icon"></span>
+          Operating Systems
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../android/" class="md-nav__link">
+        Android
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux-desktop/" class="md-nav__link">
+        Linux
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../qubes/" class="md-nav__link">
+        Qubes OS
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../router/" class="md-nav__link">
+        Router Firmware
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_6_4" type="checkbox" id="__nav_6_4" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6_4">
+          Providers
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Providers" data-md-level="2">
+        <label class="md-nav__title" for="__nav_6_4">
+          <span class="md-nav__icon md-icon"></span>
+          Providers
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cloud/" class="md-nav__link">
+        Cloud Storage
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dns/" class="md-nav__link">
+        DNS Resolvers
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../email/" class="md-nav__link">
+        Email Services
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../search-engines/" class="md-nav__link">
+        Search Engines
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vpn/" class="md-nav__link">
+        VPN Services
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_6_5" type="checkbox" id="__nav_6_5" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6_5">
+          Software
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Software" data-md-level="2">
+        <label class="md-nav__title" for="__nav_6_5">
+          <span class="md-nav__icon md-icon"></span>
+          Software
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../calendar-contacts/" class="md-nav__link">
+        Calendar and Contact Sync
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../notebooks/" class="md-nav__link">
+        Notebooks
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../email-clients/" class="md-nav__link">
+        Email Clients
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../encryption/" class="md-nav__link">
+        Encryption Software
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../file-sharing/" class="md-nav__link">
+        File Sharing and Sync
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../metadata-removal-tools/" class="md-nav__link">
+        Metadata Removal Tools
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../multi-factor-authentication/" class="md-nav__link">
+        Multi-Factor Authenticators
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../passwords/" class="md-nav__link">
+        Password Managers
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../productivity/" class="md-nav__link">
+        Productivity Tools
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../real-time-communication/" class="md-nav__link">
+        Real-Time Communication
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../news-aggregators/" class="md-nav__link">
+        News Aggregators
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../self-contained-networks/" class="md-nav__link">
+        Self-Contained Networks
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../video-streaming/" class="md-nav__link">
+        Video Streaming
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_7" type="checkbox" id="__nav_7" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_7">
+          About
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="About" data-md-level="1">
+        <label class="md-nav__title" for="__nav_7">
+          <span class="md-nav__icon md-icon"></span>
+          About
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/" class="md-nav__link">
+        Heading
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#listing-processes" class="md-nav__link">
+    LISTING PROCESSES
+  </a>
+  
+    <nav class="md-nav" aria-label="LISTING PROCESSES">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#definition-of-a-process" class="md-nav__link">
+    DEFINITION OF A PROCESS
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#describing-process-states" class="md-nav__link">
+    DESCRIBING PROCESS STATES
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#listing-processes_1" class="md-nav__link">
+    LISTING PROCESSES
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#controlling-jobs" class="md-nav__link">
+    CONTROLLING JOBS
+  </a>
+  
+    <nav class="md-nav" aria-label="CONTROLLING JOBS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#describing-jobs-and-sessions" class="md-nav__link">
+    DESCRIBING JOBS AND SESSIONS
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#running-jobs-in-the-background" class="md-nav__link">
+    RUNNING JOBS IN THE BACKGROUND
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#killing-processes" class="md-nav__link">
+    KILLING PROCESSES
+  </a>
+  
+    <nav class="md-nav" aria-label="KILLING PROCESSES">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#process-control-using-signals" class="md-nav__link">
+    PROCESS CONTROL USING SIGNALS
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#logging-users-out-administratively" class="md-nav__link">
+    LOGGING USERS OUT ADMINISTRATIVELY
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#monitoring-process-activity" class="md-nav__link">
+    MONITORING PROCESS ACTIVITY
+  </a>
+  
+    <nav class="md-nav" aria-label="MONITORING PROCESS ACTIVITY">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#describing-load-average" class="md-nav__link">
+    DESCRIBING LOAD AVERAGE
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#real-time-process-monitoring" class="md-nav__link">
+    REAL-TIME PROCESS MONITORING
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    SUMMARY
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+  
+
+
+
+
+  <h1>Monitoring And Managing Linux Processes</h1>
+
+<h3 id="listing-processes">LISTING PROCESSES<a class="headerlink" href="#listing-processes" title="Permanent link">&para;</a></h3>
+<h4 id="definition-of-a-process">DEFINITION OF A PROCESS<a class="headerlink" href="#definition-of-a-process" title="Permanent link">&para;</a></h4>
+<p>A process is a running instance of a launched, executable program. A process consists of:</p>
+<ul>
+<li>
+<p>An address space of allocated memory</p>
+</li>
+<li>
+<p>Security properties including ownership credentials and privileges</p>
+</li>
+<li>
+<p>One or more execution threads of program code</p>
+</li>
+<li>
+<p>Process state</p>
+</li>
+</ul>
+<p>The <em>environment</em> of a process includes:</p>
+<ul>
+<li>
+<p>Local and global variables</p>
+</li>
+<li>
+<p>A current scheduling context</p>
+</li>
+<li>
+<p>Allocated system resources, such as file descriptors and network ports</p>
+</li>
+</ul>
+<p>An existing (<em>parent</em>) process duplicates its own address space (<strong>fork</strong>) to create a new (<em>child</em>)
+process structure. Every new process is assigned a unique process ID (PID) for tracking and
+security. The PID and the parent's process ID (PPID) are elements of the new process environment.
+Any process may create a child process. All processes are descendants of the first system process,
+<strong>systemd</strong> on a Red Hat Enterprise Linux 8 system).</p>
+<p><img alt="Process life cycle" src="https://www.linuxprobe.com/links/RH124/images/processes/lifecycle.png" title="Process life cycle" /></p>
+<p>Through the <em>fork</em> routine, a child process inherits security identities, previous and current file
+descriptors, port and resource privileges, environment variables, and program code. A child
+process may then <em>exec</em> its own program code. Normally, a parent process <em>sleeps</em> while the child
+process runs, setting a request (<em>wait</em>) to be signaled when the child completes. Upon exit, the
+child process has already closed or discarded its resources and environment. The only remaining
+resource, called a <em>zombie</em>, is an entry in the process table. The parent, signaled awake when the
+child exited, cleans the process table of the child's entry, thus freeing the last resource of the child
+process. The parent process then continues with its own program code execution.</p>
+<h3 id="describing-process-states">DESCRIBING PROCESS STATES<a class="headerlink" href="#describing-process-states" title="Permanent link">&para;</a></h3>
+<p>In a multitasking operating system, each CPU (or CPU core) can be working on one process at a
+single point in time. As a process runs, its immediate requirements for CPU time and resource
+allocation change. Processes are assigned a <em>state</em>, which changes as circumstances dictate.</p>
+<p><img alt="Linux process states" src="https://www.linuxprobe.com/links/RH124/images/processes/states.png" title="Linux process states" /></p>
+<p>Linux process states are illustrated in the previous diagram and described in the following table:</p>
+<p><strong>Linux Process States</strong></p>
+<table>
+<thead>
+<tr>
+<th align="center">NAME</th>
+<th align="left">FLAG</th>
+<th>KERNEL-DEFINED STATE NAME AND DESCRIPTION</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">Running</td>
+<td align="left"><strong>R</strong></td>
+<td>TASK_RUNNING: The process is either executing on a CPU or waiting to run.Process can be executing user routines or kernel routines (system calls), or be queued and ready when in the Running (or Runnable) state.</td>
+</tr>
+<tr>
+<td align="center">Sleeping</td>
+<td align="left"><strong>S</strong></td>
+<td>TASK_INTERRUPTIBLE: The process is waiting for some condition: a hardware request, system resource access, or signal. When an event or signal satisfies the condition, the process returns to <em>Running</em>.</td>
+</tr>
+<tr>
+<td align="center">Sleeping</td>
+<td align="left"><strong>D</strong></td>
+<td>TASK_UNINTERRUPTIBLE: This process is also Sleeping, but unlike <strong>S</strong> state, does not respond to signals. Used only when process interruption may cause an unpredictable device state.</td>
+</tr>
+<tr>
+<td align="center">Sleeping</td>
+<td align="left"><strong>K</strong></td>
+<td>TASK_KILLABLE: Identical to the uninterruptible <strong>D</strong> state, but modified to allow a waiting task to respond to the signal that it should be killed (exit completely). Utilities frequently display Killable processes as <strong>D</strong> state.</td>
+</tr>
+<tr>
+<td align="center">Sleeping</td>
+<td align="left"><strong>I</strong></td>
+<td>TASK_REPORT_IDLE: A subset of state <strong>D</strong>. The kernel does not count these processes when calculating load average. Used for kernel threads. Flags TASK_UNINTERRUPTABLE and TASK_NOLOAD are set. Similar to TASK_KILLABLE, also a subset of state <strong>D</strong>. It accepts fatal signals.</td>
+</tr>
+<tr>
+<td align="center">Stopped</td>
+<td align="left"><strong>T</strong></td>
+<td>TASK_STOPPED: The process has been <em>Stopped</em> (suspended), usually by being signaled by a user or another process. The process can be continued (resumed) by another signal to return to <em>Running</em>.</td>
+</tr>
+<tr>
+<td align="center">Stopped</td>
+<td align="left"><strong>T</strong></td>
+<td>TASK_TRACED: A process that is being debugged is also temporarily Stopped and shares the same <strong>T</strong> state flag.</td>
+</tr>
+<tr>
+<td align="center">Zombie</td>
+<td align="left"><strong>Z</strong></td>
+<td>EXIT_ZOMBIE: A child process signals its parent as it exits. All resources except for the process identity (PID) are released.</td>
+</tr>
+<tr>
+<td align="center">Zombie</td>
+<td align="left"><strong>X</strong></td>
+<td>EXIT_DEAD: When the parent cleans up (reaps) the remaining child process structure, the process is now released completely. This state will never be observed in process-listing utilities.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Why Process States are Important</strong></p>
+<p>When troubleshooting a system, it is important to understand how the kernel communicates with
+processes and how processes communicate with each other. At process creation, the system
+assigns the process a state. The <em>S</em> column of the top command or the <em>STAT</em> column of the <em>ps</em> show
+the state of each process. On a single CPU system, only one process can run at a time. It is possible
+to see several processes with a state of <em>R</em>. However, not all of them will be running consecutively,
+some of them will be in status <em>waiting</em>.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ top
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>PID USER  PR  NI    VIRT    RES    SHR S  %CPU  %MEM     TIME+ COMMAND
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>  <span class="m">1</span> root  <span class="m">20</span>   <span class="m">0</span>  <span class="m">244344</span>  <span class="m">13684</span>   <span class="m">9024</span> S   <span class="m">0</span>.0   <span class="m">0</span>.7   <span class="m">0</span>:02.46 systemd
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>  <span class="m">2</span> root  <span class="m">20</span>   <span class="m">0</span>       <span class="m">0</span>      <span class="m">0</span>      <span class="m">0</span> S   <span class="m">0</span>.0   <span class="m">0</span>.0   <span class="m">0</span>:00.00 kthreadd
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>...output omitted... 
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ ps aux
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>...output omitted...
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>root         <span class="m">2</span>  <span class="m">0</span>.0  <span class="m">0</span>.0      <span class="m">0</span>     <span class="m">0</span> ?        S    <span class="m">11</span>:57   <span class="m">0</span>:00 <span class="o">[</span>kthreadd<span class="o">]</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>student   <span class="m">3448</span>  <span class="m">0</span>.0  <span class="m">0</span>.2 <span class="m">266904</span>  <span class="m">3836</span> pts/0    R+   <span class="m">18</span>:07   <span class="m">0</span>:00 ps aux
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>...output omitted... 
+</code></pre></div>
+<p>Process can be suspended, stopped, resumed, terminated, and interrupted using signals. Signals
+are discussed in more detail later in this chapter. Signals can be used by other processes, by the
+kernel itself, or by users logged into the system.</p>
+<h3 id="listing-processes_1">LISTING PROCESSES<a class="headerlink" href="#listing-processes_1" title="Permanent link">&para;</a></h3>
+<p>The <strong>ps</strong> command is used for listing current processes. It can provide detailed process information,
+including:</p>
+<ul>
+<li>
+<p>User identification (UID), which determines process privileges</p>
+</li>
+<li>
+<p>Unique process identification (PID)</p>
+</li>
+<li>
+<p>CPU and real time already expended</p>
+</li>
+<li>
+<p>How much memory the process has allocated in various locations</p>
+</li>
+<li>
+<p>The location of process <strong>stdout</strong>, known as the controlling terminal</p>
+</li>
+<li>
+<p>The current process state</p>
+</li>
+</ul>
+<div class="admonition danger">
+<p class="admonition-title">IMPORTANT</p>
+<p>The Linux version of <strong>ps</strong> supports three option formats:</p>
+<ul>
+<li>
+<p>UNIX (POSIX) options, which may be grouped and must be preceded by a dash</p>
+</li>
+<li>
+<p>BSD options, which may be grouped and must not be used with a dash</p>
+</li>
+<li>
+<p>GNU long options, which are preceded by two dashes</p>
+</li>
+</ul>
+<p>For example, <strong>ps -aux</strong> is not the same as <strong>ps aux</strong>.</p>
+</div>
+<p>Perhaps the most common set of options, <strong>aux</strong>, displays all processes including processes without
+a controlling terminal. A long listing (options <strong>lax</strong>) provides more technical detail, but may display
+faster by avoiding user name lookups. The similar UNIX syntax uses the options <strong>-ef</strong> to display all
+processes.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ ps aux
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>root         <span class="m">1</span>  <span class="m">0</span>.1  <span class="m">0</span>.1  <span class="m">51648</span>  <span class="m">7504</span> ?        Ss   <span class="m">17</span>:45   <span class="m">0</span>:03 /usr/lib/systemd/
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>syst
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>root         <span class="m">2</span>  <span class="m">0</span>.0  <span class="m">0</span>.0      <span class="m">0</span>     <span class="m">0</span> ?        S    <span class="m">17</span>:45   <span class="m">0</span>:00 <span class="o">[</span>kthreadd<span class="o">]</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>root         <span class="m">3</span>  <span class="m">0</span>.0  <span class="m">0</span>.0      <span class="m">0</span>     <span class="m">0</span> ?        S    <span class="m">17</span>:45   <span class="m">0</span>:00 <span class="o">[</span>ksoftirqd/0<span class="o">]</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>root         <span class="m">5</span>  <span class="m">0</span>.0  <span class="m">0</span>.0      <span class="m">0</span>     <span class="m">0</span> ?        S&lt;   <span class="m">17</span>:45   <span class="m">0</span>:00 <span class="o">[</span>kworker/0:0H<span class="o">]</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>root         <span class="m">7</span>  <span class="m">0</span>.0  <span class="m">0</span>.0      <span class="m">0</span>     <span class="m">0</span> ?        S    <span class="m">17</span>:45   <span class="m">0</span>:00 <span class="o">[</span>migration/0<span class="o">]</span>
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>...output omitted...
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ ps lax
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>F   UID   PID  PPID PRI  NI    VSZ   RSS WCHAN  STAT TTY     TIME COMMAND
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="m">4</span>     <span class="m">0</span>     <span class="m">1</span>     <span class="m">0</span>  <span class="m">20</span>   <span class="m">0</span>  <span class="m">51648</span>  <span class="m">7504</span> ep_pol Ss   ?       <span class="m">0</span>:03 /usr/lib/
+<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>systemd/
+<a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a><span class="m">1</span>     <span class="m">0</span>     <span class="m">2</span>     <span class="m">0</span>  <span class="m">20</span>   <span class="m">0</span>      <span class="m">0</span>     <span class="m">0</span> kthrea S    ?       <span class="m">0</span>:00 <span class="o">[</span>kthreadd<span class="o">]</span>
+<a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a><span class="m">1</span>     <span class="m">0</span>     <span class="m">3</span>     <span class="m">2</span>  <span class="m">20</span>   <span class="m">0</span>      <span class="m">0</span>     <span class="m">0</span> smpboo S    ?       <span class="m">0</span>:00 <span class="o">[</span>ksoftirqd/0<span class="o">]</span>
+<a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a><span class="m">1</span>     <span class="m">0</span>     <span class="m">5</span>     <span class="m">2</span>   <span class="m">0</span> -20      <span class="m">0</span>     <span class="m">0</span> worker S&lt;   ?       <span class="m">0</span>:00 <span class="o">[</span>kworker/0:0H<span class="o">]</span>
+<a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a><span class="m">1</span>     <span class="m">0</span>     <span class="m">7</span>     <span class="m">2</span> -100  -      <span class="m">0</span>     <span class="m">0</span> smpboo S    ?       <span class="m">0</span>:00 <span class="o">[</span>migration/0<span class="o">]</span>
+<a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a>...output omitted...
+<a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ ps -ef
+<a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a>UID        PID  PPID  C STIME TTY          TIME CMD
+<a id="__codelineno-2-21" name="__codelineno-2-21" href="#__codelineno-2-21"></a>root         <span class="m">1</span>     <span class="m">0</span>  <span class="m">0</span> <span class="m">17</span>:45 ?        <span class="m">00</span>:00:03 /usr/lib/systemd/systemd --
+<a id="__codelineno-2-22" name="__codelineno-2-22" href="#__codelineno-2-22"></a>switched-ro
+<a id="__codelineno-2-23" name="__codelineno-2-23" href="#__codelineno-2-23"></a>root         <span class="m">2</span>     <span class="m">0</span>  <span class="m">0</span> <span class="m">17</span>:45 ?        <span class="m">00</span>:00:00 <span class="o">[</span>kthreadd<span class="o">]</span>
+<a id="__codelineno-2-24" name="__codelineno-2-24" href="#__codelineno-2-24"></a>root         <span class="m">3</span>     <span class="m">2</span>  <span class="m">0</span> <span class="m">17</span>:45 ?        <span class="m">00</span>:00:00 <span class="o">[</span>ksoftirqd/0<span class="o">]</span>
+<a id="__codelineno-2-25" name="__codelineno-2-25" href="#__codelineno-2-25"></a>root         <span class="m">5</span>     <span class="m">2</span>  <span class="m">0</span> <span class="m">17</span>:45 ?        <span class="m">00</span>:00:00 <span class="o">[</span>kworker/0:0H<span class="o">]</span>
+<a id="__codelineno-2-26" name="__codelineno-2-26" href="#__codelineno-2-26"></a>root         <span class="m">7</span>     <span class="m">2</span>  <span class="m">0</span> <span class="m">17</span>:45 ?        <span class="m">00</span>:00:00 <span class="o">[</span>migration/0<span class="o">]</span>
+<a id="__codelineno-2-27" name="__codelineno-2-27" href="#__codelineno-2-27"></a>...output omitted...
+</code></pre></div>
+<p>By default, <strong>ps</strong> with no options selects all processes with the same effective user ID (EUID) as the
+current user, and which are associated with the same terminal where <strong>ps</strong> was invoked.</p>
+<ul>
+<li>
+<p>Processes in brackets (usually at the top of the list) are scheduled kernel threads.</p>
+</li>
+<li>
+<p>Zombies are listed as exiting or defunct.</p>
+</li>
+<li>
+<p>The output of <strong>ps</strong> displays once. Use top for a process display that dynamically updates.</p>
+</li>
+<li>
+<p><strong>ps</strong> can display in tree format so you can view relationships between parent and child processes.</p>
+</li>
+<li>
+<p>The default output is sorted by process ID number. At first glance, this may appear to be
+chronological order. However, the kernel reuses process IDs, so the order is less structured than
+it appears. To sort, use the <strong>-O</strong> or <strong>--sort</strong> options. Display order matches that of the system
+process table, which reuses table rows as processes die and new ones are created. Output may
+appear chronological, but is not guaranteed unless explicit <strong>-O</strong> or <strong>--sort</strong> options are used.</p>
+</li>
+</ul>
+<h3 id="controlling-jobs">CONTROLLING JOBS<a class="headerlink" href="#controlling-jobs" title="Permanent link">&para;</a></h3>
+<h4 id="describing-jobs-and-sessions">DESCRIBING JOBS AND SESSIONS<a class="headerlink" href="#describing-jobs-and-sessions" title="Permanent link">&para;</a></h4>
+<p><em>Job control</em> is a feature of the shell which allows a single shell instance to run and manage multiple
+commands.</p>
+<p>A job is associated with each pipeline entered at a shell prompt. All processes in that pipeline are
+part of the job and are members of the same process group. If only one command is entered at a
+shell prompt, that can be considered to be a minimal “pipeline” of one command, creating a job
+with only one member.</p>
+<p>Only one job can read input and keyboard generated signals from a particular terminal window at a
+time. Processes that are part of that job are <em>foreground</em> processes of that <em>controlling terminal</em>.</p>
+<p>A background process of that controlling terminal is a member of any other job associated with that
+terminal. Background processes of a terminal cannot read input or receive keyboard generated
+interrupts from the terminal, but may be able to write to the terminal. A job in the background may
+be stopped (suspended) or it may be running. If a running background job tries to read from the
+terminal, it will be automatically suspended.</p>
+<p>Each terminal is its own session, and can have a foreground process and any number of
+independent background processes. A job is part of exactly one session: the one belonging to its
+controlling terminal.</p>
+<p>The <strong>ps</strong> command shows the device name of the controlling terminal of a process in the <strong>TTY</strong>
+column. Some processes, such as system daemons, are started by the system and not from a shell
+prompt. These processes do not have a controlling terminal, are not members of a job, and cannot
+be brought to the foreground. The <strong>ps</strong> command displays a question mark (<strong>?</strong>) in the <strong>TTY</strong> column for
+these processes.</p>
+<h4 id="running-jobs-in-the-background">RUNNING JOBS IN THE BACKGROUND<a class="headerlink" href="#running-jobs-in-the-background" title="Permanent link">&para;</a></h4>
+<p>Any command or pipeline can be started in the background by appending an ampersand (<strong>&amp;</strong>) to
+the end of the command line. The Bash shell displays a job number (unique to the session) and the
+PID of the new child process. The shell does not wait for the child process to terminate, but rather
+displays the shell prompt.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ sleep <span class="m">10000</span> <span class="p">&amp;</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="o">[</span><span class="m">1</span><span class="o">]</span> <span class="m">5947</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ 
+</code></pre></div>
+<div class="admonition info">
+<p class="admonition-title">NOTE</p>
+<p>When a command line containing a pipe is sent to the background using an
+ampersand, the PID of the last command in the pipeline is used as output. All
+processes in the pipeline are still members of that job.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$  example_command <span class="p">|</span> sort <span class="p">|</span> mail -s <span class="s2">&quot;Sort output&quot;</span> <span class="p">&amp;</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="o">[</span><span class="m">1</span><span class="o">]</span> <span class="m">5998</span>
+</code></pre></div>
+</div>
+<p>You can display the list of jobs that Bash is tracking for a particular session with the <strong>jobs</strong>
+command.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ <span class="nb">jobs</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="o">[</span><span class="m">1</span><span class="o">]</span>+  Running                 sleep <span class="m">10000</span> <span class="p">&amp;</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ 
+</code></pre></div>
+<p>A background job can be brought to the foreground by using the <strong>fg</strong> command with its job ID (%job
+number).</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ <span class="nb">fg</span> %1
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>sleep <span class="m">10000</span>
+</code></pre></div>
+<p>In the preceding example, the <strong>sleep</strong> command is now running in the foreground on the controlling
+terminal. The shell itself is again asleep, waiting for this child process to exit.</p>
+<p>To send a foreground process to the background, first press the keyboard generated suspend
+request (<strong>Ctrl+Z</strong>) in the terminal.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>sleep <span class="m">10000</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>^Z
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="o">[</span><span class="m">1</span><span class="o">]</span>+  Stopped                 sleep <span class="m">10000</span>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ 
+</code></pre></div>
+<p>The job is immediately placed in the background and is suspended.</p>
+<p>The <strong>ps j</strong> command displays information relating to jobs. The PID is the unique process ID of the
+process. THe PPID is the PID of the parent process of this process, the process that started (forked)
+it. The PGID is the PID of the process group leader, normally the first process in the job's pipeline.
+The SID is the PID of the session leader, which (for a job) is normally the interactive shell that is
+running on its controlling terminal. Since the example <strong>sleep</strong> command is currently suspended, its
+process state is <strong>T</strong>.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ ps j
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a> PPID   PID  PGID   SID TTY      TPGID STAT   UID   TIME COMMAND
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a> <span class="m">2764</span>  <span class="m">2768</span>  <span class="m">2768</span>  <span class="m">2768</span> pts/0     <span class="m">6377</span> Ss    <span class="m">1000</span>   <span class="m">0</span>:00 /bin/bash
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a> <span class="m">2768</span>  <span class="m">5947</span>  <span class="m">5947</span>  <span class="m">2768</span> pts/0     <span class="m">6377</span> T     <span class="m">1000</span>   <span class="m">0</span>:00 sleep <span class="m">10000</span>
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a> <span class="m">2768</span>  <span class="m">6377</span>  <span class="m">6377</span>  <span class="m">2768</span> pts/0     <span class="m">6377</span> R+    <span class="m">1000</span>   <span class="m">0</span>:00 ps j
+</code></pre></div>
+<p>To start the suspended process running in the background, use the <strong>bg</strong> command with the same job
+ID.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ <span class="nb">bg</span> %1
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="o">[</span><span class="m">1</span><span class="o">]</span>+ sleep <span class="m">10000</span> <span class="p">&amp;</span>
+</code></pre></div>
+<p>The shell will warn a user who attempts to exit a terminal window (session) with suspended jobs. If
+the user tries exiting again immediately, the suspended jobs are killed.</p>
+<div class="admonition info">
+<p class="admonition-title">NOTE</p>
+<p>Note the + sign after the [1] in the examples above. The + sign indicates that this
+job is the current default job. That is, if a command is used that expects a %job
+number argument and a job number is not provided, then the action is taken on the
+job with the + indicator.</p>
+</div>
+<h3 id="killing-processes">KILLING PROCESSES<a class="headerlink" href="#killing-processes" title="Permanent link">&para;</a></h3>
+<h4 id="process-control-using-signals">PROCESS CONTROL USING SIGNALS<a class="headerlink" href="#process-control-using-signals" title="Permanent link">&para;</a></h4>
+<p>A signal is a software interrupt delivered to a process. Signals report events to an executing
+program. Events that generate a signal can be an error, external event (such as an I/O request or
+an expired timer), or by explicit request (the use of a signal-sending command or by a keyboard
+sequence).</p>
+<p>The following table lists the fundamental signals used by system administrators for routine process
+management. Refer to signals by either their short (HUP) or proper (SIGHUP) name.</p>
+<p><strong>Fundamental Process Management Signals</strong></p>
+<table>
+<thead>
+<tr>
+<th align="center">SIGNAL NUMBER</th>
+<th align="left">SHORT NAME</th>
+<th>DEFINITION</th>
+<th>PURPOSE</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">1</td>
+<td align="left">HUP</td>
+<td>Hangup</td>
+<td>Used to report termination of the controlling process of a terminal. Also used to request process reinitialization (configuration reload) without termination.</td>
+</tr>
+<tr>
+<td align="center">2</td>
+<td align="left">INT</td>
+<td>Keyboard interrupt</td>
+<td>Causes program termination. Can be blocked or handled. Sent by pressing INTR key combination (<strong>Ctrl+C</strong>).</td>
+</tr>
+<tr>
+<td align="center">3</td>
+<td align="left">QUIT</td>
+<td>Keyboard quit</td>
+<td>Similar to SIGINT, but also produces a process dump at termination. Sent by pressing QUIT key combination (<strong>'Ctrl+\'</strong>).</td>
+</tr>
+<tr>
+<td align="center">9</td>
+<td align="left">KILL</td>
+<td>Kill, unblockable</td>
+<td>Causes abrupt program termination. Cannot be blocked, ignored, or handled; always fatal.</td>
+</tr>
+<tr>
+<td align="center">15</td>
+<td align="left">TERM</td>
+<td>Terminate</td>
+<td>Causes program termination. Unlike SIGKILL, can be blocked, ignored, or handled. The “polite” way to ask a program to terminate; allows self-cleanup.</td>
+</tr>
+<tr>
+<td align="center">18</td>
+<td align="left">CONT</td>
+<td>Continue</td>
+<td>Sent to a process to resume, if stopped. Cannot be blocked. Even if handled, always resumes the process.</td>
+</tr>
+<tr>
+<td align="center">19</td>
+<td align="left">STOP</td>
+<td>Stop, unblockable</td>
+<td>Suspends the process. Cannot be blocked or handled.</td>
+</tr>
+<tr>
+<td align="center">20</td>
+<td align="left">TSTP</td>
+<td>Keyboard stop</td>
+<td>Unlike SIGSTOP, can be blocked, ignored, or handled. Sent by pressing SUSP key combination (<strong>Ctrl+Z</strong>).</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition info">
+<p class="admonition-title">NOTE</p>
+<p>Signal numbers vary on different Linux hardware platforms, but signal names and
+meanings are standardized. For command use, it is advised to use signal names
+instead of numbers. The numbers discussed in this section are for x86_64 systems.</p>
+</div>
+<p>Each signal has a default action, usually one of the following:</p>
+<ul>
+<li>
+<p>Term - Cause a program to terminate (exit) at once.</p>
+</li>
+<li>
+<p>Core - Cause a program to save a memory image (core dump), then terminate.</p>
+</li>
+<li>
+<p>Stop - Cause a program to stop executing (suspend) and wait to continue (resume).</p>
+</li>
+</ul>
+<p>Programs can be prepared to react to expected event signals by implementing handler routines to
+ignore, replace, or extend a signal's default action.</p>
+<p><strong>Commands for Sending Signals by Explicit Request</strong></p>
+<p>You signal their current foreground process by pressing a keyboard control sequence to suspend
+(<strong>Ctrl+Z</strong>), kill (<strong>Ctrl+C</strong>), or core dump (<strong>'Ctrl+\'</strong>) the process. However, you will use signal-sending
+commands to send signals to a background process or to processes in a different session.</p>
+<p>Signals can be specified as options either by name (for example, <strong>-HUP</strong> or <strong>-SIGHUP</strong>) or by number
+(the related <strong>-1</strong>). Users may kill their own processes, but root privilege is required to kill processes
+owned by others.</p>
+<p>The <strong>kill</strong> command sends a signal to a process by PID number. Despite its name, the kill command
+can be used for sending any signal, not just those for terminating programs. You can use the <strong>kill
+-l</strong> command to list the names and numbers of all available signals.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ <span class="nb">kill</span> -l
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a> <span class="m">1</span><span class="o">)</span> SIGHUP      <span class="m">2</span><span class="o">)</span> SIGINT      <span class="m">3</span><span class="o">)</span> SIGQUIT     <span class="m">4</span><span class="o">)</span> SIGILL      <span class="m">5</span><span class="o">)</span> SIGTRAP
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a> <span class="m">6</span><span class="o">)</span> SIGABRT     <span class="m">7</span><span class="o">)</span> SIGBUS      <span class="m">8</span><span class="o">)</span> SIGFPE      <span class="m">9</span><span class="o">)</span> SIGKILL    <span class="m">10</span><span class="o">)</span> SIGUSR1
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="m">11</span><span class="o">)</span> SIGSEGV    <span class="m">12</span><span class="o">)</span> SIGUSR2    <span class="m">13</span><span class="o">)</span> SIGPIPE    <span class="m">14</span><span class="o">)</span> SIGALRM    <span class="m">15</span><span class="o">)</span> SIGTERM
+<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="m">16</span><span class="o">)</span> SIGSTKFLT  <span class="m">17</span><span class="o">)</span> SIGCHLD    <span class="m">18</span><span class="o">)</span> SIGCONT    <span class="m">19</span><span class="o">)</span> SIGSTOP    <span class="m">20</span><span class="o">)</span> SIGTSTP
+<a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>...output omitted...
+<a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ ps aux <span class="p">|</span> grep job
+<a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a><span class="m">5194</span>  <span class="m">0</span>.0  <span class="m">0</span>.1 <span class="m">222448</span>  <span class="m">2980</span> pts/1    S    <span class="m">16</span>:39   <span class="m">0</span>:00 /bin/bash /home/user/bin/
+<a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a>control job1
+<a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a><span class="m">5199</span>  <span class="m">0</span>.0  <span class="m">0</span>.1 <span class="m">222448</span>  <span class="m">3132</span> pts/1    S    <span class="m">16</span>:39   <span class="m">0</span>:00 /bin/bash /home/user/bin/
+<a id="__codelineno-10-11" name="__codelineno-10-11" href="#__codelineno-10-11"></a>control job2
+<a id="__codelineno-10-12" name="__codelineno-10-12" href="#__codelineno-10-12"></a><span class="m">5205</span>  <span class="m">0</span>.0  <span class="m">0</span>.1 <span class="m">222448</span>  <span class="m">3124</span> pts/1    S    <span class="m">16</span>:39   <span class="m">0</span>:00 /bin/bash /home/user/bin/
+<a id="__codelineno-10-13" name="__codelineno-10-13" href="#__codelineno-10-13"></a>control job3
+<a id="__codelineno-10-14" name="__codelineno-10-14" href="#__codelineno-10-14"></a><span class="m">5430</span>  <span class="m">0</span>.0  <span class="m">0</span>.0 <span class="m">221860</span>  <span class="m">1096</span> pts/1    S+   <span class="m">16</span>:41   <span class="m">0</span>:00 grep --color<span class="o">=</span>auto job
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ <span class="nb">kill</span> <span class="m">5194</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ ps aux <span class="p">|</span> grep job
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>user   <span class="m">5199</span>  <span class="m">0</span>.0  <span class="m">0</span>.1 <span class="m">222448</span>  <span class="m">3132</span> pts/1    S    <span class="m">16</span>:39   <span class="m">0</span>:00 /bin/bash /home/
+<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>user/bin/control job2
+<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>user   <span class="m">5205</span>  <span class="m">0</span>.0  <span class="m">0</span>.1 <span class="m">222448</span>  <span class="m">3124</span> pts/1    S    <span class="m">16</span>:39   <span class="m">0</span>:00 /bin/bash /home/
+<a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a>user/bin/control job3
+<a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a>user   <span class="m">5783</span>  <span class="m">0</span>.0  <span class="m">0</span>.0 <span class="m">221860</span>   <span class="m">964</span> pts/1    S+   <span class="m">16</span>:43   <span class="m">0</span>:00 grep --color<span class="o">=</span>auto
+<a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a> job
+<a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a><span class="o">[</span><span class="m">1</span><span class="o">]</span>   Terminated              control job1
+<a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ <span class="nb">kill</span> -9 <span class="m">5199</span>
+<a id="__codelineno-11-11" name="__codelineno-11-11" href="#__codelineno-11-11"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ ps aux <span class="p">|</span> grep job
+<a id="__codelineno-11-12" name="__codelineno-11-12" href="#__codelineno-11-12"></a>user   <span class="m">5205</span>  <span class="m">0</span>.0  <span class="m">0</span>.1 <span class="m">222448</span>  <span class="m">3124</span> pts/1    S    <span class="m">16</span>:39   <span class="m">0</span>:00 /bin/bash /home/
+<a id="__codelineno-11-13" name="__codelineno-11-13" href="#__codelineno-11-13"></a>user/bin/control job3
+<a id="__codelineno-11-14" name="__codelineno-11-14" href="#__codelineno-11-14"></a>user   <span class="m">5930</span>  <span class="m">0</span>.0  <span class="m">0</span>.0 <span class="m">221860</span>  <span class="m">1048</span> pts/1    S+   <span class="m">16</span>:44   <span class="m">0</span>:00 grep --color<span class="o">=</span>auto
+<a id="__codelineno-11-15" name="__codelineno-11-15" href="#__codelineno-11-15"></a> job
+<a id="__codelineno-11-16" name="__codelineno-11-16" href="#__codelineno-11-16"></a><span class="o">[</span><span class="m">2</span><span class="o">]</span>-  Killed                  control job2
+<a id="__codelineno-11-17" name="__codelineno-11-17" href="#__codelineno-11-17"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ <span class="nb">kill</span> -SIGTERM <span class="m">5205</span>
+<a id="__codelineno-11-18" name="__codelineno-11-18" href="#__codelineno-11-18"></a>user   <span class="m">5986</span>  <span class="m">0</span>.0  <span class="m">0</span>.0 <span class="m">221860</span>  <span class="m">1048</span> pts/1    S+   <span class="m">16</span>:45   <span class="m">0</span>:00 grep --color<span class="o">=</span>auto
+<a id="__codelineno-11-19" name="__codelineno-11-19" href="#__codelineno-11-19"></a> job
+<a id="__codelineno-11-20" name="__codelineno-11-20" href="#__codelineno-11-20"></a><span class="o">[</span><span class="m">3</span><span class="o">]</span>+  Terminated              control job3
+</code></pre></div>
+<p>The <strong>killall</strong> command can signal multiple processes, based on their command name.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ ps aux <span class="p">|</span> grep job
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="m">5194</span>  <span class="m">0</span>.0  <span class="m">0</span>.1 <span class="m">222448</span>  <span class="m">2980</span> pts/1    S    <span class="m">16</span>:39   <span class="m">0</span>:00 /bin/bash /home/user/bin/
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>control job1
+<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="m">5199</span>  <span class="m">0</span>.0  <span class="m">0</span>.1 <span class="m">222448</span>  <span class="m">3132</span> pts/1    S    <span class="m">16</span>:39   <span class="m">0</span>:00 /bin/bash /home/user/bin/
+<a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>control job2
+<a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a><span class="m">5205</span>  <span class="m">0</span>.0  <span class="m">0</span>.1 <span class="m">222448</span>  <span class="m">3124</span> pts/1    S    <span class="m">16</span>:39   <span class="m">0</span>:00 /bin/bash /home/user/bin/
+<a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a>control job3
+<a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a><span class="m">5430</span>  <span class="m">0</span>.0  <span class="m">0</span>.0 <span class="m">221860</span>  <span class="m">1096</span> pts/1    S+   <span class="m">16</span>:41   <span class="m">0</span>:00 grep --color<span class="o">=</span>auto job
+<a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ killall control
+<a id="__codelineno-12-10" name="__codelineno-12-10" href="#__codelineno-12-10"></a><span class="o">[</span><span class="m">1</span><span class="o">]</span>   Terminated              control job1
+<a id="__codelineno-12-11" name="__codelineno-12-11" href="#__codelineno-12-11"></a><span class="o">[</span><span class="m">2</span><span class="o">]</span>-  Terminated              control job2
+<a id="__codelineno-12-12" name="__codelineno-12-12" href="#__codelineno-12-12"></a><span class="o">[</span><span class="m">3</span><span class="o">]</span>+  Terminated              control job3
+<a id="__codelineno-12-13" name="__codelineno-12-13" href="#__codelineno-12-13"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ 
+</code></pre></div>
+<p>Use <strong>pkill</strong> to send a signal to one or more processes which match selection criteria. Selection
+criteria can be a command name, a processes owned by a specific user, or all system-wide
+processes. The <strong>pkill</strong> command includes advanced selection criteria:</p>
+<ul>
+<li>
+<p>Command - Processes with a pattern-matched command name.</p>
+</li>
+<li>
+<p>UID - Processes owned by a Linux user account, effective or real.</p>
+</li>
+<li>
+<p>GID - Processes owned by a Linux group account, effective or real.</p>
+</li>
+<li>
+<p>Parent - Child processes of a specific parent process.</p>
+</li>
+<li>
+<p>Terminal - Processes running on a specific controlling terminal.</p>
+</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ ps aux <span class="p">|</span> grep pkill
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>user   <span class="m">5992</span>  <span class="m">0</span>.0  <span class="m">0</span>.1 <span class="m">222448</span>  <span class="m">3040</span> pts/1    S    <span class="m">16</span>:59   <span class="m">0</span>:00 /bin/bash /home/
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>user/bin/control pkill1
+<a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>user   <span class="m">5996</span>  <span class="m">0</span>.0  <span class="m">0</span>.1 <span class="m">222448</span>  <span class="m">3048</span> pts/1    S    <span class="m">16</span>:59   <span class="m">0</span>:00 /bin/bash /home/
+<a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a>user/bin/control pkill2
+<a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a>user   <span class="m">6004</span>  <span class="m">0</span>.0  <span class="m">0</span>.1 <span class="m">222448</span>  <span class="m">3048</span> pts/1    S    <span class="m">16</span>:59   <span class="m">0</span>:00 /bin/bash /home/
+<a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a>user/bin/control pkill3
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ pkill control
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="o">[</span><span class="m">1</span><span class="o">]</span>   Terminated              control pkill1
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="o">[</span><span class="m">2</span><span class="o">]</span>-  Terminated              control pkill2
+<a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ ps aux <span class="p">|</span> grep pkill
+<a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a>user   <span class="m">6219</span>  <span class="m">0</span>.0  <span class="m">0</span>.0 <span class="m">221860</span>  <span class="m">1052</span> pts/1    S+   <span class="m">17</span>:00   <span class="m">0</span>:00 grep --color<span class="o">=</span>auto
+<a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a> pkill
+<a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a><span class="o">[</span><span class="m">3</span><span class="o">]</span>+  Terminated              control pkill3
+<a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ ps aux <span class="p">|</span> grep <span class="nb">test</span>
+<a id="__codelineno-14-9" name="__codelineno-14-9" href="#__codelineno-14-9"></a>user   <span class="m">6281</span>  <span class="m">0</span>.0  <span class="m">0</span>.1 <span class="m">222448</span>  <span class="m">3012</span> pts/1    S    <span class="m">17</span>:04   <span class="m">0</span>:00 /bin/bash /home/
+<a id="__codelineno-14-10" name="__codelineno-14-10" href="#__codelineno-14-10"></a>user/bin/control test1
+<a id="__codelineno-14-11" name="__codelineno-14-11" href="#__codelineno-14-11"></a>user   <span class="m">6285</span>  <span class="m">0</span>.0  <span class="m">0</span>.1 <span class="m">222448</span>  <span class="m">3128</span> pts/1    S    <span class="m">17</span>:04   <span class="m">0</span>:00 /bin/bash /home/
+<a id="__codelineno-14-12" name="__codelineno-14-12" href="#__codelineno-14-12"></a>user/bin/control test2
+<a id="__codelineno-14-13" name="__codelineno-14-13" href="#__codelineno-14-13"></a>user   <span class="m">6292</span>  <span class="m">0</span>.0  <span class="m">0</span>.1 <span class="m">222448</span>  <span class="m">3064</span> pts/1    S    <span class="m">17</span>:04   <span class="m">0</span>:00 /bin/bash /home/
+<a id="__codelineno-14-14" name="__codelineno-14-14" href="#__codelineno-14-14"></a>user/bin/control test3
+<a id="__codelineno-14-15" name="__codelineno-14-15" href="#__codelineno-14-15"></a>user   <span class="m">6318</span>  <span class="m">0</span>.0  <span class="m">0</span>.0 <span class="m">221860</span>  <span class="m">1080</span> pts/1    S+   <span class="m">17</span>:04   <span class="m">0</span>:00 grep --color<span class="o">=</span>auto
+<a id="__codelineno-14-16" name="__codelineno-14-16" href="#__codelineno-14-16"></a> <span class="nb">test</span> 
+<a id="__codelineno-14-17" name="__codelineno-14-17" href="#__codelineno-14-17"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ pkill -U user
+<a id="__codelineno-14-18" name="__codelineno-14-18" href="#__codelineno-14-18"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ ps aux <span class="p">|</span> grep <span class="nb">test</span>
+<a id="__codelineno-14-19" name="__codelineno-14-19" href="#__codelineno-14-19"></a>user   <span class="m">6870</span>  <span class="m">0</span>.0  <span class="m">0</span>.0 <span class="m">221860</span>  <span class="m">1048</span> pts/0    S+   <span class="m">17</span>:07   <span class="m">0</span>:00 grep --color<span class="o">=</span>auto
+<a id="__codelineno-14-20" name="__codelineno-14-20" href="#__codelineno-14-20"></a> <span class="nb">test</span>
+<a id="__codelineno-14-21" name="__codelineno-14-21" href="#__codelineno-14-21"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ 
+</code></pre></div>
+<h3 id="logging-users-out-administratively">LOGGING USERS OUT ADMINISTRATIVELY<a class="headerlink" href="#logging-users-out-administratively" title="Permanent link">&para;</a></h3>
+<p>You may need to log other users off for any of a variety of reasons. To name a few of the many
+possibilities: the user committed a security violation; the user may have overused resources; the
+user may have an unresponsive system; or the user has improper access to materials. In these
+cases, you may need to administratively terminate their session using signals.</p>
+<p>To log off a user, first identify the login session to be terminated. Use the w command to list user
+logins and current running processes. Note the <strong>TTY</strong> and FROM columns to determine the sessions
+to close.</p>
+<p>All user login sessions are associated with a terminal device (<strong>TTY</strong>). If the device name is of the
+form <strong>pts/N</strong>, it is a pseudo-terminal associated with a graphical terminal window or remote login
+session. If it is of the form <strong>ttyN</strong>, the user is on a system console, alternate console, or other
+directly connected terminal device.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ w
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a> <span class="m">12</span>:43:06 up <span class="m">27</span> min,  <span class="m">5</span> users,  load average: <span class="m">0</span>.03, <span class="m">0</span>.17, <span class="m">0</span>.66
+<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>USER     TTY      FROM             LOGIN@   IDLE   JCPU   PCPU WHAT
+<a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a>root     tty2                      <span class="m">12</span>:26   <span class="m">14</span>:58   <span class="m">0</span>.04s  <span class="m">0</span>.04s -bash
+<a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a>bob      tty3                      <span class="m">12</span>:28   <span class="m">14</span>:42   <span class="m">0</span>.02s  <span class="m">0</span>.02s -bash
+<a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a>user     pts/1    desk.example.com <span class="m">12</span>:41    <span class="m">2</span>.00s  <span class="m">0</span>.03s  <span class="m">0</span>.03s w
+<a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ 
+</code></pre></div>
+<p>Discover how long a user has been on the system by viewing the session login time. For each
+session, CPU resources consumed by current jobs, including background tasks and child processes,
+are in the <strong>JCPU</strong> column. Current foreground process CPU consumption is in the PCPU column.</p>
+<p>Processes and sessions can be individually or collectively signaled. To terminate all processes for
+one user, use the <strong>pkill</strong> command. Because the initial process in a login session (session leader) is
+designed to handle session termination requests and ignore unintended keyboard signals, killing
+all of a user's processes and login shells requires using the SIGKILL signal.</p>
+<div class="admonition danger">
+<p class="admonition-title">IMPORTANT</p>
+<p>SIGKILL is commonly used too quickly by administrators.</p>
+<p>Since the SIGKILL signal cannot be handled or ignored, it is always fatal. However, it
+forces termination without allowing the killed process to run self-cleanup routines.
+It is recommended to send SIGTERM first, then try SIGINT, and only if both fail retry
+with SIGKILL.</p>
+</div>
+<p>First identify the PID numbers to be killed using <strong>pgrep</strong>, which operates much like <strong>pkill</strong>, including
+using the same options, except that <strong>pgrep</strong> lists processes rather than killing them.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># pgrep -l -u bob</span>
+<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="m">6964</span> bash
+<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a><span class="m">6998</span> sleep
+<a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a><span class="m">6999</span> sleep
+<a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a><span class="m">7000</span> sleep
+<a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># pkill -SIGKILL -u bob</span>
+<a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># pgrep -l -u bob</span>
+<a id="__codelineno-16-8" name="__codelineno-16-8" href="#__codelineno-16-8"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># </span>
+</code></pre></div>
+<p>When processes requiring attention are in the same login session, it may not be necessary to kill
+all of a user's processes. Determine the controlling terminal for the session using the <strong>w</strong> command,
+then kill only processes referencing the same terminal ID. Unless <strong>SIGKILL</strong> is specified, the session
+leader (here, the Bash login shell) successfully handles and survives the termination request, but
+all other session processes are terminated.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># pgrep -l -u bob</span>
+<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="m">7391</span> bash
+<a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a><span class="m">7426</span> sleep
+<a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a><span class="m">7427</span> sleep
+<a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a><span class="m">7428</span> sleep
+<a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># w -h -u bob</span>
+<a id="__codelineno-17-7" name="__codelineno-17-7" href="#__codelineno-17-7"></a>bob      tty3      <span class="m">18</span>:37    <span class="m">5</span>:04   <span class="m">0</span>.03s  <span class="m">0</span>.03s -bash
+<a id="__codelineno-17-8" name="__codelineno-17-8" href="#__codelineno-17-8"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># pkill -t tty3</span>
+<a id="__codelineno-17-9" name="__codelineno-17-9" href="#__codelineno-17-9"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># pgrep -l -u bob</span>
+<a id="__codelineno-17-10" name="__codelineno-17-10" href="#__codelineno-17-10"></a><span class="m">7391</span> bash
+<a id="__codelineno-17-11" name="__codelineno-17-11" href="#__codelineno-17-11"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># pkill -SIGKILL -t tty3</span>
+<a id="__codelineno-17-12" name="__codelineno-17-12" href="#__codelineno-17-12"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># pgrep -l -u bob</span>
+<a id="__codelineno-17-13" name="__codelineno-17-13" href="#__codelineno-17-13"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># </span>
+</code></pre></div>
+<p>The same selective process termination can be applied using parent and child process
+relationships. Use the <strong>pstree</strong> command to view a process tree for the system or a single user. Use
+the parent process's PID to kill all children they have created. This time, the parent Bash login shell
+survives because the signal is directed only at its child processes.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># pstree -p bob</span>
+<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>bash<span class="o">(</span><span class="m">8391</span><span class="o">)</span>─┬─sleep<span class="o">(</span><span class="m">8425</span><span class="o">)</span>
+<a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a>           ├─sleep<span class="o">(</span><span class="m">8426</span><span class="o">)</span>
+<a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a>           └─sleep<span class="o">(</span><span class="m">8427</span><span class="o">)</span>
+<a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># pkill -P 8391</span>
+<a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># pgrep -l -u bob</span>
+<a id="__codelineno-18-7" name="__codelineno-18-7" href="#__codelineno-18-7"></a>bash<span class="o">(</span><span class="m">8391</span><span class="o">)</span>
+<a id="__codelineno-18-8" name="__codelineno-18-8" href="#__codelineno-18-8"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># pkill -SIGKILL -P 8391</span>
+<a id="__codelineno-18-9" name="__codelineno-18-9" href="#__codelineno-18-9"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># pgrep -l -u bob</span>
+<a id="__codelineno-18-10" name="__codelineno-18-10" href="#__codelineno-18-10"></a>bash<span class="o">(</span><span class="m">8391</span><span class="o">)</span>
+<a id="__codelineno-18-11" name="__codelineno-18-11" href="#__codelineno-18-11"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># </span>
+</code></pre></div>
+<h3 id="monitoring-process-activity">MONITORING PROCESS ACTIVITY<a class="headerlink" href="#monitoring-process-activity" title="Permanent link">&para;</a></h3>
+<h4 id="describing-load-average">DESCRIBING LOAD AVERAGE<a class="headerlink" href="#describing-load-average" title="Permanent link">&para;</a></h4>
+<p><em>Load average</em> is a measurement provided by the Linux kernel that is a simple way to represent the
+perceived system load over time. It can be used as a rough gauge of how many system resource
+requests are pending, and to determine whether system load is increasing or decreasing over time.</p>
+<p>Every five seconds, the kernel collects the current load number, based on the number of processes
+in runnable and uninterruptible states. This number is accumulated and reported as an exponential
+moving average over the most recent 1, 5, and 15 minutes.</p>
+<p><strong>Understanding the Linux Load Average Calculation</strong></p>
+<p>The load average represents the perceived system load over a time period. Linux determines this
+by reporting how many processes are ready to run on a CPU, and how many processes are waiting
+for disk or network I/O to complete.</p>
+<ul>
+<li>
+<p>The load number is essentially based on the number of processes that are ready to run (in
+process state <strong>R</strong>) and are waiting for I/O to complete (in process state <strong>D</strong>).</p>
+</li>
+<li>
+<p>Some UNIX systems only consider CPU utilization or run queue length to indicate system load.
+Linux also includes disk or network utilization because that can have as significant an impact
+on system performance as CPU load. When experiencing high load averages with minimal CPU
+activity, examine disk and network activity.</p>
+</li>
+</ul>
+<p>Load average is a rough measurement of how many processes are currently waiting for a request
+to complete before they can do anything else. The request might be for CPU time to run the
+process. Alternatively, the request might be for a critical disk I/O operation to complete, and the
+process cannot be run on the CPU until the request completes, even if the CPU is idle. Either way,
+system load is impacted and the system appears to run more slowly because processes are waiting
+to run.</p>
+<p><strong>Interpreting Displayed Load Average Values</strong></p>
+<p>The <strong>uptime</strong> command is one way to display the current load average. It prints the current time,
+how long the machine has been up, how many user sessions are running, and the current load
+average.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ uptime
+<a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a> <span class="m">15</span>:29:03 up <span class="m">14</span> min,  <span class="m">2</span> users,  load average: <span class="m">2</span>.92, <span class="m">4</span>.48, <span class="m">5</span>.20
+</code></pre></div>
+<p>The three values for the load average represent the load over the last 1, 5, and 15 minutes. A quick
+glance indicates whether system load appears to be increasing or decreasing.</p>
+<p>If the main contribution to load average is from processes waiting for the CPU, you can calculate
+the approximate per CPU load value to determine whether the system is experiencing significant
+waiting.</p>
+<p>The <strong>lscpu</strong> command can help you determine how many CPUs a system has.</p>
+<p>In the following example, the system is a dual-core single socket system with two hyperthreads per
+core. Roughly speaking, Linux will treat this as a four CPU system for scheduling purposes.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ lscpu
+<a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>Architecture:        x86_64
+<a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a>CPU op-mode<span class="o">(</span>s<span class="o">)</span>:      <span class="m">32</span>-bit, <span class="m">64</span>-bit
+<a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a>Byte Order:          Little Endian
+<a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a>CPU<span class="o">(</span>s<span class="o">)</span>:              <span class="m">4</span>
+<a id="__codelineno-20-6" name="__codelineno-20-6" href="#__codelineno-20-6"></a>On-line CPU<span class="o">(</span>s<span class="o">)</span> list: <span class="m">0</span>-3
+<a id="__codelineno-20-7" name="__codelineno-20-7" href="#__codelineno-20-7"></a>Thread<span class="o">(</span>s<span class="o">)</span> per core:  <span class="m">2</span>
+<a id="__codelineno-20-8" name="__codelineno-20-8" href="#__codelineno-20-8"></a>Core<span class="o">(</span>s<span class="o">)</span> per socket:  <span class="m">2</span>
+<a id="__codelineno-20-9" name="__codelineno-20-9" href="#__codelineno-20-9"></a>Socket<span class="o">(</span>s<span class="o">)</span>:           <span class="m">1</span>
+<a id="__codelineno-20-10" name="__codelineno-20-10" href="#__codelineno-20-10"></a>NUMA node<span class="o">(</span>s<span class="o">)</span>:        <span class="m">1</span>
+<a id="__codelineno-20-11" name="__codelineno-20-11" href="#__codelineno-20-11"></a>...output omitted...
+</code></pre></div>
+<p>For a moment, imagine that the only contribution to the load number is from processes that need
+CPU time. Then you can divide the displayed load average values by the number of logical CPUs
+in the system. A value below 1 indicates satisfactory resource utilization and minimal wait times. A
+value above 1 indicates resource saturation and some amount of processing delay.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a># From lscpu, the system has four logical CPUs, so divide by 4:
+<a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a>#                               load average: 2.92, 4.48, 5.20
+<a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a>#           divide by number of logical CPUs:    4     4     4
+<a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a>#                                             ----  ----  ----
+<a id="__codelineno-21-5" name="__codelineno-21-5" href="#__codelineno-21-5"></a>#                       per-CPU load average: 0.73  1.12  1.30
+<a id="__codelineno-21-6" name="__codelineno-21-6" href="#__codelineno-21-6"></a>#
+<a id="__codelineno-21-7" name="__codelineno-21-7" href="#__codelineno-21-7"></a># This system&#39;s load average appears to be decreasing.
+<a id="__codelineno-21-8" name="__codelineno-21-8" href="#__codelineno-21-8"></a># With a load average of 2.92 on four CPUs, all CPUs were in use ~73% of the time.
+<a id="__codelineno-21-9" name="__codelineno-21-9" href="#__codelineno-21-9"></a># During the last 5 minutes, the system was overloaded by ~12%.
+<a id="__codelineno-21-10" name="__codelineno-21-10" href="#__codelineno-21-10"></a># During the last 15 minutes, the system was overloaded by ~30%.
+</code></pre></div>
+<p>An idle CPU queue has a load number of 0. Each process waiting for a CPU adds a count of 1 to the
+load number. If one process is running on a CPU, the load number is one, the resource (the CPU) is
+in use, but there are no requests waiting. If that process is running for a full minute, its contribution
+to the one-minute load average will be 1.</p>
+<p>However, processes uninterruptibly sleeping for critical I/O due to a busy disk or network resource
+are also included in the count and increase the load average. While not an indication of CPU
+utilization, these processes are added to the queue count because they are waiting for resources
+and cannot run on a CPU until they get them. This is still system load due to resource limitations
+that is causing processes not to run.</p>
+<p>Until resource saturation, a load average remains below 1, since tasks are seldom found waiting in
+queue. Load average only increases when resource saturation causes requests to remain queued
+and are counted by the load calculation routine. When resource utilization approaches 100%, each
+additional request starts experiencing service wait time.</p>
+<p>A number of additional tools report load average, including <strong>w</strong> and <strong>top</strong>.</p>
+<h4 id="real-time-process-monitoring">REAL-TIME PROCESS MONITORING<a class="headerlink" href="#real-time-process-monitoring" title="Permanent link">&para;</a></h4>
+<p>The top program is a dynamic view of the system's processes, displaying a summary header
+followed by a process or thread list similar to ps information. Unlike the static ps output, top
+continuously refreshes at a configurable interval, and provides capabilities for column reordering,
+sorting, and highlighting. User configurations can be saved and made persistent.</p>
+<p>Default output columns are recognizable from other resource tools:</p>
+<ul>
+<li>
+<p>The process ID (<strong>PID</strong>).</p>
+</li>
+<li>
+<p>User name (<strong>USER</strong>) is the process owner.</p>
+</li>
+<li>
+<p>Virtual memory (<strong>VIRT</strong>) is all memory the process is using, including the resident set, shared
+libraries, and any mapped or swapped memory pages. (Labeled VSZ in the ps command.)</p>
+</li>
+<li>
+<p>Resident memory (<strong>RES</strong>) is the physical memory used by the process, including any resident
+shared objects. (Labeled <strong>RSS</strong> in the <strong>ps</strong> command.)</p>
+</li>
+<li>
+<p>Process state (<strong>S</strong>) displays as:</p>
+<ul>
+<li>
+<p>D = Uninterruptible Sleeping</p>
+</li>
+<li>
+<p>R = Running or Runnable</p>
+</li>
+<li>
+<p>S = Sleeping</p>
+</li>
+<li>
+<p>T = Stopped or Traced</p>
+</li>
+<li>
+<p>Z = Zombie</p>
+</li>
+</ul>
+</li>
+<li>
+<p>CPU time (<strong>TIME</strong>) is the total processing time since the process started. May be toggled to
+include cumulative time of all previous children.</p>
+</li>
+<li>
+<p>The process command name (<strong>COMMAND</strong>).</p>
+</li>
+</ul>
+<p><strong>Fundamental Keystrokes in top</strong></p>
+<table>
+<thead>
+<tr>
+<th align="center">KEY</th>
+<th align="left">PURPOSE</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center"><strong>? or H</strong></td>
+<td align="left">Help for interactive keystrokes.</td>
+</tr>
+<tr>
+<td align="center"><strong>L, T, M</strong></td>
+<td align="left">Toggles for load, threads, and memory header lines.</td>
+</tr>
+<tr>
+<td align="center"><strong>1</strong></td>
+<td align="left">Toggle showing individual CPUs or a summary for all CPUs in header.</td>
+</tr>
+<tr>
+<td align="center"><strong>S(1)</strong></td>
+<td align="left">Change the refresh (screen) rate, in decimal seconds (e.g., 0.5, 1, 5).</td>
+</tr>
+<tr>
+<td align="center"><strong>B</strong></td>
+<td align="left">Toggle reverse highlighting for Running processes; default is bold only.</td>
+</tr>
+<tr>
+<td align="center"><strong>B</strong></td>
+<td align="left">Enables use of bold in display, in the header, and for Running processes.</td>
+</tr>
+<tr>
+<td align="center"><strong>Shift+H</strong></td>
+<td align="left">Toggle threads; show process summary or individual threads.</td>
+</tr>
+<tr>
+<td align="center"><strong>U, Shift+U</strong></td>
+<td align="left">Filter for any user name (effective, real).</td>
+</tr>
+<tr>
+<td align="center"><strong>Shift+M</strong></td>
+<td align="left">Sorts process listing by memory usage, in descending order.</td>
+</tr>
+<tr>
+<td align="center"><strong>Shift+P</strong></td>
+<td align="left">Sorts process listing by processor utilization, in descending order.</td>
+</tr>
+<tr>
+<td align="center"><strong>K(1)</strong></td>
+<td align="left">Kill a process. When prompted, enter PID, then signal.</td>
+</tr>
+<tr>
+<td align="center"><strong>R(1)</strong></td>
+<td align="left">Renice a process. When prompted, enter PID, then nice_value.</td>
+</tr>
+<tr>
+<td align="center"><strong>Shift+W</strong></td>
+<td align="left">Write (save) the current display configuration for use at the next top restart.</td>
+</tr>
+<tr>
+<td align="center"><strong>Q</strong></td>
+<td align="left">Quit.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="summary">SUMMARY<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h3>
+<p>In this chapter, you learned:</p>
+<ul>
+<li>
+<p>A process is a running instance of an executable program. Processes are assigned a state, which
+can be running, sleeping, stopped, or zombie. The <strong>ps</strong> command is used to list processes.</p>
+</li>
+<li>
+<p>Each terminal is its own session and can have foreground process and independent background
+processes. The <strong>jobs</strong> command displays processes within a terminal session.</p>
+</li>
+<li>
+<p>A signal is a software interrupt that reports events to an executing program. The <strong>kill, pkill</strong>,
+and <strong>killall</strong> commands use signals to control processes.</p>
+</li>
+<li>
+<p>Load average is an estimate of how busy the system is. To display load average values, you can
+use the <strong>top, uptime</strong>, or <strong>w</strong> command.</p>
+</li>
+</ul>
+
+  <hr>
+<div class="md-source-file">
+  <small>
+    
+      Last update:
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">November 15, 2022</span>
+      
+    
+  </small>
+</div>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+          <a href="#" class="md-top md-icon" data-md-component="top" hidden>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+            Back to top
+          </a>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+    <nav class="md-footer__inner md-grid" aria-label="Footer" >
+      
+        
+        <a href="../control/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Controlling Access To Files" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Controlling Access To Files
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../service/" class="md-footer__link md-footer__link--next" aria-label="Next: Controlling Services And Daemons" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Controlling Services And Daemons
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2022 Divijesh Varma. All rights reserved.
+    </div>
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.instant", "navigation.tracking", "navigation.tabs", "navigation.tabs.sticky", "navigation.expand", "navigation.top", "navigation.sections", "content.tooltips", "header.autohide"], "search": "../../assets/javascripts/workers/search.16e2a7d4.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d6c3db9e.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="../../javascripts/feedback.js"></script>
+      
+    
+  </body>
+</html>
