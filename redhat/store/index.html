@@ -1,0 +1,3079 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://www.privacyguides.org/redhat/store/">
+      
+      <link rel="icon" href="../../assets/img/layout/favicon.ico">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-8.5.10">
+    
+    
+      
+        <title>Analyzing And Storing Logs - Divijesh Varma</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.472b142f.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.08040f6c.min.css">
+        
+      
+      
+
+    
+    
+    
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent="teal">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#describing-system-log-architecture" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Divijesh Varma" class="md-header__button md-logo" aria-label="Divijesh Varma" data-md-component="logo">
+      
+  <img src="../../assets/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Divijesh Varma
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Analyzing And Storing Logs
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent="teal"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 1 7 7c0 2.38-1.19 4.47-3 5.74V17a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 0 1 7-7M9 21v-1h6v1a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1m3-17a5 5 0 0 0-5 5c0 2.05 1.23 3.81 3 4.58V16h4v-2.42c1.77-.77 3-2.53 3-4.58a5 5 0 0 0-5-5Z"/></svg>
+            </label>
+          
+        
+          
+          
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="deep-purple" data-md-color-accent="deep-orange"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 2.38 1.19 4.47 3 5.74V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.26c1.81-1.27 3-3.36 3-5.74a7 7 0 0 0-7-7M9 21a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-1H9v1Z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../.." class="md-tabs__link">
+      Home
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../linux/vi/" class="md-tabs__link">
+        Linux
+      </a>
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../intro/" class="md-tabs__link md-tabs__link--active">
+        RedHat
+      </a>
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../english/vol1/" class="md-tabs__link">
+        English
+      </a>
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../basics/threat-modeling/" class="md-tabs__link">
+        Knowledge Base
+      </a>
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../tools/" class="md-tabs__link">
+        Recommendations
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../about/" class="md-tabs__link">
+        About
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Divijesh Varma" class="md-nav__button md-logo" aria-label="Divijesh Varma" data-md-component="logo">
+      
+  <img src="../../assets/logo.png" alt="logo">
+
+    </a>
+    Divijesh Varma
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          Linux
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Linux" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Linux
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_2_1" type="checkbox" id="__nav_2_1" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_1">
+          Editors
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Editors" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_1">
+          <span class="md-nav__icon md-icon"></span>
+          Editors
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/vi/" class="md-nav__link">
+        Vim
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/nano/" class="md-nav__link">
+        Nano
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_2_2" type="checkbox" id="__nav_2_2" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_2">
+          Notes
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Notes" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_2">
+          <span class="md-nav__icon md-icon"></span>
+          Notes
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/rhcsa/" class="md-nav__link">
+        Tritree
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/user/" class="md-nav__link">
+        User Management
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/acl/" class="md-nav__link">
+        Access control lists (ACLs)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/network/" class="md-nav__link">
+        Networking
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/ssh/" class="md-nav__link">
+        OpenSSH
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/process/" class="md-nav__link">
+        Process Management
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/software/" class="md-nav__link">
+        Software Management
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/systemd/" class="md-nav__link">
+        Systemd Management
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/cron/" class="md-nav__link">
+        Cron Jobs
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/logs/" class="md-nav__link">
+        Logs
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/disk/" class="md-nav__link">
+        Disk Management
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3">
+          RedHat
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="RedHat" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          RedHat
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+    
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_1" type="checkbox" id="__nav_3_1" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_1">
+          RHSA I (RH124)
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="RHSA I (RH124)" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_1">
+          <span class="md-nav__icon md-icon"></span>
+          RHSA I (RH124)
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../intro/" class="md-nav__link">
+        Introduction
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../access/" class="md-nav__link">
+        Accessing The Command Line
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../manage/" class="md-nav__link">
+        Managing Files From The Command Line
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../help/" class="md-nav__link">
+        Getting Help In Red Hat Enterprise Linux
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../edit/" class="md-nav__link">
+        Creating, Viewing, And Editing Text Files
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../users/" class="md-nav__link">
+        Managing Local Users And Groups
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../control/" class="md-nav__link">
+        Controlling Access To Files
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../monitor/" class="md-nav__link">
+        Monitoring And Managing Linux Processes
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../service/" class="md-nav__link">
+        Controlling Services And Daemons
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../secssh/" class="md-nav__link">
+        Configuring And Securing Ssh
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Analyzing And Storing Logs
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Analyzing And Storing Logs
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#describing-system-log-architecture" class="md-nav__link">
+    DESCRIBING SYSTEM LOG ARCHITECTURE
+  </a>
+  
+    <nav class="md-nav" aria-label="DESCRIBING SYSTEM LOG ARCHITECTURE">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#system-logging" class="md-nav__link">
+    SYSTEM LOGGING
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reviewing-syslog-files" class="md-nav__link">
+    REVIEWING SYSLOG FILES
+  </a>
+  
+    <nav class="md-nav" aria-label="REVIEWING SYSLOG FILES">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#logging-events-to-the-system" class="md-nav__link">
+    LOGGING EVENTS TO THE SYSTEM
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sample-rules-of-rsyslog" class="md-nav__link">
+    SAMPLE RULES OF RSYSLOG
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#log-file-rotation" class="md-nav__link">
+    LOG FILE ROTATION
+  </a>
+  
+    <nav class="md-nav" aria-label="LOG FILE ROTATION">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#analyzing-a-syslog-entry" class="md-nav__link">
+    ANALYZING A SYSLOG ENTRY
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#monitoring-logs" class="md-nav__link">
+    MONITORING LOGS
+  </a>
+  
+    <nav class="md-nav" aria-label="MONITORING LOGS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sending-syslog-messages-manually" class="md-nav__link">
+    SENDING SYSLOG MESSAGES MANUALLY
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reviewing-system-journal-entries" class="md-nav__link">
+    REVIEWING SYSTEM JOURNAL ENTRIES
+  </a>
+  
+    <nav class="md-nav" aria-label="REVIEWING SYSTEM JOURNAL ENTRIES">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#finding-events" class="md-nav__link">
+    FINDING EVENTS
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#preserving-the-system-journal" class="md-nav__link">
+    PRESERVING THE SYSTEM JOURNAL
+  </a>
+  
+    <nav class="md-nav" aria-label="PRESERVING THE SYSTEM JOURNAL">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#storing-the-system-journal-permanently" class="md-nav__link">
+    STORING THE SYSTEM JOURNAL PERMANENTLY
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#maintaining-accurate-time" class="md-nav__link">
+    MAINTAINING ACCURATE TIME
+  </a>
+  
+    <nav class="md-nav" aria-label="MAINTAINING ACCURATE TIME">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#setting-local-clocks-and-time-zones" class="md-nav__link">
+    SETTING LOCAL CLOCKS AND TIME ZONES
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuring-and-monitoring-chronyd" class="md-nav__link">
+    CONFIGURING AND MONITORING CHRONYD
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    SUMMARY
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4">
+          English
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="English" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          English
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_4_1" type="checkbox" id="__nav_4_1" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_1">
+          Tutorial
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Tutorial" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_1">
+          <span class="md-nav__icon md-icon"></span>
+          Tutorial
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../english/vol1/" class="md-nav__link">
+        Vol-1
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../english/vol2/" class="md-nav__link">
+        Vol-2
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../english/vol3/" class="md-nav__link">
+        Vol-3
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../english/vol4/" class="md-nav__link">
+        Vol-4
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5">
+          Knowledge Base
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Knowledge Base" data-md-level="1">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          Knowledge Base
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_5_1" type="checkbox" id="__nav_5_1" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5_1">
+          The Basics
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="The Basics" data-md-level="2">
+        <label class="md-nav__title" for="__nav_5_1">
+          <span class="md-nav__icon md-icon"></span>
+          The Basics
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../basics/threat-modeling/" class="md-nav__link">
+        Threat Modeling
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../basics/dns/" class="md-nav__link">
+        Introduction to DNS
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../basics/multi-factor-authentication/" class="md-nav__link">
+        Multi-factor Authentication
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../basics/account-deletion/" class="md-nav__link">
+        Account Deletion
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_5_2" type="checkbox" id="__nav_5_2" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5_2">
+          Android
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Android" data-md-level="2">
+        <label class="md-nav__title" for="__nav_5_2">
+          <span class="md-nav__icon md-icon"></span>
+          Android
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../android/overview/" class="md-nav__link">
+        Android Overview
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../android/grapheneos-vs-calyxos/" class="md-nav__link">
+        GrapheneOS vs CalyxOS
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_5_3" type="checkbox" id="__nav_5_3" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5_3">
+          Linux
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Linux" data-md-level="2">
+        <label class="md-nav__title" for="__nav_5_3">
+          <span class="md-nav__icon md-icon"></span>
+          Linux
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux-desktop/overview/" class="md-nav__link">
+        Linux Overview
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux-desktop/hardening/" class="md-nav__link">
+        System Hardening
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux-desktop/sandboxing/" class="md-nav__link">
+        Application Sandboxing
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_5_4" type="checkbox" id="__nav_5_4" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5_4">
+          Advanced
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Advanced" data-md-level="2">
+        <label class="md-nav__title" for="__nav_5_4">
+          <span class="md-nav__icon md-icon"></span>
+          Advanced
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setup/integrating-metadata-removal/" class="md-nav__link">
+        Integrating Metadata Removal
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_6" type="checkbox" id="__nav_6" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6">
+          Recommendations
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Recommendations" data-md-level="1">
+        <label class="md-nav__title" for="__nav_6">
+          <span class="md-nav__icon md-icon"></span>
+          Recommendations
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tools/" class="md-nav__link">
+        Privacy Tools
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_6_2" type="checkbox" id="__nav_6_2" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6_2">
+          Browsers
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Browsers" data-md-level="2">
+        <label class="md-nav__title" for="__nav_6_2">
+          <span class="md-nav__icon md-icon"></span>
+          Browsers
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../browsers/" class="md-nav__link">
+        Web Browsers
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_6_3" type="checkbox" id="__nav_6_3" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6_3">
+          Operating Systems
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Operating Systems" data-md-level="2">
+        <label class="md-nav__title" for="__nav_6_3">
+          <span class="md-nav__icon md-icon"></span>
+          Operating Systems
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../android/" class="md-nav__link">
+        Android
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux-desktop/" class="md-nav__link">
+        Linux
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../qubes/" class="md-nav__link">
+        Qubes OS
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../router/" class="md-nav__link">
+        Router Firmware
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_6_4" type="checkbox" id="__nav_6_4" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6_4">
+          Providers
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Providers" data-md-level="2">
+        <label class="md-nav__title" for="__nav_6_4">
+          <span class="md-nav__icon md-icon"></span>
+          Providers
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cloud/" class="md-nav__link">
+        Cloud Storage
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dns/" class="md-nav__link">
+        DNS Resolvers
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../email/" class="md-nav__link">
+        Email Services
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../search-engines/" class="md-nav__link">
+        Search Engines
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vpn/" class="md-nav__link">
+        VPN Services
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_6_5" type="checkbox" id="__nav_6_5" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6_5">
+          Software
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Software" data-md-level="2">
+        <label class="md-nav__title" for="__nav_6_5">
+          <span class="md-nav__icon md-icon"></span>
+          Software
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../calendar-contacts/" class="md-nav__link">
+        Calendar and Contact Sync
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../notebooks/" class="md-nav__link">
+        Notebooks
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../email-clients/" class="md-nav__link">
+        Email Clients
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../encryption/" class="md-nav__link">
+        Encryption Software
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../file-sharing/" class="md-nav__link">
+        File Sharing and Sync
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../metadata-removal-tools/" class="md-nav__link">
+        Metadata Removal Tools
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../multi-factor-authentication/" class="md-nav__link">
+        Multi-Factor Authenticators
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../passwords/" class="md-nav__link">
+        Password Managers
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../productivity/" class="md-nav__link">
+        Productivity Tools
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../real-time-communication/" class="md-nav__link">
+        Real-Time Communication
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../news-aggregators/" class="md-nav__link">
+        News Aggregators
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../self-contained-networks/" class="md-nav__link">
+        Self-Contained Networks
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../video-streaming/" class="md-nav__link">
+        Video Streaming
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_7" type="checkbox" id="__nav_7" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_7">
+          About
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="About" data-md-level="1">
+        <label class="md-nav__title" for="__nav_7">
+          <span class="md-nav__icon md-icon"></span>
+          About
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/" class="md-nav__link">
+        Heading
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#describing-system-log-architecture" class="md-nav__link">
+    DESCRIBING SYSTEM LOG ARCHITECTURE
+  </a>
+  
+    <nav class="md-nav" aria-label="DESCRIBING SYSTEM LOG ARCHITECTURE">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#system-logging" class="md-nav__link">
+    SYSTEM LOGGING
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reviewing-syslog-files" class="md-nav__link">
+    REVIEWING SYSLOG FILES
+  </a>
+  
+    <nav class="md-nav" aria-label="REVIEWING SYSLOG FILES">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#logging-events-to-the-system" class="md-nav__link">
+    LOGGING EVENTS TO THE SYSTEM
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sample-rules-of-rsyslog" class="md-nav__link">
+    SAMPLE RULES OF RSYSLOG
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#log-file-rotation" class="md-nav__link">
+    LOG FILE ROTATION
+  </a>
+  
+    <nav class="md-nav" aria-label="LOG FILE ROTATION">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#analyzing-a-syslog-entry" class="md-nav__link">
+    ANALYZING A SYSLOG ENTRY
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#monitoring-logs" class="md-nav__link">
+    MONITORING LOGS
+  </a>
+  
+    <nav class="md-nav" aria-label="MONITORING LOGS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sending-syslog-messages-manually" class="md-nav__link">
+    SENDING SYSLOG MESSAGES MANUALLY
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reviewing-system-journal-entries" class="md-nav__link">
+    REVIEWING SYSTEM JOURNAL ENTRIES
+  </a>
+  
+    <nav class="md-nav" aria-label="REVIEWING SYSTEM JOURNAL ENTRIES">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#finding-events" class="md-nav__link">
+    FINDING EVENTS
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#preserving-the-system-journal" class="md-nav__link">
+    PRESERVING THE SYSTEM JOURNAL
+  </a>
+  
+    <nav class="md-nav" aria-label="PRESERVING THE SYSTEM JOURNAL">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#storing-the-system-journal-permanently" class="md-nav__link">
+    STORING THE SYSTEM JOURNAL PERMANENTLY
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#maintaining-accurate-time" class="md-nav__link">
+    MAINTAINING ACCURATE TIME
+  </a>
+  
+    <nav class="md-nav" aria-label="MAINTAINING ACCURATE TIME">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#setting-local-clocks-and-time-zones" class="md-nav__link">
+    SETTING LOCAL CLOCKS AND TIME ZONES
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuring-and-monitoring-chronyd" class="md-nav__link">
+    CONFIGURING AND MONITORING CHRONYD
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    SUMMARY
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+  
+
+
+
+
+  <h1>Analyzing And Storing Logs</h1>
+
+<h3 id="describing-system-log-architecture">DESCRIBING SYSTEM LOG ARCHITECTURE<a class="headerlink" href="#describing-system-log-architecture" title="Permanent link">&para;</a></h3>
+<h4 id="system-logging">SYSTEM LOGGING<a class="headerlink" href="#system-logging" title="Permanent link">&para;</a></h4>
+<p>Processes and the operating system kernel record a log of events that happen. These logs are used
+to audit the system and troubleshoot problems.</p>
+<p>Many systems record logs of events in text files which are kept in the <strong>/var/log</strong> directory. These
+logs can be inspected using normal text utilities such as <strong>less</strong> and <strong>tail</strong>.</p>
+<p>A standard logging system based on the Syslog protocol is built into Red Hat Enterprise Linux.
+Many programs use this system to record events and organize them into log files. The systemd-
+journald and rsyslog services handle the syslog messages in Red Hat Enterprise Linux 8.</p>
+<p>The <em>systemd-journald</em> service is at the heart of the operating system event logging
+architecture. It collects event messages from many sources including the kernel, output from the
+early stages of the boot process, standard output and standard error from daemons as they start
+up and run, and syslog events. It then restructures them into a standard format, and writes them
+into a structured, indexed system journal. By default, this journal is stored on a file system that
+does not persist across reboots.</p>
+<p>However, the rsyslog service reads syslog messages received by systemd-journald from
+the journal as they arrive. It then processes the syslog events, recording them to its log files or
+forwarding them to other services according to its own configuration.</p>
+<p>The rsyslog service sorts and writes syslog messages to the log files that do persist across
+reboots in <strong>/var/log</strong>. The rsyslog service sorts the log messages to specific log files based on
+the type of program that sent each message, or facility, and the priority of each syslog message.</p>
+<p>In addition to syslog message files, the <strong>/var/log</strong> directory contains log files from other services
+on the system. The following table lists some useful files in the <strong>/var/log</strong> directory.</p>
+<p><strong>Selected System Log Files</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left">LOG FILE</th>
+<th align="left">TYPE OF MESSAGES STORED</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left"><strong>/var/log/messages</strong></td>
+<td align="left">Most syslog messages are logged here. Exceptions include messages related to authentication and email processing,scheduled job execution, and those which are purely debugging-related.</td>
+</tr>
+<tr>
+<td align="left"><strong>/var/log/secure</strong></td>
+<td align="left">Syslog messages related to security and authentication events.</td>
+</tr>
+<tr>
+<td align="left"><strong>/var/log/maillog</strong></td>
+<td align="left">Syslog messages related to the mail server.</td>
+</tr>
+<tr>
+<td align="left"><strong>/var/log/cron</strong></td>
+<td align="left">Syslog messages related to scheduled job execution.</td>
+</tr>
+<tr>
+<td align="left"><strong>/var/log/boot.log</strong></td>
+<td align="left">Non-syslog console messages related to system startup.</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition info">
+<p class="admonition-title">NOTE</p>
+<p>Some applications do not use syslog to manage their log messages, although
+typically, they do place their log files in a subdirectory of /var/log. For example, the
+Apache Web Server saves log messages to files in a subddirectory of the <strong>/var/log</strong>
+directory.</p>
+</div>
+<h3 id="reviewing-syslog-files">REVIEWING SYSLOG FILES<a class="headerlink" href="#reviewing-syslog-files" title="Permanent link">&para;</a></h3>
+<h4 id="logging-events-to-the-system">LOGGING EVENTS TO THE SYSTEM<a class="headerlink" href="#logging-events-to-the-system" title="Permanent link">&para;</a></h4>
+<p>Many programs use the syslog protocol to log events to the system. Each log message is
+categorized by a facility (the type of message) and a priority (the severity of the message).
+Available facilities are documented in the rsyslog.conf(5) man page.</p>
+<p>The following table lists the standard eight syslog priorities from highest to lowest.</p>
+<p><strong>Overview of Syslog Priorities</strong></p>
+<table>
+<thead>
+<tr>
+<th align="center">CODE</th>
+<th align="left">PRIORITY</th>
+<th>SEVERITY</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">0</td>
+<td align="left">emerg</td>
+<td>System is unusable</td>
+</tr>
+<tr>
+<td align="center">1</td>
+<td align="left">alert</td>
+<td>Action must be taken immediately</td>
+</tr>
+<tr>
+<td align="center">2</td>
+<td align="left">crit</td>
+<td>Critical condition</td>
+</tr>
+<tr>
+<td align="center">3</td>
+<td align="left">err</td>
+<td>Non-critical error condition</td>
+</tr>
+<tr>
+<td align="center">4</td>
+<td align="left">warning</td>
+<td>Warning condition</td>
+</tr>
+<tr>
+<td align="center">5</td>
+<td align="left">notice</td>
+<td>Normal but significant event</td>
+</tr>
+<tr>
+<td align="center">6</td>
+<td align="left">info</td>
+<td>Informational event</td>
+</tr>
+<tr>
+<td align="center">7</td>
+<td align="left">debug</td>
+<td>Debugging-level message</td>
+</tr>
+</tbody>
+</table>
+<p>The rsyslog service uses the facility and priority of log messages to determine how to handle
+them. This is configured by rules in the <strong>/etc/rsyslog.conf</strong> file and any file in the <strong>/etc/
+rsyslog.d</strong> directory that has a file name extension of .conf. Software packages can easily add
+rules by installing an appropriate file in the <strong>/etc/rsyslog.d</strong> directory.</p>
+<p>Each rule that controls how to sort syslog messages is a line in one of the configuration files. The
+left side of each line indicates the facility and severity of the syslog messages the rule matches.
+The right side of each line indicates what file to save the log message in (or where else to deliver
+the message). An asterisk (<strong>*</strong>) is a wildcard that matches all values.</p>
+<p>For example, the following line would record messages sent to the authpriv facility at any priority
+to the file /var/log/secure:</p>
+<p><code>authpriv.*                  /var/log/secure</code></p>
+<p>Log messages sometimes match more than one rule in <strong>rsyslog.conf</strong>. In such cases, one
+message is stored in more than one log file. To limit messages stored, the key word none in the
+priority field indicates that no messages for the indicated facility should be stored in the given file.</p>
+<p>Instead of logging syslog messages to a file, they can also be printed to the terminals of all logged-
+in users. The <strong>rsyslog.conf</strong> file has a setting to print all the syslog messages with the <strong>emerg</strong>
+priority to the terminals of all logged-in users.</p>
+<h4 id="sample-rules-of-rsyslog">SAMPLE RULES OF RSYSLOG<a class="headerlink" href="#sample-rules-of-rsyslog" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>#### RULES ####
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a># Log all kernel messages to the console.
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a># Logging much else clutters up the screen.
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>#kern.*                                                 /dev/console
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a># Log anything (except mail) of level info or higher.
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a># Don&#39;t log private authentication messages!
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>*.info;mail.none;authpriv.none;cron.none                /var/log/messages
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a># The authpriv file has restricted access.
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>authpriv.*                                              /var/log/secure
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a># Log all the mail messages in one place.
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>mail.*                                                  -/var/log/maillog
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a># Log cron stuff
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>cron.*                                                  /var/log/cron
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a># Everybody gets emergency messages
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>*.emerg                                                 :omusrmsg:*
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a># Save news errors of level crit and higher in a special file.
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>uucp,news.crit                                          /var/log/spooler
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a># Save boot messages also to boot.log
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>local7.*                                                /var/log/boot.log
+</code></pre></div>
+<div class="admonition info">
+<p class="admonition-title">NOTE</p>
+<p>The syslog subsystem has many more features beyond the scope of this course.
+For those who wish to explore further, consult the rsyslog.conf(5) man page
+and the extensive HTML documentation in <strong>/usr/share/doc/rsyslog/html/
+index.html</strong> contained in the rsyslog-doc package, available from the AppStream
+repository in Red Hat Enterprise Linux 8.</p>
+</div>
+<h3 id="log-file-rotation">LOG FILE ROTATION<a class="headerlink" href="#log-file-rotation" title="Permanent link">&para;</a></h3>
+<p>The <strong>logrotate</strong> tool rotates log files to keep them from taking up too much space in the file
+system containing the <strong>/var/log directory</strong>. When a log file is rotated, it is renamed with an
+extension indicating the date it was rotated. For example, the old <strong>/var/log/messages</strong> file may
+become <strong>/var/log/messages-20190130</strong> if it is rotated on 2019-01-30. Once the old log file is
+rotated, a new log file is created and the service that writes to it is notified.</p>
+<p>After a certain number of rotations, typically after four weeks, the oldest log file is discarded to
+free disk space. A scheduled job runs the <strong>logrotate</strong> program daily to see if any logs need to be
+rotated. Most log files are rotated weekly, but <strong>logrotate</strong> rotates some faster, or slower, or when
+they reach a certain size.</p>
+<p>Configuration of <strong>logrotate</strong> is not covered in this course. For more information, see the
+<strong>logrotate</strong>(8) man page.</p>
+<h4 id="analyzing-a-syslog-entry">ANALYZING A SYSLOG ENTRY<a class="headerlink" href="#analyzing-a-syslog-entry" title="Permanent link">&para;</a></h4>
+<p>Log messages start with the oldest message on top and the newest message at the end of the log
+file. The rsyslog service uses a standard format while recording entries in log files. The following
+example explains the anatomy of a log message in the <strong>/var/log/secure</strong> log file.</p>
+<p>Feb 11 20:11:48 localhost sshd[1433]: Failed password for student from
+ 172.25.0.10 port 59344 ssh2</p>
+<blockquote>
+<p>Feb 11 20:11:48 The time stamp when the log entry was recorded</p>
+<p>localhost The host from which the log message was sent</p>
+<p>sshd[1433]: The program or process name and PID number that sent the log message</p>
+<p>Failed password The actual message sent</p>
+</blockquote>
+<h3 id="monitoring-logs">MONITORING LOGS<a class="headerlink" href="#monitoring-logs" title="Permanent link">&para;</a></h3>
+<p>Monitoring one or more log files for events is helpful to reproduce problems and issues. The <strong>tail
+-f /path/to/file</strong> command outputs the last 10 lines of the file specified and continues to
+output new lines in the file as they get written.</p>
+<p>For example, to monitor for failed login attempts, run the <strong>tail</strong> command in one terminal and
+then in another terminal, run the <strong>ssh</strong> command as the root user while a user tries to log in to the
+system.</p>
+<p>In the first terminal, run the following <strong>tail</strong> command:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># tail -f /var/log/secure</span>
+</code></pre></div>
+<p>In the second terminal, run the following <strong>ssh</strong> command:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># ssh root@localhost</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>root@localhost<span class="err">&#39;</span>s password: redhat
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>...output omitted...
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># </span>
+</code></pre></div>
+<p>Return to the first terminal and view the logs.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>...output omitted...
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>Feb <span class="m">10</span> <span class="m">09</span>:01:13 host sshd<span class="o">[</span><span class="m">2712</span><span class="o">]</span>: Accepted password <span class="k">for</span> root from <span class="m">172</span>.25.254.254
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>Feb <span class="m">10</span> <span class="m">09</span>:01:13 host sshd<span class="o">[</span><span class="m">2712</span><span class="o">]</span>: pam_unix<span class="o">(</span>sshd:session<span class="o">)</span>: session opened <span class="k">for</span> user
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a> root by <span class="o">(</span><span class="nv">uid</span><span class="o">=</span><span class="m">0</span><span class="o">)</span>
+</code></pre></div>
+<h4 id="sending-syslog-messages-manually">SENDING SYSLOG MESSAGES MANUALLY<a class="headerlink" href="#sending-syslog-messages-manually" title="Permanent link">&para;</a></h4>
+<p>The <strong>logger</strong> command can send messages to the <strong>rsyslog</strong> service. By default, it sends the
+message to the user facility with the <strong>notice</strong> priority (user.notice) unless specified otherwise
+with the <strong>-p</strong> option. It is useful to test any change to the rsyslog service configuration.</p>
+<p>To send a message to the <strong>rsyslog</strong> service that gets recorded in the <strong>/var/log/boot.log</strong> log
+file, execute the following <strong>logger</strong> command:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># logger -p local7.notice &quot;Log entry created on host&quot;</span>
+</code></pre></div>
+<h3 id="reviewing-system-journal-entries">REVIEWING SYSTEM JOURNAL ENTRIES<a class="headerlink" href="#reviewing-system-journal-entries" title="Permanent link">&para;</a></h3>
+<h4 id="finding-events">FINDING EVENTS<a class="headerlink" href="#finding-events" title="Permanent link">&para;</a></h4>
+<p>The systemd-journald service stores logging data in a structured, indexed binary file called the
+journal. This data includes extra information about the log event. For example, for syslog events
+this includes the facility and the priority of the original message.</p>
+<div class="admonition danger">
+<p class="admonition-title">IMPORTANT</p>
+<p>In Red Hat Enterprise Linux 8, the <strong>/run/log</strong> directory stores the system journal by
+default. The contents of the <strong>/run/log</strong> directory get cleared after a reboot. You can
+change this setting, and how to do so is discussed later in this chapter.</p>
+</div>
+<p>To retrieve log messages from the journal, use the <strong>journalctl</strong> command. You can use this
+command to view all messages in the journal, or to search for specific events based on a wide
+range of options and criteria. If you run the command as root, you have full access to the journal.
+Regular users can also use this command, but might be restricted from seeing certain messages.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># journalctl</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>...output omitted...
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>Feb <span class="m">21</span> <span class="m">17</span>:46:25 host.lab.example.com systemd<span class="o">[</span><span class="m">24263</span><span class="o">]</span>: Stopped target Sockets.
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>Feb <span class="m">21</span> <span class="m">17</span>:46:25 host.lab.example.com systemd<span class="o">[</span><span class="m">24263</span><span class="o">]</span>: Closed D-Bus User Message Bus
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a> Socket.
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>Feb <span class="m">21</span> <span class="m">17</span>:46:25 host.lab.example.com systemd<span class="o">[</span><span class="m">24263</span><span class="o">]</span>: Closed Multimedia System.
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>Feb <span class="m">21</span> <span class="m">17</span>:46:25 host.lab.example.com systemd<span class="o">[</span><span class="m">24263</span><span class="o">]</span>: Reached target Shutdown.
+<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>Feb <span class="m">21</span> <span class="m">17</span>:46:25 host.lab.example.com systemd<span class="o">[</span><span class="m">24263</span><span class="o">]</span>: Starting Exit the Session...
+<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>Feb <span class="m">21</span> <span class="m">17</span>:46:25 host.lab.example.com systemd<span class="o">[</span><span class="m">24268</span><span class="o">]</span>: pam_unix<span class="o">(</span>systemd-
+<a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a>user:session<span class="o">)</span>: session c&gt;
+<a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a>Feb <span class="m">21</span> <span class="m">17</span>:46:25 host.lab.example.com systemd<span class="o">[</span><span class="m">1</span><span class="o">]</span>: Stopped User Manager <span class="k">for</span> UID
+<a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a> <span class="m">1001</span>.
+<a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a>Feb <span class="m">21</span> <span class="m">17</span>:46:25 host.lab.example.com systemd<span class="o">[</span><span class="m">1</span><span class="o">]</span>: user-runtime-dir@1001.service:
+<a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a> Unit not neede&gt;
+<a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a>Feb <span class="m">21</span> <span class="m">17</span>:46:25 host.lab.example.com systemd<span class="o">[</span><span class="m">1</span><span class="o">]</span>: Stopping /run/user/1001 mount
+<a id="__codelineno-5-16" name="__codelineno-5-16" href="#__codelineno-5-16"></a> wrapper...
+<a id="__codelineno-5-17" name="__codelineno-5-17" href="#__codelineno-5-17"></a>Feb <span class="m">21</span> <span class="m">17</span>:46:25 host.lab.example.com systemd<span class="o">[</span><span class="m">1</span><span class="o">]</span>: Removed slice User Slice of UID
+<a id="__codelineno-5-18" name="__codelineno-5-18" href="#__codelineno-5-18"></a> <span class="m">1001</span>.
+<a id="__codelineno-5-19" name="__codelineno-5-19" href="#__codelineno-5-19"></a>Feb <span class="m">21</span> <span class="m">17</span>:46:25 host.lab.example.com systemd<span class="o">[</span><span class="m">1</span><span class="o">]</span>: Stopped /run/user/1001 mount
+<a id="__codelineno-5-20" name="__codelineno-5-20" href="#__codelineno-5-20"></a> wrapper.
+<a id="__codelineno-5-21" name="__codelineno-5-21" href="#__codelineno-5-21"></a>Feb <span class="m">21</span> <span class="m">17</span>:46:36 host.lab.example.com sshd<span class="o">[</span><span class="m">24434</span><span class="o">]</span>: Accepted publickey <span class="k">for</span> root from
+<a id="__codelineno-5-22" name="__codelineno-5-22" href="#__codelineno-5-22"></a> <span class="m">172</span>.25.250.&gt;
+<a id="__codelineno-5-23" name="__codelineno-5-23" href="#__codelineno-5-23"></a>Feb <span class="m">21</span> <span class="m">17</span>:46:37 host.lab.example.com systemd<span class="o">[</span><span class="m">1</span><span class="o">]</span>: Started Session <span class="m">20</span> of user root.
+<a id="__codelineno-5-24" name="__codelineno-5-24" href="#__codelineno-5-24"></a>Feb <span class="m">21</span> <span class="m">17</span>:46:37 host.lab.example.com systemd-logind<span class="o">[</span><span class="m">708</span><span class="o">]</span>: New session <span class="m">20</span> of user
+<a id="__codelineno-5-25" name="__codelineno-5-25" href="#__codelineno-5-25"></a> root.
+<a id="__codelineno-5-26" name="__codelineno-5-26" href="#__codelineno-5-26"></a>Feb <span class="m">21</span> <span class="m">17</span>:46:37 host.lab.example.com sshd<span class="o">[</span><span class="m">24434</span><span class="o">]</span>: pam_unix<span class="o">(</span>sshd:session<span class="o">)</span>: session
+<a id="__codelineno-5-27" name="__codelineno-5-27" href="#__codelineno-5-27"></a> opened <span class="k">for</span> u&gt;
+<a id="__codelineno-5-28" name="__codelineno-5-28" href="#__codelineno-5-28"></a>Feb <span class="m">21</span> <span class="m">18</span>:01:01 host.lab.example.com CROND<span class="o">[</span><span class="m">24468</span><span class="o">]</span>: <span class="o">(</span>root<span class="o">)</span> CMD <span class="o">(</span>run-parts /etc/
+<a id="__codelineno-5-29" name="__codelineno-5-29" href="#__codelineno-5-29"></a>cron.hourly<span class="o">)</span>
+<a id="__codelineno-5-30" name="__codelineno-5-30" href="#__codelineno-5-30"></a>Feb <span class="m">21</span> <span class="m">18</span>:01:01 host.lab.example.com run-parts<span class="o">[</span><span class="m">24471</span><span class="o">]</span>: <span class="o">(</span>/etc/cron.hourly<span class="o">)</span> starting
+<a id="__codelineno-5-31" name="__codelineno-5-31" href="#__codelineno-5-31"></a> 0anacron
+<a id="__codelineno-5-32" name="__codelineno-5-32" href="#__codelineno-5-32"></a>Feb <span class="m">21</span> <span class="m">18</span>:01:01 host.lab.example.com run-parts<span class="o">[</span><span class="m">24477</span><span class="o">]</span>: <span class="o">(</span>/etc/cron.hourly<span class="o">)</span> finished
+<a id="__codelineno-5-33" name="__codelineno-5-33" href="#__codelineno-5-33"></a> 0anacron
+<a id="__codelineno-5-34" name="__codelineno-5-34" href="#__codelineno-5-34"></a>lines <span class="m">1464</span>-1487/1487 <span class="o">(</span>END<span class="o">)</span> q
+</code></pre></div>
+<p>The <strong>journalctl</strong> command highlights important log messages: messages at <strong>notice</strong> or <strong>warning</strong>
+priority are in bold text while messages at the <strong>error</strong> priority or higher are in red text.</p>
+<p>The key to successfully using the journal for troubleshooting and auditing is to limit journal
+searches to show only relevant output.</p>
+<p>By default, <strong>journalctl -n</strong> shows the last 10 log entries. You can adjust this with an optional
+argument that specifies how many log entries to display. For the last five log entries, run the
+following journalctl command:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># journalctl -n 5</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>-- Logs begin at Wed <span class="m">2019</span>-02-20 <span class="m">16</span>:01:17 +07, end at Thu <span class="m">2019</span>-02-21 <span class="m">18</span>:01:01 +07.
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a> --
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>...output omitted...
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>Feb <span class="m">21</span> <span class="m">17</span>:46:37 host.lab.example.com systemd-logind<span class="o">[</span><span class="m">708</span><span class="o">]</span>: New session <span class="m">20</span> of user
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a> root.
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>Feb <span class="m">21</span> <span class="m">17</span>:46:37 host.lab.example.com sshd<span class="o">[</span><span class="m">24434</span><span class="o">]</span>: pam_unix<span class="o">(</span>sshd:session<span class="o">)</span>: session
+<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a> opened <span class="k">for</span> u&gt;
+<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>Feb <span class="m">21</span> <span class="m">18</span>:01:01 host.lab.example.com CROND<span class="o">[</span><span class="m">24468</span><span class="o">]</span>: <span class="o">(</span>root<span class="o">)</span> CMD <span class="o">(</span>run-parts /etc/
+<a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a>cron.hourly<span class="o">)</span>
+<a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a>Feb <span class="m">21</span> <span class="m">18</span>:01:01 host.lab.example.com run-parts<span class="o">[</span><span class="m">24471</span><span class="o">]</span>: <span class="o">(</span>/etc/cron.hourly<span class="o">)</span> starting
+<a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a> 0anacron
+<a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a>Feb <span class="m">21</span> <span class="m">18</span>:01:01 host.lab.example.com run-parts<span class="o">[</span><span class="m">24477</span><span class="o">]</span>: <span class="o">(</span>/etc/cron.hourly<span class="o">)</span> finished
+<a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a> 0anacron
+<a id="__codelineno-6-15" name="__codelineno-6-15" href="#__codelineno-6-15"></a>lines <span class="m">1</span>-6/6 <span class="o">(</span>END<span class="o">)</span> q
+</code></pre></div>
+<p>Similar to the <strong>tail -f</strong> command, the <strong>journalctl -f</strong> command outputs the last 10 lines of the
+system journal and continues to output new journal entries as they get written to the journal. To
+exit the <strong>journalctl -f</strong> process, use the <strong>Ctrl+C</strong> key combination.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># journalctl -f</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>-- Logs begin at Wed <span class="m">2019</span>-02-20 <span class="m">16</span>:01:17 +07. --
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>...output omitted...
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>Feb <span class="m">21</span> <span class="m">18</span>:01:01 host.lab.example.com run-parts<span class="o">[</span><span class="m">24477</span><span class="o">]</span>: <span class="o">(</span>/etc/cron.hourly<span class="o">)</span> finished
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a> 0anacron
+<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>Feb <span class="m">21</span> <span class="m">18</span>:22:42 host.lab.example.com sshd<span class="o">[</span><span class="m">24437</span><span class="o">]</span>: Received disconnect from
+<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a> <span class="m">172</span>.25.250.250 port <span class="m">48710</span>:11: disconnected by user
+<a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>Feb <span class="m">21</span> <span class="m">18</span>:22:42 host.lab.example.com sshd<span class="o">[</span><span class="m">24437</span><span class="o">]</span>: Disconnected from user root
+<a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a> <span class="m">172</span>.25.250.250 port <span class="m">48710</span>
+<a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a>Feb <span class="m">21</span> <span class="m">18</span>:22:42 host.lab.example.com sshd<span class="o">[</span><span class="m">24434</span><span class="o">]</span>: pam_unix<span class="o">(</span>sshd:session<span class="o">)</span>: session
+<a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a> closed <span class="k">for</span> user root
+<a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a>Feb <span class="m">21</span> <span class="m">18</span>:22:42 host.lab.example.com systemd-logind<span class="o">[</span><span class="m">708</span><span class="o">]</span>: Session <span class="m">20</span> logged out.
+<a id="__codelineno-7-13" name="__codelineno-7-13" href="#__codelineno-7-13"></a> Waiting <span class="k">for</span> processes to exit.
+<a id="__codelineno-7-14" name="__codelineno-7-14" href="#__codelineno-7-14"></a>Feb <span class="m">21</span> <span class="m">18</span>:22:42 host.lab.example.com systemd-logind<span class="o">[</span><span class="m">708</span><span class="o">]</span>: Removed session <span class="m">20</span>.
+<a id="__codelineno-7-15" name="__codelineno-7-15" href="#__codelineno-7-15"></a>Feb <span class="m">21</span> <span class="m">18</span>:22:43 host.lab.example.com sshd<span class="o">[</span><span class="m">24499</span><span class="o">]</span>: Accepted
+<a id="__codelineno-7-16" name="__codelineno-7-16" href="#__codelineno-7-16"></a> publickey <span class="k">for</span> root from <span class="m">172</span>.25.250.250 port <span class="m">48714</span> ssh2: RSA
+<a id="__codelineno-7-17" name="__codelineno-7-17" href="#__codelineno-7-17"></a> SHA256:1UGybTe52L2jzEJa1HLVKn9QUCKrTv3ZzxnMJol1Fro
+<a id="__codelineno-7-18" name="__codelineno-7-18" href="#__codelineno-7-18"></a>Feb <span class="m">21</span> <span class="m">18</span>:22:44 host.lab.example.com systemd-logind<span class="o">[</span><span class="m">708</span><span class="o">]</span>: New session <span class="m">21</span> of user
+<a id="__codelineno-7-19" name="__codelineno-7-19" href="#__codelineno-7-19"></a> root.
+<a id="__codelineno-7-20" name="__codelineno-7-20" href="#__codelineno-7-20"></a>Feb <span class="m">21</span> <span class="m">18</span>:22:44 host.lab.example.com systemd<span class="o">[</span><span class="m">1</span><span class="o">]</span>: Started Session <span class="m">21</span> of user root.
+<a id="__codelineno-7-21" name="__codelineno-7-21" href="#__codelineno-7-21"></a>Feb <span class="m">21</span> <span class="m">18</span>:22:44 host.lab.example.com sshd<span class="o">[</span><span class="m">24499</span><span class="o">]</span>: pam_unix<span class="o">(</span>sshd:session<span class="o">)</span>: session
+<a id="__codelineno-7-22" name="__codelineno-7-22" href="#__codelineno-7-22"></a> opened <span class="k">for</span> user root by <span class="o">(</span><span class="nv">uid</span><span class="o">=</span><span class="m">0</span><span class="o">)</span>
+<a id="__codelineno-7-23" name="__codelineno-7-23" href="#__codelineno-7-23"></a>^C
+<a id="__codelineno-7-24" name="__codelineno-7-24" href="#__codelineno-7-24"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># </span>
+</code></pre></div>
+<p>To help troubleshoot problems, you might want to filter the output of the journal based on the
+priority of the journal entries. The <strong>journalctl -p</strong> takes either the name or the number of a
+priority level and shows the journal entries for entries at that priority and above. The <strong>journalctl</strong>
+command understands the <strong>debug, info, notice, warning, err, crit, alert</strong>, and <strong>emerg</strong>
+priority levels.</p>
+<p>Run the following <strong>journalctl</strong> command to list journal entries at the err priority or higher:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># journalctl -p err</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>-- Logs begin at Wed <span class="m">2019</span>-02-20 <span class="m">16</span>:01:17 +07, end at Thu <span class="m">2019</span>-02-21 <span class="m">18</span>:01:01 +07.
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a> --
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>..output omitted...
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>Feb <span class="m">20</span> <span class="m">16</span>:01:17 host.lab.example.com kernel: Detected CPU family <span class="m">6</span> model <span class="m">13</span>
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a> stepping <span class="m">3</span>
+<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>Feb <span class="m">20</span> <span class="m">16</span>:01:17 host.lab.example.com kernel: Warning: Intel Processor - this
+<a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a> hardware has not undergone testing by Red Hat and might not be certif&gt;
+<a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a>Feb <span class="m">20</span> <span class="m">16</span>:01:20 host.lab.example.com smartd<span class="o">[</span><span class="m">669</span><span class="o">]</span>: DEVICESCAN failed: glob<span class="o">(</span><span class="m">3</span><span class="o">)</span>
+<a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a> aborted matching pattern /dev/discs/disc*
+<a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a>Feb <span class="m">20</span> <span class="m">16</span>:01:20 host.lab.example.com smartd<span class="o">[</span><span class="m">669</span><span class="o">]</span>: In the system<span class="err">&#39;</span>s table of devices
+<a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a> NO devices found to scan
+<a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a>lines <span class="m">1</span>-5/5 <span class="o">(</span>END<span class="o">)</span> q
+</code></pre></div>
+<p>When looking for specific events, you can limit the output to a specific time frame. The
+<strong>journalctl</strong> command has two options to limit the output to a specific time range, the <strong>--since</strong>
+and <strong>--until</strong> options. Both options take a time argument in the format "<em>YYYY-MM-DD hh<img alt="🇲🇲" class="twemoji" src="https://twemoji.maxcdn.com/v/latest/svg/1f1f2-1f1f2.svg" title=":mm:" />ss</em>"
+(the double-quotes are required to preserve the space in the option). If the date is omitted,
+the command assumes the current day, and if the time is omitted, the command assumes the
+whole day starting at 00:00:00. Both options take <strong>yesterday, today</strong>, and <strong>tomorrow</strong> as valid
+arguments in addition to the date and time field.</p>
+<p>Run the following <strong>journalctl</strong> command to list all journal entries from today's records.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># journalctl --since today</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>-- Logs begin at Wed <span class="m">2019</span>-02-20 <span class="m">16</span>:01:17 +07, end at Thu <span class="m">2019</span>-02-21 <span class="m">18</span>:31:14 +07.
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a> --
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>...output omitted...
+<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>Feb <span class="m">21</span> <span class="m">18</span>:22:44 host.lab.example.com systemd-logind<span class="o">[</span><span class="m">708</span><span class="o">]</span>: New session <span class="m">21</span> of user
+<a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a> root.
+<a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a>Feb <span class="m">21</span> <span class="m">18</span>:22:44 host.lab.example.com systemd<span class="o">[</span><span class="m">1</span><span class="o">]</span>: Started Session <span class="m">21</span> of user root.
+<a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a>Feb <span class="m">21</span> <span class="m">18</span>:22:44 host.lab.example.com sshd<span class="o">[</span><span class="m">24499</span><span class="o">]</span>: pam_unix<span class="o">(</span>sshd:session<span class="o">)</span>: session
+<a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a>Feb <span class="m">21</span> <span class="m">18</span>:31:14 host.lab.example.com dnf<span class="o">[</span><span class="m">24533</span><span class="o">]</span>: Red Hat Enterprise Linux <span class="m">8</span>.0
+<a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a> AppStream <span class="o">(</span>dvd<span class="o">)</span>    <span class="m">637</span> kB/s <span class="p">|</span> <span class="m">2</span>.8 kB     <span class="m">00</span>:00
+<a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a>Feb <span class="m">21</span> <span class="m">18</span>:31:14 host.lab.example.com dnf<span class="o">[</span><span class="m">24533</span><span class="o">]</span>: Red Hat Enterprise Linux <span class="m">8</span>.0
+<a id="__codelineno-9-12" name="__codelineno-9-12" href="#__codelineno-9-12"></a> BaseOS <span class="o">(</span>dvd<span class="o">)</span>       <span class="m">795</span> kB/s <span class="p">|</span> <span class="m">2</span>.7 kB     <span class="m">00</span>:00
+<a id="__codelineno-9-13" name="__codelineno-9-13" href="#__codelineno-9-13"></a>Feb <span class="m">21</span> <span class="m">18</span>:31:14 host.lab.example.com dnf<span class="o">[</span><span class="m">24533</span><span class="o">]</span>: Metadata cache created.
+<a id="__codelineno-9-14" name="__codelineno-9-14" href="#__codelineno-9-14"></a>Feb <span class="m">21</span> <span class="m">18</span>:31:14 host.lab.example.com systemd<span class="o">[</span><span class="m">1</span><span class="o">]</span>: Started dnf makecache.
+<a id="__codelineno-9-15" name="__codelineno-9-15" href="#__codelineno-9-15"></a>lines <span class="m">533</span>-569/569 <span class="o">(</span>END<span class="o">)</span> q
+</code></pre></div>
+<p>Run the following <strong>journalctl</strong> command to list all journal entries ranging from <strong>2019-02-10
+20:30:00 to 2019-02-13 12:00:00</strong>.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># journalctl --since &quot;2014-02-10 20:30:00&quot; --until &quot;2014-02-13</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a> <span class="m">12</span>:00:00<span class="s2">&quot;</span>
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="s2">...output omitted...</span>
+</code></pre></div>
+<p>You can also specify all entries since a time relative to the present. For example, to specify all
+entries in the last hour, you can use the following command:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># journalctl --since &quot;-1 hour&quot;</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>...output omitted...
+</code></pre></div>
+<div class="admonition info">
+<p class="admonition-title">NOTE</p>
+<p>You can use other, more sophisticated time specifications with the <strong>--since</strong> and <strong>--
+until</strong> options. For some examples, see the systemd.time(7) man page.</p>
+</div>
+<p>In addition to the visible content of the journal, there are fields attached to the log entries that can
+only be seen when verbose output is turned on. Any displayed extra field can be used to filter the
+output of a journal query. This is useful to reduce the output of complex searches for certain events
+in the journal.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># journalctl -o verbose</span>
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>-- Logs begin at Wed <span class="m">2019</span>-02-20 <span class="m">16</span>:01:17 +07, end at Thu <span class="m">2019</span>-02-21 <span class="m">18</span>:31:14 +07.
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a> --
+<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>...output omitted...
+<a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>Thu <span class="m">2019</span>-02-21 <span class="m">18</span>:31:14.509128 +07... 
+<a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a>    <span class="nv">PRIORITY</span><span class="o">=</span><span class="m">6</span>
+<a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a>    <span class="nv">_BOOT_ID</span><span class="o">=</span>4409bbf54680496d94e090de9e4a9e23
+<a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a>    <span class="nv">_MACHINE_ID</span><span class="o">=</span>73ab164e278e48be9bf80e80714a8cd5
+<a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a>    <span class="nv">SYSLOG_FACILITY</span><span class="o">=</span><span class="m">3</span>
+<a id="__codelineno-12-10" name="__codelineno-12-10" href="#__codelineno-12-10"></a>    <span class="nv">SYSLOG_IDENTIFIER</span><span class="o">=</span>systemd
+<a id="__codelineno-12-11" name="__codelineno-12-11" href="#__codelineno-12-11"></a>    <span class="nv">_UID</span><span class="o">=</span><span class="m">0</span>
+<a id="__codelineno-12-12" name="__codelineno-12-12" href="#__codelineno-12-12"></a>    <span class="nv">_GID</span><span class="o">=</span><span class="m">0</span>
+<a id="__codelineno-12-13" name="__codelineno-12-13" href="#__codelineno-12-13"></a>    <span class="nv">CODE_FILE</span><span class="o">=</span>../src/core/job.c
+<a id="__codelineno-12-14" name="__codelineno-12-14" href="#__codelineno-12-14"></a>    <span class="nv">CODE_LINE</span><span class="o">=</span><span class="m">826</span>
+<a id="__codelineno-12-15" name="__codelineno-12-15" href="#__codelineno-12-15"></a>    <span class="nv">CODE_FUNC</span><span class="o">=</span>job_log_status_message
+<a id="__codelineno-12-16" name="__codelineno-12-16" href="#__codelineno-12-16"></a>    <span class="nv">JOB_TYPE</span><span class="o">=</span>start
+<a id="__codelineno-12-17" name="__codelineno-12-17" href="#__codelineno-12-17"></a>    <span class="nv">JOB_RESULT</span><span class="o">=</span><span class="k">done</span>
+<a id="__codelineno-12-18" name="__codelineno-12-18" href="#__codelineno-12-18"></a>    <span class="nv">MESSAGE_ID</span><span class="o">=</span>39f53479d3a045ac8e11786248231fbf
+<a id="__codelineno-12-19" name="__codelineno-12-19" href="#__codelineno-12-19"></a>    <span class="nv">_TRANSPORT</span><span class="o">=</span>journal
+<a id="__codelineno-12-20" name="__codelineno-12-20" href="#__codelineno-12-20"></a>    <span class="nv">_PID</span><span class="o">=</span><span class="m">1</span>
+<a id="__codelineno-12-21" name="__codelineno-12-21" href="#__codelineno-12-21"></a>    <span class="nv">_COMM</span><span class="o">=</span>systemd
+<a id="__codelineno-12-22" name="__codelineno-12-22" href="#__codelineno-12-22"></a>    <span class="nv">_EXE</span><span class="o">=</span>/usr/lib/systemd/systemd
+<a id="__codelineno-12-23" name="__codelineno-12-23" href="#__codelineno-12-23"></a>    <span class="nv">_CMDLINE</span><span class="o">=</span>/usr/lib/systemd/systemd --switched-root --system --deserialize <span class="m">18</span>
+<a id="__codelineno-12-24" name="__codelineno-12-24" href="#__codelineno-12-24"></a>    <span class="nv">_CAP_EFFECTIVE</span><span class="o">=</span>3fffffffff
+<a id="__codelineno-12-25" name="__codelineno-12-25" href="#__codelineno-12-25"></a>    <span class="nv">_SELINUX_CONTEXT</span><span class="o">=</span>system_u:system_r:init_t:s0
+<a id="__codelineno-12-26" name="__codelineno-12-26" href="#__codelineno-12-26"></a>    <span class="nv">_SYSTEMD_CGROUP</span><span class="o">=</span>/init.scope
+<a id="__codelineno-12-27" name="__codelineno-12-27" href="#__codelineno-12-27"></a>    <span class="nv">_SYSTEMD_UNIT</span><span class="o">=</span>init.scope
+<a id="__codelineno-12-28" name="__codelineno-12-28" href="#__codelineno-12-28"></a>    <span class="nv">_SYSTEMD_SLICE</span><span class="o">=</span>-.slice
+<a id="__codelineno-12-29" name="__codelineno-12-29" href="#__codelineno-12-29"></a>    <span class="nv">UNIT</span><span class="o">=</span>dnf-makecache.service
+<a id="__codelineno-12-30" name="__codelineno-12-30" href="#__codelineno-12-30"></a>    <span class="nv">MESSAGE</span><span class="o">=</span>Started dnf makecache.
+<a id="__codelineno-12-31" name="__codelineno-12-31" href="#__codelineno-12-31"></a>    <span class="nv">_HOSTNAME</span><span class="o">=</span>host.lab.example.com
+<a id="__codelineno-12-32" name="__codelineno-12-32" href="#__codelineno-12-32"></a>    <span class="nv">INVOCATION_ID</span><span class="o">=</span>d6f90184663f4309835a3e8ab647cb0e
+<a id="__codelineno-12-33" name="__codelineno-12-33" href="#__codelineno-12-33"></a>    <span class="nv">_SOURCE_REALTIME_TIMESTAMP</span><span class="o">=</span><span class="m">1550748674509128</span>
+<a id="__codelineno-12-34" name="__codelineno-12-34" href="#__codelineno-12-34"></a>lines <span class="m">32239</span>-32275/32275 <span class="o">(</span>END<span class="o">)</span> q
+</code></pre></div>
+<p>The following list gives the common fields of the system journal that can be used to search for lines
+relevant to a particular process or event.</p>
+<ul>
+<li>
+<p>_COMM The name of the command</p>
+</li>
+<li>
+<p>_EXE The path to the executable for the process</p>
+</li>
+<li>
+<p>_PID The PID of the process</p>
+</li>
+<li>
+<p>_UID The UID of the user running the process</p>
+</li>
+<li>
+<p>_SYSTEMD_UNIT The systemd unit that started the process</p>
+</li>
+</ul>
+<p>More than one of the system journal fields can be combined to form a granular search query with
+the <strong>journalctl</strong> command. For example, the following <strong>journalctl</strong> command shows all journal
+entries related to the <strong>sshd.service</strong> systemd unit from a process with PID 1182.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># journalctl _SYSTEMD_UNIT=sshd.service _PID=1182</span>
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>Apr <span class="m">03</span> <span class="m">19</span>:34:27 host.lab.example.com sshd<span class="o">[</span><span class="m">1182</span><span class="o">]</span>: Accepted password <span class="k">for</span> root
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a> from ::1 port <span class="m">52778</span> ssh2
+<a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>Apr <span class="m">03</span> <span class="m">19</span>:34:28 host.lab.example.com sshd<span class="o">[</span><span class="m">1182</span><span class="o">]</span>: pam_unix<span class="o">(</span>sshd:session<span class="o">)</span>: session
+<a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a> opened <span class="k">for</span> user root by <span class="o">(</span><span class="nv">uid</span><span class="o">=</span><span class="m">0</span><span class="o">)</span>
+<a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a>...output omitted...
+</code></pre></div>
+<div class="admonition info">
+<p class="admonition-title">NOTE</p>
+<p>For a list of commonly used journal fields, consult the systemd.journal-
+fields(7) man page.</p>
+</div>
+<h3 id="preserving-the-system-journal">PRESERVING THE SYSTEM JOURNAL<a class="headerlink" href="#preserving-the-system-journal" title="Permanent link">&para;</a></h3>
+<h4 id="storing-the-system-journal-permanently">STORING THE SYSTEM JOURNAL PERMANENTLY<a class="headerlink" href="#storing-the-system-journal-permanently" title="Permanent link">&para;</a></h4>
+<p>By default, the system journals are kept in the <strong>/run/log/journal</strong> directory, which means the
+journals are cleared when the system reboots. You can change the configuration settings of the
+systemd-journald service in the <strong>/etc/systemd/journald.conf</strong> file to make the journals
+persist across reboot.</p>
+<p>The Storage parameter in the <strong>/etc/systemd/journald.conf</strong> file defines whether to
+store system journals in a volatile manner or persistently across reboot. Set this parameter to
+<strong>persistent</strong>, <strong>volatile</strong>, or <strong>auto</strong> as follows:</p>
+<ul>
+<li><strong>persistent</strong>: stores journals in the <strong>/var/log/journal</strong> directory which persists across
+reboots.</li>
+</ul>
+<p>If the <strong>/var/log/journal</strong> directory does not exist, the systemd-journald service creates it.</p>
+<ul>
+<li><strong>volatile</strong>: stores journals in the volatile <strong>/run/log/journal</strong> directory.</li>
+</ul>
+<p>As the <strong>/run</strong> file system is temporary and exists only in the runtime memory, data stored in it,
+including system journals, do not persist across reboot.</p>
+<ul>
+<li>
+<p><strong>auto</strong>: rsyslog determines whether to use persistent or volatile storage. If the <strong>/var/log/
+journal</strong> directory exists, then rsyslog uses persistent storage, otherwise it uses volatile
+storage.</p>
+<p>This is the default action if the Storage parameter is not set.</p>
+</li>
+</ul>
+<p>The advantage of persistent system journals is that the historic data is available immediately
+at boot. However, even with a persistent journal, not all data is kept forever. The journal has a
+built-in log rotation mechanism that triggers monthly. In addition, by default, the journals are not
+allowed to get larger than 10% of the file system it is on, or leave less than 15% of the file system
+free. These values can be tuned for both the runtime and persistent journals in <strong>/etc/systemd/
+journald.conf</strong>. The current limits on the size of the journal are logged when the systemd-
+journald process starts. The following command output shows the journal entries that reflect the
+current size limits:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ journalctl <span class="p">|</span> grep -E <span class="s1">&#39;Runtime|System journal&#39;</span>
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>Feb <span class="m">25</span> <span class="m">13</span>:01:46 localhost systemd-journald<span class="o">[</span><span class="m">147</span><span class="o">]</span>: Runtime journal <span class="o">(</span>/run/log/
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>journal/ae06db7da89142138408d77efea9229c<span class="o">)</span> is <span class="m">8</span>.0M, max <span class="m">91</span>.4M, <span class="m">83</span>.4M free.
+<a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a>Feb <span class="m">25</span> <span class="m">13</span>:01:48 remotehost.lab.example.com systemd-journald<span class="o">[</span><span class="m">548</span><span class="o">]</span>: Runtime journal
+<a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a> <span class="o">(</span>/run/log/journal/73ab164e278e48be9bf80e80714a8cd5<span class="o">)</span> is <span class="m">8</span>.0M, max <span class="m">91</span>.4M, <span class="m">83</span>.4M
+<a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a> free.
+<a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a>Feb <span class="m">25</span> <span class="m">13</span>:01:48 remotehost.lab.example.com systemd-journald<span class="o">[</span><span class="m">548</span><span class="o">]</span>: System journal
+<a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a> <span class="o">(</span>/var/log/journal/73ab164e278e48be9bf80e80714a8cd5<span class="o">)</span> is <span class="m">8</span>.0M, max <span class="m">3</span>.7G, <span class="m">3</span>.7G free.
+<a id="__codelineno-14-9" name="__codelineno-14-9" href="#__codelineno-14-9"></a>Feb <span class="m">25</span> <span class="m">13</span>:01:48 remotehost.lab.example.com systemd<span class="o">[</span><span class="m">1</span><span class="o">]</span>: Starting Tell Plymouth To
+<a id="__codelineno-14-10" name="__codelineno-14-10" href="#__codelineno-14-10"></a> Write Out Runtime Data...
+<a id="__codelineno-14-11" name="__codelineno-14-11" href="#__codelineno-14-11"></a>Feb <span class="m">25</span> <span class="m">13</span>:01:48 remotehost.lab.example.com systemd<span class="o">[</span><span class="m">1</span><span class="o">]</span>: Started Tell Plymouth To
+<a id="__codelineno-14-12" name="__codelineno-14-12" href="#__codelineno-14-12"></a> Write Out Runtime Data.
+</code></pre></div>
+<div class="admonition info">
+<p class="admonition-title">NOTE</p>
+<p>In the <strong>grep</strong> above, the pipe (<strong>|</strong>) symbol acts as an or indicator. That is, grep matches
+any line containing either the <strong>Runtime</strong> string or the <strong>System</strong> string from the
+<strong>journalctl</strong> output. This fetches the current size limits on the volatile (Runtime)
+journal store as well the persistent (System) journal store.</p>
+</div>
+<p><strong>Configuring Persistent System Journals</strong></p>
+<p>To configure the systemd-journald service to preserve system journals persistently across
+reboot, set Storage to persistent in the <strong>/etc/systemd/journald.conf</strong> file. Run the text
+editor of your choice as the superuser to edit the <strong>/etc/systemd/journald.conf</strong> file.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="o">[</span>Journal<span class="o">]</span>
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="nv">Storage</span><span class="o">=</span>persistent
+<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>...output omitted...
+</code></pre></div>
+<p>After editing the configuration file, restart the systemd-journald service to bring the
+configuration changes into effect.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># systemctl restart systemd-journald</span>
+</code></pre></div>
+<p>If the systemd-journald service successfully restarts, you can see that the <strong>/var/log/
+journal</strong> directory is created and contains one or more subdirectories. These subdirectories have
+hexadecimal characters in their long names and contain <strong><em>.journal</em>* files. The </strong><em>.journal</em>* files
+are the binary files that store the structured and indexed journal entries.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># ls /var/log/journal</span>
+<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>73ab164e278e48be9bf80e80714a8cd5
+<a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># ls /var/log/journal/73ab164e278e48be9bf80e80714a8cd5</span>
+<a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a>system.journal  user-1000.journal
+</code></pre></div>
+<p>While the system journals persist across reboot, you get an extensive number of entries in the
+output of the <strong>journalctl</strong> command that includes entries from the current system boot as well
+as the previous ones. To limit the output to a specific system boot, use the <strong>-b</strong> option with the
+<strong>journalctl</strong> command. The following <strong>journalctl</strong> command retrieves the entries limited to the
+first system boot:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># journalctl -b 1</span>
+<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>...output omitted...
+</code></pre></div>
+<p>The following <strong>journalctl</strong> command retrieves the entries limited to the second system boot. The
+following argument is meaningful only if the system has been rebooted for more than twice:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># journalctl -b 2</span>
+</code></pre></div>
+<p>The following <strong>journalctl</strong> command retrieves the entries limited to the current system boot:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># journalctl -b</span>
+</code></pre></div>
+<div class="admonition info">
+<p class="admonition-title">NOTE</p>
+<p>When debugging a system crash with a persistent journal, it is usually required to
+limit the journal query to the reboot before the crash happened. The <strong>-b</strong> option can
+be accompanied by a negative number indicating how many prior system boots the
+output should include. For example, <strong>journalctl -b -1</strong> limits the output to only
+the previous boot.</p>
+</div>
+<h3 id="maintaining-accurate-time">MAINTAINING ACCURATE TIME<a class="headerlink" href="#maintaining-accurate-time" title="Permanent link">&para;</a></h3>
+<h4 id="setting-local-clocks-and-time-zones">SETTING LOCAL CLOCKS AND TIME ZONES<a class="headerlink" href="#setting-local-clocks-and-time-zones" title="Permanent link">&para;</a></h4>
+<p>Correct synchronized system time is critical for log file analysis across multiple systems. The
+<em>Network Time Protocol</em> (NTP) is a standard way for machines to provide and obtain correct time
+information on the Internet. A machine may get accurate time information from public NTP
+services on the Internet, such as the NTP Pool Project. A high-quality hardware clock to serve
+accurate time to local clients is another option.</p>
+<p>The <strong>timedatectl</strong> command shows an overview of the current time-related system settings,
+including current time, time zone, and NTP synchronization settings of the system.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ timedatectl
+<a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a>               Local time: Fri <span class="m">2019</span>-04-05 <span class="m">16</span>:10:29 CDT
+<a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a>           Universal time: Fri <span class="m">2019</span>-04-05 <span class="m">21</span>:10:29 UTC
+<a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a>                 RTC time: Fri <span class="m">2019</span>-04-05 <span class="m">21</span>:10:29
+<a id="__codelineno-21-5" name="__codelineno-21-5" href="#__codelineno-21-5"></a>                Time zone: America/Chicago <span class="o">(</span>CDT, -0500<span class="o">)</span>
+<a id="__codelineno-21-6" name="__codelineno-21-6" href="#__codelineno-21-6"></a>System clock synchronized: yes
+<a id="__codelineno-21-7" name="__codelineno-21-7" href="#__codelineno-21-7"></a>              NTP service: active
+<a id="__codelineno-21-8" name="__codelineno-21-8" href="#__codelineno-21-8"></a>          RTC <span class="k">in</span> <span class="nb">local</span> TZ: no
+</code></pre></div>
+<p>A database of time zones is available and can be listed with the <strong>timedatectl list-timezones</strong>
+command.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ timedatectl list-timezones
+<a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a>Africa/Abidjan
+<a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a>Africa/Accra
+<a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a>Africa/Addis_Ababa
+<a id="__codelineno-22-5" name="__codelineno-22-5" href="#__codelineno-22-5"></a>Africa/Algiers
+<a id="__codelineno-22-6" name="__codelineno-22-6" href="#__codelineno-22-6"></a>Africa/Asmara
+<a id="__codelineno-22-7" name="__codelineno-22-7" href="#__codelineno-22-7"></a>Africa/Bamako
+<a id="__codelineno-22-8" name="__codelineno-22-8" href="#__codelineno-22-8"></a>...
+</code></pre></div>
+<p>Time zone names are based on the public time zone database that IANA maintains. Time zones are
+named based on continent or ocean, then typically but not always the largest city within the time
+zone region. For example, most of the US Mountain time zone is America/Denver.</p>
+<p>Selecting the correct name can be non-intuitive in cases where localities inside the time zone
+have different daylight saving time rules. For example, in the USA, much of the state of Arizona
+(US Mountain time) does not have a daylight saving time adjustment at all and is in the time zone
+America/Phoenix.</p>
+<p>The command <strong>tzselect</strong> is useful for identifying correct zoneinfo time zone names. It interactively
+prompts the user with questions about the system's location, and outputs the name of the correct
+time zone. It does not make any change to the time zone setting of the system.</p>
+<p>The superuser can change the system setting to update the current time zone using the
+<strong>timedatectl set-timezone</strong> command. The following <strong>timedatectl</strong> command updates the
+current time zone to <strong>America/Phoenix</strong>.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># timedatectl set-timezone America/Phoenix</span>
+<a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># timedatectl</span>
+<a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a>               Local time: Fri <span class="m">2019</span>-04-05 <span class="m">14</span>:12:39 MST
+<a id="__codelineno-23-4" name="__codelineno-23-4" href="#__codelineno-23-4"></a>           Universal time: Fri <span class="m">2019</span>-04-05 <span class="m">21</span>:12:39 UTC
+<a id="__codelineno-23-5" name="__codelineno-23-5" href="#__codelineno-23-5"></a>                 RTC time: Fri <span class="m">2019</span>-04-05 <span class="m">21</span>:12:39
+<a id="__codelineno-23-6" name="__codelineno-23-6" href="#__codelineno-23-6"></a>                Time zone: America/Phoenix <span class="o">(</span>MST, -0700<span class="o">)</span>
+<a id="__codelineno-23-7" name="__codelineno-23-7" href="#__codelineno-23-7"></a>System clock synchronized: yes
+<a id="__codelineno-23-8" name="__codelineno-23-8" href="#__codelineno-23-8"></a>              NTP service: active
+<a id="__codelineno-23-9" name="__codelineno-23-9" href="#__codelineno-23-9"></a>          RTC <span class="k">in</span> <span class="nb">local</span> TZ: no
+</code></pre></div>
+<div class="admonition info">
+<p class="admonition-title">NOTE</p>
+<p>Should you need to use the Coordinated Universal Time (UTC) on a particular server,
+set its time zone to UTC. The <strong>tzselect</strong> command does not include the name of the
+UTC time zone. Use the <strong>timedatectl set-timezone UTC</strong> command to set the
+system's current time zone to <strong>UTC</strong>.</p>
+</div>
+<p>Use the <strong>timedatectl set-time</strong> command to change the system's current time. The time is
+specified in the "<em>YYYY-MM-DD hh<img alt="🇲🇲" class="twemoji" src="https://twemoji.maxcdn.com/v/latest/svg/1f1f2-1f1f2.svg" title=":mm:" />ss</em>" format, where either date or time can be omitted. The
+following <strong>timedatectl</strong> command changes the time to <strong>09:00:00</strong>.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># timedatectl set-time 9:00:00</span>
+<a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a><span class="o">[</span>root@serverX ~<span class="o">]</span>$ timedatectl
+<a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a>               Local time: Fri <span class="m">2019</span>-04-05 <span class="m">09</span>:00:27 MST
+<a id="__codelineno-24-4" name="__codelineno-24-4" href="#__codelineno-24-4"></a>           Universal time: Fri <span class="m">2019</span>-04-05 <span class="m">16</span>:00:27 UTC
+<a id="__codelineno-24-5" name="__codelineno-24-5" href="#__codelineno-24-5"></a>                 RTC time: Fri <span class="m">2019</span>-04-05 <span class="m">16</span>:00:27
+<a id="__codelineno-24-6" name="__codelineno-24-6" href="#__codelineno-24-6"></a>                Time zone: America/Phoenix <span class="o">(</span>MST, -0700<span class="o">)</span>
+<a id="__codelineno-24-7" name="__codelineno-24-7" href="#__codelineno-24-7"></a>System clock synchronized: yes
+<a id="__codelineno-24-8" name="__codelineno-24-8" href="#__codelineno-24-8"></a>              NTP service: active
+<a id="__codelineno-24-9" name="__codelineno-24-9" href="#__codelineno-24-9"></a>          RTC <span class="k">in</span> <span class="nb">local</span> TZ: no
+</code></pre></div>
+<p>The <strong>timedatectl set-ntp</strong> command enables or disables NTP synchronization for automatic
+time adjustment. The option requires either a <strong>true or false</strong> argument to turn it on or off. The
+following <strong>timedatectl</strong> command turns on NTP synchronization.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># timedatectl set-ntp true</span>
+</code></pre></div>
+<div class="admonition info">
+<p class="admonition-title">NOTE</p>
+<p>In Red Hat Enterprise Linux 8, the timedatectl set-ntp command will adjust
+whether or not chronyd NTP service is operating. Other Linux distributions might
+use this setting to adjust a different NTP or SNTP service.</p>
+<p>Enabling or disabling NTP using other utilities in Red Hat Enterprise Linux, such as in
+the graphical GNOME Settings application, also updates this setting.</p>
+</div>
+<h3 id="configuring-and-monitoring-chronyd">CONFIGURING AND MONITORING CHRONYD<a class="headerlink" href="#configuring-and-monitoring-chronyd" title="Permanent link">&para;</a></h3>
+<p>The chronyd service keeps the usually-inaccurate local hardware clock (RTC) on track by
+synchronizing it to the configured NTP servers. If no network connectivity is available, chronyd
+calculates the RTC clock drift, which is recorded in the <strong>driftfile</strong> specified in the <strong>/etc/
+chrony.conf</strong> configuration file.</p>
+<p>By default, the chronyd service uses servers from the NTP Pool Project for the time
+synchronization and does not need additional configuration. It may be useful to change the NTP
+servers when the machine in question is on an isolated network.</p>
+<p>The stratum of the NTP time source determines its quality. The stratum determines the number
+of hops the machine is away from a high-performance reference clock. The reference clock is a
+<strong>stratum 0</strong> time source. An NTP server directly attached to it is a <strong>stratum 1</strong>, while a machine
+synchronizing time from the NTP server is a <strong>stratum 2</strong> time source.</p>
+<p>The server and peer are the two categories of time sources that you can in the <strong>/etc/
+chrony.conf</strong> configuration file. The server is one stratum above the local NTP server, and the
+peer is at the same stratum level. More than one server and more than one peer can be specified,
+one per line.</p>
+<p>The first argument of the <strong>server</strong> line is the IP address or DNS name of the NTP server. Following
+the server IP address or name, a series of options for the server can be listed. It is recommended to
+use the <strong>iburst</strong> option, because after the service starts, four measurements are taken in a short
+time period for a more accurate initial clock synchronization.</p>
+<p>The following <strong>server classroom.example.com iburst</strong> line in the <strong>/etc/chrony.conf</strong> file
+causes the chronyd service to use the classroom.example.com NTP time source.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="c1"># Use public servers from the pool.ntp.org project.</span>
+<a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a>...output omitted...
+<a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a>server classroom.example.com iburst
+<a id="__codelineno-26-4" name="__codelineno-26-4" href="#__codelineno-26-4"></a>...output omitted...
+</code></pre></div>
+<p>After pointing <strong>chronyd</strong> to the local time source, classroom.example.com, you should restart
+the service.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># systemctl restart chronyd</span>
+</code></pre></div>
+<p>The <strong>chronyc</strong> command acts as a client to the chronyd service. After setting up NTP
+synchronization, you should verify that the local system is seamlessly using the NTP server to
+synchronize the system clock using the <strong>chrony sources</strong> command. For more verbose output
+with additional explanations about the output, use the <strong>chronyc sources -v</strong> command.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># chronyc sources -v</span>
+<a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a><span class="m">210</span> Number of <span class="nv">sources</span> <span class="o">=</span> <span class="m">1</span>
+<a id="__codelineno-28-3" name="__codelineno-28-3" href="#__codelineno-28-3"></a>  .-- Source mode  <span class="s1">&#39;^&#39;</span> <span class="o">=</span> server, <span class="s1">&#39;=&#39;</span> <span class="o">=</span> peer, <span class="s1">&#39;#&#39;</span> <span class="o">=</span> <span class="nb">local</span> clock.
+<a id="__codelineno-28-4" name="__codelineno-28-4" href="#__codelineno-28-4"></a> / .- Source state <span class="s1">&#39;*&#39;</span> <span class="o">=</span> current synced, <span class="s1">&#39;+&#39;</span> <span class="o">=</span> combined , <span class="s1">&#39;-&#39;</span> <span class="o">=</span> not combined,
+<a id="__codelineno-28-5" name="__codelineno-28-5" href="#__codelineno-28-5"></a><span class="p">|</span> /   <span class="s1">&#39;?&#39;</span> <span class="o">=</span> unreachable, <span class="s1">&#39;x&#39;</span> <span class="o">=</span> <span class="nb">time</span> may be <span class="k">in</span> error, <span class="s1">&#39;~&#39;</span> <span class="o">=</span> <span class="nb">time</span> too variable.
+<a id="__codelineno-28-6" name="__codelineno-28-6" href="#__codelineno-28-6"></a><span class="o">||</span>                                                 .- xxxx <span class="o">[</span> yyyy <span class="o">]</span> +/- zzzz
+<a id="__codelineno-28-7" name="__codelineno-28-7" href="#__codelineno-28-7"></a><span class="o">||</span>                                                /   <span class="nv">xxxx</span> <span class="o">=</span> adjusted offset,
+<a id="__codelineno-28-8" name="__codelineno-28-8" href="#__codelineno-28-8"></a><span class="o">||</span>         Log2<span class="o">(</span>Polling interval<span class="o">)</span> -.             <span class="p">|</span>    <span class="nv">yyyy</span> <span class="o">=</span> measured offset,
+<a id="__codelineno-28-9" name="__codelineno-28-9" href="#__codelineno-28-9"></a><span class="o">||</span>                                  <span class="se">\ </span>           <span class="p">|</span>    <span class="nv">zzzz</span> <span class="o">=</span> estimated error.
+<a id="__codelineno-28-10" name="__codelineno-28-10" href="#__codelineno-28-10"></a><span class="o">||</span>                                   <span class="p">|</span>           <span class="p">|</span>
+<a id="__codelineno-28-11" name="__codelineno-28-11" href="#__codelineno-28-11"></a>MS Name/IP address         Stratum Poll Reach LastRx Last <span class="nv">sample</span>
+<a id="__codelineno-28-12" name="__codelineno-28-12" href="#__codelineno-28-12"></a><span class="o">===============================================================================</span>
+<a id="__codelineno-28-13" name="__codelineno-28-13" href="#__codelineno-28-13"></a>^* classroom.example.com         <span class="m">8</span>   <span class="m">6</span>    <span class="m">17</span>    <span class="m">23</span>   -497ns<span class="o">[</span>-7000ns<span class="o">]</span> +/-  956us
+</code></pre></div>
+<p>The <strong><em>*</em> character in the </strong>S** (Source state) field indicates that the classroom.example.com server
+has been used as a time source and is the NTP server the machine is currently synchronized to.</p>
+<h3 id="summary">SUMMARY<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h3>
+<p>In this chapter, you learned:</p>
+<ul>
+<li>
+<p>The systemd-journald and rsyslog services capture and write log messages to the
+appropriate files.</p>
+</li>
+<li>
+<p>The <strong>/var/log</strong> directory contains log files.</p>
+</li>
+<li>
+<p>Periodic rotation of log files prevent them from filling up the file system space.</p>
+</li>
+<li>
+<p>The systemd journals are temporary and do not persist across reboot.</p>
+</li>
+<li>
+<p>The chronyd service helps to synchronize time settings with a time source.</p>
+</li>
+</ul>
+
+  <hr>
+<div class="md-source-file">
+  <small>
+    
+      Last update:
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">November 16, 2022</span>
+      
+    
+  </small>
+</div>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+          <a href="#" class="md-top md-icon" data-md-component="top" hidden>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+            Back to top
+          </a>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+    <nav class="md-footer__inner md-grid" aria-label="Footer" >
+      
+        
+        <a href="../secssh/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Configuring And Securing Ssh" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Configuring And Securing Ssh
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../../english/vol1/" class="md-footer__link md-footer__link--next" aria-label="Next: Vol-1" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Vol-1
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2022 Divijesh Varma. All rights reserved.
+    </div>
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.instant", "navigation.tracking", "navigation.tabs", "navigation.tabs.sticky", "navigation.expand", "navigation.top", "navigation.sections", "content.tooltips", "header.autohide"], "search": "../../assets/javascripts/workers/search.16e2a7d4.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d6c3db9e.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="../../javascripts/feedback.js"></script>
+      
+    
+  </body>
+</html>
