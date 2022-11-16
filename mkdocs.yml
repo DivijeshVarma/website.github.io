@@ -200,6 +200,7 @@ nav:
       - 'redhat/monitor.en.md'
       - 'redhat/service.en.md'
       - 'redhat/secssh.en.md'
+      - 'redhat/store.en.md'
   - 'English':
     - 'Tutorial':
       - 'english/vol1.en.md'
