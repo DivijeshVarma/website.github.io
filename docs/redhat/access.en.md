@@ -450,15 +450,15 @@ table.
 
 **Useful Command-line Editing Shortcuts**
 
-|SHORTCUT | DESCRIPTION |
-|-------:|:-----------|
-|Ctrl+A   | Jump to the beginning of the command line. |
-|Ctrl+E   | Jump to the end of the command line. |
-|Ctrl+U   |  Clear from the cursor to the beginning of the command line.
-|Ctrl+K   |  Clear from the cursor to the end of the command line.
-|Ctrl+Left | Arrow Jump to the beginning of the previous word on the command line.
-|Ctrl+Right | Arrow Jump to the end of the next word on the command line.
-|Ctrl+R     | Search the history list of commands for a pattern.
+|   SHORTCUT | DESCRIPTION                                                           |
+|-----------:|:----------------------------------------------------------------------|
+|     Ctrl+A | Jump to the beginning of the command line.                            |
+|     Ctrl+E | Jump to the end of the command line.                                  |
+|     Ctrl+U | Clear from the cursor to the beginning of the command line.           |
+|     Ctrl+K | Clear from the cursor to the end of the command line.                 |
+|  Ctrl+Left | Arrow Jump to the beginning of the previous word on the command line. |
+| Ctrl+Right | Arrow Jump to the end of the next word on the command line.           |
+|     Ctrl+R | Search the history list of commands for a pattern.                    |
 
 There are several other command-line editing commands available, but these are the most useful
 commands for new users. The other commands can be found in the **bash(1)** man page.

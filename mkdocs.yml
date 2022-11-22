@@ -201,6 +201,12 @@ nav:
       - 'redhat/service.en.md'
       - 'redhat/secssh.en.md'
       - 'redhat/store.en.md'
+      - 'redhat/mannet.en.md'
+      - 'redhat/archiv.en.md'
+      - 'redhat/pack.en.md'
+      - 'redhat/filsys.en.md'
+      - 'redhat/support.en.md'
+      - 'redhat/review.en.md'
   - 'English':
     - 'Tutorial':
       - 'english/vol1.en.md'
