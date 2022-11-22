@@ -1,0 +1,3786 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://www.privacyguides.org/redhat/mannet/">
+      
+      <link rel="icon" href="../../assets/img/layout/favicon.ico">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-8.5.10">
+    
+    
+      
+        <title>Managing Networking - Divijesh Varma</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.472b142f.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.08040f6c.min.css">
+        
+      
+      
+
+    
+    
+    
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent="teal">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#describing-networking-concepts" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Divijesh Varma" class="md-header__button md-logo" aria-label="Divijesh Varma" data-md-component="logo">
+      
+  <img src="../../assets/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Divijesh Varma
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Managing Networking
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent="teal"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 1 7 7c0 2.38-1.19 4.47-3 5.74V17a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 0 1 7-7M9 21v-1h6v1a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1m3-17a5 5 0 0 0-5 5c0 2.05 1.23 3.81 3 4.58V16h4v-2.42c1.77-.77 3-2.53 3-4.58a5 5 0 0 0-5-5Z"/></svg>
+            </label>
+          
+        
+          
+          
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="deep-purple" data-md-color-accent="deep-orange"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 2.38 1.19 4.47 3 5.74V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.26c1.81-1.27 3-3.36 3-5.74a7 7 0 0 0-7-7M9 21a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-1H9v1Z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../.." class="md-tabs__link">
+      Home
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../linux/vi/" class="md-tabs__link">
+        Linux
+      </a>
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../intro/" class="md-tabs__link md-tabs__link--active">
+        RedHat
+      </a>
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../english/vol1/" class="md-tabs__link">
+        English
+      </a>
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../basics/threat-modeling/" class="md-tabs__link">
+        Knowledge Base
+      </a>
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../tools/" class="md-tabs__link">
+        Recommendations
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../about/" class="md-tabs__link">
+        About
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Divijesh Varma" class="md-nav__button md-logo" aria-label="Divijesh Varma" data-md-component="logo">
+      
+  <img src="../../assets/logo.png" alt="logo">
+
+    </a>
+    Divijesh Varma
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          Linux
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Linux" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Linux
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_2_1" type="checkbox" id="__nav_2_1" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_1">
+          Editors
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Editors" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_1">
+          <span class="md-nav__icon md-icon"></span>
+          Editors
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/vi/" class="md-nav__link">
+        Vim
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/nano/" class="md-nav__link">
+        Nano
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_2_2" type="checkbox" id="__nav_2_2" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_2">
+          Notes
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Notes" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_2">
+          <span class="md-nav__icon md-icon"></span>
+          Notes
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/rhcsa/" class="md-nav__link">
+        Tritree
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/user/" class="md-nav__link">
+        User Management
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/acl/" class="md-nav__link">
+        Access control lists (ACLs)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/network/" class="md-nav__link">
+        Networking
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/ssh/" class="md-nav__link">
+        OpenSSH
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/process/" class="md-nav__link">
+        Process Management
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/software/" class="md-nav__link">
+        Software Management
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/systemd/" class="md-nav__link">
+        Systemd Management
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/cron/" class="md-nav__link">
+        Cron Jobs
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/logs/" class="md-nav__link">
+        Logs
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/disk/" class="md-nav__link">
+        Disk Management
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3">
+          RedHat
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="RedHat" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          RedHat
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+    
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_1" type="checkbox" id="__nav_3_1" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_1">
+          RHSA I (RH124)
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="RHSA I (RH124)" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_1">
+          <span class="md-nav__icon md-icon"></span>
+          RHSA I (RH124)
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../intro/" class="md-nav__link">
+        Introduction
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../access/" class="md-nav__link">
+        Accessing The Command Line
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../manage/" class="md-nav__link">
+        Managing Files From The Command Line
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../help/" class="md-nav__link">
+        Getting Help In Red Hat Enterprise Linux
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../edit/" class="md-nav__link">
+        Creating, Viewing, And Editing Text Files
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../users/" class="md-nav__link">
+        Managing Local Users And Groups
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../control/" class="md-nav__link">
+        Controlling Access To Files
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../monitor/" class="md-nav__link">
+        Monitoring And Managing Linux Processes
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../service/" class="md-nav__link">
+        Controlling Services And Daemons
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../secssh/" class="md-nav__link">
+        Configuring And Securing Ssh
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../store/" class="md-nav__link">
+        Analyzing And Storing Logs
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Managing Networking
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Managing Networking
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#describing-networking-concepts" class="md-nav__link">
+    DESCRIBING NETWORKING CONCEPTS
+  </a>
+  
+    <nav class="md-nav" aria-label="DESCRIBING NETWORKING CONCEPTS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tcpip-network-model" class="md-nav__link">
+    TCP/IP NETWORK MODEL
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#describing-network-interface-names" class="md-nav__link">
+    DESCRIBING NETWORK INTERFACE NAMES
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ipv4-networking" class="md-nav__link">
+    IPV4 NETWORKING
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ipv6-networking" class="md-nav__link">
+    IPV6 NETWORKING
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#host-names-and-ip-addresses" class="md-nav__link">
+    HOST NAMES AND IP ADDRESSES
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#validating-network-configuration" class="md-nav__link">
+    VALIDATING NETWORK CONFIGURATION
+  </a>
+  
+    <nav class="md-nav" aria-label="VALIDATING NETWORK CONFIGURATION">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#gathering-network-interface-information" class="md-nav__link">
+    GATHERING NETWORK INTERFACE INFORMATION
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#checking-connectivity-between-hosts" class="md-nav__link">
+    CHECKING CONNECTIVITY BETWEEN HOSTS
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting-routing" class="md-nav__link">
+    TROUBLESHOOTING ROUTING
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting-ports-and-services" class="md-nav__link">
+    TROUBLESHOOTING PORTS AND SERVICES
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuring-networking-from-the-command-line" class="md-nav__link">
+    CONFIGURING NETWORKING FROM THE COMMAND LINE
+  </a>
+  
+    <nav class="md-nav" aria-label="CONFIGURING NETWORKING FROM THE COMMAND LINE">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#describing-networkmanager-concepts" class="md-nav__link">
+    DESCRIBING NETWORKMANAGER CONCEPTS
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#viewing-networking-information" class="md-nav__link">
+    VIEWING NETWORKING INFORMATION
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#adding-a-network-connection" class="md-nav__link">
+    ADDING A NETWORK CONNECTION
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#controlling-network-connections" class="md-nav__link">
+    CONTROLLING NETWORK CONNECTIONS
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#modifying-network-connection-settings" class="md-nav__link">
+    MODIFYING NETWORK CONNECTION SETTINGS
+  </a>
+  
+    <nav class="md-nav" aria-label="MODIFYING NETWORK CONNECTION SETTINGS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#deleting-a-network-connection" class="md-nav__link">
+    DELETING A NETWORK CONNECTION
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#who-can-modify-network-settings" class="md-nav__link">
+    WHO CAN MODIFY NETWORK SETTINGS?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#summary-of-commands" class="md-nav__link">
+    SUMMARY OF COMMANDS
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#editing-network-configuration-files" class="md-nav__link">
+    EDITING NETWORK CONFIGURATION FILES
+  </a>
+  
+    <nav class="md-nav" aria-label="EDITING NETWORK CONFIGURATION FILES">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#describing-connection-configuration-files" class="md-nav__link">
+    DESCRIBING CONNECTION CONFIGURATION FILES
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#modifying-network-configuration" class="md-nav__link">
+    MODIFYING NETWORK CONFIGURATION
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuring-host-names-and-name-resolution" class="md-nav__link">
+    CONFIGURING HOST NAMES AND NAME RESOLUTION
+  </a>
+  
+    <nav class="md-nav" aria-label="CONFIGURING HOST NAMES AND NAME RESOLUTION">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#changing-the-system-host-name" class="md-nav__link">
+    CHANGING THE SYSTEM HOST NAME
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuring-name-resolution" class="md-nav__link">
+    CONFIGURING NAME RESOLUTION
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    SUMMARY
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../archiv/" class="md-nav__link">
+        Archiving And Transferring Files
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pack/" class="md-nav__link">
+        Installing And Updating Software Packages
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../filsys/" class="md-nav__link">
+        Accessing Linux File Systems
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../support/" class="md-nav__link">
+        Analyzing Servers And Getting Support
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../review/" class="md-nav__link">
+        Comprehensive Review
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4">
+          English
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="English" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          English
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_4_1" type="checkbox" id="__nav_4_1" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_1">
+          Tutorial
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Tutorial" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_1">
+          <span class="md-nav__icon md-icon"></span>
+          Tutorial
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../english/vol1/" class="md-nav__link">
+        Vol-1
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../english/vol2/" class="md-nav__link">
+        Vol-2
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../english/vol3/" class="md-nav__link">
+        Vol-3
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../english/vol4/" class="md-nav__link">
+        Vol-4
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5">
+          Knowledge Base
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Knowledge Base" data-md-level="1">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          Knowledge Base
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_5_1" type="checkbox" id="__nav_5_1" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5_1">
+          The Basics
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="The Basics" data-md-level="2">
+        <label class="md-nav__title" for="__nav_5_1">
+          <span class="md-nav__icon md-icon"></span>
+          The Basics
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../basics/threat-modeling/" class="md-nav__link">
+        Threat Modeling
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../basics/dns/" class="md-nav__link">
+        Introduction to DNS
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../basics/multi-factor-authentication/" class="md-nav__link">
+        Multi-factor Authentication
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../basics/account-deletion/" class="md-nav__link">
+        Account Deletion
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_5_2" type="checkbox" id="__nav_5_2" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5_2">
+          Android
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Android" data-md-level="2">
+        <label class="md-nav__title" for="__nav_5_2">
+          <span class="md-nav__icon md-icon"></span>
+          Android
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../android/overview/" class="md-nav__link">
+        Android Overview
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../android/grapheneos-vs-calyxos/" class="md-nav__link">
+        GrapheneOS vs CalyxOS
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_5_3" type="checkbox" id="__nav_5_3" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5_3">
+          Linux
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Linux" data-md-level="2">
+        <label class="md-nav__title" for="__nav_5_3">
+          <span class="md-nav__icon md-icon"></span>
+          Linux
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux-desktop/overview/" class="md-nav__link">
+        Linux Overview
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux-desktop/hardening/" class="md-nav__link">
+        System Hardening
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux-desktop/sandboxing/" class="md-nav__link">
+        Application Sandboxing
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_5_4" type="checkbox" id="__nav_5_4" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5_4">
+          Advanced
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Advanced" data-md-level="2">
+        <label class="md-nav__title" for="__nav_5_4">
+          <span class="md-nav__icon md-icon"></span>
+          Advanced
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setup/integrating-metadata-removal/" class="md-nav__link">
+        Integrating Metadata Removal
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_6" type="checkbox" id="__nav_6" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6">
+          Recommendations
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Recommendations" data-md-level="1">
+        <label class="md-nav__title" for="__nav_6">
+          <span class="md-nav__icon md-icon"></span>
+          Recommendations
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tools/" class="md-nav__link">
+        Privacy Tools
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_6_2" type="checkbox" id="__nav_6_2" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6_2">
+          Browsers
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Browsers" data-md-level="2">
+        <label class="md-nav__title" for="__nav_6_2">
+          <span class="md-nav__icon md-icon"></span>
+          Browsers
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../browsers/" class="md-nav__link">
+        Web Browsers
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_6_3" type="checkbox" id="__nav_6_3" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6_3">
+          Operating Systems
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Operating Systems" data-md-level="2">
+        <label class="md-nav__title" for="__nav_6_3">
+          <span class="md-nav__icon md-icon"></span>
+          Operating Systems
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../android/" class="md-nav__link">
+        Android
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux-desktop/" class="md-nav__link">
+        Linux
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../qubes/" class="md-nav__link">
+        Qubes OS
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../router/" class="md-nav__link">
+        Router Firmware
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_6_4" type="checkbox" id="__nav_6_4" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6_4">
+          Providers
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Providers" data-md-level="2">
+        <label class="md-nav__title" for="__nav_6_4">
+          <span class="md-nav__icon md-icon"></span>
+          Providers
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cloud/" class="md-nav__link">
+        Cloud Storage
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dns/" class="md-nav__link">
+        DNS Resolvers
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../email/" class="md-nav__link">
+        Email Services
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../search-engines/" class="md-nav__link">
+        Search Engines
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vpn/" class="md-nav__link">
+        VPN Services
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_6_5" type="checkbox" id="__nav_6_5" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6_5">
+          Software
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Software" data-md-level="2">
+        <label class="md-nav__title" for="__nav_6_5">
+          <span class="md-nav__icon md-icon"></span>
+          Software
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../calendar-contacts/" class="md-nav__link">
+        Calendar and Contact Sync
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../notebooks/" class="md-nav__link">
+        Notebooks
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../email-clients/" class="md-nav__link">
+        Email Clients
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../encryption/" class="md-nav__link">
+        Encryption Software
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../file-sharing/" class="md-nav__link">
+        File Sharing and Sync
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../metadata-removal-tools/" class="md-nav__link">
+        Metadata Removal Tools
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../multi-factor-authentication/" class="md-nav__link">
+        Multi-Factor Authenticators
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../passwords/" class="md-nav__link">
+        Password Managers
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../productivity/" class="md-nav__link">
+        Productivity Tools
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../real-time-communication/" class="md-nav__link">
+        Real-Time Communication
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../news-aggregators/" class="md-nav__link">
+        News Aggregators
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../self-contained-networks/" class="md-nav__link">
+        Self-Contained Networks
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../video-streaming/" class="md-nav__link">
+        Video Streaming
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_7" type="checkbox" id="__nav_7" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_7">
+          About
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="About" data-md-level="1">
+        <label class="md-nav__title" for="__nav_7">
+          <span class="md-nav__icon md-icon"></span>
+          About
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/" class="md-nav__link">
+        Heading
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#describing-networking-concepts" class="md-nav__link">
+    DESCRIBING NETWORKING CONCEPTS
+  </a>
+  
+    <nav class="md-nav" aria-label="DESCRIBING NETWORKING CONCEPTS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tcpip-network-model" class="md-nav__link">
+    TCP/IP NETWORK MODEL
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#describing-network-interface-names" class="md-nav__link">
+    DESCRIBING NETWORK INTERFACE NAMES
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ipv4-networking" class="md-nav__link">
+    IPV4 NETWORKING
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ipv6-networking" class="md-nav__link">
+    IPV6 NETWORKING
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#host-names-and-ip-addresses" class="md-nav__link">
+    HOST NAMES AND IP ADDRESSES
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#validating-network-configuration" class="md-nav__link">
+    VALIDATING NETWORK CONFIGURATION
+  </a>
+  
+    <nav class="md-nav" aria-label="VALIDATING NETWORK CONFIGURATION">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#gathering-network-interface-information" class="md-nav__link">
+    GATHERING NETWORK INTERFACE INFORMATION
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#checking-connectivity-between-hosts" class="md-nav__link">
+    CHECKING CONNECTIVITY BETWEEN HOSTS
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting-routing" class="md-nav__link">
+    TROUBLESHOOTING ROUTING
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting-ports-and-services" class="md-nav__link">
+    TROUBLESHOOTING PORTS AND SERVICES
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuring-networking-from-the-command-line" class="md-nav__link">
+    CONFIGURING NETWORKING FROM THE COMMAND LINE
+  </a>
+  
+    <nav class="md-nav" aria-label="CONFIGURING NETWORKING FROM THE COMMAND LINE">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#describing-networkmanager-concepts" class="md-nav__link">
+    DESCRIBING NETWORKMANAGER CONCEPTS
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#viewing-networking-information" class="md-nav__link">
+    VIEWING NETWORKING INFORMATION
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#adding-a-network-connection" class="md-nav__link">
+    ADDING A NETWORK CONNECTION
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#controlling-network-connections" class="md-nav__link">
+    CONTROLLING NETWORK CONNECTIONS
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#modifying-network-connection-settings" class="md-nav__link">
+    MODIFYING NETWORK CONNECTION SETTINGS
+  </a>
+  
+    <nav class="md-nav" aria-label="MODIFYING NETWORK CONNECTION SETTINGS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#deleting-a-network-connection" class="md-nav__link">
+    DELETING A NETWORK CONNECTION
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#who-can-modify-network-settings" class="md-nav__link">
+    WHO CAN MODIFY NETWORK SETTINGS?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#summary-of-commands" class="md-nav__link">
+    SUMMARY OF COMMANDS
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#editing-network-configuration-files" class="md-nav__link">
+    EDITING NETWORK CONFIGURATION FILES
+  </a>
+  
+    <nav class="md-nav" aria-label="EDITING NETWORK CONFIGURATION FILES">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#describing-connection-configuration-files" class="md-nav__link">
+    DESCRIBING CONNECTION CONFIGURATION FILES
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#modifying-network-configuration" class="md-nav__link">
+    MODIFYING NETWORK CONFIGURATION
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuring-host-names-and-name-resolution" class="md-nav__link">
+    CONFIGURING HOST NAMES AND NAME RESOLUTION
+  </a>
+  
+    <nav class="md-nav" aria-label="CONFIGURING HOST NAMES AND NAME RESOLUTION">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#changing-the-system-host-name" class="md-nav__link">
+    CHANGING THE SYSTEM HOST NAME
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuring-name-resolution" class="md-nav__link">
+    CONFIGURING NAME RESOLUTION
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    SUMMARY
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+  
+
+
+
+
+  <h1>Managing Networking</h1>
+
+<h3 id="describing-networking-concepts">DESCRIBING NETWORKING CONCEPTS<a class="headerlink" href="#describing-networking-concepts" title="Permanent link">&para;</a></h3>
+<h4 id="tcpip-network-model">TCP/IP NETWORK MODEL<a class="headerlink" href="#tcpip-network-model" title="Permanent link">&para;</a></h4>
+<p>The <em>TCP/IP</em> network model is a simplified, four-layered set of abstractions that describes how
+different protocols interoperate in order for computers to send traffic from one machine to another
+over the Internet. It is specified by RFC 1122, Requirements for Internet Hosts -- Communication
+Layers. The four layers are:</p>
+<ul>
+<li><strong>Application</strong></li>
+</ul>
+<p>Each application has specifications for communication so that clients and servers may
+communicate across platforms. Common protocols include SSH (remote login), HTTPS (secure
+web), NFS or CIFS (file sharing), and SMTP (electronic mail delivery).</p>
+<ul>
+<li><strong>Transport</strong></li>
+</ul>
+<p>Transport protocols are TCP and UDP. TCP is a reliable connection-oriented communication,
+while UDP is a connectionless datagram protocol. Application protocols use TCP or UDP ports. A
+list of well-known and registered ports can be found in the <em>/etc/services</em> file.</p>
+<p>When a packet is sent on the network, the combination of the service port and IP address forms
+a socket. Each packet has a source socket and a destination socket. This information can be used
+when monitoring and filtering.</p>
+<ul>
+<li><strong>Internet</strong></li>
+</ul>
+<p>The Internet, or network layer, carries data from the source host to the destination host. The
+IPv4 and IPv6 protocols are Internet layer protocols. Each host has an IP address and a prefix
+used to determine network addresses. Routers are used to connect networks.</p>
+<ul>
+<li><strong>Link</strong></li>
+</ul>
+<p>The link, or media access, layer provides the connection to physical media. The most common
+types of networks are wired Ethernet (802.3) and wireless WLAN (802.11). Each physical device
+has a hardware address (MAC) which is used to identify the destination of packets on the local
+network segment.</p>
+<h4 id="describing-network-interface-names">DESCRIBING NETWORK INTERFACE NAMES<a class="headerlink" href="#describing-network-interface-names" title="Permanent link">&para;</a></h4>
+<p>Each network port on a system has a name, which you use to configure and identify it.</p>
+<p>Older versions of Red Hat Enterprise Linux used names like eth0, eth1, and eth2 for each
+network interface. The name eth0 was the first network port detected by the operating system,
+eth1 the second, and so on. However, as devices are added and removed, the mechanism
+detecting devices and naming them could change which interface gets which name. Furthermore,
+the PCIe standard does not guarantee the order in which PCIe devices will be detected on boot,
+which could change device naming unexpectedly due to variations during device or system startup.</p>
+<p>Newer versions of Red Hat Enterprise Linux use a different naming system. Instead of being based
+on detection order, the names of network interfaces are assigned based on information from the
+firmware, the PCI bus topology, and type of network device.</p>
+<p>Network interface names start with the type of interface:</p>
+<ul>
+<li>Ethernet interfaces begin with en</li>
+<li>WLAN interfaces begin with wl</li>
+<li>WWAN interfaces begin with ww</li>
+</ul>
+<p>The rest of the interface name after the type will be based on information provided by the server's
+firmware or determined by the location of the device in the PCI topology.</p>
+<ul>
+<li>
+<p><strong>oN</strong> indicates that this is an on-board device and the server's firmware provided index number
+N for the device. So eno1 is on-board Ethernet device 1. Many servers will not provide this
+information.</p>
+</li>
+<li>
+<p><strong>sN</strong> indicates that this device is in PCI hotplug slot N. So ens3 is an Ethernet card in PCI hotplug
+slot 3.</p>
+</li>
+<li>
+<p><strong>pMsN</strong> indicates that this is a PCI device on bus <em>M</em> in slot <em>N</em>. So wlp4s0 is a WLAN card on PCI bus
+4 in slot 0. If the card is a multi-function device (possible with an Ethernet card with multiple
+ports, or devices that have Ethernet plus some other functionality), you may see fN added to the
+device name. So enp0s1f0 is function 0 of the Ethernet card on bus 0 in slot 1. There might also
+be a second interface named enp0s1f1 that is function 1 of that same device.</p>
+</li>
+</ul>
+<p>Persistent naming means that once you know what the name is for a network interface on the
+system, you also know that it will not change later. The trade off is that you cannot assume that a
+system with one interface will name that interface eth0.</p>
+<h3 id="ipv4-networking">IPV4 NETWORKING<a class="headerlink" href="#ipv4-networking" title="Permanent link">&para;</a></h3>
+<p>IPv4 is the primary network protocol used on the Internet today. You should have at least a basic
+understanding of IPv4 networking in order to manage network communication for your servers.</p>
+<p><strong>IPv4 Addresses</strong></p>
+<p>An IPv4 address is a 32-bit number, normally expressed in decimal as four 8-bit octets ranging in
+value from 0 to 255, separated by dots. The address is divided into two parts: the network part and
+the host part. All hosts on the same subnet, which can talk to each other directly without a router,
+have the same network part; the network part identifies the subnet. No two hosts on the same
+subnet can have the same host part; the host part identifies a particular host on a subnet.</p>
+<p>In the modern Internet, the size of an IPv4 subnet is variable. To know which part of an IPv4
+address is the network part and which is the host part, an administrator must know the netmask,
+which is assigned to the subnet. The netmask indicates how many bits of the IPv4 address belong
+to the subnet. The more bits available for the host part, the more hosts can be on the subnet.</p>
+<p>The lowest possible address on a subnet (host part is all zeros in binary) is sometimes called the
+network address. The highest possible address on a subnet (host part is all ones in binary) is used
+for broadcast messages in IPv4, and is called the broadcast address.</p>
+<p>Network masks are expressed in two forms. The older syntax for a netmask uses 24 bits for the
+network part and reads 255.255.255.0. A newer syntax, called CIDR notation, specifies a
+network prefix of /24. Both forms convey the same information; namely, how many leading bits in
+the IP address contribute to its network address.</p>
+<p>The following examples illustrate how the IP address, prefix (netmask), network part, and host part
+are related.</p>
+<p>The following examples illustrate how the IP address, prefix (netmask), network part, and host part
+are related.</p>
+<p><img alt="IPv4 addresses" src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/Ipv4_address.svg/750px-Ipv4_address.svg.png" title="IPv4 addresses" /></p>
+<p><img alt="IPv4 addresses and netmasks" src="https://static.packt-cdn.com/products/9781789535600/graphics/assets/c90133e2-ebcd-46fb-90cb-0764d20a5f3e.png" title="IPv4 addresses and netmasks" /></p>
+<p><strong>Calculating the network address for 192.168.1.107/24</strong></p>
+<p><code>Host addr: 192.168.1.107       11000000.10101000.00000001.01101011</code></p>
+<p><code>Network prefix:  /24 (255.255.255.0) 11111111.11111111.11111111.00000000</code></p>
+<p><code>Network addr:    192.168.1.0         11000000.10101000.00000001.00000000</code></p>
+<p><code>Broadcast addr:  192.168.1.255       11000000.10101000.00000001.11111111</code></p>
+<p><strong>Calculating the network address for 10.1.1.18/8</strong></p>
+<p><code>Host addr:       10.1.1.18           00001010.00000001.00000001.00010010</code></p>
+<p><code>Network prefix:  /8 (255.0.0.0)      11111111.00000000.00000000.00000000</code></p>
+<p><code>Network addr:    10.0.0.0            00001010.00000000.00000000.00000000</code></p>
+<p><code>Broadcast addr:  10.255.255.255      00001010.11111111.11111111.11111111</code></p>
+<p><strong>Calculating the network address for 172.16.181.23/19</strong></p>
+<p><code>Host addr:       172.168.181.23      10101100.10101000.10110101.00010111</code></p>
+<p><code>Network prefix:  /19 (255.255.224.0) 11111111.11111111.11100000.00000000</code></p>
+<p><code>Network addr:    172.168.160.0       10101100.10101000.10100000.00000000</code></p>
+<p><code>Broadcast addr:  172.168.191.255     10101100.10101000.10111111.11111111</code></p>
+<p>The special address 127.0.0.1 always points to the local system (“localhost”), and the network
+127.0.0.0/8 belongs to the local system, so that it can talk to itself using network protocols.</p>
+<p><strong>IPv4 Routing</strong></p>
+<p>Whether using IPv4 or IPv6, network traffic needs to move from host to host and network to
+network. Each host has a routing table, which tells it how to route traffic for particular networks.
+A routing table entry lists a destination network, which interface to use when sending traffic, and
+the IP address of any intermediate router required to relay a message to its final destination. The
+routing table entry matching the destination of the network traffic is used to route it. If two entries
+match, the one with the longest prefix is used.</p>
+<p>If the network traffic does not match a more specific route, the routing table usually has an entry
+for a default route to the entire IPv4 Internet: 0.0.0.0/0. This default route points to a router on a
+reachable subnet (that is, on a subnet that has a more specific route in the host's routing table).</p>
+<p>If a router receives traffic that is not addressed to it, instead of ignoring it like a normal host,
+it forwards the traffic based on its own routing table. This may send the traffic directly to the
+destination host (if the router happens to be on the destination's subnet), or it may be forwarded
+on to another router. This process of forwarding continues until the traffic reaches its final
+destination.</p>
+<p><img alt="Example network topology" src="https://www.linuxprobe.com/links/RH124/images/net/ip4network.svg" title="Example network topology" /></p>
+<p><strong>Example routing table</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left">DESTINATION</th>
+<th align="left">INTERFACE</th>
+<th align="left">ROUTER (IF NEEDED)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">192.0.2.0/24</td>
+<td align="left">wlo1</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">192.168.5.0/24</td>
+<td align="left">enp3s0</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">0.0.0.0/0 (default)</td>
+<td align="left">enp3s0</td>
+<td align="left">192.168.5.254</td>
+</tr>
+</tbody>
+</table>
+<p>In this example, traffic headed for the IP address 192.0.2.102 from this host is transmitted
+directly to that destination via the wlo1 wireless interface, because it matches the
+192.0.2.0/24 route most closely. Traffic for the IP address 192.168.5.3 is transmitted
+directly to that destination via the enp3s0 Ethernet interface, because it matches the
+192.168.5.0/24 route most closely.</p>
+<p>Traffic to the IP address 10.2.24.1 is transmitted out the enp3s0 Ethernet interface to a router
+at 192.168.5.254, which forwards that traffic on to its final destination. That traffic matches the
+0.0.0.0/0 route most closely, as there is not a more specific route in the routing table of this
+host. The router uses its own routing table to determine where to forward that traffic to next.</p>
+<p><strong>IPv4 Address and Route Configuration</strong></p>
+<p>A server can automatically configure its IPv4 network settings at boot time from a DHCP server. A
+local client daemon queries the link for a server and network settings, and obtains a lease to use
+those settings for a specific length of time. If the client does not request a renewal of the lease
+periodically, it might lose its network configuration settings.</p>
+<p>As an alternative, you can configure a server to use a static network configuration. In this case,
+network settings are read from local configuration files. You must get the correct settings from
+your network administrator and update them manually as needed to avoid conflicts with other
+servers.</p>
+<h3 id="ipv6-networking">IPV6 NETWORKING<a class="headerlink" href="#ipv6-networking" title="Permanent link">&para;</a></h3>
+<p>IPv6 is intended as an eventual replacement for the IPv4 network protocol. You will need to
+understand how it works since increasing numbers of production systems use IPv6 addressing.
+For example, many ISPs already use IPv6 for internal communication and device management
+networks in order to preserve scarce IPv4 addresses for customer purposes.</p>
+<p>IPv6 can also be used in parallel with IPv4 in a dual-stack model. In this configuration, a
+network interface can have an IPv6 address or addresses as well as IPv4 addresses. Red Hat
+Enterprise Linux operates in a dual-stack mode by default.</p>
+<p><strong>IPv6 Addresses</strong></p>
+<p>An IPv6 address is a 128-bit number, normally expressed as eight colon-separated groups of four
+hexadecimal nibbles (half-bytes). Each nibble represents four bits of the IPv6 address, so each
+group represents 16 bits of the IPv6 address.</p>
+<p><code>2001:0db8:0000:0010:0000:0000:0000:0001</code></p>
+<p>To make IPv6 addresses easier to write, leading zeros in a colon-separated group do not need to be
+written. However, at least one hexadecimal digit must be written in each colon-separated group.</p>
+<p><code>2001:db8:0:10:0:0:0:1</code></p>
+<p>Since addresses with long strings of zeros are common, one or more consecutive groups of zeros
+only may be combined with exactly one :: block.</p>
+<p><code>2001:db8:0:10::1</code></p>
+<p>Notice that under these rules, 2001:db8::0010:0:0:0:1 would be another less convenient
+way to write the example address. But it is a valid representation of the same address, and this can
+confuse administrators new to IPv6. Some tips for writing consistently readable addresses:</p>
+<ul>
+<li>
+<p>Suppress leading zeros in a group.</p>
+</li>
+<li>
+<p>Use :: to shorten as much as possible.</p>
+</li>
+<li>
+<p>If an address contains two consecutive groups of zeros, equal in length, it is preferred to shorten
+the leftmost groups of zeros to :: and the rightmost groups to :0: for each group.</p>
+</li>
+<li>
+<p>Although it is allowed, do not use :: to shorten one group of zeros. Use :0: instead, and save
+:: for consecutive groups of zeros.</p>
+</li>
+<li>
+<p>Always use lowercase letters for hexadecimal numbers a through f.</p>
+</li>
+</ul>
+<div class="admonition danger">
+<p class="admonition-title">IMPORTANT</p>
+<p>When including a TCP or UDP network port after an IPv6 address, always enclose the
+IPv6 address in square brackets so that the port does not look like it is part of the
+address.</p>
+<p><code>[2001:db8:0:10::1]:80</code></p>
+</div>
+<p><strong>IPv6 Subnetting</strong></p>
+<p>A normal IPv6 unicast address is divided into two parts: the network prefix and interface ID. The
+network prefix identifies the subnet. No two network interfaces on the same subnet can have the
+same interface ID; the interface ID identifies a particular interface on the subnet.</p>
+<p>Unlike IPv4, IPv6 has a standard subnet mask, which is used for almost all normal addresses, /64.
+In this case, half of the address is the network prefix and half of it is the interface ID. This means
+that a single subnet can hold as many hosts as necessary.</p>
+<p>Typically, the network provider will allocate a shorter prefix to an organization, such as a /48. This
+leaves the rest of the network part for assigning subnets (always of length /64) from that allocated
+prefix. For a /48 allocation, that leaves 16 bits for subnets (up to 65536 subnets).</p>
+<p><img alt=" IPv6 address parts and subnetting" src="https://www.linuxprobe.com/links/RH124/images/net/ipv6-subnets-plain-fit.png" title="IPv6 address parts and subnetting" /></p>
+<p><strong>Common IPv6 Addresses and Networks</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left">IPV6 ADDRESS OR NETWORK</th>
+<th align="left">PURPOSE</th>
+<th align="center">DESCRIPTION</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">"::1/128"</td>
+<td align="left">localhost</td>
+<td align="center">The IPv6 equivalent to 127.0.0.1/8, set on the loopback interface.</td>
+</tr>
+<tr>
+<td align="left">"::"</td>
+<td align="left">The unspecified address</td>
+<td align="center">The IPv6 equivalent to 0.0.0.0. For a network service, this could indicate that it is listening on all configured IP addresses.</td>
+</tr>
+<tr>
+<td align="left">"::/0"</td>
+<td align="left">The default route(the IPv6 Internet)</td>
+<td align="center">The IPv6 equivalent to 0.0.0.0/0. The default route in the routing table matches this network; the router for this network is where all traffic, for which there is no better route, is sent.</td>
+</tr>
+<tr>
+<td align="left">"2000::/3"</td>
+<td align="left">Global unicast addresses</td>
+<td align="center">“Normal” IPv6 addresses are currently being allocated from this space by IANA. This is equivalent to all the networks ranging from 2000::/16 through 3fff::/16.</td>
+</tr>
+<tr>
+<td align="left">"fd00::/8"</td>
+<td align="left">Unique local addresses (RFC 4193)</td>
+<td align="center">IPv6 has no direct equivalent of RFC 1918 private address space, although this is close. A site can use these to self-allocate a private routable IP address space inside the organization, but these networks cannot be used on the global Internet. The site must randomly select a /48 from this space, but it can subnet the allocation into /64 networks normally.</td>
+</tr>
+<tr>
+<td align="left">"fe80::/10"</td>
+<td align="left">Link-local addresses</td>
+<td align="center">Every IPv6 interface automatically configures a link-local unicast address that only works on the local link on the fe80::/64 network. However, the entire fe80::/10 range is reserved for future use by the local link. This will be discussed in more detail later.</td>
+</tr>
+<tr>
+<td align="left">"ff00::/8"</td>
+<td align="left">Multicast</td>
+<td align="center">The IPv6 equivalent to 224.0.0.0/4. Multicast is used to transmit to multiple hosts at the same time, and is particularly important in IPv6 because it has no broadcast addresses.</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition danger">
+<p class="admonition-title">IMPORTANT</p>
+<p>The table above lists network address allocations that are reserved for specific
+purposes. These allocations may consist of many different networks. Remember that
+IPv6 networks allocated from the global unicast and link-local unicast spaces have a
+standard /64 subnet mask.</p>
+</div>
+<p>A <em>link-local</em> address in IPv6 is an unroutable address used only to talk to hosts on a specific network
+link. Every network interface on the system is automatically configured with a link-local address
+on the fe80::/64 network. To ensure that it is unique, the interface ID of the link-local address
+is constructed from the network interface's Ethernet hardware address. The usual procedure to
+convert the 48-bit MAC address to a 64-bit interface ID is to invert bit 7 of the MAC address and
+insert ff:fe between its two middle bytes.</p>
+<ul>
+<li>
+<p>Network prefix: fe80::/64</p>
+</li>
+<li>
+<p>MAC address: 00:11:22:aa:bb:cc</p>
+</li>
+<li>
+<p>Link-local address: fe80::211:22ff:feaa:bbcc/64</p>
+</li>
+</ul>
+<p>The link-local addresses of other machines can be used like normal addresses by other hosts on
+the same link. Since every link has a fe80::/64 network on it, the routing table cannot be used to
+select the outbound interface correctly. The link to use when talking to a link-local address must
+be specified with a scope identifier at the end of the address. The scope identifier consists of %
+followed by the name of the network interface.</p>
+<p>For example, to use ping6 to ping the link-local address fe80::211:22ff:feaa:bbcc using
+the link connected to the ens3 network interface, the correct command syntax is the following:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ ping6 fe80::211:22ff:feaa:bbcc%ens3
+</code></pre></div>
+<div class="admonition info">
+<p class="admonition-title">NOTE</p>
+<p>Scope identifiers are only needed when contacting addresses that have “link”
+scope. Normal global addresses are used just like they are in IPv4, and select their
+outbound interfaces from the routing table.</p>
+</div>
+<p><em>Multicast</em> allows one system to send traffic to a special IP address that is received by multiple
+systems. It differs from broadcast since only specific systems on the network receive the traffic. It
+also differs from broadcast in IPv4 since some multicast traffic might be routed to other subnets,
+depending on the configuration of your network routers and systems.</p>
+<p>Multicast plays a larger role in IPv6 than in IPv4 because there is no broadcast address in IPv6.
+One key multicast address in IPv6 is ff02::1, the all-nodes link-local address. Pinging this
+address sends traffic to all nodes on the link. Link-scope multicast addresses (starting ff02::/8)
+need to be specified with a scope identifier, just like a link-local address.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ ping6 ff02::1%ens3
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>PING ff02::1%ens3<span class="o">(</span>ff02::1<span class="o">)</span> <span class="m">56</span> data bytes
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="m">64</span> bytes from fe80::211:22ff:feaa:bbcc: <span class="nv">icmp_seq</span><span class="o">=</span><span class="m">1</span> <span class="nv">ttl</span><span class="o">=</span><span class="m">64</span> <span class="nv">time</span><span class="o">=</span><span class="m">0</span>.072 ms
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="m">64</span> bytes from fe80::200:aaff:fe33:2211: <span class="nv">icmp_seq</span><span class="o">=</span><span class="m">1</span> <span class="nv">ttl</span><span class="o">=</span><span class="m">64</span> <span class="nv">time</span><span class="o">=</span><span class="m">102</span> ms <span class="o">(</span>DUP!<span class="o">)</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="m">64</span> bytes from fe80::bcd:efff:fea1:b2c3: <span class="nv">icmp_seq</span><span class="o">=</span><span class="m">1</span> <span class="nv">ttl</span><span class="o">=</span><span class="m">64</span> <span class="nv">time</span><span class="o">=</span><span class="m">103</span> ms <span class="o">(</span>DUP!<span class="o">)</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="m">64</span> bytes from fe80::211:22ff:feaa:bbcc: <span class="nv">icmp_seq</span><span class="o">=</span><span class="m">2</span> <span class="nv">ttl</span><span class="o">=</span><span class="m">64</span> <span class="nv">time</span><span class="o">=</span><span class="m">0</span>.079 ms
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>...output omitted...
+</code></pre></div>
+<p><strong>IPv6 Address Configuration</strong></p>
+<p>IPv4 has two ways in which addresses get configured on network interfaces. Network addresses
+may be configured on interfaces manually by the administrator, or dynamically from the network
+using DHCP. IPv6 also supports manual configuration, and two methods of dynamic configuration,
+one of which is DHCPv6.</p>
+<p>Interface IDs for static IPv6 addresses can be selected at will, just like IPv4. In IPv4, there are two
+addresses on a network that could not be used: the lowest address in the subnet and the highest
+address in the subnet. In IPv6, the following interface IDs are reserved and cannot be used for a
+normal network address on a host.</p>
+<ul>
+<li>
+<p>The all-zeros identifier 0000:0000:0000:0000 (“subnet router anycast”) used by all routers
+on the link. (For the 2001:db8::/64 network, this would be the address 2001:db8::)</p>
+</li>
+<li>
+<p>The identifiers fdff:ffff:ffff:ff80 through fdff:ffff:ffff:ffff.</p>
+</li>
+</ul>
+<p>DHCPv6 works differently than DHCP for IPv4, because there is no broadcast address. Essentially,
+a host sends a DHCPv6 request from its link-local address to port 547/UDP on ff02::1:2, the
+all-dhcp-servers link-local multicast group. The DHCPv6 server then usually sends a reply
+with appropriate information to port 546/UDP on the client's link-local address.</p>
+<p>The dhcp package in Red Hat Enterprise Linux 8 provides support for a DHCPv6 server.</p>
+<p>In addition to DHCPv6, IPv6 also supports a second dynamic configuration method, called <em>Stateless
+Address Autoconfiguration (SLAAC)</em>. Using SLAAC, the host brings up its interface with a link-
+local fe80::/64 address normally. It then sends a “router solicitation” to ff02::2, the all-
+routers link-local multicast group. An IPv6 router on the local link responds to the host's link-local
+address with a network prefix and possibly other information. The host then uses that network
+prefix with an interface ID that it normally constructs in the same way that link-local addresses are
+constructed. The router periodically sends multicast updates (“router advertisements”) to confirm
+or update the information it provided.</p>
+<p>The <em>radvd</em> package in Red Hat Enterprise Linux 8 allows a Red Hat Enterprise Linux  based IPv6
+router to provide SLAAC through router advertisements.</p>
+<div class="admonition danger">
+<p class="admonition-title">IMPORTANT</p>
+<p>A typical Red Hat Enterprise Linux 8 machine configured to get IPv4 addresses
+through DHCP is usually also configured to use SLAAC to get IPv6 addresses. This
+can result in machines unexpectedly obtaining IPv6 addresses when an IPv6 router
+is added to the network.</p>
+<p>Some IPv6 deployments combine SLAAC and DHCPv6, using SLAAC to only provide
+network address information and DHCPv6 to provide other information, such as
+which DNS servers and search domains to configure.</p>
+</div>
+<h3 id="host-names-and-ip-addresses">HOST NAMES AND IP ADDRESSES<a class="headerlink" href="#host-names-and-ip-addresses" title="Permanent link">&para;</a></h3>
+<p>It would be inconvenient if you always had to use IP addresses to contact your servers. Humans
+generally would prefer to work with names than long and hard-to-remember strings of numbers.
+And so Linux has a number of mechanisms to map a host name to an IP address, collectively called
+<em>name resolution</em>.</p>
+<p>One way is to set a static entry for each name in the <strong>/etc/hosts</strong> file on each system. This
+requires you to manually update each server's copy of the file.</p>
+<p>For most hosts, you can look up the address for a host name (or a host name from an address) from
+a network service called the <em>Domain Name System (DNS)</em>. DNS is a distributed network of servers
+providing mappings of host names to IP addresses. In order for name service to work, a host needs
+to be pointed at a nameserver. This nameserver does not need to be on the same subnet; it just
+needs to be reachable by the host. This is typically configured through DHCP or a static setting in a
+file called <strong>/etc/resolv.conf</strong>. Later sections of this chapter will discuss how to configure name
+resolution.</p>
+<h3 id="validating-network-configuration">VALIDATING NETWORK CONFIGURATION<a class="headerlink" href="#validating-network-configuration" title="Permanent link">&para;</a></h3>
+<h4 id="gathering-network-interface-information">GATHERING NETWORK INTERFACE INFORMATION<a class="headerlink" href="#gathering-network-interface-information" title="Permanent link">&para;</a></h4>
+<p><strong>Identifying Network Interfaces</strong></p>
+<p>The <strong>ip link</strong> command will list all network interfaces available on your system:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ ip link show
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="m">1</span>: lo: &lt;LOOPBACK,UP,LOWER_UP&gt; mtu <span class="m">65536</span> qdisc noqueue state UNKNOWN mode DEFAULT
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a> group default qlen <span class="m">1000</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>    link/loopback <span class="m">00</span>:00:00:00:00:00 brd <span class="m">00</span>:00:00:00:00:00
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="m">2</span>: ens3: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu <span class="m">1500</span> qdisc mq state UP mode DEFAULT
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a> group default qlen <span class="m">1000</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>    link/ether <span class="m">52</span>:54:00:00:00:0a brd ff:ff:ff:ff:ff:ff
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="m">3</span>: ens4: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu <span class="m">1500</span> qdisc mq state UP mode DEFAULT
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a> group default qlen <span class="m">1000</span>
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>    link/ether <span class="m">52</span>:54:00:00:00:1e brd ff:ff:ff:ff:ff:ff
+</code></pre></div>
+<p>In the preceding example, the server has three network interfaces: lo, which is the loopback device
+that is connected to the server itself, and two Ethernet interfaces, ens3 and ens4.</p>
+<p>To configure each network interface correctly, you need to know which one is connected to which
+network. In many cases, you will know the MAC address of the interface connected to each network,
+either because it is physically printed on the card or server, or because it is a virtual machine and
+you know how it is configured. The MAC address of the device is listed after <strong>link/ether</strong> for each
+interface. So you know that the network card with the MAC address 52:54:00:00:00:0a is the
+network interface ens3.</p>
+<p><strong>Displaying IP Addresses</strong></p>
+<p>Use the <strong>ip</strong> command to view device and address information. A single network interface can have
+multiple IPv4 or IPv6 addresses.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ ip addr show ens3
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="m">2</span>: ens3: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu <span class="m">1500</span> qdisc pfifo_fast state UP
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a> qlen <span class="m">1000</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>    link/ether <span class="m">52</span>:54:00:00:00:0b brd ff:ff:ff:ff:ff:ff
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>    inet <span class="m">192</span>.0.2.2/24 brd <span class="m">192</span>.0.2.255 scope global ens3
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>       valid_lft forever preferred_lft forever
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>    inet6 <span class="m">2001</span>:db8:0:1:5054:ff:fe00:b/64 scope global
+<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>       valid_lft forever preferred_lft forever
+<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>
+<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a>    inet6 fe80::5054:ff:fe00:b/64 scope link
+<a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a>       valid_lft forever preferred_lft forever
+</code></pre></div>
+<p>Up: An active interface is UP.</p>
+<p>link/ether: The link/ether line specifies the hardware (MAC) address of the device.</p>
+<p>inet: The inet line shows an IPv4 address, its network prefix length, and scope.</p>
+<p>inet6: The inet6 line shows an IPv6 address, its network prefix length, and scope. This address is of
+global scope and is normally used.</p>
+<p>inet6: This inet6 line shows that the interface has an IPv6 address of link scope that can only be
+used for communication on the local Ethernet link.</p>
+<p><strong>Displaying Performance Statistics</strong></p>
+<p>The <strong>ip</strong> command may also be used to show statistics about network performance. Counters for
+each network interface can be used to identify the presence of network issues. The counters record
+statistics for things like the number of received (RX) and transmitted (TX) packets, packet errors,
+and packets that were dropped.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ ip -s link show ens3
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="m">2</span>: ens3: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu <span class="m">1500</span> qdisc pfifo_fast state UP qlen
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a> <span class="m">1000</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>link/ether <span class="m">52</span>:54:00:00:00:0a brd ff:ff:ff:ff:ff:ff
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>    RX: bytes  packets  errors  dropped overrun mcast
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>    <span class="m">269850</span>     <span class="m">2931</span>     <span class="m">0</span>       <span class="m">0</span>       <span class="m">0</span>       <span class="m">0</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>    TX: bytes  packets  errors  dropped carrier collsns
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>    <span class="m">300556</span>     <span class="m">3250</span>     <span class="m">0</span>       <span class="m">0</span>       <span class="m">0</span>       <span class="m">0</span>
+</code></pre></div>
+<h3 id="checking-connectivity-between-hosts">CHECKING CONNECTIVITY BETWEEN HOSTS<a class="headerlink" href="#checking-connectivity-between-hosts" title="Permanent link">&para;</a></h3>
+<p>The <strong>ping</strong> command is used to test connectivity. The command continues to run until <strong>Ctrl+C</strong> is
+pressed unless options are given to limit the number of packets sent.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ ping -c3 <span class="m">192</span>.0.2.254
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>PING <span class="m">192</span>.0.2.1 <span class="o">(</span><span class="m">192</span>.0.2.254<span class="o">)</span> <span class="m">56</span><span class="o">(</span><span class="m">84</span><span class="o">)</span> bytes of data.
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="m">64</span> bytes from <span class="m">192</span>.0.2.254: <span class="nv">icmp_seq</span><span class="o">=</span><span class="m">1</span> <span class="nv">ttl</span><span class="o">=</span><span class="m">64</span> <span class="nv">time</span><span class="o">=</span><span class="m">4</span>.33 ms
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="m">64</span> bytes from <span class="m">192</span>.0.2.254: <span class="nv">icmp_seq</span><span class="o">=</span><span class="m">2</span> <span class="nv">ttl</span><span class="o">=</span><span class="m">64</span> <span class="nv">time</span><span class="o">=</span><span class="m">3</span>.48 ms
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="m">64</span> bytes from <span class="m">192</span>.0.2.254: <span class="nv">icmp_seq</span><span class="o">=</span><span class="m">3</span> <span class="nv">ttl</span><span class="o">=</span><span class="m">64</span> <span class="nv">time</span><span class="o">=</span><span class="m">6</span>.83 ms
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>--- <span class="m">192</span>.0.2.254 ping statistics ---
+<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="m">3</span> packets transmitted, <span class="m">3</span> received, <span class="m">0</span>% packet loss, <span class="nb">time</span> 2003ms
+<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>rtt min/avg/max/mdev <span class="o">=</span> <span class="m">3</span>.485/4.885/6.837/1.424 ms
+</code></pre></div>
+<p>The <strong>ping6</strong> command is the IPv6 version of <strong>ping</strong> in Red Hat Enterprise Linux. It communicates
+over IPv6 and takes IPv6 addresses, but otherwise works like <strong>ping</strong>.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ ping6 <span class="m">2001</span>:db8:0:1::1
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>PING <span class="m">2001</span>:db8:0:1::1<span class="o">(</span><span class="m">2001</span>:db8:0:1::1<span class="o">)</span> <span class="m">56</span> data bytes
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="m">64</span> bytes from <span class="m">2001</span>:db8:0:1::1: <span class="nv">icmp_seq</span><span class="o">=</span><span class="m">1</span> <span class="nv">ttl</span><span class="o">=</span><span class="m">64</span> <span class="nv">time</span><span class="o">=</span><span class="m">18</span>.4 ms
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="m">64</span> bytes from <span class="m">2001</span>:db8:0:1::1: <span class="nv">icmp_seq</span><span class="o">=</span><span class="m">2</span> <span class="nv">ttl</span><span class="o">=</span><span class="m">64</span> <span class="nv">time</span><span class="o">=</span><span class="m">0</span>.178 ms
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="m">64</span> bytes from <span class="m">2001</span>:db8:0:1::1: <span class="nv">icmp_seq</span><span class="o">=</span><span class="m">3</span> <span class="nv">ttl</span><span class="o">=</span><span class="m">64</span> <span class="nv">time</span><span class="o">=</span><span class="m">0</span>.180 ms
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>^C
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>
+<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>--- <span class="m">2001</span>:db8:0:1::1 ping statistics ---
+<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="m">3</span> packets transmitted, <span class="m">3</span> received, <span class="m">0</span>% packet loss, <span class="nb">time</span> 2001ms
+<a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a>rtt min/avg/max/mdev <span class="o">=</span> <span class="m">0</span>.178/6.272/18.458/8.616 ms
+<a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ 
+</code></pre></div>
+<p>When you ping link-local addresses and the link-local all-nodes multicast group (ff02::1),
+the network interface to use must be specified explicitly with a scope zone identifier (such as
+ff02::1%ens3). If this is left out, the error connect: Invalid argument is displayed.</p>
+<p>Pinging ff02::1 can be useful for finding other IPv6 nodes on the local network.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ ping6 ff02::1%ens4
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>PING ff02::1%ens4<span class="o">(</span>ff02::1<span class="o">)</span> <span class="m">56</span> data bytes
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="m">64</span> bytes from fe80::78cf:7fff:fed2:f97b: <span class="nv">icmp_seq</span><span class="o">=</span><span class="m">1</span> <span class="nv">ttl</span><span class="o">=</span><span class="m">64</span> <span class="nv">time</span><span class="o">=</span><span class="m">22</span>.7 ms
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="m">64</span> bytes from fe80::f482:dbff:fe25:6a9f: <span class="nv">icmp_seq</span><span class="o">=</span><span class="m">1</span> <span class="nv">ttl</span><span class="o">=</span><span class="m">64</span> <span class="nv">time</span><span class="o">=</span><span class="m">30</span>.1 ms <span class="o">(</span>DUP!<span class="o">)</span>
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="m">64</span> bytes from fe80::78cf:7fff:fed2:f97b: <span class="nv">icmp_seq</span><span class="o">=</span><span class="m">2</span> <span class="nv">ttl</span><span class="o">=</span><span class="m">64</span> <span class="nv">time</span><span class="o">=</span><span class="m">0</span>.183 ms
+<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="m">64</span> bytes from fe80::f482:dbff:fe25:6a9f: <span class="nv">icmp_seq</span><span class="o">=</span><span class="m">2</span> <span class="nv">ttl</span><span class="o">=</span><span class="m">64</span> <span class="nv">time</span><span class="o">=</span><span class="m">0</span>.231 ms <span class="o">(</span>DUP!<span class="o">)</span>
+<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>^C
+<a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>--- ff02::1%ens4 ping statistics ---
+<a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a><span class="m">2</span> packets transmitted, <span class="m">2</span> received, +2 duplicates, <span class="m">0</span>% packet loss, <span class="nb">time</span> 1001ms
+<a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a>rtt min/avg/max/mdev <span class="o">=</span> <span class="m">0</span>.183/13.320/30.158/13.374 ms
+<a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ ping6 -c <span class="m">1</span> fe80::f482:dbff:fe25:6a9f%ens4
+<a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a>PING fe80::f482:dbff:fe25:6a9f%ens4<span class="o">(</span>fe80::f482:dbff:fe25:6a9f<span class="o">)</span> <span class="m">56</span> data bytes
+<a id="__codelineno-7-13" name="__codelineno-7-13" href="#__codelineno-7-13"></a><span class="m">64</span> bytes from fe80::f482:dbff:fe25:6a9f: <span class="nv">icmp_seq</span><span class="o">=</span><span class="m">1</span> <span class="nv">ttl</span><span class="o">=</span><span class="m">64</span> <span class="nv">time</span><span class="o">=</span><span class="m">22</span>.9 ms
+<a id="__codelineno-7-14" name="__codelineno-7-14" href="#__codelineno-7-14"></a>--- fe80::f482:dbff:fe25:6a9f%ens4 ping statistics ---
+<a id="__codelineno-7-15" name="__codelineno-7-15" href="#__codelineno-7-15"></a><span class="m">1</span> packets transmitted, <span class="m">1</span> received, <span class="m">0</span>% packet loss, <span class="nb">time</span> 0ms
+<a id="__codelineno-7-16" name="__codelineno-7-16" href="#__codelineno-7-16"></a>rtt min/avg/max/mdev <span class="o">=</span> <span class="m">22</span>.903/22.903/22.903/0.000 ms
+</code></pre></div>
+<p>Remember that IPv6 link-local addresses can be used by other hosts on the same link, just like
+normal addresses.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ ssh fe80::f482:dbff:fe25:6a9f%ens4
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>user@fe80::f482:dbff:fe25:6a9f%ens4<span class="err">&#39;</span>s password:
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>Last login: Thu Jun  <span class="m">5</span> <span class="m">15</span>:20:10 <span class="m">2014</span> from host.example.com
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="o">[</span>user@server ~<span class="o">]</span>$ 
+</code></pre></div>
+<h3 id="troubleshooting-routing">TROUBLESHOOTING ROUTING<a class="headerlink" href="#troubleshooting-routing" title="Permanent link">&para;</a></h3>
+<p>Network routing is complex, and sometimes traffic does not behave as you might have expected.
+Here are some useful diagnosis tools.</p>
+<p><strong>Displaying the Routing Table</strong></p>
+<p>Use the ip command with the route option to show routing information.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ ip route
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>default via <span class="m">192</span>.0.2.254 dev ens3 proto static metric <span class="m">1024</span>
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="m">192</span>.0.2.0/24 dev ens3 proto kernel scope link src <span class="m">192</span>.0.2.2
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="m">10</span>.0.0.0/8 dev ens4 proto kernel scope link src <span class="m">10</span>.0.0.11
+</code></pre></div>
+<p>This shows the IPv4 routing table. All packets destined for the 10.0.0.0/8 network are sent
+directly to the destination through the device ens4. All packets destined for the 192.0.2.0/24
+network are sent directly to the destination through the device ens3. All other packets are sent to
+the default router located at 192.0.2.254, and also through device ens3.</p>
+<p>Add the <strong>-6</strong> option to show the IPv6 routing table:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ ip -6 route
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>unreachable ::/96 dev lo  metric <span class="m">1024</span>  error -101
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>unreachable ::ffff:0.0.0.0/96 dev lo  metric <span class="m">1024</span>  error -101
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="m">2001</span>:db8:0:1::/64 dev ens3  proto kernel  metric <span class="m">256</span>
+<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>unreachable <span class="m">2002</span>:a00::/24 dev lo  metric <span class="m">1024</span>  error -101
+<a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>unreachable <span class="m">2002</span>:7f00::/24 dev lo  metric <span class="m">1024</span>  error -101
+<a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a>unreachable <span class="m">2002</span>:a9fe::/32 dev lo  metric <span class="m">1024</span>  error -101
+<a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a>unreachable <span class="m">2002</span>:ac10::/28 dev lo  metric <span class="m">1024</span>  error -101
+<a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a>unreachable <span class="m">2002</span>:c0a8::/32 dev lo  metric <span class="m">1024</span>  error -101
+<a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a>unreachable <span class="m">2002</span>:e000::/19 dev lo  metric <span class="m">1024</span>  error -101
+<a id="__codelineno-10-11" name="__codelineno-10-11" href="#__codelineno-10-11"></a>unreachable 3ffe:ffff::/32 dev lo  metric <span class="m">1024</span>  error -101
+<a id="__codelineno-10-12" name="__codelineno-10-12" href="#__codelineno-10-12"></a>fe80::/64 dev ens3  proto kernel  metric <span class="m">256</span>
+<a id="__codelineno-10-13" name="__codelineno-10-13" href="#__codelineno-10-13"></a>default via <span class="m">2001</span>:db8:0:1::ffff dev ens3  proto static  metric <span class="m">1024</span>
+</code></pre></div>
+<p>In this example, ignore the unreachable routes, which point at unused networks. That leaves three
+routes:</p>
+<ol>
+<li>
+<p>The 2001:db8:0:1::/64 network, using the ens3 interface (which presumably has an
+address on that network).</p>
+</li>
+<li>
+<p>The fe80::/64 network, using the ens3 interface, for the link-local address. On a system
+with multiple interfaces, there is a route to fe80::/64 out each interface for each link-local
+address.</p>
+</li>
+<li>
+<p>A default route to all networks on the IPv6 Internet (the ::/0 network) that do not have a
+more specific route on the system, through the router at 2001:db8:0:1::ffff, reachable
+with the ens3 device.</p>
+</li>
+</ol>
+<p><strong>Tracing Routes Taken by Traffic</strong></p>
+<p>To trace the path that network traffic takes to reach a remote host through multiple routers, use
+either <strong>traceroute</strong> or <strong>tracepath</strong>. This can identify whether an issue is with one of your routers
+or an intermediate one. Both commands use UDP packets to trace a path by default; however,
+many networks block UDP and ICMP traffic. The <strong>traceroute</strong> command has options to trace the
+path with UDP (default), ICMP (<strong>-I</strong>), or TCP (<strong>-T</strong>) packets. Typically, however, the <strong>traceroute</strong>
+command is not installed by default.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ tracepath access.redhat.com
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>...output omitted...
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a> <span class="m">4</span>:  <span class="m">71</span>-32-28-145.rcmt.qwest.net                          <span class="m">48</span>.853ms asymm  <span class="m">5</span>
+<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a> <span class="m">5</span>:  dcp-brdr-04.inet.qwest.net                          <span class="m">100</span>.732ms asymm  <span class="m">7</span>
+<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a> <span class="m">6</span>:  <span class="m">206</span>.111.0.153.ptr.us.xo.net                          <span class="m">96</span>.245ms asymm  <span class="m">7</span>
+<a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a> <span class="m">7</span>:  <span class="m">207</span>.88.14.162.ptr.us.xo.net                          <span class="m">85</span>.270ms asymm  <span class="m">8</span>
+<a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a> <span class="m">8</span>:  ae1d0.cir1.atlanta6-ga.us.xo.net                     <span class="m">64</span>.160ms asymm  <span class="m">7</span>
+<a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a> <span class="m">9</span>:  <span class="m">216</span>.156.108.98.ptr.us.xo.net                        <span class="m">108</span>.652ms
+<a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a><span class="m">10</span>:  bu-ether13.atlngamq46w-bcr00.tbone.rr.com           <span class="m">107</span>.286ms asymm <span class="m">12</span>
+<a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a>...output omitted...
+</code></pre></div>
+<p>Each line in the output of <strong>tracepath</strong> represents a router or hop that the packet passes through
+between the source and the final destination. Additional information is provided as available,
+including the round trip timing (RTT) and any changes in the maximum transmission unit (MTU)
+size. The asymm indication means traffic reached that router and returned from that router using
+different (asymmetric) routes. The routers shown are the ones used for outbound traffic, not the
+return traffic.</p>
+<p>The <strong>tracepath6</strong> and <strong>traceroute -6</strong> commands are the equivalent to <strong>tracepath</strong> and
+<strong>traceroute</strong> for IPv6.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ tracepath6 <span class="m">2001</span>:db8:0:2::451
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a> <span class="m">1</span>?: <span class="o">[</span>LOCALHOST<span class="o">]</span>                        <span class="m">0</span>.091ms pmtu <span class="m">1500</span>
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a> <span class="m">1</span>:  <span class="m">2001</span>:db8:0:1::ba                   <span class="m">0</span>.214ms
+<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a> <span class="m">2</span>:  <span class="m">2001</span>:db8:0:1::1                    <span class="m">0</span>.512ms
+<a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a> <span class="m">3</span>:  <span class="m">2001</span>:db8:0:2::451      <span class="m">0</span>.559ms reached
+<a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a>     Resume: pmtu <span class="m">1500</span> hops <span class="m">3</span> back <span class="m">3</span>
+</code></pre></div>
+<h3 id="troubleshooting-ports-and-services">TROUBLESHOOTING PORTS AND SERVICES<a class="headerlink" href="#troubleshooting-ports-and-services" title="Permanent link">&para;</a></h3>
+<p>TCP services use sockets as end points for communication and are made up of an IP address,
+protocol, and port number. Services typically listen on standard ports while clients use a random
+available port. Well-known names for standard ports are listed in the <strong>/etc/services</strong> file.</p>
+<p>The <strong>ss</strong> command is used to display socket statistics. The <strong>ss</strong> command is meant to replace the
+older tool <strong>netstat</strong>, part of the net-tools package, which may be more familiar to some system
+administrators but which is not always installed.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ ss -ta
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>State      Recv-Q Send-Q      Local Address:Port          Peer Address:Port
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>LISTEN     <span class="m">0</span>      <span class="m">128</span>                     *:sunrpc                   *:*
+<a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>LISTEN     <span class="m">0</span>      <span class="m">128</span>                     *:ssh                      *:*
+<a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a>LISTEN     <span class="m">0</span>      <span class="m">100</span>             <span class="m">127</span>.0.0.1:smtp                     *:*
+<a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a>LISTEN     <span class="m">0</span>      <span class="m">128</span>                     *:36889                    *:*
+<a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a>ESTAB      <span class="m">0</span>      <span class="m">0</span>           <span class="m">172</span>.25.250.10:ssh         <span class="m">172</span>.25.254.254:59392
+<a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a>LISTEN     <span class="m">0</span>      <span class="m">128</span>                    :::sunrpc                  :::*
+<a id="__codelineno-13-9" name="__codelineno-13-9" href="#__codelineno-13-9"></a>LISTEN     <span class="m">0</span>      <span class="m">128</span>                    :::ssh                     :::*
+<a id="__codelineno-13-10" name="__codelineno-13-10" href="#__codelineno-13-10"></a>LISTEN     <span class="m">0</span>      <span class="m">100</span>                   ::1:smtp                    :::*
+<a id="__codelineno-13-11" name="__codelineno-13-11" href="#__codelineno-13-11"></a>LISTEN     <span class="m">0</span>      <span class="m">128</span>                    :::34946                   :::*
+</code></pre></div>
+<p><code>*:ssh</code> -&gt; The port used for SSH is listening on all IPv4 addresses. The “*” is used to represent “all”
+when referencing IPv4 addresses or ports.</p>
+<p><code>127.0.0.1:smtp</code> -&gt; The port used for SMTP is listening on the 127.0.0.1 IPv4 loopback interface.</p>
+<p><code>172.25.250.10:ssh</code> -&gt; The established SSH connection is on the 172.25.250.10 interface and originates from a
+system with an address of 172.25.254.254.</p>
+<p><code>:::ssh</code> -&gt; The port used for SSH is listening on all IPv6 addresses. The “::” syntax is used to represent all
+IPv6 interfaces.</p>
+<p><code>::1:smtp</code> -&gt; The port used for SMTP is listening on the ::1 IPv6 loopback interface.</p>
+<p><strong>Options for ss and netstat</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left">OPTION</th>
+<th align="left">DESCRIPTION</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">'-n'</td>
+<td align="left">Show numbers instead of names for interfaces and ports.</td>
+</tr>
+<tr>
+<td align="left">'-t'</td>
+<td align="left">Show TCP sockets.</td>
+</tr>
+<tr>
+<td align="left">'-u'</td>
+<td align="left">Show UDP sockets.</td>
+</tr>
+<tr>
+<td align="left">'-l'</td>
+<td align="left">Show only listening sockets.</td>
+</tr>
+<tr>
+<td align="left">'-a'</td>
+<td align="left">Show all (listening and established) sockets.</td>
+</tr>
+<tr>
+<td align="left">'-p'</td>
+<td align="left">Show the process using the sockets.</td>
+</tr>
+<tr>
+<td align="left">'-A inet'</td>
+<td align="left">Display active connections (but not listening sockets) for the inet address family. That is, ignore local UNIX domain sockets. For ss, both IPv4 and IPv6 connections are displayed. For netstat, only IPv4 connections are displayed. (netstat -A inet6 displays IPv6 connections, and netstat -46 displays IPv4 and IPv6 at the same time.)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="configuring-networking-from-the-command-line">CONFIGURING NETWORKING FROM THE COMMAND LINE<a class="headerlink" href="#configuring-networking-from-the-command-line" title="Permanent link">&para;</a></h3>
+<h4 id="describing-networkmanager-concepts">DESCRIBING NETWORKMANAGER CONCEPTS<a class="headerlink" href="#describing-networkmanager-concepts" title="Permanent link">&para;</a></h4>
+<p>NetworkManager is a daemon that monitors and manages network settings. In addition to the
+daemon, there is a GNOME Notification Area applet providing network status information.</p>
+<p>Command-line and graphical tools talk to NetworkManager and save configuration files in the <strong>/
+etc/sysconfig/network-scripts</strong> directory.</p>
+<ul>
+<li>
+<p>A device is a network interface.</p>
+</li>
+<li>
+<p>A connection is a collection of settings that can be configured for a device.</p>
+</li>
+<li>
+<p>Only one connection can be active for any one device at a time. Multiple connections may exist
+for use by different devices or to allow a configuration to be altered for the same device. If you
+need to temporarily change networking settings, instead of changing the configuration of a
+connection, you can change which connection is active for a device. For example, a device for a
+wireless network interface on a laptop might use different connections for the wireless network
+at a work site and for the wireless network at home.</p>
+</li>
+<li>
+<p>Each connection has a name or ID that identifies it.</p>
+</li>
+<li>
+<p>The <strong>nmcli</strong> utility is used to create and edit connection files from the command line.</p>
+</li>
+</ul>
+<h4 id="viewing-networking-information">VIEWING NETWORKING INFORMATION<a class="headerlink" href="#viewing-networking-information" title="Permanent link">&para;</a></h4>
+<p>The <strong>nmcli dev status</strong> command displays the status of all network devices:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ nmcli dev status
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>DEVICE  TYPE      STATE         CONNECTION
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>eno1    ethernet  connected     eno1
+<a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a>ens3    ethernet  connected     static-ens3
+<a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a>eno2    ethernet  disconnected  --
+<a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a>lo      loopback  unmanaged     --
+</code></pre></div>
+<p>The <strong>nmcli con show</strong> command displays a list of all connections. To list only the active
+connections, add the <strong>--active</strong> option.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ nmcli con show
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>NAME         UUID                                  TYPE            DEVICE
+<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>eno2         ff9f7d69-db83-4fed-9f32-939f8b5f81cd  <span class="m">802</span>-3-ethernet  --
+<a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a>static-ens3  72ca57a2-f780-40da-b146-99f71c431e2b  <span class="m">802</span>-3-ethernet  ens3
+<a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a>eno1         87b53c56-1f5d-4a29-a869-8a7bdaf56dfa  <span class="m">802</span>-3-ethernet  eno1
+<a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ nmcli con show --active
+<a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a>NAME         UUID                                  TYPE            DEVICE
+<a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a>static-ens3  72ca57a2-f780-40da-b146-99f71c431e2b  <span class="m">802</span>-3-ethernet  ens3
+<a id="__codelineno-15-9" name="__codelineno-15-9" href="#__codelineno-15-9"></a>eno1         87b53c56-1f5d-4a29-a869-8a7bdaf56dfa  <span class="m">802</span>-3-ethernet  eno1
+</code></pre></div>
+<h4 id="adding-a-network-connection">ADDING A NETWORK CONNECTION<a class="headerlink" href="#adding-a-network-connection" title="Permanent link">&para;</a></h4>
+<p>The <strong>nmcli con add</strong> command is used to add new network connections. The following example
+<strong>nmcli con add</strong> commands assume that the name of the network connection being added is not
+already in use.</p>
+<p>The following command adds a new connection named eno2 for the interface eno2, which
+gets IPv4 networking information using DHCP and autoconnects on startup. It also gets IPv6
+networking settings by listening for router advertisements on the local link. The name of the
+configuration file is based on the value of the <strong>con-name</strong> option, eno2, and is saved to the <strong>/etc/
+sysconfig/network-scripts/ifcfg-eno2</strong> file.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># nmcli con add con-name eno2 type ethernet ifname eno2</span>
+</code></pre></div>
+<p>The next example creates an eno2 connection for the eno2 device with a static IPv4 address, using
+the IPv4 address and network prefix 192.168.0.5/24 and default gateway 192.168.0.254,
+but still autoconnects at startup and saves its configuration into the same file. Due to screen size
+limitations, terminate the first line with a shell  escape and complete the command on the next
+line.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># nmcli con add con-name eno2 type ethernet ifname eno2 \</span>
+<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>&gt; ip4 <span class="m">192</span>.168.0.5/24 gw4 <span class="m">192</span>.168.0.254
+</code></pre></div>
+<p>This final example creates an eno2 connection for the eno2 device with static IPv6 and IPv4
+addresses, using the IPv6 address and network prefix 2001:db8:0:1::c000:207/64
+and default IPv6 gateway 2001:db8:0:1::1, and the IPv4 address and network prefix
+192.0.2.7/24 and default IPv4 gateway 192.0.2.1, but still autoconnects at startup and saves
+its configuration into <strong>/etc/sysconfig/network-scripts/ifcfg-eno2</strong>. Due to screen size
+limitations, terminate the first line with a shell  escape and complete the command on the next
+line.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># nmcli con add con-name eno2 type ethernet ifname eno2 \</span>
+<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>&gt; ip6 <span class="m">2001</span>:db8:0:1::c000:207/64 gw6 <span class="m">2001</span>:db8:0:1::1 ip4 <span class="m">192</span>.0.2.7/24 gw4 <span class="m">192</span>.0.2.1
+</code></pre></div>
+<h4 id="controlling-network-connections">CONTROLLING NETWORK CONNECTIONS<a class="headerlink" href="#controlling-network-connections" title="Permanent link">&para;</a></h4>
+<p>The <strong>nmcli con up name</strong> command activates the connection name on the network interface it
+is bound to. Note that the command takes the name of a connection, not the name of the network
+interface. Remember that the <strong>nmcli con show</strong> command displays the names of all available
+connections.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># nmcli con up static-ens3</span>
+</code></pre></div>
+<p>The <strong>nmcli dev disconnect device</strong> command disconnects the network interface device and
+brings it down. This command can be abbreviated <strong>nmcli dev dis device</strong>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># nmcli dev dis ens3</span>
+</code></pre></div>
+<div class="admonition danger">
+<p class="admonition-title">IMPORTANT</p>
+<p>Use <strong>nmcli dev dis device</strong> to deactivate a network interface.</p>
+<p>The <strong>nmcli con down name</strong> command is normally not the best way to deactivate
+a network interface because it brings down the connection. However, by default,
+most wired system connections are configured with <strong>autoconnect</strong> enabled. This
+activates the connection as soon as its network interface is available. Since the
+connection's network interface is still available, <strong>nmcli con down name</strong> brings the
+interface down, but then NetworkManager immediately brings it up again unless the
+connection is entirely disconnected from the interface.</p>
+</div>
+<h3 id="modifying-network-connection-settings">MODIFYING NETWORK CONNECTION SETTINGS<a class="headerlink" href="#modifying-network-connection-settings" title="Permanent link">&para;</a></h3>
+<p>NetworkManager connections have two kinds of settings. There are static connection properties,
+configured by the administrator and stored in the configuration files in <strong>/etc/sysconfig/
+network-scripts/ifcfg-</strong>*. There may also be active connection data, which the connection
+gets from a DHCP server and which are not stored persistently.</p>
+<p>To list the current settings for a connection, run the <strong>nmcli con show name</strong> command,
+where name is the name of the connection. Settings in lowercase are static properties that the
+administrator can change. Settings in all caps are active settings in temporary use for this instance
+of the connection.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># nmcli con show static-ens3</span>
+<a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a>connection.id:                          static-ens3
+<a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a>connection.uuid:                        87b53c56-1f5d-4a29-a869-8a7bdaf56dfa
+<a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a>connection.interface-name:              --
+<a id="__codelineno-21-5" name="__codelineno-21-5" href="#__codelineno-21-5"></a>connection.type:                        <span class="m">802</span>-3-ethernet
+<a id="__codelineno-21-6" name="__codelineno-21-6" href="#__codelineno-21-6"></a>connection.autoconnect:                 yes
+<a id="__codelineno-21-7" name="__codelineno-21-7" href="#__codelineno-21-7"></a>connection.timestamp:                   <span class="m">1401803453</span>
+<a id="__codelineno-21-8" name="__codelineno-21-8" href="#__codelineno-21-8"></a>connection.read-only:                   no
+<a id="__codelineno-21-9" name="__codelineno-21-9" href="#__codelineno-21-9"></a>connection.permissions:
+<a id="__codelineno-21-10" name="__codelineno-21-10" href="#__codelineno-21-10"></a>connection.zone:                        --
+<a id="__codelineno-21-11" name="__codelineno-21-11" href="#__codelineno-21-11"></a>connection.master:                      --
+<a id="__codelineno-21-12" name="__codelineno-21-12" href="#__codelineno-21-12"></a>connection.slave-type:                  --
+<a id="__codelineno-21-13" name="__codelineno-21-13" href="#__codelineno-21-13"></a>connection.secondaries:
+<a id="__codelineno-21-14" name="__codelineno-21-14" href="#__codelineno-21-14"></a>connection.gateway-ping-timeout:        <span class="m">0</span>
+<a id="__codelineno-21-15" name="__codelineno-21-15" href="#__codelineno-21-15"></a><span class="m">802</span>-3-ethernet.port:                    --
+<a id="__codelineno-21-16" name="__codelineno-21-16" href="#__codelineno-21-16"></a><span class="m">802</span>-3-ethernet.speed:                   <span class="m">0</span>
+<a id="__codelineno-21-17" name="__codelineno-21-17" href="#__codelineno-21-17"></a><span class="m">802</span>-3-ethernet.duplex:                  --
+<a id="__codelineno-21-18" name="__codelineno-21-18" href="#__codelineno-21-18"></a><span class="m">802</span>-3-ethernet.auto-negotiate:          yes
+<a id="__codelineno-21-19" name="__codelineno-21-19" href="#__codelineno-21-19"></a><span class="m">802</span>-3-ethernet.mac-address:             CA:9D:E9:2A:CE:F0
+<a id="__codelineno-21-20" name="__codelineno-21-20" href="#__codelineno-21-20"></a><span class="m">802</span>-3-ethernet.cloned-mac-address:      --
+<a id="__codelineno-21-21" name="__codelineno-21-21" href="#__codelineno-21-21"></a><span class="m">802</span>-3-ethernet.mac-address-blacklist:
+<a id="__codelineno-21-22" name="__codelineno-21-22" href="#__codelineno-21-22"></a><span class="m">802</span>-3-ethernet.mtu:                     auto
+<a id="__codelineno-21-23" name="__codelineno-21-23" href="#__codelineno-21-23"></a><span class="m">802</span>-3-ethernet.s390-subchannels:
+<a id="__codelineno-21-24" name="__codelineno-21-24" href="#__codelineno-21-24"></a><span class="m">802</span>-3-ethernet.s390-nettype:            --
+<a id="__codelineno-21-25" name="__codelineno-21-25" href="#__codelineno-21-25"></a><span class="m">802</span>-3-ethernet.s390-options:
+<a id="__codelineno-21-26" name="__codelineno-21-26" href="#__codelineno-21-26"></a>ipv4.method:                            manual
+<a id="__codelineno-21-27" name="__codelineno-21-27" href="#__codelineno-21-27"></a>ipv4.dns:                               <span class="m">192</span>.168.0.254
+<a id="__codelineno-21-28" name="__codelineno-21-28" href="#__codelineno-21-28"></a>ipv4.dns-search:                        example.com
+<a id="__codelineno-21-29" name="__codelineno-21-29" href="#__codelineno-21-29"></a>ipv4.addresses:                         <span class="o">{</span> <span class="nv">ip</span> <span class="o">=</span> <span class="m">192</span>.168.0.2/24, <span class="nv">gw</span> <span class="o">=</span>
+<a id="__codelineno-21-30" name="__codelineno-21-30" href="#__codelineno-21-30"></a> <span class="m">192</span>.168.0.254 <span class="o">}</span>
+<a id="__codelineno-21-31" name="__codelineno-21-31" href="#__codelineno-21-31"></a>ipv4.routes:
+<a id="__codelineno-21-32" name="__codelineno-21-32" href="#__codelineno-21-32"></a>ipv4.ignore-auto-routes:                no
+<a id="__codelineno-21-33" name="__codelineno-21-33" href="#__codelineno-21-33"></a>ipv4.ignore-auto-dns:                   no
+<a id="__codelineno-21-34" name="__codelineno-21-34" href="#__codelineno-21-34"></a>ipv4.dhcp-client-id:                    --
+<a id="__codelineno-21-35" name="__codelineno-21-35" href="#__codelineno-21-35"></a>ipv4.dhcp-send-hostname:                yes
+<a id="__codelineno-21-36" name="__codelineno-21-36" href="#__codelineno-21-36"></a>ipv4.dhcp-hostname:                     --
+<a id="__codelineno-21-37" name="__codelineno-21-37" href="#__codelineno-21-37"></a>ipv4.never-default:                     no
+<a id="__codelineno-21-38" name="__codelineno-21-38" href="#__codelineno-21-38"></a>ipv4.may-fail:                          yes
+<a id="__codelineno-21-39" name="__codelineno-21-39" href="#__codelineno-21-39"></a>ipv6.method:                            manual
+<a id="__codelineno-21-40" name="__codelineno-21-40" href="#__codelineno-21-40"></a>ipv6.dns:                               <span class="m">2001</span>:4860:4860::8888
+<a id="__codelineno-21-41" name="__codelineno-21-41" href="#__codelineno-21-41"></a>ipv6.dns-search:                        example.com
+<a id="__codelineno-21-42" name="__codelineno-21-42" href="#__codelineno-21-42"></a>ipv6.addresses:                         <span class="o">{</span> <span class="nv">ip</span> <span class="o">=</span> <span class="m">2001</span>:db8:0:1::7/64, <span class="nv">gw</span> <span class="o">=</span>
+<a id="__codelineno-21-43" name="__codelineno-21-43" href="#__codelineno-21-43"></a> <span class="m">2001</span>:db8:0:1::1 <span class="o">}</span>
+<a id="__codelineno-21-44" name="__codelineno-21-44" href="#__codelineno-21-44"></a>ipv6.routes:
+<a id="__codelineno-21-45" name="__codelineno-21-45" href="#__codelineno-21-45"></a>ipv6.ignore-auto-routes:                no
+<a id="__codelineno-21-46" name="__codelineno-21-46" href="#__codelineno-21-46"></a>ipv6.ignore-auto-dns:                   no
+<a id="__codelineno-21-47" name="__codelineno-21-47" href="#__codelineno-21-47"></a>ipv6.never-default:                     no
+<a id="__codelineno-21-48" name="__codelineno-21-48" href="#__codelineno-21-48"></a>ipv6.may-fail:                          yes
+<a id="__codelineno-21-49" name="__codelineno-21-49" href="#__codelineno-21-49"></a>ipv6.ip6-privacy:                       -1 <span class="o">(</span>unknown<span class="o">)</span>
+<a id="__codelineno-21-50" name="__codelineno-21-50" href="#__codelineno-21-50"></a>ipv6.dhcp-hostname:                     --
+<a id="__codelineno-21-51" name="__codelineno-21-51" href="#__codelineno-21-51"></a>...output omitted...
+</code></pre></div>
+<p>The <strong>nmcli con mod name</strong> command is used to change the settings for a connection. These
+changes are also saved in the <strong>/etc/sysconfig/network-scripts/ifcfg-name</strong> file for the
+connection. Available settings are documented in the nm-settings(5) man page.</p>
+<p>To set the IPv4 address to 192.0.2.2/24 and default gateway to 192.0.2.254 for the
+connection static-ens3:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># nmcli con mod static-ens3 ipv4.addresses &quot;192.0.2.2/24 192.0.2.254&quot;</span>
+</code></pre></div>
+<p>To set the IPv6 address to 2001:db8:0:1::a00:1/64 and default gateway to
+2001:db8:0:1::1 for the connection static-ens3:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># nmcli con mod static-ens3 ipv6.address &quot;2001:db8:0:1::a00:1/64</span>
+<a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a> <span class="m">2001</span>:db8:0:1::1<span class="s2">&quot;</span>
+</code></pre></div>
+<div class="admonition danger">
+<p class="admonition-title">IMPORTANT</p>
+<p>If a connection that gets its IPv4 information from a DHCPv4 server is being
+changed to get it from static configuration files only, the setting <strong>ipv4.method</strong>
+should also be changed from auto to manual.</p>
+<p>Likewise, if a connection that gets its IPv6 information by SLAAC or a DHCPv6
+server is being changed to get it from static configuration files only, the setting
+<strong>ipv6.method</strong> should also be changed from auto or dhcp to manual.</p>
+<p>Otherwise, the connection may hang or not complete successfully when it is
+activated, or it may get an IPv4 address from DHCP or an IPv6 address from
+DHCPv6 or SLAAC in addition to the static address.</p>
+</div>
+<p>A number of settings may have multiple values. A specific value can be added to the list or deleted
+from the list for a setting by adding a + or - symbol to the start of the setting name.</p>
+<h4 id="deleting-a-network-connection">DELETING A NETWORK CONNECTION<a class="headerlink" href="#deleting-a-network-connection" title="Permanent link">&para;</a></h4>
+<p>The <strong>nmcli con del name</strong> command deletes the connection named name from the system,
+disconnecting it from the device and removing the file <strong>/etc/sysconfig/network-scripts/
+ifcfg-name</strong>.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># nmcli con del static-ens3</span>
+</code></pre></div>
+<h4 id="who-can-modify-network-settings">WHO CAN MODIFY NETWORK SETTINGS?<a class="headerlink" href="#who-can-modify-network-settings" title="Permanent link">&para;</a></h4>
+<p>The root user can make any necessary network configuration changes with <strong>nmcli</strong>.</p>
+<p>However, regular users that are logged in on the local console can also make many network
+configuration changes to the system. They have to log in at the system's keyboard to either a text-
+based virtual console or the graphical desktop environment to get this control. The logic behind
+this is that if someone is physically present at the computer's console, it's likely being used as a
+workstation or laptop and they may need to configure, activate, and deactivate wireless or wired
+network interfaces at will. By contrast, if the system is a server in the datacenter, generally the only
+users logging in locally to the machine itself should be administrators.</p>
+<p>Regular users that log in using <strong>ssh</strong> do not have access to change network permissions without
+becoming root.</p>
+<p>You can use the <strong>nmcli gen permissions</strong> command to see what your current permissions are.</p>
+<h4 id="summary-of-commands">SUMMARY OF COMMANDS<a class="headerlink" href="#summary-of-commands" title="Permanent link">&para;</a></h4>
+<p>The following table is a list of key <strong>nmcli</strong> commands discussed in this section.</p>
+<table>
+<thead>
+<tr>
+<th align="left">COMMAND</th>
+<th align="left">PURPOSE</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">nmcli dev status</td>
+<td align="left">Show the NetworkManager status of all network interfaces.</td>
+</tr>
+<tr>
+<td align="left">nmcli con show</td>
+<td align="left">List all connections.</td>
+</tr>
+<tr>
+<td align="left">nmcli con show name</td>
+<td align="left">List the current settings for the connection name.</td>
+</tr>
+<tr>
+<td align="left">nmcli con add con-name name</td>
+<td align="left">Add a new connection named name.</td>
+</tr>
+<tr>
+<td align="left">nmcli con mod name</td>
+<td align="left">Modify the connection name.</td>
+</tr>
+<tr>
+<td align="left">nmcli con reload</td>
+<td align="left">Reload the configuration files (useful after they have been edited by hand).</td>
+</tr>
+<tr>
+<td align="left">nmcli con up name</td>
+<td align="left">Activate the connection name.</td>
+</tr>
+<tr>
+<td align="left">nmcli dev dis dev</td>
+<td align="left">Deactivate and disconnect the current connection on the network interface dev.</td>
+</tr>
+<tr>
+<td align="left">nmcli con del name</td>
+<td align="left">Delete the connection name and its configuration file.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="editing-network-configuration-files">EDITING NETWORK CONFIGURATION FILES<a class="headerlink" href="#editing-network-configuration-files" title="Permanent link">&para;</a></h3>
+<h4 id="describing-connection-configuration-files">DESCRIBING CONNECTION CONFIGURATION FILES<a class="headerlink" href="#describing-connection-configuration-files" title="Permanent link">&para;</a></h4>
+<p>By default, changes made with <strong>nmcli con mod name</strong> are automatically saved to <strong>/etc/
+sysconfig/network-scripts/ifcfg-name</strong>. That file can also be manually edited with a text
+editor. After doing so, run nmcli con reload so that NetworkManager reads the configuration
+changes.</p>
+<p>For backward-compatibility reasons, the directives saved in that file have different names and
+syntax than the nm-settings(5) names. The following table maps some of the key setting names
+to <strong>ifcfg-</strong>* directives.</p>
+<p><strong>Comparison of nm-settings and ifcfg-* Directives</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left">NMCLI CON MOD</th>
+<th align="left">IFCFG-* FILE</th>
+<th>EFFECT</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">ipv4.method manual</td>
+<td align="left">BOOTPROTO=none</td>
+<td>IPv4 addresses configured statically.</td>
+</tr>
+<tr>
+<td align="left">ipv4.method auto</td>
+<td align="left">BOOTPROTO=dhcp</td>
+<td>Looks for configuration settings from a DHCPv4 server. If static addresses are also set, will not bring those up until we have information from DHCPv4.</td>
+</tr>
+<tr>
+<td align="left">ipv4.addresses "192.0.2.1/24 192.0.2.254"</td>
+<td align="left">IPADDR0=192.0.2.1 PREFIX0=24 GATEWAY0=192.0.2.254</td>
+<td>Sets static IPv4 address, network prefix, and default gateway. If more than one is set for the connection, then instead of 0, the ifcfg-* directives end with 1, 2, 3 and so on.</td>
+</tr>
+<tr>
+<td align="left">ipv4.dns 8.8.8.8</td>
+<td align="left">DNS0=8.8.8.8</td>
+<td>Modify /etc/resolv.conf to use this nameserver.</td>
+</tr>
+<tr>
+<td align="left">ipv4.dns-search example.com</td>
+<td align="left">DOMAIN=example.com</td>
+<td>Modify /etc/resolv.conf to use this domain in the search directive.</td>
+</tr>
+<tr>
+<td align="left">ipv4.ignore-auto-dns true</td>
+<td align="left">PEERDNS=no</td>
+<td>Ignore DNS server information from the DHCP server.</td>
+</tr>
+<tr>
+<td align="left">ipv6.method manual</td>
+<td align="left">IPV6_AUTOCONF=no</td>
+<td>IPv6 addresses configured statically.</td>
+</tr>
+<tr>
+<td align="left">ipv6.method auto</td>
+<td align="left">IPV6_AUTOCONF=yes</td>
+<td>Configures network settings using SLAAC from router advertisements.</td>
+</tr>
+<tr>
+<td align="left">ipv6.method dhcp</td>
+<td align="left">IPV6_AUTOCONF=no DHCPV6C=yes</td>
+<td>Configures network settings by using DHCPv6, but not SLAAC.</td>
+</tr>
+<tr>
+<td align="left">ipv6.addresses "2001:db8::a/64 2001:db8::1"</td>
+<td align="left">IPV6ADDR=2001:db8::a/64 IPV6_DEFAULTGW=2001:db8</td>
+<td>Sets static IPv6 address, network prefix, and default gateway. If more than one address is set for the connection, IPV6_SECONDARIES takes a double-quoted list of space-delimited address/prefix definitions.</td>
+</tr>
+<tr>
+<td align="left">ipv6.dns ...</td>
+<td align="left">DNS0= ...</td>
+<td>Modify /etc/resolv.conf to use this nameserver. Exactly the same as IPv4.</td>
+</tr>
+<tr>
+<td align="left">ipv6.dns-search example.com</td>
+<td align="left">DOMAIN=example.com</td>
+<td>Modify /etc/resolv.conf to use this domain in the search directive. Exactly the same as IPv4.</td>
+</tr>
+<tr>
+<td align="left">ipv6.ignore-auto-dns true</td>
+<td align="left">IPV6_PEERDNS=no</td>
+<td>Ignore DNS server information from the DHCP server.</td>
+</tr>
+<tr>
+<td align="left">connection.autoconnect yes</td>
+<td align="left">ONBOOT=yes</td>
+<td>Automatically activate this connection at boot.</td>
+</tr>
+<tr>
+<td align="left">connection.id ens3</td>
+<td align="left">NAME=ens3</td>
+<td>The name of this connection.</td>
+</tr>
+<tr>
+<td align="left">connection.interface-name ens3</td>
+<td align="left">DEVICE=ens3</td>
+<td>The connection is bound to the network interface with this name.</td>
+</tr>
+<tr>
+<td align="left">802-3-ethernet.mac-address . . .</td>
+<td align="left">HWADDR= ...</td>
+<td>The connection is bound to the network interface with this MAC address.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="modifying-network-configuration">MODIFYING NETWORK CONFIGURATION<a class="headerlink" href="#modifying-network-configuration" title="Permanent link">&para;</a></h3>
+<p>It is also possible to configure the network by directly editing the connection configuration files.
+Connection configuration files control the software interfaces for individual network devices. These
+files are usually named /etc/sysconfig/network-scripts/ifcfg-name, where name refers to the name of the device or connection that the configuration file controls. The following are</p>
+<p><strong>IPv4 Configuration Options for ifcfg File</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left">STATIC</th>
+<th align="left">DYNAMIC</th>
+<th>EITHER</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">BOOTPROTO=none</td>
+<td align="left">BOOTPROTO=dhcp</td>
+<td>DEVICE=ens3</td>
+</tr>
+<tr>
+<td align="left">IPADDR0=172.25.250.10</td>
+<td align="left"></td>
+<td>NAME="static-ens3"</td>
+</tr>
+<tr>
+<td align="left">PREFIX0=24</td>
+<td align="left"></td>
+<td>ONBOOT=yes</td>
+</tr>
+<tr>
+<td align="left">GATEWAY0=172.25.250.254</td>
+<td align="left"></td>
+<td>UUID=f3e8(...)ad3e</td>
+</tr>
+<tr>
+<td align="left">DEFROUTE=yes</td>
+<td align="left"></td>
+<td>USERCTL=yes</td>
+</tr>
+<tr>
+<td align="left">DNS1=172.25.254.254</td>
+<td align="left"></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>In the static settings, variables for IP address, prefix, and gateway have a number at the end. This
+allows multiple sets of values to be assigned to the interface. The DNS variable also has a number
+used to specify the order of lookup when multiple servers are specified.</p>
+<p>After modifying the configuration files, run <strong>nmcli con reload</strong> to make NetworkManager read
+the configuration changes. The interface still needs to be restarted for changes to take effect.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># nmcli con reload</span>
+<a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># nmcli con down &quot;static-ens3&quot;</span>
+<a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># nmcli con up &quot;static-ens3&quot;</span>
+</code></pre></div>
+<h3 id="configuring-host-names-and-name-resolution">CONFIGURING HOST NAMES AND NAME RESOLUTION<a class="headerlink" href="#configuring-host-names-and-name-resolution" title="Permanent link">&para;</a></h3>
+<h4 id="changing-the-system-host-name">CHANGING THE SYSTEM HOST NAME<a class="headerlink" href="#changing-the-system-host-name" title="Permanent link">&para;</a></h4>
+<p>The <strong>hostname</strong> command displays or temporarily modifies the system's fully qualified host name.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># hostname</span>
+<a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a>host@example.com
+</code></pre></div>
+<p>A static host name may be specified in the <strong>/etc/hostname</strong> file. The <strong>hostnamectl</strong> command
+is used to modify this file and may be used to view the status of the system's fully qualified host
+name. If this file does not exist, the host name is set by a reverse DNS query once the interface has
+an IP address assigned.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># hostnamectl set-hostname host@example.com</span>
+<a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># hostnamectl status</span>
+<a id="__codelineno-27-3" name="__codelineno-27-3" href="#__codelineno-27-3"></a>   Static hostname: host.example.com
+<a id="__codelineno-27-4" name="__codelineno-27-4" href="#__codelineno-27-4"></a>         Icon name: computer-vm
+<a id="__codelineno-27-5" name="__codelineno-27-5" href="#__codelineno-27-5"></a>           Chassis: vm
+<a id="__codelineno-27-6" name="__codelineno-27-6" href="#__codelineno-27-6"></a>        Machine ID: 73ab164e278e48be9bf80e80714a8cd5
+<a id="__codelineno-27-7" name="__codelineno-27-7" href="#__codelineno-27-7"></a>           Boot ID: 6b1cbc4177164ef58c0e9ed4adb2904f
+<a id="__codelineno-27-8" name="__codelineno-27-8" href="#__codelineno-27-8"></a>    Virtualization: kvm
+<a id="__codelineno-27-9" name="__codelineno-27-9" href="#__codelineno-27-9"></a>  Operating System: Red Hat Enterprise Linux <span class="m">8</span>.0 beta <span class="o">(</span>Ootpa<span class="o">)</span>
+<a id="__codelineno-27-10" name="__codelineno-27-10" href="#__codelineno-27-10"></a>       CPE OS Name: cpe:/o:redhat:enterprise_linux:8.0:beta
+<a id="__codelineno-27-11" name="__codelineno-27-11" href="#__codelineno-27-11"></a>            Kernel: Linux <span class="m">4</span>.18.0-60.el8.x86_64
+<a id="__codelineno-27-12" name="__codelineno-27-12" href="#__codelineno-27-12"></a>      Architecture: x86-64
+<a id="__codelineno-27-13" name="__codelineno-27-13" href="#__codelineno-27-13"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># cat /etc/hostname</span>
+<a id="__codelineno-27-14" name="__codelineno-27-14" href="#__codelineno-27-14"></a>host@example.com
+</code></pre></div>
+<div class="admonition danger">
+<p class="admonition-title">IMPORTANT</p>
+<p>In Red Hat Enterprise Linux 7 and later, the static host name is stored in /etc/
+hostname. Red Hat Enterprise Linux 6 and earlier stores the host name as a
+variable in the /etc/sysconfig/network file.</p>
+</div>
+<h4 id="configuring-name-resolution">CONFIGURING NAME RESOLUTION<a class="headerlink" href="#configuring-name-resolution" title="Permanent link">&para;</a></h4>
+<p>The stub resolver is used to convert host names to IP addresses or the reverse. It determines where
+to look based on the configuration of the <strong>/etc/nsswitch.conf</strong> file. By default, the contents of
+the <strong>/etc/hosts</strong> file are checked first.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># cat /etc/hosts</span>
+<a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a><span class="m">127</span>.0.0.1       localhost localhost.localdomain localhost4 localhost4.localdomain4
+<a id="__codelineno-28-3" name="__codelineno-28-3" href="#__codelineno-28-3"></a>::1             localhost localhost.localdomain localhost6 localhost6.localdomain6
+<a id="__codelineno-28-4" name="__codelineno-28-4" href="#__codelineno-28-4"></a><span class="m">172</span>.25.254.254 classroom.example.com
+<a id="__codelineno-28-5" name="__codelineno-28-5" href="#__codelineno-28-5"></a><span class="m">172</span>.25.254.254 content.example.com
+</code></pre></div>
+<p>The <strong>getent hosts hostname</strong> command can be used to test host name resolution using the <strong>/
+etc/hosts</strong> file.</p>
+<p>If an entry is not found in the <strong>/etc/hosts</strong> file, by default the stub resolver tries to look up the
+hostname by using a DNS nameserver. The <strong>/etc/resolv.conf</strong> file controls how this query is
+performed:</p>
+<ul>
+<li>
+<p>search: a list of domain names to try with a short host name. Both this and domain should not
+be set in the same file; if they are, the last instance wins. See resolv.conf(5) for details.</p>
+</li>
+<li>
+<p>nameserver: the IP address of a nameserver to query. Up to three nameserver directives may
+be given to provide backups if one is down.</p>
+</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># cat /etc/resolv.conf</span>
+<a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a><span class="c1"># Generated by NetworkManager</span>
+<a id="__codelineno-29-3" name="__codelineno-29-3" href="#__codelineno-29-3"></a>domain example.com
+<a id="__codelineno-29-4" name="__codelineno-29-4" href="#__codelineno-29-4"></a>search example.com
+<a id="__codelineno-29-5" name="__codelineno-29-5" href="#__codelineno-29-5"></a>nameserver <span class="m">172</span>.25.254.254
+</code></pre></div>
+<p>NetworkManager updates the <strong>/etc/resolv.conf</strong> file using DNS settings in the connection
+configuration files. Use the <strong>nmcli</strong> to modify the connections.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># nmcli con mod ID ipv4.dns IP</span>
+<a id="__codelineno-30-2" name="__codelineno-30-2" href="#__codelineno-30-2"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># nmcli con down ID</span>
+<a id="__codelineno-30-3" name="__codelineno-30-3" href="#__codelineno-30-3"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># nmcli con up ID</span>
+<a id="__codelineno-30-4" name="__codelineno-30-4" href="#__codelineno-30-4"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># cat /etc/sysconfig/network-scripts/ifcfg-ID</span>
+<a id="__codelineno-30-5" name="__codelineno-30-5" href="#__codelineno-30-5"></a>...output omitted...
+<a id="__codelineno-30-6" name="__codelineno-30-6" href="#__codelineno-30-6"></a><span class="nv">DNS1</span><span class="o">=</span><span class="m">8</span>.8.8.8
+<a id="__codelineno-30-7" name="__codelineno-30-7" href="#__codelineno-30-7"></a>...output omitted...
+</code></pre></div>
+<p>The default behavior of <strong>nmcli con mod ID ipv4.dns IP</strong> is to replace any previous DNS
+settings with the new IP list provided. A + or - symbol in front of the <strong>ipv4.dns</strong> argument adds or
+removes an individual entry.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># nmcli con mod ID +ipv4.dns IP</span>
+</code></pre></div>
+<p>To add the DNS server with IPv6 IP address 2001:4860:4860::8888 to the list of nameservers
+to use with the connection static-ens3:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># nmcli con mod static-ens3 +ipv6.dns 2001:4860:4860::8888</span>
+</code></pre></div>
+<div class="admonition info">
+<p class="admonition-title">NOTE</p>
+<p>Static IPv4 and IPv6 DNS settings all end up as nameserver directives in /etc/
+resolv.conf. You should ensure that there is, at minimum, an IPv4-reachable
+name server listed (assuming a dual-stack system). It is better to have at least one
+name server using IPv4 and a second using IPv6 in case you have network issues
+with either your IPv4 or IPv6 networking.</p>
+</div>
+<p><strong>Testing DNS Name Resolution</strong></p>
+<p>The <strong>host HOSTNAME</strong> command can be used to test DNS server connectivity.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># host classroom.example.com</span>
+<a id="__codelineno-33-2" name="__codelineno-33-2" href="#__codelineno-33-2"></a>classroom.example.com has address <span class="m">172</span>.25.254.254
+<a id="__codelineno-33-3" name="__codelineno-33-3" href="#__codelineno-33-3"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># host 172.25.254.254</span>
+<a id="__codelineno-33-4" name="__codelineno-33-4" href="#__codelineno-33-4"></a><span class="m">254</span>.254.25.172.in-addr.arpa domain name pointer classroom.example.com.
+</code></pre></div>
+<div class="admonition danger">
+<p class="admonition-title">IMPORTANT</p>
+<p>DHCP automatically rewrites the /etc/resolv.conf file as interfaces are started
+unless you specify PEERDNS=no in the relevant interface configuration files. Set this
+using the nmcli command.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># nmcli con mod &quot;static-ens3&quot; ipv4.ignore-auto-dns yes</span>
+</code></pre></div>
+</div>
+<h3 id="summary">SUMMARY<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h3>
+<p>In this chapter, you learned:</p>
+<ul>
+<li>
+<p>The TCP/IP network model is a simplified, four-layered set of abstractions that describes how
+different protocols interoperate in order for computers to send traffic from one machine to
+another over the Internet.</p>
+</li>
+<li>
+<p>IPv4 is the primary network protocol used on the Internet today. IPv6 is intended as an eventual
+replacement for the IPv4 network protocol. By default, Red Hat Enterprise Linux operates in
+dual-stack mode, using both protocols in parallel.</p>
+</li>
+<li>
+<p>NetworkManager is a daemon that monitors and manages network configuration.</p>
+</li>
+<li>
+<p>The <strong>nmcli</strong> command is a command-line tool for configuring network settings with
+NetworkManager.</p>
+</li>
+<li>
+<p>The system's static host name is stored in the <strong>/etc/hostname</strong> file. The <strong>hostnamectl</strong>
+command is used to modify or view the status of the system's host name and related settings.
+The <strong>hostname</strong> command displays or temporarily modifies the system's host name.</p>
+</li>
+</ul>
+
+  <hr>
+<div class="md-source-file">
+  <small>
+    
+      Last update:
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">November 22, 2022</span>
+      
+    
+  </small>
+</div>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+          <a href="#" class="md-top md-icon" data-md-component="top" hidden>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+            Back to top
+          </a>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+    <nav class="md-footer__inner md-grid" aria-label="Footer" >
+      
+        
+        <a href="../store/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Analyzing And Storing Logs" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Analyzing And Storing Logs
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../archiv/" class="md-footer__link md-footer__link--next" aria-label="Next: Archiving And Transferring Files" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Archiving And Transferring Files
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2022 Divijesh Varma. All rights reserved.
+    </div>
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.instant", "navigation.tracking", "navigation.tabs", "navigation.tabs.sticky", "navigation.expand", "navigation.top", "navigation.sections", "content.tooltips", "header.autohide"], "search": "../../assets/javascripts/workers/search.16e2a7d4.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d6c3db9e.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="../../javascripts/feedback.js"></script>
+      
+    
+  </body>
+</html>

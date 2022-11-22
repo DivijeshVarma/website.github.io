@@ -1,0 +1,2898 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://www.privacyguides.org/redhat/filsys/">
+      
+      <link rel="icon" href="../../assets/img/layout/favicon.ico">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-8.5.10">
+    
+    
+      
+        <title>Accessing Linux File Systems - Divijesh Varma</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.472b142f.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.08040f6c.min.css">
+        
+      
+      
+
+    
+    
+    
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent="teal">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#identifying-file-systems-and-devices" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Divijesh Varma" class="md-header__button md-logo" aria-label="Divijesh Varma" data-md-component="logo">
+      
+  <img src="../../assets/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Divijesh Varma
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Accessing Linux File Systems
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent="teal"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 1 7 7c0 2.38-1.19 4.47-3 5.74V17a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 0 1 7-7M9 21v-1h6v1a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1m3-17a5 5 0 0 0-5 5c0 2.05 1.23 3.81 3 4.58V16h4v-2.42c1.77-.77 3-2.53 3-4.58a5 5 0 0 0-5-5Z"/></svg>
+            </label>
+          
+        
+          
+          
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="deep-purple" data-md-color-accent="deep-orange"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 2.38 1.19 4.47 3 5.74V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.26c1.81-1.27 3-3.36 3-5.74a7 7 0 0 0-7-7M9 21a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-1H9v1Z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../.." class="md-tabs__link">
+      Home
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../linux/vi/" class="md-tabs__link">
+        Linux
+      </a>
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../intro/" class="md-tabs__link md-tabs__link--active">
+        RedHat
+      </a>
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../english/vol1/" class="md-tabs__link">
+        English
+      </a>
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../basics/threat-modeling/" class="md-tabs__link">
+        Knowledge Base
+      </a>
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../tools/" class="md-tabs__link">
+        Recommendations
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../about/" class="md-tabs__link">
+        About
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Divijesh Varma" class="md-nav__button md-logo" aria-label="Divijesh Varma" data-md-component="logo">
+      
+  <img src="../../assets/logo.png" alt="logo">
+
+    </a>
+    Divijesh Varma
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          Linux
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Linux" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Linux
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_2_1" type="checkbox" id="__nav_2_1" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_1">
+          Editors
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Editors" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_1">
+          <span class="md-nav__icon md-icon"></span>
+          Editors
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/vi/" class="md-nav__link">
+        Vim
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/nano/" class="md-nav__link">
+        Nano
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_2_2" type="checkbox" id="__nav_2_2" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_2">
+          Notes
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Notes" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_2">
+          <span class="md-nav__icon md-icon"></span>
+          Notes
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/rhcsa/" class="md-nav__link">
+        Tritree
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/user/" class="md-nav__link">
+        User Management
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/acl/" class="md-nav__link">
+        Access control lists (ACLs)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/network/" class="md-nav__link">
+        Networking
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/ssh/" class="md-nav__link">
+        OpenSSH
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/process/" class="md-nav__link">
+        Process Management
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/software/" class="md-nav__link">
+        Software Management
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/systemd/" class="md-nav__link">
+        Systemd Management
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/cron/" class="md-nav__link">
+        Cron Jobs
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/logs/" class="md-nav__link">
+        Logs
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/disk/" class="md-nav__link">
+        Disk Management
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3">
+          RedHat
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="RedHat" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          RedHat
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+    
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_1" type="checkbox" id="__nav_3_1" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_1">
+          RHSA I (RH124)
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="RHSA I (RH124)" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_1">
+          <span class="md-nav__icon md-icon"></span>
+          RHSA I (RH124)
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../intro/" class="md-nav__link">
+        Introduction
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../access/" class="md-nav__link">
+        Accessing The Command Line
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../manage/" class="md-nav__link">
+        Managing Files From The Command Line
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../help/" class="md-nav__link">
+        Getting Help In Red Hat Enterprise Linux
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../edit/" class="md-nav__link">
+        Creating, Viewing, And Editing Text Files
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../users/" class="md-nav__link">
+        Managing Local Users And Groups
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../control/" class="md-nav__link">
+        Controlling Access To Files
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../monitor/" class="md-nav__link">
+        Monitoring And Managing Linux Processes
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../service/" class="md-nav__link">
+        Controlling Services And Daemons
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../secssh/" class="md-nav__link">
+        Configuring And Securing Ssh
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../store/" class="md-nav__link">
+        Analyzing And Storing Logs
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mannet/" class="md-nav__link">
+        Managing Networking
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../archiv/" class="md-nav__link">
+        Archiving And Transferring Files
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pack/" class="md-nav__link">
+        Installing And Updating Software Packages
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Accessing Linux File Systems
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Accessing Linux File Systems
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#identifying-file-systems-and-devices" class="md-nav__link">
+    IDENTIFYING FILE SYSTEMS AND DEVICES
+  </a>
+  
+    <nav class="md-nav" aria-label="IDENTIFYING FILE SYSTEMS AND DEVICES">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#storage-management-concepts" class="md-nav__link">
+    STORAGE MANAGEMENT CONCEPTS
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#examining-file-systems" class="md-nav__link">
+    EXAMINING FILE SYSTEMS
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mounting-and-unmounting-file-systems" class="md-nav__link">
+    MOUNTING AND UNMOUNTING FILE SYSTEMS
+  </a>
+  
+    <nav class="md-nav" aria-label="MOUNTING AND UNMOUNTING FILE SYSTEMS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mounting-file-systems-manually" class="md-nav__link">
+    MOUNTING FILE SYSTEMS MANUALLY
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#automatic-mounting-of-removable-storage-devices" class="md-nav__link">
+    AUTOMATIC MOUNTING OF REMOVABLE STORAGE DEVICES
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#unmounting-file-systems" class="md-nav__link">
+    UNMOUNTING FILE SYSTEMS
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#locating-files-on-the-system" class="md-nav__link">
+    LOCATING FILES ON THE SYSTEM
+  </a>
+  
+    <nav class="md-nav" aria-label="LOCATING FILES ON THE SYSTEM">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#searching-for-files" class="md-nav__link">
+    SEARCHING FOR FILES
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#locating-files-by-name" class="md-nav__link">
+    LOCATING FILES BY NAME
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#searching-for-files-in-real-time" class="md-nav__link">
+    SEARCHING FOR FILES IN REAL TIME
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    SUMMARY
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../support/" class="md-nav__link">
+        Analyzing Servers And Getting Support
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../review/" class="md-nav__link">
+        Comprehensive Review
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4">
+          English
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="English" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          English
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_4_1" type="checkbox" id="__nav_4_1" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_1">
+          Tutorial
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Tutorial" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_1">
+          <span class="md-nav__icon md-icon"></span>
+          Tutorial
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../english/vol1/" class="md-nav__link">
+        Vol-1
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../english/vol2/" class="md-nav__link">
+        Vol-2
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../english/vol3/" class="md-nav__link">
+        Vol-3
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../english/vol4/" class="md-nav__link">
+        Vol-4
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5">
+          Knowledge Base
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Knowledge Base" data-md-level="1">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          Knowledge Base
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_5_1" type="checkbox" id="__nav_5_1" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5_1">
+          The Basics
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="The Basics" data-md-level="2">
+        <label class="md-nav__title" for="__nav_5_1">
+          <span class="md-nav__icon md-icon"></span>
+          The Basics
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../basics/threat-modeling/" class="md-nav__link">
+        Threat Modeling
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../basics/dns/" class="md-nav__link">
+        Introduction to DNS
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../basics/multi-factor-authentication/" class="md-nav__link">
+        Multi-factor Authentication
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../basics/account-deletion/" class="md-nav__link">
+        Account Deletion
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_5_2" type="checkbox" id="__nav_5_2" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5_2">
+          Android
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Android" data-md-level="2">
+        <label class="md-nav__title" for="__nav_5_2">
+          <span class="md-nav__icon md-icon"></span>
+          Android
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../android/overview/" class="md-nav__link">
+        Android Overview
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../android/grapheneos-vs-calyxos/" class="md-nav__link">
+        GrapheneOS vs CalyxOS
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_5_3" type="checkbox" id="__nav_5_3" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5_3">
+          Linux
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Linux" data-md-level="2">
+        <label class="md-nav__title" for="__nav_5_3">
+          <span class="md-nav__icon md-icon"></span>
+          Linux
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux-desktop/overview/" class="md-nav__link">
+        Linux Overview
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux-desktop/hardening/" class="md-nav__link">
+        System Hardening
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux-desktop/sandboxing/" class="md-nav__link">
+        Application Sandboxing
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_5_4" type="checkbox" id="__nav_5_4" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5_4">
+          Advanced
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Advanced" data-md-level="2">
+        <label class="md-nav__title" for="__nav_5_4">
+          <span class="md-nav__icon md-icon"></span>
+          Advanced
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setup/integrating-metadata-removal/" class="md-nav__link">
+        Integrating Metadata Removal
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_6" type="checkbox" id="__nav_6" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6">
+          Recommendations
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Recommendations" data-md-level="1">
+        <label class="md-nav__title" for="__nav_6">
+          <span class="md-nav__icon md-icon"></span>
+          Recommendations
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tools/" class="md-nav__link">
+        Privacy Tools
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_6_2" type="checkbox" id="__nav_6_2" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6_2">
+          Browsers
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Browsers" data-md-level="2">
+        <label class="md-nav__title" for="__nav_6_2">
+          <span class="md-nav__icon md-icon"></span>
+          Browsers
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../browsers/" class="md-nav__link">
+        Web Browsers
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_6_3" type="checkbox" id="__nav_6_3" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6_3">
+          Operating Systems
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Operating Systems" data-md-level="2">
+        <label class="md-nav__title" for="__nav_6_3">
+          <span class="md-nav__icon md-icon"></span>
+          Operating Systems
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../android/" class="md-nav__link">
+        Android
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux-desktop/" class="md-nav__link">
+        Linux
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../qubes/" class="md-nav__link">
+        Qubes OS
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../router/" class="md-nav__link">
+        Router Firmware
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_6_4" type="checkbox" id="__nav_6_4" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6_4">
+          Providers
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Providers" data-md-level="2">
+        <label class="md-nav__title" for="__nav_6_4">
+          <span class="md-nav__icon md-icon"></span>
+          Providers
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cloud/" class="md-nav__link">
+        Cloud Storage
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dns/" class="md-nav__link">
+        DNS Resolvers
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../email/" class="md-nav__link">
+        Email Services
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../search-engines/" class="md-nav__link">
+        Search Engines
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vpn/" class="md-nav__link">
+        VPN Services
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_6_5" type="checkbox" id="__nav_6_5" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6_5">
+          Software
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Software" data-md-level="2">
+        <label class="md-nav__title" for="__nav_6_5">
+          <span class="md-nav__icon md-icon"></span>
+          Software
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../calendar-contacts/" class="md-nav__link">
+        Calendar and Contact Sync
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../notebooks/" class="md-nav__link">
+        Notebooks
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../email-clients/" class="md-nav__link">
+        Email Clients
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../encryption/" class="md-nav__link">
+        Encryption Software
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../file-sharing/" class="md-nav__link">
+        File Sharing and Sync
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../metadata-removal-tools/" class="md-nav__link">
+        Metadata Removal Tools
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../multi-factor-authentication/" class="md-nav__link">
+        Multi-Factor Authenticators
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../passwords/" class="md-nav__link">
+        Password Managers
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../productivity/" class="md-nav__link">
+        Productivity Tools
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../real-time-communication/" class="md-nav__link">
+        Real-Time Communication
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../news-aggregators/" class="md-nav__link">
+        News Aggregators
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../self-contained-networks/" class="md-nav__link">
+        Self-Contained Networks
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../video-streaming/" class="md-nav__link">
+        Video Streaming
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_7" type="checkbox" id="__nav_7" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_7">
+          About
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="About" data-md-level="1">
+        <label class="md-nav__title" for="__nav_7">
+          <span class="md-nav__icon md-icon"></span>
+          About
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/" class="md-nav__link">
+        Heading
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#identifying-file-systems-and-devices" class="md-nav__link">
+    IDENTIFYING FILE SYSTEMS AND DEVICES
+  </a>
+  
+    <nav class="md-nav" aria-label="IDENTIFYING FILE SYSTEMS AND DEVICES">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#storage-management-concepts" class="md-nav__link">
+    STORAGE MANAGEMENT CONCEPTS
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#examining-file-systems" class="md-nav__link">
+    EXAMINING FILE SYSTEMS
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mounting-and-unmounting-file-systems" class="md-nav__link">
+    MOUNTING AND UNMOUNTING FILE SYSTEMS
+  </a>
+  
+    <nav class="md-nav" aria-label="MOUNTING AND UNMOUNTING FILE SYSTEMS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mounting-file-systems-manually" class="md-nav__link">
+    MOUNTING FILE SYSTEMS MANUALLY
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#automatic-mounting-of-removable-storage-devices" class="md-nav__link">
+    AUTOMATIC MOUNTING OF REMOVABLE STORAGE DEVICES
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#unmounting-file-systems" class="md-nav__link">
+    UNMOUNTING FILE SYSTEMS
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#locating-files-on-the-system" class="md-nav__link">
+    LOCATING FILES ON THE SYSTEM
+  </a>
+  
+    <nav class="md-nav" aria-label="LOCATING FILES ON THE SYSTEM">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#searching-for-files" class="md-nav__link">
+    SEARCHING FOR FILES
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#locating-files-by-name" class="md-nav__link">
+    LOCATING FILES BY NAME
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#searching-for-files-in-real-time" class="md-nav__link">
+    SEARCHING FOR FILES IN REAL TIME
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    SUMMARY
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+  
+
+
+
+
+  <h1>Accessing Linux File Systems</h1>
+
+<h3 id="identifying-file-systems-and-devices">IDENTIFYING FILE SYSTEMS AND DEVICES<a class="headerlink" href="#identifying-file-systems-and-devices" title="Permanent link">&para;</a></h3>
+<h4 id="storage-management-concepts">STORAGE MANAGEMENT CONCEPTS<a class="headerlink" href="#storage-management-concepts" title="Permanent link">&para;</a></h4>
+<p>Files on a Linux server are accessed through the file-system hierarchy, a single inverted tree of
+directories. This file system hierarchy is assembled from file systems provided by the storage
+devices available to your system. Each file system is a storage device that has been formatted to
+store files.</p>
+<p>In a sense, the Linux file-system hierarchy presents a collection of file systems on separate storage
+devices as if it were one set of files on one giant storage device that you can navigate. Much of the
+time, you do not need to know which storage device a particular file is on, you just need to know the
+directory that file is in.</p>
+<p>Sometimes, however, it can be important. You might need to determine how full a storage device
+is and what directories in the file-system hierarchy are affected. There might be errors in the logs
+from a storage device, and you need to know what file systems are at risk. You could just want to
+create a hard link between two files, and you need to know if they are on the same file system to
+determine if it is possible.</p>
+<p><strong>File Systems and Mount Points</strong></p>
+<p>To make the contents of a file system available in the file-system hierarchy, it must be mounted on
+an empty directory. This directory is called a mount point. Once mounted, if you use ls to list that
+directory, you will see the contents of the mounted file system, and you can access and use those
+files normally. Many file systems are automatically mounted as part of the boot process.</p>
+<p>If you have only worked with Microsoft Windows drive letters, this is a fundamentally different
+concept. It is somewhat similar to the NTFS mounted folders feature.</p>
+<p><strong>File Systems, Storage, and Block Devices</strong></p>
+<p>Low-level access to storage devices in Linux is provided by a special type of file called a block
+device These block devices must be formatted with a file system before they can be mounted.</p>
+<p>Block device files are stored in the <strong>/dev</strong> directory, along with other device files. Device files are
+created automatically by the operating system. In Red Hat Enterprise Linux, the first SATA/PATA,
+SAS, SCSI, or USB hard drive detected is called <strong>/dev/sda</strong>, the second is <strong>/dev/sdb</strong>, and so on.</p>
+<p>Other types of storage will have other forms of naming.</p>
+<p><strong>Block Device Naming</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left">TYPE OF DEVICE</th>
+<th align="left">DEVICE NAMING PATTERN</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">SATA/SAS/USB-attached storage</td>
+<td align="left">/dev/sda, /dev/sdb ...</td>
+</tr>
+<tr>
+<td align="left">virtio-blk paravirtualized storage (some virtual machines)</td>
+<td align="left">/dev/vda, /dev/vdb ...</td>
+</tr>
+<tr>
+<td align="left">NVMe-attached storage (many SSDs)</td>
+<td align="left">/dev/nvme0, /dev/nvme1 ...</td>
+</tr>
+<tr>
+<td align="left">SD/MMC/eMMC storage (SD cards)</td>
+<td align="left">/dev/mmcblk0, /dev/mmcblk1 ...</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition info">
+<p class="admonition-title">NOTE</p>
+<p>Many virtual machines use the newer virtio-scsi paravirtualized storage that
+will have <strong>/dev/sd*-style</strong> naming.</p>
+</div>
+<p><strong>Disk Partitions</strong></p>
+<p>Normally, you do not make the entire storage device into one file system. Storage devices are
+typically divided up into smaller chunks called <em>partitions</em>.</p>
+<p>Partitions allow you to compartmentalize a disk: the various partitions can be formatted with
+different file systems or used for different purposes. For example, one partition can contain user
+home directories while another can contain system data and logs. If a user fills up the home
+directory partition with data, the system partition may still have space available.</p>
+<p>Partitions are block devices in their own right. On SATA-attached storage, the first partition on
+the first disk is <strong>/dev/sda1</strong>. The third partition on the second disk is <strong>/dev/sdb3</strong>, and so on.
+Paravirtualized storage devices have a similar naming system.</p>
+<p>An NVMe-attached SSD device names its partitions differently. In that case, the first partition on
+the first disk is <strong>/dev/nvme0p1</strong>. The third partition on the second disk is <strong>/dev/nvme1p3</strong>, and so
+on. SD or MMC cards have a similar naming system.</p>
+<p>A long listing of the <strong>/dev/sda1</strong> device file on host reveals its special file type as <strong>b</strong>, which stands
+for block device:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ ls -l /dev/sda1
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>brw-rw----. <span class="m">1</span> root disk <span class="m">8</span>, <span class="m">1</span> Feb <span class="m">22</span> <span class="m">08</span>:00 /dev/sda1
+</code></pre></div>
+<p><strong>Logical Volumes</strong></p>
+<p>Another way of organizing disks and partitions is with logical volume management (LVM). With LVM,
+one or more block devices can be aggregated into a storage pool called a volume group. Disk space
+in the volume group is then parceled out to one or more logical volumes, which are the functional
+equivalent of a partition residing on a physical disk.</p>
+<p>The LVM system assigns names to volume groups and logical volumes upon creation. LVM creates
+a directory in <strong>/dev</strong> that matches the group name and then creates a symbolic link within that new
+directory with the same name as the logical volume. That logical volume file is then available to be
+mounted. For example, if a volume group is called myvg and the logical volume within it is called
+mylv, then the full path name to the logical volume device file is <strong>/dev/myvg/mylv</strong>.</p>
+<div class="admonition info">
+<p class="admonition-title">NOTE</p>
+<p>The form of logical volume device name mentioned above is actually implemented as
+a symbolic link to the actual device file used to access it, which might vary between
+boots. There is another form of logical volume device name linked from files in <strong>/
+dev/mapper</strong> that are often used, and are also symbolic links to the actual device
+file.</p>
+</div>
+<h4 id="examining-file-systems">EXAMINING FILE SYSTEMS<a class="headerlink" href="#examining-file-systems" title="Permanent link">&para;</a></h4>
+<p>To get an overview of local and remote file system devices and the amount of free space available,
+run the df command. When the df command is run without arguments, it reports total disk space,
+used disk space, free disk space, and the percentage of the total disk space used on all mounted
+regular file systems. It reports on both local and remote file systems.</p>
+<p>The following example displays the file systems and mount points on host.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>[user@host ~]$ df
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>Filesystem     1K-blocks    Used Available Use% Mounted on
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>devtmpfs          912584       0    912584   0% /dev
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>tmpfs             936516       0    936516   0% /dev/shm
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>tmpfs             936516   16812    919704   2% /run
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>tmpfs             936516       0    936516   0% /sys/fs/cgroup
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>/dev/vda3        8377344 1411332   6966012  17% /
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>/dev/vda1        1038336  169896    868440  17% /boot
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>tmpfs             187300       0    187300   0% /run/user/1000
+</code></pre></div>
+<p>The partitioning on the host system shows two physical file systems, which are mounted on <strong>/</strong> and
+<strong>/boot</strong>. This is common for virtual machines. The tmpfs and devtmpfs devices are file systems in
+system memory. All files written into tmpfs or devtmpfs disappear after system reboot.</p>
+<p>To improve readability of the output sizes, there are two different human-readable options: <strong>-h</strong>
+or <strong>-H</strong>. The difference between these two options is that <strong>-h</strong> reports in KiB (210 ), MiB (220 ), or
+GiB (230 ), while the <strong>-H</strong> option reports in SI units: KB (103 ), MB (106 ), or GB (109 ). Hard drive
+manufacturers usually use SI units when advertising their products.</p>
+<p>Show a report on the file systems on the host system with all units converted to human-readable
+format:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ df -h
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>Filesystem      Size  Used Avail Use% Mounted on
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>devtmpfs        892M     <span class="m">0</span>  892M   <span class="m">0</span>% /dev
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>tmpfs           915M     <span class="m">0</span>  915M   <span class="m">0</span>% /dev/shm
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>tmpfs           915M   17M  899M   <span class="m">2</span>% /run
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>tmpfs           915M     <span class="m">0</span>  915M   <span class="m">0</span>% /sys/fs/cgroup
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>/dev/vda3       <span class="m">8</span>.0G  <span class="m">1</span>.4G  <span class="m">6</span>.7G  <span class="m">17</span>% /
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>/dev/vda1      1014M  166M  849M  <span class="m">17</span>% /boot
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>tmpfs           183M     <span class="m">0</span>  183M   <span class="m">0</span>% /run/user/1000
+</code></pre></div>
+<p>For more detailed information about space used by a certain directory tree, use the <strong>du</strong> command.
+The <strong>du</strong> command has <strong>-h</strong> and <strong>-H</strong> options to convert the output to human-readable format. The <strong>du</strong>
+command shows the size of all files in the current directory tree recursively.</p>
+<p>Show a disk usage report for the <strong>/usr/share</strong> directory on host:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># du /usr/share</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>...output omitted...
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="m">176</span> /usr/share/smartmontools
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="m">184</span> /usr/share/nano
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="m">8</span> /usr/share/cmake/bash-completion
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="m">8</span> /usr/share/cmake
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="m">356676</span>  /usr/share
+</code></pre></div>
+<p>Show a disk usage report in human-readable format for the <strong>/usr/share</strong> directory on host:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># du -h /var/log</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>...output omitted...
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>176K  /usr/share/smartmontools
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>184K  /usr/share/nano
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="m">8</span>.0K  /usr/share/cmake/bash-completion
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>369M  /usr/share
+</code></pre></div>
+<h3 id="mounting-and-unmounting-file-systems">MOUNTING AND UNMOUNTING FILE SYSTEMS<a class="headerlink" href="#mounting-and-unmounting-file-systems" title="Permanent link">&para;</a></h3>
+<h4 id="mounting-file-systems-manually">MOUNTING FILE SYSTEMS MANUALLY<a class="headerlink" href="#mounting-file-systems-manually" title="Permanent link">&para;</a></h4>
+<p>A file system residing on a removable storage device needs to be mounted in order to access it. The
+<strong>mount</strong> command allows the root user to manually mount a file system. The first argument of the
+<strong>mount</strong> command specifies the file system to mount. The second argument specifies the directory
+to use as the mount point in the file-system hierarchy.</p>
+<p>There are two common ways to specify the file system on a disk partition to the <strong>mount</strong> command:</p>
+<ul>
+<li>With the name of the device file in <strong>/dev</strong> containing the file system.</li>
+<li>With the UUID written to the file system, a universally-unique identifier.</li>
+</ul>
+<p>Mounting a device is relatively simple. You need to identify the device you want to mount, make
+sure the mount point exists, and mount the device on the mount point.</p>
+<p><strong>Identifying the Block Device</strong></p>
+<p>A hot-pluggable storage device, whether a hard disk drive (HDD) or solid-state device (SSD) in a
+server caddy, or a USB storage device, might be plugged into a different port each time they are
+attached to a system.</p>
+<p>Use the <strong>lsblk</strong> command to list the details of a specified block device or all the available devices.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># lsblk</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>NAME                      MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>vda                       <span class="m">253</span>:0    <span class="m">0</span>   12G  <span class="m">0</span> disk
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>├─vda1                    <span class="m">253</span>:1    <span class="m">0</span>    1G  <span class="m">0</span> part /boot
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>├─vda2                    <span class="m">253</span>:2    <span class="m">0</span>    1G  <span class="m">0</span> part <span class="o">[</span>SWAP<span class="o">]</span>
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>└─vda3                    <span class="m">253</span>:3    <span class="m">0</span>   11G  <span class="m">0</span> part /
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>vdb                       <span class="m">253</span>:16   <span class="m">0</span>   64G  <span class="m">0</span> disk
+<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>└─vdb1                    <span class="m">253</span>:17   <span class="m">0</span>   64G  <span class="m">0</span> part
+</code></pre></div>
+<p>If you know that you just added a 64 GB storage device with one partition, then you can guess from
+the preceding output that <strong>/dev/vdb1</strong> is the partition that you want to mount.</p>
+<p><strong>Mounting by Block Device Name</strong></p>
+<p>The following example mounts the file system in the <strong>/dev/vdb1</strong> partition on the directory <strong>/mnt/
+data</strong>.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># mount /dev/vdb1 /mnt/data</span>
+</code></pre></div>
+<p>To mount a file system, the destination directory must already exist. The <strong>/mnt</strong> directory exists by
+default and is intended for use as a temporary mount point.</p>
+<p>You can use <strong>/mnt</strong> directory, or better yet create a subdirectory of <strong>/mnt</strong> to use as a temporary
+mount point, unless you have a good reason to mount it in a specific location in the file-system
+hierarchy.</p>
+<div class="admonition danger">
+<p class="admonition-title">IMPORTANT</p>
+<p>If the directory acting as mount point is not empty, any files copied to that directory
+before the file system was mounted are not accessible until the file system is
+unmounted again.</p>
+</div>
+<p>This approach works fine in the short run. However, the order in which the operating system
+detects disks can change if devices are added to or removed from the system. This will change the
+device name associated with that storage device. A better approach would be to mount by some
+characteristic built into the file system.</p>
+<p><strong>Mounting by File-system UUID</strong></p>
+<p>One stable identifier that is associated with a file system is its UUID, a very long hexadecimal
+number that acts as a universally-unique identifier. This UUID is part of the file system and remains
+the same as long as the file system is not recreated.</p>
+<p>The <strong>lsblk -fp</strong> command lists the full path of the device, along with the UUIDs and mount points,
+as well as the type of file system in the partition. If the file system is not mounted, the mount point
+will be blank.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># lsblk -fp</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>NAME        FSTYPE LABEL UUID                                 MOUNTPOINT
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>/dev/vda                                                      
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>├─/dev/vda1 xfs          23ea8803-a396-494a-8e95-1538a53b821c /boot
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>├─/dev/vda2 swap         cdf61ded-534c-4bd6-b458-cab18b1a72ea <span class="o">[</span>SWAP<span class="o">]</span>
+<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>└─/dev/vda3 xfs          44330f15-2f9d-4745-ae2e-20844f22762d /
+<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>/dev/vdb
+<a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>└─/dev/vdb1 xfs          46f543fd-78c9-4526-a857-244811be2d88
+</code></pre></div>
+<p>Mount the file system by the UUID of the file system.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># mount UUID=&quot;46f543fd-78c9-4526-a857-244811be2d88&quot; /mnt/data</span>
+</code></pre></div>
+<h4 id="automatic-mounting-of-removable-storage-devices">AUTOMATIC MOUNTING OF REMOVABLE STORAGE DEVICES<a class="headerlink" href="#automatic-mounting-of-removable-storage-devices" title="Permanent link">&para;</a></h4>
+<p>If you are logged in and using the graphical desktop environment, it will automatically mount any
+removable storage media when it is inserted.</p>
+<p>The removable storage device is mounted at <strong>/run/media/USERNAME/LABEL</strong> where USERNAME
+is the name of the user logged into the graphical environment and LABEL is an identifier, often the
+name given to the file system when it was created if one is available.</p>
+<p>Before removing the device, you should unmount it manually.</p>
+<h4 id="unmounting-file-systems">UNMOUNTING FILE SYSTEMS<a class="headerlink" href="#unmounting-file-systems" title="Permanent link">&para;</a></h4>
+<p>The shutdown and reboot procedures unmount all file systems automatically. As part of this
+process, any file system data cached in memory is flushed to the storage device thus ensuring that
+the file system suffers no data corruption.</p>
+<div class="admonition danger">
+<p class="admonition-title">WARNING</p>
+<p>File system data is often cached in memory. Therefore, in order to avoid corrupting
+data on the disk, it is essential that you unmount removable drives before
+unplugging them. The unmount procedure synchronizes data before releasing the
+drive, ensuring data integrity.</p>
+</div>
+<p>To unmount a file system, the umount command expects the mount point as an argument.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># umount /mnt/data</span>
+</code></pre></div>
+<p>Unmounting is not possible if the mounted file system is in use. For the <strong>umount</strong> command to
+succeed, all processes needs to stop accessing data under the mount point.</p>
+<p>In the example below, the <strong>umount</strong> fails because the file system is in use (the shell is using <strong>/mnt/
+data</strong> as its current working directory), generating an error message.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># cd /mnt/data</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="o">[</span>root@host data<span class="o">]</span><span class="c1"># umount /mnt/data</span>
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>umount: /mnt/data: target is busy.
+</code></pre></div>
+<p>The <strong>lsof</strong> command lists all open files and the process accessing them in the provided directory. It
+is useful to identify which processes currently prevent the file system from successful unmounting.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="o">[</span>root@host data<span class="o">]</span><span class="c1"># lsof /mnt/data</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>COMMAND  PID USER   FD   TYPE DEVICE SIZE/OFF NODE NAME
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>bash    <span class="m">1593</span> root  cwd    DIR <span class="m">253</span>,17        <span class="m">6</span>  <span class="m">128</span> /mnt/data
+<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>lsof    <span class="m">2532</span> root  cwd    DIR <span class="m">253</span>,17       <span class="m">19</span>  <span class="m">128</span> /mnt/data
+<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>lsof    <span class="m">2533</span> root  cwd    DIR <span class="m">253</span>,17       <span class="m">19</span>  <span class="m">128</span> /mnt/data
+</code></pre></div>
+<p>Once the processes are identified, an action can be taken, such as waiting for the process to
+complete or sending a SIGTERM or SIGKILL signal to the process. In this case, it is sufficient to
+change the current working directory to a directory outside the mount point.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="o">[</span>root@host data<span class="o">]</span><span class="c1"># cd</span>
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># umount /mnt/data</span>
+</code></pre></div>
+<div class="admonition info">
+<p class="admonition-title">NOTE</p>
+<p>A common reason for file systems to fail to unmount is that a Bash shell is using the
+mount point or a subdirectory as a current working directory. Use the <strong>cd</strong> command
+to change out of the file system to resolve this problem.</p>
+</div>
+<h3 id="locating-files-on-the-system">LOCATING FILES ON THE SYSTEM<a class="headerlink" href="#locating-files-on-the-system" title="Permanent link">&para;</a></h3>
+<h4 id="searching-for-files">SEARCHING FOR FILES<a class="headerlink" href="#searching-for-files" title="Permanent link">&para;</a></h4>
+<p>A system administrator needs tools to search for files matching certain criteria on the file system.
+This section discusses two commands that can search for files in the file-system hierarchy.</p>
+<ul>
+<li>
+<p>The <strong>locate</strong> command searches a pregenerated index for file names or file paths and returns the
+results instantly.</p>
+</li>
+<li>
+<p>The <strong>find</strong> command searches for files in real time by crawling through the file-system hierarchy.</p>
+</li>
+</ul>
+<h4 id="locating-files-by-name">LOCATING FILES BY NAME<a class="headerlink" href="#locating-files-by-name" title="Permanent link">&para;</a></h4>
+<p>The <strong>locate</strong> command finds files based on the name or path to the file. It is fast because it looks up
+this information from the mlocate database. However, this database is not updated in real time,
+and it must be frequently updated for results to be accurate. This also means that <strong>locate</strong> will not
+find files that have been created since the last update of the database.</p>
+<p>The locate database is automatically updated every day. However, at any time the root user can
+issue the <strong>updatedb</strong> command to force an immediate update.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># updatedb</span>
+</code></pre></div>
+<p>The <strong>locate</strong> command restricts results for unprivileged users. In order to see the resulting file
+name, the user must have search permission on the directory in which the file resides.</p>
+<p>Search for files with passwd in the name or path in directory trees readable by user on host.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ locate passwd
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>/etc/passwd
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>/etc/passwd-
+<a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a>/etc/pam.d/passwd
+<a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a>/etc/security/opasswd
+<a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a>/usr/bin/gpasswd
+<a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a>/usr/bin/grub2-mkpasswd-pbkdf2
+<a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a>/usr/bin/lppasswd
+<a id="__codelineno-14-9" name="__codelineno-14-9" href="#__codelineno-14-9"></a>/usr/bin/passwd
+<a id="__codelineno-14-10" name="__codelineno-14-10" href="#__codelineno-14-10"></a>...output omitted...
+</code></pre></div>
+<p>Results are returned even when the file name or path is only a partial match to the search query.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># locate image</span>
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>/etc/selinux/targeted/contexts/virtual_image_context
+<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>/usr/bin/grub2-mkimage
+<a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a>/usr/lib/sysimage
+<a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a>/usr/lib/dracut/dracut.conf.d/02-generic-image.conf
+<a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a>/usr/lib/firewalld/services/ovirt-imageio.xml
+<a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a>/usr/lib/grub/i386-pc/lnxboot.image
+<a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a>...output omitted...
+</code></pre></div>
+<p>The <strong>-i</strong> option performs a case-insensitive search. With this option, all possible combinations of
+upper and lowercase letters match the search.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ locate -i messages
+<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>...output omitted...
+<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>/usr/share/vim/vim80/lang/zh_TW/LC_MESSAGES
+<a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a>/usr/share/vim/vim80/lang/zh_TW/LC_MESSAGES/vim.mo
+<a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a>/usr/share/vim/vim80/lang/zh_TW.UTF-8/LC_MESSAGES
+<a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a>/usr/share/vim/vim80/lang/zh_TW.UTF-8/LC_MESSAGES/vim.mo
+<a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a>/usr/share/vim/vim80/syntax/messages.vim
+<a id="__codelineno-16-8" name="__codelineno-16-8" href="#__codelineno-16-8"></a>/usr/share/vim/vim80/syntax/msmessages.vim
+<a id="__codelineno-16-9" name="__codelineno-16-9" href="#__codelineno-16-9"></a>/var/log/messages
+</code></pre></div>
+<p>The -n option limits the number of returned search results by the locate command. The following
+example limits the search results returned by locate to the first five matches:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ locate -n <span class="m">5</span> snow.png
+<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>/usr/share/icons/HighContrast/16x16/status/weather-snow.png
+<a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>/usr/share/icons/HighContrast/22x22/status/weather-snow.png
+<a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a>/usr/share/icons/HighContrast/24x24/status/weather-snow.png
+<a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a>/usr/share/icons/HighContrast/256x256/status/weather-snow.png
+<a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a>/usr/share/icons/HighContrast/32x32/status/weather-snow.png
+</code></pre></div>
+<h4 id="searching-for-files-in-real-time">SEARCHING FOR FILES IN REAL TIME<a class="headerlink" href="#searching-for-files-in-real-time" title="Permanent link">&para;</a></h4>
+<p>The <strong>find</strong> command locates files by performing a real-time search in the file-system hierarchy. It is
+slower than <strong>locate</strong>, but more accurate. It can also search for files based on criteria other than the
+file name, such as the permissions of the file, type of file, its size, or its modification time.</p>
+<p>The <strong>find</strong> command looks at files in the file system using the user account that executed the
+search. The user invoking the <strong>find</strong> command must have read and execute permission on a
+directory to examine its contents.</p>
+<p>The first argument to the <strong>find</strong> command is the directory to search. If the directory argument is
+omitted, <strong>find</strong> starts the search in the current directory and looks for matches in any subdirectory.</p>
+<p>To search for files by file name, use the <strong>-name FILENAME</strong> option. With this option, <strong>find</strong> returns
+the path to files matching FILENAME exactly. For example, to search for files named <strong>sshd_config</strong>
+starting from the / directory, run the following command:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># find / -name sshd_config</span>
+<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>/etc/ssh/sshd_config
+</code></pre></div>
+<div class="admonition info">
+<p class="admonition-title">NOTE</p>
+<p>With the <strong>find</strong> command, the full word options use a single dash and options follow
+the path name argument, unlike most other Linux commands.</p>
+</div>
+<p>Wildcards are available to search for a file name and return all results that are a partial match.
+When using wildcards, it is important to quote the file name to look for to prevent the terminal from
+interpreting the wildcard.</p>
+<p>In the following example, search for files starting in the / directory that end in <strong>.txt</strong>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># find / -name &#39;*.txt&#39;</span>
+<a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>/etc/pki/nssdb/pkcs11.txt
+<a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a>/etc/brltty/brl-lt-all.txt
+<a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a>/etc/brltty/brl-mb-all.txt
+<a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a>/etc/brltty/brl-md-all.txt
+<a id="__codelineno-19-6" name="__codelineno-19-6" href="#__codelineno-19-6"></a>/etc/brltty/brl-mn-all.txt
+<a id="__codelineno-19-7" name="__codelineno-19-7" href="#__codelineno-19-7"></a>...output omitted...
+</code></pre></div>
+<p>To search for files in the <strong>/etc/</strong> directory that contain the word, <strong>pass</strong>, anywhere in their names on
+host, run the following command:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># find /etc -name &#39;*pass*&#39;</span>
+<a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>/etc/security/opasswd
+<a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a>/etc/pam.d/passwd
+<a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a>/etc/pam.d/password-auth
+<a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a>/etc/passwd-
+<a id="__codelineno-20-6" name="__codelineno-20-6" href="#__codelineno-20-6"></a>/etc/passwd
+<a id="__codelineno-20-7" name="__codelineno-20-7" href="#__codelineno-20-7"></a>/etc/authselect/password-auth
+</code></pre></div>
+<p>To perform a case-insensitive search for a given file name, use the <strong>-iname</strong> option, followed by the
+file name to search. To search files with case-insensitive text, <strong>messages</strong>, in their names in the /
+directory on host, run the following command:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># find / -iname &#39;*messages*&#39;</span>
+<a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a>...output omitted...
+<a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a>/usr/share/vim/vim80/lang/zh_CN.UTF-8/LC_MESSAGES
+<a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a>/usr/share/vim/vim80/lang/zh_CN.cp936/LC_MESSAGES
+<a id="__codelineno-21-5" name="__codelineno-21-5" href="#__codelineno-21-5"></a>/usr/share/vim/vim80/lang/zh_TW/LC_MESSAGES
+<a id="__codelineno-21-6" name="__codelineno-21-6" href="#__codelineno-21-6"></a>/usr/share/vim/vim80/lang/zh_TW.UTF-8/LC_MESSAGES
+<a id="__codelineno-21-7" name="__codelineno-21-7" href="#__codelineno-21-7"></a>/usr/share/vim/vim80/syntax/messages.vim
+<a id="__codelineno-21-8" name="__codelineno-21-8" href="#__codelineno-21-8"></a>/usr/share/vim/vim80/syntax/msmessages.vim
+</code></pre></div>
+<p><strong>Searching Files Based on Ownership or Permission</strong></p>
+<p>The <strong>find</strong> command can search for files based on their ownership or permissions. Useful options
+when searching by owner are <strong>-user</strong> and <strong>-group</strong>, which search by name, and <strong>-uid</strong> and <strong>-gid</strong>,
+which search by ID.</p>
+<p>Search for files owned by user in the <strong>/home/user</strong> directory on host.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ find -user user
+<a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a>.
+<a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a>./.bash_logout
+<a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a>./.bash_profile
+<a id="__codelineno-22-5" name="__codelineno-22-5" href="#__codelineno-22-5"></a>./.bashrc
+<a id="__codelineno-22-6" name="__codelineno-22-6" href="#__codelineno-22-6"></a>./.bash_history
+</code></pre></div>
+<p>Search for files owned by the group user in the <strong>/home/user</strong> directory on host.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ find -group user
+<a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a>.
+<a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a>./.bash_logout
+<a id="__codelineno-23-4" name="__codelineno-23-4" href="#__codelineno-23-4"></a>./.bash_profile
+<a id="__codelineno-23-5" name="__codelineno-23-5" href="#__codelineno-23-5"></a>./.bashrc
+<a id="__codelineno-23-6" name="__codelineno-23-6" href="#__codelineno-23-6"></a>./.bash_history
+</code></pre></div>
+<p>Search for files owned by user ID <strong>1000</strong> in the <strong>/home/user</strong> directory on host.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ find -uid <span class="m">1000</span>
+<a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a>.
+<a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a>./.bash_logout
+<a id="__codelineno-24-4" name="__codelineno-24-4" href="#__codelineno-24-4"></a>./.bash_profile
+<a id="__codelineno-24-5" name="__codelineno-24-5" href="#__codelineno-24-5"></a>./.bashrc
+<a id="__codelineno-24-6" name="__codelineno-24-6" href="#__codelineno-24-6"></a>./.bash_history
+</code></pre></div>
+<p>Search for files owned by group ID <strong>1000</strong> in the <strong>/home/user</strong> directory on host.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ find -gid <span class="m">1000</span>
+<a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a>.
+<a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a>./.bash_logout
+<a id="__codelineno-25-4" name="__codelineno-25-4" href="#__codelineno-25-4"></a>./.bash_profile
+<a id="__codelineno-25-5" name="__codelineno-25-5" href="#__codelineno-25-5"></a>./.bashrc
+<a id="__codelineno-25-6" name="__codelineno-25-6" href="#__codelineno-25-6"></a>./.bash_history
+</code></pre></div>
+<p>The <strong>-user</strong>, and <strong>-group</strong> options can be used together to search files where file owner and group
+owner are different. The example below list files that are both owned by user root and affiliated
+with group mail.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># find / -user root -group mail</span>
+<a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a>/var/spool/mail
+<a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a>...output omitted...
+</code></pre></div>
+<p>The <strong>-perm</strong> option is used to look for files with a particular set of permissions. Permissions can
+be described as octal values, with some combination of <strong>4, 2</strong>, and <strong>1</strong> for read, write, and execute.
+Permissions can be preceded by a / or - sign.</p>
+<p>A numeric permission preceded by / matches files that have at least one bit of user, group, or
+other for that permission set. A file with permissions <strong>r--r--r--</strong> does not match <strong>/222</strong>, but one
+with <strong>rw-r--r--</strong> does. A - sign before a permission means that all three instances of that bit must
+be on, so neither of the previous examples would match, but something like <strong>rw-rw-rw-&gt;</strong> would.</p>
+<p>To use a more complex example, the following command matches any file for which the user has
+read, write, and execute permissions, members of the group have read and write permissions, and
+others have read-only access:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># find /home -perm 764</span>
+</code></pre></div>
+<p>To match files for which the user has at least write and execute permissions, and the group has at
+least write permissions, and others have at least read access:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># find /home -perm -324</span>
+</code></pre></div>
+<p>To match files for which the user has read permissions, or the group has at least read permissions,
+or others have at least write access:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># find /home -perm /442</span>
+</code></pre></div>
+<p>When used with / or -, a value of <strong>0</strong> works like a wildcard, since it means a permission of at least
+nothing.</p>
+<p>To match any file in the <strong>/home/user</strong> directory for which others have at least read access on host,
+run:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ find -perm -004
+</code></pre></div>
+<p>Find all files in the <strong>/home/user</strong> directory where other has write permissions on host.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ find -perm -002
+</code></pre></div>
+<p><strong>Searching Files Based on Size</strong></p>
+<p>The <strong>find</strong> command can look up files that match a size specified with the <strong>-size</strong> option, followed
+by a numerical value and the unit. Use the following list as the units with the <strong>-size</strong> option:</p>
+<ul>
+<li><strong>k</strong>, for kilobyte</li>
+<li><strong>M</strong>, for megabyte</li>
+<li><strong>G</strong>, for gigabyte</li>
+</ul>
+<p>The example below shows how to search for files with a size of 10 megabytes, rounded up.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ find -size 10M
+</code></pre></div>
+<p>To search the files with a size more than 10 gigabytes.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ find -size +10G
+</code></pre></div>
+<p>To list all files with a size less than 10 kilobytes.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ find -size -10k
+</code></pre></div>
+<div class="admonition danger">
+<p class="admonition-title">IMPORTANT</p>
+<p>The <strong>-size</strong> option unit modifiers round everything up to single units. For example,
+the <strong>find -size 1M</strong> command shows files smaller than 1 MB because it rounds all
+files up to 1 MB.</p>
+</div>
+<p><strong>Searching Files Based on Modification Time</strong></p>
+<p>The <strong>-mmin</strong> option, followed by the time in minutes, searches for all files that had their content
+changed at <strong>n</strong> minutes ago in the past. The file's timestamp is always rounded down. It also
+supports fractional values when used with ranges (<strong>+n</strong> and <strong>-n</strong>).</p>
+<p>To find all files that had their file content changed 120 minutes ago on host, run:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># find / -mmin 120</span>
+</code></pre></div>
+<p>The <strong>+</strong> modifier in front of the amount of minutes looks for all files in the / that have been modified
+more than n minutes ago. In this example, files that were modified more than 200 minutes ago are
+listed.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># find / -mmin +200</span>
+</code></pre></div>
+<p>The <strong>-</strong> modifier changes the search to look for all files in the / directory which have been changed
+less than n minutes ago. In this example, files that were modified less than 150 minutes ago are
+listed.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-37-1" name="__codelineno-37-1" href="#__codelineno-37-1"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># find / -mmin -150</span>
+</code></pre></div>
+<p><strong>Searching Files Based on File Type</strong></p>
+<p>The <strong>-type</strong> option in the <strong>find</strong> command limits the search scope to a given file type. Use the
+following list to pass the required flags to limit the scope of search:</p>
+<ul>
+<li><strong>f</strong>, for regular file</li>
+<li><strong>d</strong>, for directory</li>
+<li><strong>l</strong>, for soft link</li>
+<li><strong>b</strong>, for block device</li>
+</ul>
+<p>Search for all directories in the <strong>/etc</strong> directory on host.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-38-1" name="__codelineno-38-1" href="#__codelineno-38-1"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># find /etc -type d</span>
+<a id="__codelineno-38-2" name="__codelineno-38-2" href="#__codelineno-38-2"></a>/etc
+<a id="__codelineno-38-3" name="__codelineno-38-3" href="#__codelineno-38-3"></a>/etc/tmpfiles.d
+<a id="__codelineno-38-4" name="__codelineno-38-4" href="#__codelineno-38-4"></a>/etc/systemd
+<a id="__codelineno-38-5" name="__codelineno-38-5" href="#__codelineno-38-5"></a>/etc/systemd/system
+<a id="__codelineno-38-6" name="__codelineno-38-6" href="#__codelineno-38-6"></a>/etc/systemd/system/getty.target.wants
+<a id="__codelineno-38-7" name="__codelineno-38-7" href="#__codelineno-38-7"></a>...output omitted...
+</code></pre></div>
+<p>Search for all soft links on host.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-39-1" name="__codelineno-39-1" href="#__codelineno-39-1"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># find / -type l</span>
+</code></pre></div>
+<p>Generate a list of all block devices in the <strong>/dev</strong> directory on host:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-40-1" name="__codelineno-40-1" href="#__codelineno-40-1"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># find /dev -type b</span>
+<a id="__codelineno-40-2" name="__codelineno-40-2" href="#__codelineno-40-2"></a>/dev/vda1
+<a id="__codelineno-40-3" name="__codelineno-40-3" href="#__codelineno-40-3"></a>/dev/vda
+</code></pre></div>
+<p>The <strong>-links</strong> option followed by a number looks for all files that have a certain hard link count. The
+number can be preceded by a + modifier to look for files with a count higher than the given hard
+link count. If the number is preceded with a - modifier, the search is limited to all files with a hard
+link count that is less than the given number.</p>
+<p>Search for all regular files with more than one hard link on host:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-41-1" name="__codelineno-41-1" href="#__codelineno-41-1"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># find / -type f -links +1</span>
+</code></pre></div>
+<h3 id="summary">SUMMARY<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h3>
+<p>In this chapter, you learned:</p>
+<ul>
+<li>
+<p>Storage devices are represented by a special file type called block device.</p>
+</li>
+<li>
+<p>The <strong>df</strong> command reports total disk space, used disk space, and free disk space on all mounted
+regular file systems.</p>
+</li>
+<li>
+<p>The <strong>mount</strong> command allows the root user to manually mount a file system.</p>
+</li>
+<li>
+<p>All processes need to stop accessing the mount point in order to successfully unmount the
+device.</p>
+</li>
+<li>
+<p>The removable storage devices are mounted in the <strong>/run/media</strong> directory when using the
+graphical environment.</p>
+</li>
+<li>
+<p>The <strong>find</strong> command performs a real-time search in the local file systems to find files based on
+search criteria.</p>
+</li>
+</ul>
+
+  <hr>
+<div class="md-source-file">
+  <small>
+    
+      Last update:
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">November 22, 2022</span>
+      
+    
+  </small>
+</div>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+          <a href="#" class="md-top md-icon" data-md-component="top" hidden>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+            Back to top
+          </a>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+    <nav class="md-footer__inner md-grid" aria-label="Footer" >
+      
+        
+        <a href="../pack/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Installing And Updating Software Packages" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Installing And Updating Software Packages
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../support/" class="md-footer__link md-footer__link--next" aria-label="Next: Analyzing Servers And Getting Support" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Analyzing Servers And Getting Support
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2022 Divijesh Varma. All rights reserved.
+    </div>
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.instant", "navigation.tracking", "navigation.tabs", "navigation.tabs.sticky", "navigation.expand", "navigation.top", "navigation.sections", "content.tooltips", "header.autohide"], "search": "../../assets/javascripts/workers/search.16e2a7d4.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d6c3db9e.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="../../javascripts/feedback.js"></script>
+      
+    
+  </body>
+</html>

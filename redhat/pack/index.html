@@ -1,0 +1,3531 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://www.privacyguides.org/redhat/pack/">
+      
+      <link rel="icon" href="../../assets/img/layout/favicon.ico">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-8.5.10">
+    
+    
+      
+        <title>Installing And Updating Software Packages - Divijesh Varma</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.472b142f.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.08040f6c.min.css">
+        
+      
+      
+
+    
+    
+    
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent="teal">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#registering-systems-for-red-hat-support" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Divijesh Varma" class="md-header__button md-logo" aria-label="Divijesh Varma" data-md-component="logo">
+      
+  <img src="../../assets/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Divijesh Varma
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Installing And Updating Software Packages
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent="teal"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 1 7 7c0 2.38-1.19 4.47-3 5.74V17a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 0 1 7-7M9 21v-1h6v1a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1m3-17a5 5 0 0 0-5 5c0 2.05 1.23 3.81 3 4.58V16h4v-2.42c1.77-.77 3-2.53 3-4.58a5 5 0 0 0-5-5Z"/></svg>
+            </label>
+          
+        
+          
+          
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="deep-purple" data-md-color-accent="deep-orange"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 2.38 1.19 4.47 3 5.74V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.26c1.81-1.27 3-3.36 3-5.74a7 7 0 0 0-7-7M9 21a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-1H9v1Z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../.." class="md-tabs__link">
+      Home
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../linux/vi/" class="md-tabs__link">
+        Linux
+      </a>
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../intro/" class="md-tabs__link md-tabs__link--active">
+        RedHat
+      </a>
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../english/vol1/" class="md-tabs__link">
+        English
+      </a>
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../basics/threat-modeling/" class="md-tabs__link">
+        Knowledge Base
+      </a>
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../tools/" class="md-tabs__link">
+        Recommendations
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../about/" class="md-tabs__link">
+        About
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Divijesh Varma" class="md-nav__button md-logo" aria-label="Divijesh Varma" data-md-component="logo">
+      
+  <img src="../../assets/logo.png" alt="logo">
+
+    </a>
+    Divijesh Varma
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          Linux
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Linux" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Linux
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_2_1" type="checkbox" id="__nav_2_1" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_1">
+          Editors
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Editors" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_1">
+          <span class="md-nav__icon md-icon"></span>
+          Editors
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/vi/" class="md-nav__link">
+        Vim
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/nano/" class="md-nav__link">
+        Nano
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_2_2" type="checkbox" id="__nav_2_2" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_2">
+          Notes
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Notes" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_2">
+          <span class="md-nav__icon md-icon"></span>
+          Notes
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/rhcsa/" class="md-nav__link">
+        Tritree
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/user/" class="md-nav__link">
+        User Management
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/acl/" class="md-nav__link">
+        Access control lists (ACLs)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/network/" class="md-nav__link">
+        Networking
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/ssh/" class="md-nav__link">
+        OpenSSH
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/process/" class="md-nav__link">
+        Process Management
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/software/" class="md-nav__link">
+        Software Management
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/systemd/" class="md-nav__link">
+        Systemd Management
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/cron/" class="md-nav__link">
+        Cron Jobs
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/logs/" class="md-nav__link">
+        Logs
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/disk/" class="md-nav__link">
+        Disk Management
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3">
+          RedHat
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="RedHat" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          RedHat
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+    
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_1" type="checkbox" id="__nav_3_1" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_1">
+          RHSA I (RH124)
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="RHSA I (RH124)" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_1">
+          <span class="md-nav__icon md-icon"></span>
+          RHSA I (RH124)
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../intro/" class="md-nav__link">
+        Introduction
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../access/" class="md-nav__link">
+        Accessing The Command Line
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../manage/" class="md-nav__link">
+        Managing Files From The Command Line
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../help/" class="md-nav__link">
+        Getting Help In Red Hat Enterprise Linux
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../edit/" class="md-nav__link">
+        Creating, Viewing, And Editing Text Files
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../users/" class="md-nav__link">
+        Managing Local Users And Groups
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../control/" class="md-nav__link">
+        Controlling Access To Files
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../monitor/" class="md-nav__link">
+        Monitoring And Managing Linux Processes
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../service/" class="md-nav__link">
+        Controlling Services And Daemons
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../secssh/" class="md-nav__link">
+        Configuring And Securing Ssh
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../store/" class="md-nav__link">
+        Analyzing And Storing Logs
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mannet/" class="md-nav__link">
+        Managing Networking
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../archiv/" class="md-nav__link">
+        Archiving And Transferring Files
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Installing And Updating Software Packages
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Installing And Updating Software Packages
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#registering-systems-for-red-hat-support" class="md-nav__link">
+    REGISTERING SYSTEMS FOR RED HAT SUPPORT
+  </a>
+  
+    <nav class="md-nav" aria-label="REGISTERING SYSTEMS FOR RED HAT SUPPORT">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#red-hat-subscription-management" class="md-nav__link">
+    RED HAT SUBSCRIPTION MANAGEMENT
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#registration-from-the-command-line" class="md-nav__link">
+    REGISTRATION FROM THE COMMAND LINE
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#entitlement-certificates" class="md-nav__link">
+    ENTITLEMENT CERTIFICATES
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#explaining-and-investigating-rpm-software-packages" class="md-nav__link">
+    EXPLAINING AND INVESTIGATING RPM SOFTWARE PACKAGES
+  </a>
+  
+    <nav class="md-nav" aria-label="EXPLAINING AND INVESTIGATING RPM SOFTWARE PACKAGES">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#software-packages-and-rpm" class="md-nav__link">
+    SOFTWARE PACKAGES AND RPM
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#examining-rpm-packages" class="md-nav__link">
+    EXAMINING RPM PACKAGES
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#installing-rpm-packages" class="md-nav__link">
+    INSTALLING RPM PACKAGES
+  </a>
+  
+    <nav class="md-nav" aria-label="INSTALLING RPM PACKAGES">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#summary-of-rpm-query-commands" class="md-nav__link">
+    SUMMARY OF RPM QUERY COMMANDS
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#installing-and-updating-software-packages-with-yum" class="md-nav__link">
+    INSTALLING AND UPDATING SOFTWARE PACKAGES WITH YUM
+  </a>
+  
+    <nav class="md-nav" aria-label="INSTALLING AND UPDATING SOFTWARE PACKAGES WITH YUM">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#managing-software-packages-with-yum" class="md-nav__link">
+    MANAGING SOFTWARE PACKAGES WITH YUM
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#summary-of-yum-commands" class="md-nav__link">
+    SUMMARY OF YUM COMMANDS
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#enabling-yum-software-repositories" class="md-nav__link">
+    ENABLING YUM SOFTWARE REPOSITORIES
+  </a>
+  
+    <nav class="md-nav" aria-label="ENABLING YUM SOFTWARE REPOSITORIES">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#enabling-red-hat-software-repositories" class="md-nav__link">
+    ENABLING RED HAT SOFTWARE REPOSITORIES
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#managing-package-module-streams" class="md-nav__link">
+    MANAGING PACKAGE MODULE STREAMS
+  </a>
+  
+    <nav class="md-nav" aria-label="MANAGING PACKAGE MODULE STREAMS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#introduction-to-application-stream" class="md-nav__link">
+    INTRODUCTION TO APPLICATION STREAM
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#modules" class="md-nav__link">
+    MODULES
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#managing-modules-using-yum" class="md-nav__link">
+    MANAGING MODULES USING YUM
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    SUMMARY
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../filsys/" class="md-nav__link">
+        Accessing Linux File Systems
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../support/" class="md-nav__link">
+        Analyzing Servers And Getting Support
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../review/" class="md-nav__link">
+        Comprehensive Review
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4">
+          English
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="English" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          English
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_4_1" type="checkbox" id="__nav_4_1" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_1">
+          Tutorial
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Tutorial" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_1">
+          <span class="md-nav__icon md-icon"></span>
+          Tutorial
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../english/vol1/" class="md-nav__link">
+        Vol-1
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../english/vol2/" class="md-nav__link">
+        Vol-2
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../english/vol3/" class="md-nav__link">
+        Vol-3
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../english/vol4/" class="md-nav__link">
+        Vol-4
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5">
+          Knowledge Base
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Knowledge Base" data-md-level="1">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          Knowledge Base
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_5_1" type="checkbox" id="__nav_5_1" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5_1">
+          The Basics
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="The Basics" data-md-level="2">
+        <label class="md-nav__title" for="__nav_5_1">
+          <span class="md-nav__icon md-icon"></span>
+          The Basics
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../basics/threat-modeling/" class="md-nav__link">
+        Threat Modeling
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../basics/dns/" class="md-nav__link">
+        Introduction to DNS
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../basics/multi-factor-authentication/" class="md-nav__link">
+        Multi-factor Authentication
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../basics/account-deletion/" class="md-nav__link">
+        Account Deletion
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_5_2" type="checkbox" id="__nav_5_2" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5_2">
+          Android
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Android" data-md-level="2">
+        <label class="md-nav__title" for="__nav_5_2">
+          <span class="md-nav__icon md-icon"></span>
+          Android
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../android/overview/" class="md-nav__link">
+        Android Overview
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../android/grapheneos-vs-calyxos/" class="md-nav__link">
+        GrapheneOS vs CalyxOS
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_5_3" type="checkbox" id="__nav_5_3" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5_3">
+          Linux
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Linux" data-md-level="2">
+        <label class="md-nav__title" for="__nav_5_3">
+          <span class="md-nav__icon md-icon"></span>
+          Linux
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux-desktop/overview/" class="md-nav__link">
+        Linux Overview
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux-desktop/hardening/" class="md-nav__link">
+        System Hardening
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux-desktop/sandboxing/" class="md-nav__link">
+        Application Sandboxing
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_5_4" type="checkbox" id="__nav_5_4" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5_4">
+          Advanced
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Advanced" data-md-level="2">
+        <label class="md-nav__title" for="__nav_5_4">
+          <span class="md-nav__icon md-icon"></span>
+          Advanced
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setup/integrating-metadata-removal/" class="md-nav__link">
+        Integrating Metadata Removal
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_6" type="checkbox" id="__nav_6" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6">
+          Recommendations
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Recommendations" data-md-level="1">
+        <label class="md-nav__title" for="__nav_6">
+          <span class="md-nav__icon md-icon"></span>
+          Recommendations
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tools/" class="md-nav__link">
+        Privacy Tools
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_6_2" type="checkbox" id="__nav_6_2" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6_2">
+          Browsers
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Browsers" data-md-level="2">
+        <label class="md-nav__title" for="__nav_6_2">
+          <span class="md-nav__icon md-icon"></span>
+          Browsers
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../browsers/" class="md-nav__link">
+        Web Browsers
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_6_3" type="checkbox" id="__nav_6_3" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6_3">
+          Operating Systems
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Operating Systems" data-md-level="2">
+        <label class="md-nav__title" for="__nav_6_3">
+          <span class="md-nav__icon md-icon"></span>
+          Operating Systems
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../android/" class="md-nav__link">
+        Android
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux-desktop/" class="md-nav__link">
+        Linux
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../qubes/" class="md-nav__link">
+        Qubes OS
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../router/" class="md-nav__link">
+        Router Firmware
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_6_4" type="checkbox" id="__nav_6_4" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6_4">
+          Providers
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Providers" data-md-level="2">
+        <label class="md-nav__title" for="__nav_6_4">
+          <span class="md-nav__icon md-icon"></span>
+          Providers
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cloud/" class="md-nav__link">
+        Cloud Storage
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dns/" class="md-nav__link">
+        DNS Resolvers
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../email/" class="md-nav__link">
+        Email Services
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../search-engines/" class="md-nav__link">
+        Search Engines
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vpn/" class="md-nav__link">
+        VPN Services
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_6_5" type="checkbox" id="__nav_6_5" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6_5">
+          Software
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Software" data-md-level="2">
+        <label class="md-nav__title" for="__nav_6_5">
+          <span class="md-nav__icon md-icon"></span>
+          Software
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../calendar-contacts/" class="md-nav__link">
+        Calendar and Contact Sync
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../notebooks/" class="md-nav__link">
+        Notebooks
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../email-clients/" class="md-nav__link">
+        Email Clients
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../encryption/" class="md-nav__link">
+        Encryption Software
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../file-sharing/" class="md-nav__link">
+        File Sharing and Sync
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../metadata-removal-tools/" class="md-nav__link">
+        Metadata Removal Tools
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../multi-factor-authentication/" class="md-nav__link">
+        Multi-Factor Authenticators
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../passwords/" class="md-nav__link">
+        Password Managers
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../productivity/" class="md-nav__link">
+        Productivity Tools
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../real-time-communication/" class="md-nav__link">
+        Real-Time Communication
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../news-aggregators/" class="md-nav__link">
+        News Aggregators
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../self-contained-networks/" class="md-nav__link">
+        Self-Contained Networks
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../video-streaming/" class="md-nav__link">
+        Video Streaming
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_7" type="checkbox" id="__nav_7" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_7">
+          About
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="About" data-md-level="1">
+        <label class="md-nav__title" for="__nav_7">
+          <span class="md-nav__icon md-icon"></span>
+          About
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/" class="md-nav__link">
+        Heading
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#registering-systems-for-red-hat-support" class="md-nav__link">
+    REGISTERING SYSTEMS FOR RED HAT SUPPORT
+  </a>
+  
+    <nav class="md-nav" aria-label="REGISTERING SYSTEMS FOR RED HAT SUPPORT">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#red-hat-subscription-management" class="md-nav__link">
+    RED HAT SUBSCRIPTION MANAGEMENT
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#registration-from-the-command-line" class="md-nav__link">
+    REGISTRATION FROM THE COMMAND LINE
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#entitlement-certificates" class="md-nav__link">
+    ENTITLEMENT CERTIFICATES
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#explaining-and-investigating-rpm-software-packages" class="md-nav__link">
+    EXPLAINING AND INVESTIGATING RPM SOFTWARE PACKAGES
+  </a>
+  
+    <nav class="md-nav" aria-label="EXPLAINING AND INVESTIGATING RPM SOFTWARE PACKAGES">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#software-packages-and-rpm" class="md-nav__link">
+    SOFTWARE PACKAGES AND RPM
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#examining-rpm-packages" class="md-nav__link">
+    EXAMINING RPM PACKAGES
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#installing-rpm-packages" class="md-nav__link">
+    INSTALLING RPM PACKAGES
+  </a>
+  
+    <nav class="md-nav" aria-label="INSTALLING RPM PACKAGES">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#summary-of-rpm-query-commands" class="md-nav__link">
+    SUMMARY OF RPM QUERY COMMANDS
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#installing-and-updating-software-packages-with-yum" class="md-nav__link">
+    INSTALLING AND UPDATING SOFTWARE PACKAGES WITH YUM
+  </a>
+  
+    <nav class="md-nav" aria-label="INSTALLING AND UPDATING SOFTWARE PACKAGES WITH YUM">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#managing-software-packages-with-yum" class="md-nav__link">
+    MANAGING SOFTWARE PACKAGES WITH YUM
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#summary-of-yum-commands" class="md-nav__link">
+    SUMMARY OF YUM COMMANDS
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#enabling-yum-software-repositories" class="md-nav__link">
+    ENABLING YUM SOFTWARE REPOSITORIES
+  </a>
+  
+    <nav class="md-nav" aria-label="ENABLING YUM SOFTWARE REPOSITORIES">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#enabling-red-hat-software-repositories" class="md-nav__link">
+    ENABLING RED HAT SOFTWARE REPOSITORIES
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#managing-package-module-streams" class="md-nav__link">
+    MANAGING PACKAGE MODULE STREAMS
+  </a>
+  
+    <nav class="md-nav" aria-label="MANAGING PACKAGE MODULE STREAMS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#introduction-to-application-stream" class="md-nav__link">
+    INTRODUCTION TO APPLICATION STREAM
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#modules" class="md-nav__link">
+    MODULES
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#managing-modules-using-yum" class="md-nav__link">
+    MANAGING MODULES USING YUM
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    SUMMARY
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+  
+
+
+
+
+  <h1>Installing And Updating Software Packages</h1>
+
+<h3 id="registering-systems-for-red-hat-support">REGISTERING SYSTEMS FOR RED HAT SUPPORT<a class="headerlink" href="#registering-systems-for-red-hat-support" title="Permanent link">&para;</a></h3>
+<h4 id="red-hat-subscription-management">RED HAT SUBSCRIPTION MANAGEMENT<a class="headerlink" href="#red-hat-subscription-management" title="Permanent link">&para;</a></h4>
+<p>Red Hat Subscription Management provides tools that can be used to entitle machines to product
+subscriptions, allowing administrators to get updates to software packages and track information
+about support contracts and subscriptions used by the systems. Standard tools such as <em>PackageKit</em>
+and <strong>yum</strong> can obtain software packages and updates through a content distribution network
+provided by Red Hat.</p>
+<p>There are four basic tasks performed with Red Hat Subscription Management tools:</p>
+<ul>
+<li>
+<p><strong>Register</strong> a system to associate that system to a Red Hat account. This allows Subscription
+Manager to uniquely inventory the system. When no longer in use, a system may be
+unregistered.</p>
+</li>
+<li>
+<p><strong>Subscribe</strong> a system to entitle it to updates for selected Red Hat products. Subscriptions have
+specific levels of support, expiration dates, and default repositories. The tools can be used to
+either auto-attach or select a specific entitlement. As needs change, subscriptions may be
+removed.</p>
+</li>
+<li>
+<p><strong>Enable repositories</strong> to provide software packages. Multiple repositories are enabled by default
+with each subscription, but other repositories such as updates or source code can be enabled or
+disabled as needed.</p>
+</li>
+<li>
+<p><strong>Review and track</strong> entitlements that are available or consumed. Subscription information can
+be viewed locally on a specific system or, for an account, in either the Red Hat Customer Portal
+Subscriptions page or the Subscription Asset Manager (SAM).</p>
+</li>
+</ul>
+<p><strong>Registering a System</strong></p>
+<p>There are a number of different ways to register a system with Red Hat Customer Portal. There is
+a graphical interface that you can access with a GNOME application or through the Web Console
+service, and there is a command-line tool.</p>
+<p>To register a system with the GNOME application, launch Red Hat Subscription Manager
+by selecting Activities. Type subscription in the Type to search... field and click on Red Hat
+Subscription Manager. Enter the appropriate password when prompted to authenticate. This
+displays the following Subscriptions window:</p>
+<p><img alt="The main window of Red Hat Subscription Manager" src="https://course.btech.id/media/markdownx/111a996b-7a21-4377-96b9-e9422177ee57.png" title="The main window of Red Hat Subscription Manager" /></p>
+<p>To register the system, click the Register button in the Subscriptions window. This displays the
+following dialog:</p>
+<p><img alt="The service location and account information dialog of Red Hat Subscription Manager" src="https://course.btech.id/media/markdownx/84090ec2-44e7-4cf4-bc72-fca1468b8c7c.png" title="The service location and account information dialog of Red Hat Subscription Manager" /></p>
+<p>This dialog box registers a system with a subscription server. By default, it registers the server
+to Red Hat Customer Portal. Provide the Login and Password for the Red Hat Customer Portal
+account to which the system should be registered, and click the Register button.</p>
+<p>When registered, the system automatically has a subscription attached if one is available.</p>
+<p>After the system is registered and a subscription has been assigned, close the Subscriptions
+window. The system is now properly subscribed and ready to receive updates or install new
+software from Red Hat.</p>
+<h4 id="registration-from-the-command-line">REGISTRATION FROM THE COMMAND LINE<a class="headerlink" href="#registration-from-the-command-line" title="Permanent link">&para;</a></h4>
+<p>Use the <strong>subscription-manager(8)</strong> to register a system without using a graphical environment.
+The <strong>subscription-manager</strong> command can automatically attach a system to the best-matched
+compatible subscriptions for the system.</p>
+<ul>
+<li>Register a system to a Red Hat account:</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ subscription-manager register --username<span class="o">=</span>yourusername --
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="nv">password</span><span class="o">=</span>yourpassword
+</code></pre></div>
+<ul>
+<li>View available subscriptions:</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ subscription-manager list --available <span class="p">|</span> less
+</code></pre></div>
+<ul>
+<li>Auto-attach a subscription:</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ subscription-manager attach --auto
+</code></pre></div>
+<ul>
+<li>Alternatively, attach a subscription from a specific pool from the list of available subscriptions:</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ subscription-manager attach --pool<span class="o">=</span>poolID
+</code></pre></div>
+<ul>
+<li>View consumed subscriptions:</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ subscription-manager list --consumed
+</code></pre></div>
+<ul>
+<li>Unregister a system:</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ subscription-manager unregister
+</code></pre></div>
+<div class="admonition info">
+<p class="admonition-title">NOTE</p>
+<p><strong>subscription-manager</strong> can also be used in conjunction with activation keys,
+allowing registration and assignment of predefined subscriptions, without using a
+username or password. This method of registration can be very useful for automated
+installations and deployments. Activation keys are often issued by an on-premise
+subscription management service, such as Subscription Asset Manager or Red Hat
+Satellite, and are not discussed in detail in this course.</p>
+</div>
+<h4 id="entitlement-certificates">ENTITLEMENT CERTIFICATES<a class="headerlink" href="#entitlement-certificates" title="Permanent link">&para;</a></h4>
+<p>An entitlement is a subscription that has been attached to a system. Digital certificates are used
+to store current information about entitlements on the local system. Once registered, entitlement
+certificates are stored in <strong>/etc/pki</strong> and its subdirectories.</p>
+<ul>
+<li>
+<p><strong>/etc/pki/product</strong> contains certificates indicating which Red Hat products are installed on
+the system.</p>
+</li>
+<li>
+<p><strong>/etc/pki/consumer</strong> contains certificates identifying the Red Hat account to which the system
+is registered.</p>
+</li>
+<li>
+<p><strong>/etc/pki/entitlement</strong> contains certificates indicating which subscriptions are attached to
+the system.</p>
+</li>
+</ul>
+<p>The certificates can be inspected with the <strong>rct</strong> utility directly, but the <strong>subscription-manager</strong>
+tools provide easier ways to examine the subscriptions attached to the system.</p>
+<h3 id="explaining-and-investigating-rpm-software-packages">EXPLAINING AND INVESTIGATING RPM SOFTWARE PACKAGES<a class="headerlink" href="#explaining-and-investigating-rpm-software-packages" title="Permanent link">&para;</a></h3>
+<h4 id="software-packages-and-rpm">SOFTWARE PACKAGES AND RPM<a class="headerlink" href="#software-packages-and-rpm" title="Permanent link">&para;</a></h4>
+<p>The RPM Package Manager, originally developed by Red Hat, provides a standard way to package
+software for distribution. Managing software in the form of RPM packages is much simpler than
+working with software that has simply been extracted into a file system from an archive. It lets
+administrators track which files were installed by the software package and which ones need to be
+removed if it is uninstalled, and check to ensure that supporting packages are present when it is
+installed. Information about installed packages is stored in a local RPM database on each system.
+All software provided by Red Hat for Red Hat Enterprise Linux is provided as an RPM package.</p>
+<p>RPM package files names consist of four elements (plus the <strong>.rpm</strong> suffix): <strong>name-version-
+release.architecture</strong>:</p>
+<p><img alt="RPM file name elements" src="https://course.btech.id/media/markdownx/98c5233a-3127-40c2-9730-75b182090127.png" title="RPM file name elements" /></p>
+<ul>
+<li>
+<p>NAME is one or more words describing the contents (coreutils).</p>
+</li>
+<li>
+<p>VERSION is the version number of the original software (8.30).</p>
+</li>
+<li>
+<p>RELEASE is the release number of the package based on that version, and is set by the packager,
+who might not be the original software developer (4.el8).</p>
+</li>
+<li>
+<p>ARCH is the processor architecture the package was compiled to run on. <strong>noarch</strong> indicates
+that this package's contents are not architecture-specific (as opposed to <strong>x86_64</strong> for 64-bit,
+<strong>aarch64</strong> for 64-bit ARM, and so on).</p>
+</li>
+</ul>
+<p>Only the package name is required for installing packages from repositories. If multiple versions
+exist, the package with the higher version number is installed. If multiple releases of a single
+version exist, the package with the higher release number is installed.</p>
+<p>Each RPM package is a special archive made up of three components:</p>
+<ul>
+<li>
+<p>The files installed by the package.</p>
+</li>
+<li>
+<p>Information about the package (metadata), such as the name, version, release, and arch; a
+summary and description of the package; whether it requires other packages to be installed;
+licensing; a package change log; and other details.</p>
+</li>
+<li>
+<p>Scripts that may run when this package is installed, updated, or removed, or are triggered when
+other packages are installed, updated, or removed.</p>
+</li>
+</ul>
+<p>Typically, software providers digitally sign RPM packages using GPG keys (Red Hat digitally
+signs all packages it releases). The RPM system verifies package integrity by confirming that the
+package was signed by the appropriate GPG key. The RPM system refuses to install a package if
+the GPG signature does not match.</p>
+<p><strong>Updating Software with RPM Packages</strong></p>
+<p>Red Hat generates a complete RPM package to update software. An administrator installing that
+package gets only the most recent version of the package. Red Hat does not require that older
+packages be installed and then patched. To update software, RPM removes the older version of the
+package and installs the new version. Updates usually retain configuration files, but the packager
+of the new version defines the exact behavior.</p>
+<p>In most cases, only one version or release of a package may be installed at a time. However, if a
+package is built so that there are no conflicting file names, then multiple versions may be installed.
+The most important example of this is the <strong>kernel</strong> package. Since a new kernel can only be tested
+by booting to that kernel, the package is specifically designed so that multiple versions may be
+installed at once. If the new kernel fails to boot, the old kernel is still available and bootable.</p>
+<h4 id="examining-rpm-packages">EXAMINING RPM PACKAGES<a class="headerlink" href="#examining-rpm-packages" title="Permanent link">&para;</a></h4>
+<p>The <strong>rpm</strong> utility is a low-level tool that can get information about the contents of package files
+and installed packages. By default, it gets information from the local database of installed
+packages. However, you can use the <strong>-p</strong> option to specify that you want to get information about a
+downloaded package file. You might want to do this in order to inspect the contents of the package
+file before installing it.</p>
+<p>The general form of a query is:</p>
+<ul>
+<li><strong>rpm -q [select-options] [query-options</strong>]</li>
+</ul>
+<p><strong>RPM queries: General information about installed packages</strong></p>
+<ul>
+<li>
+<p><strong>rpm -qa:</strong> List all installed packages</p>
+</li>
+<li>
+<p><strong>rpm -qf FILENAME:</strong> Find out what package provides FILENAME</p>
+</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ rpm -qf /etc/yum.repos.d
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>redhat-release-8.0-0.39.el8.x86_64
+</code></pre></div>
+<p><strong>RPM queries: Information about specific packages</strong></p>
+<ul>
+<li><strong>rpm -q:</strong> List what version of the package is currently installed</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ rpm -q yum
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>yum-4.0.9.2-4.el8.noarch
+</code></pre></div>
+<ul>
+<li>
+<p><strong>rpm -qi:</strong> Get detailed information about the package</p>
+</li>
+<li>
+<p><strong>rpm -ql:</strong> List the files installed by the package</p>
+</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ rpm -ql yum
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>/etc/yum.conf
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>/etc/yum/pluginconf.d
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>/etc/yum/protected.d
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>/etc/yum/vars
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>/usr/bin/yum
+<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>/usr/share/man/man1/yum-aliases.1.gz
+<a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a>/usr/share/man/man5/yum.conf.5.gz
+<a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a>/usr/share/man/man8/yum-shell.8.gz
+<a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a>/usr/share/man/man8/yum.8.gz
+</code></pre></div>
+<ul>
+<li><strong>rpm -qc:</strong> List just the configuration files installed by the package</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ rpm -qc openssh-clients
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>/etc/ssh/ssh_config
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>/etc/ssh/ssh_config.d/05-redhat.conf
+</code></pre></div>
+<ul>
+<li><strong>rpm -qd:</strong> List just the documentation files installed by the package</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ rpm -qd openssh-clients
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>/usr/share/man/man1/scp.1.gz
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>/usr/share/man/man1/sftp.1.gz
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>/usr/share/man/man1/ssh-add.1.gz
+<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>/usr/share/man/man1/ssh-agent.1.gz
+<a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>/usr/share/man/man1/ssh-copy-id.1.gz
+<a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a>/usr/share/man/man1/ssh-keyscan.1.gz
+<a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a>/usr/share/man/man1/ssh.1.gz
+<a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a>/usr/share/man/man5/ssh_config.5.gz
+<a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a>/usr/share/man/man8/ssh-pkcs11-helper.8.gz
+</code></pre></div>
+<ul>
+<li><strong>rpm -q --scripts:</strong> List shell scripts that run before or after the package is installed or
+removed</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ rpm -q --scripts openssh-server
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>preinstall scriptlet <span class="o">(</span>using /bin/sh<span class="o">)</span>:
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>getent group sshd &gt;/dev/null <span class="o">||</span> groupadd -g <span class="m">74</span> -r sshd <span class="o">||</span> :
+<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>getent passwd sshd &gt;/dev/null <span class="o">||</span> <span class="se">\</span>
+<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>  useradd -c <span class="s2">&quot;Privilege-separated SSH&quot;</span> -u <span class="m">74</span> -g sshd <span class="se">\</span>
+<a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a>  -s /sbin/nologin -r -d /var/empty/sshd sshd <span class="m">2</span>&gt; /dev/null <span class="o">||</span> :
+<a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a>postinstall scriptlet <span class="o">(</span>using /bin/sh<span class="o">)</span>:
+<a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a><span class="k">if</span> <span class="o">[</span> <span class="nv">$1</span> -eq <span class="m">1</span> <span class="o">]</span> <span class="p">;</span> <span class="k">then</span> 
+<a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a>        <span class="c1"># Initial installation </span>
+<a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a>        /usr/bin/systemctl preset sshd.service sshd.socket &gt;/dev/null <span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span> <span class="o">||</span> : 
+<a id="__codelineno-11-11" name="__codelineno-11-11" href="#__codelineno-11-11"></a><span class="k">fi</span>
+<a id="__codelineno-11-12" name="__codelineno-11-12" href="#__codelineno-11-12"></a>preuninstall scriptlet <span class="o">(</span>using /bin/sh<span class="o">)</span>:
+<a id="__codelineno-11-13" name="__codelineno-11-13" href="#__codelineno-11-13"></a><span class="k">if</span> <span class="o">[</span> <span class="nv">$1</span> -eq <span class="m">0</span> <span class="o">]</span> <span class="p">;</span> <span class="k">then</span> 
+<a id="__codelineno-11-14" name="__codelineno-11-14" href="#__codelineno-11-14"></a>        <span class="c1"># Package removal, not upgrade </span>
+<a id="__codelineno-11-15" name="__codelineno-11-15" href="#__codelineno-11-15"></a>        /usr/bin/systemctl --no-reload disable sshd.service sshd.socket &gt; /dev/
+<a id="__codelineno-11-16" name="__codelineno-11-16" href="#__codelineno-11-16"></a>null <span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span> <span class="o">||</span> : 
+<a id="__codelineno-11-17" name="__codelineno-11-17" href="#__codelineno-11-17"></a>        /usr/bin/systemctl stop sshd.service sshd.socket &gt; /dev/null <span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span> <span class="o">||</span> : 
+<a id="__codelineno-11-18" name="__codelineno-11-18" href="#__codelineno-11-18"></a><span class="k">fi</span>
+<a id="__codelineno-11-19" name="__codelineno-11-19" href="#__codelineno-11-19"></a>postuninstall scriptlet <span class="o">(</span>using /bin/sh<span class="o">)</span>:
+<a id="__codelineno-11-20" name="__codelineno-11-20" href="#__codelineno-11-20"></a>/usr/bin/systemctl daemon-reload &gt;/dev/null <span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span> <span class="o">||</span> : 
+<a id="__codelineno-11-21" name="__codelineno-11-21" href="#__codelineno-11-21"></a><span class="k">if</span> <span class="o">[</span> <span class="nv">$1</span> -ge <span class="m">1</span> <span class="o">]</span> <span class="p">;</span> <span class="k">then</span> 
+<a id="__codelineno-11-22" name="__codelineno-11-22" href="#__codelineno-11-22"></a>        <span class="c1"># Package upgrade, not uninstall </span>
+<a id="__codelineno-11-23" name="__codelineno-11-23" href="#__codelineno-11-23"></a>        /usr/bin/systemctl try-restart sshd.service &gt;/dev/null <span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span> <span class="o">||</span> : 
+<a id="__codelineno-11-24" name="__codelineno-11-24" href="#__codelineno-11-24"></a><span class="k">fi</span>
+</code></pre></div>
+<ul>
+<li><strong>rpm -q --changelog:</strong> list change information for the package</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ rpm -q --changelog audit
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>* Wed Jan <span class="m">09</span> <span class="m">2019</span> Steve Grubb &lt;sgrubb@redhat.com&gt; <span class="m">3</span>.0-0.10.20180831git0047a6c
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>resolves: rhbz#1655270<span class="o">]</span> Message <span class="s2">&quot;audit: backlog limit exceeded&quot;</span> reported
+<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>- Fix annobin failure
+<a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>* Fri Dec <span class="m">07</span> <span class="m">2018</span> Steve Grubb &lt;sgrubb@redhat.com&gt; <span class="m">3</span>.0-0.8.20180831git0047a6c
+<a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a>resolves: rhbz#1639745 - build requires go-toolset-7 which is not available
+<a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a>resolves: rhbz#1643567 - service auditd stop exits prematurely
+<a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a>resolves: rhbz#1616428 - Update git snapshot of audit package
+<a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a>- Remove static libs subpackage
+<a id="__codelineno-12-10" name="__codelineno-12-10" href="#__codelineno-12-10"></a>...output omitted...
+</code></pre></div>
+<p>Querying local package files:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ ls -l wonderwidgets-1.0-4.x86_64.rpm
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>-rw-rw-r--. <span class="m">1</span> user user <span class="m">257</span> Mar <span class="m">13</span> <span class="m">20</span>:06 wonderwidgets-1.0-4.x86_64.rpm
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ rpm -qlp wonderwidgets-1.0-4.x86_64.rpm
+<a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>/etc/wonderwidgets.conf
+<a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a>/usr/bin/wonderwidgets
+<a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a>/usr/share/doc/wonderwidgets-1.0
+<a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a>/usr/share/doc/wonderwidgets-1.0/README.txt
+</code></pre></div>
+<h3 id="installing-rpm-packages">INSTALLING RPM PACKAGES<a class="headerlink" href="#installing-rpm-packages" title="Permanent link">&para;</a></h3>
+<p>The <strong>rpm</strong> command can also be used to install an RPM package that you have downloaded to your
+local directory.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># rpm -ivh wonderwidgets-1.0-4.x86_64.rpm</span>
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>Verifying...                          <span class="c1">################################# [100%]</span>
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>Preparing...                          <span class="c1">################################# [100%]</span>
+<a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a>Updating / installing...
+<a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a>   <span class="m">1</span>:wonderwidgets-1.0-4              <span class="c1">################################# [100%]</span>
+<a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># </span>
+</code></pre></div>
+<p>However, the next section of this chapter will discuss a more powerful tool for managing RPM
+installation and updates from the command line, <strong>yum</strong>.</p>
+<div class="admonition danger">
+<p class="admonition-title">WARNING</p>
+<p>Be careful when installing packages from third parties, not just because of the
+software that they may install, but because the RPM package may include arbitrary
+scripts that run as the root user as part of the installation process.</p>
+</div>
+<div class="admonition info">
+<p class="admonition-title">NOTE</p>
+<p>You can extract files from an RPM package file without installing the package. The
+<strong>rpm2cpio</strong> utility can pass the contents of the RPM to a special archiving tool called
+<strong>cpio</strong>, which can extract all files or individual files.
+Pipe the output of <strong>rpm2cpio PACKAGEFILE.rpm</strong> into <strong>cpio -id</strong>, to extract all
+files stored in the RPM package. Subdirectory trees are created as needed, relative
+to the current working directory.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="o">[</span>user@host tmp-extract<span class="o">]</span>$ rpm2cpio wonderwidgets-1.0-4.x86_64.rpm <span class="p">|</span> cpio -id
+</code></pre></div>
+<p>Individual files are extracted by specifying the path of the file:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ rpm2cpio wonderwidgets-1.0-4.x86_64.rpm <span class="p">|</span> cpio -id <span class="s2">&quot;*txt&quot;</span>
+<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="m">11</span> blocks
+<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ ls -l usr/share/doc/wonderwidgets-1.0/
+<a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a>total <span class="m">4</span>
+<a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a>-rw-r--r--. <span class="m">1</span> user user <span class="m">76</span> Feb <span class="m">13</span> <span class="m">19</span>:27 README.txt
+</code></pre></div>
+</div>
+<h4 id="summary-of-rpm-query-commands">SUMMARY OF RPM QUERY COMMANDS<a class="headerlink" href="#summary-of-rpm-query-commands" title="Permanent link">&para;</a></h4>
+<p>Installed packages can be queried directly with the <strong>rpm</strong> command. Add the <strong>-p</strong> option to query a
+package file before installation.</p>
+<table>
+<thead>
+<tr>
+<th align="left">COMMAND</th>
+<th align="left">TASK</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">rpm -qa</td>
+<td align="left">List all RPM packages currently installed</td>
+</tr>
+<tr>
+<td align="left">rpm -q NAME</td>
+<td align="left">Display the version of NAME installed on the system</td>
+</tr>
+<tr>
+<td align="left">rpm -qi NAME</td>
+<td align="left">Display detailed information about a package</td>
+</tr>
+<tr>
+<td align="left">rpm -ql NAME</td>
+<td align="left">List all files included in a package</td>
+</tr>
+<tr>
+<td align="left">rpm -qc NAME</td>
+<td align="left">List configuration files included in a package</td>
+</tr>
+<tr>
+<td align="left">rpm -qd NAME</td>
+<td align="left">List documentation files included in a package</td>
+</tr>
+<tr>
+<td align="left">rpm -q --changelog NAME</td>
+<td align="left">Show a short summary of the reason for a new package release</td>
+</tr>
+<tr>
+<td align="left">rpm -q --scripts NAME</td>
+<td align="left">Display the shell scripts run on package installation, upgrade, or removal</td>
+</tr>
+</tbody>
+</table>
+<h3 id="installing-and-updating-software-packages-with-yum">INSTALLING AND UPDATING SOFTWARE PACKAGES WITH YUM<a class="headerlink" href="#installing-and-updating-software-packages-with-yum" title="Permanent link">&para;</a></h3>
+<h4 id="managing-software-packages-with-yum">MANAGING SOFTWARE PACKAGES WITH YUM<a class="headerlink" href="#managing-software-packages-with-yum" title="Permanent link">&para;</a></h4>
+<p>The low-level <strong>rpm</strong> command can be used to install packages, but it is not designed to work with
+package repositories or resolve dependencies from multiple sources automatically.</p>
+<p>Yum is designed to be a better system for managing RPM-based software installation and updates.
+The <strong>yum</strong> command allows you to install, update, remove, and get information about software
+packages and their dependencies. You can get a history of transactions performed and work with
+multiple Red Hat and third-party software repositories.</p>
+<p><strong>Finding Software with Yum</strong></p>
+<ul>
+<li>
+<p><strong>yum help</strong> displays usage information.</p>
+</li>
+<li>
+<p><strong>yum list</strong> displays installed and available packages.</p>
+</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ yum list <span class="s1">&#39;http*&#39;</span>
+<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>Available Packages
+<a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>http-parser.i686              <span class="m">2</span>.8.0-2.el8                        rhel8-appstream
+<a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a>http-parser.x86_64            <span class="m">2</span>.8.0-2.el8                        rhel8-appstream
+<a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a>httpcomponents-client.noarch  <span class="m">4</span>.5.5-4.module+el8+2452+b359bfcd   rhel8-appstream
+<a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a>httpcomponents-core.noarch    <span class="m">4</span>.4.10-3.module+el8+2452+b359bfcd  rhel8-appstream
+<a id="__codelineno-17-7" name="__codelineno-17-7" href="#__codelineno-17-7"></a>httpd.x86_64                  <span class="m">2</span>.4.37-7.module+el8+2443+605475b7  rhel8-appstream
+<a id="__codelineno-17-8" name="__codelineno-17-8" href="#__codelineno-17-8"></a>httpd-devel.x86_64            <span class="m">2</span>.4.37-7.module+el8+2443+605475b7  rhel8-appstream
+<a id="__codelineno-17-9" name="__codelineno-17-9" href="#__codelineno-17-9"></a>httpd-filesystem.noarch       <span class="m">2</span>.4.37-7.module+el8+2443+605475b7  rhel8-appstream
+<a id="__codelineno-17-10" name="__codelineno-17-10" href="#__codelineno-17-10"></a>httpd-manual.noarch           <span class="m">2</span>.4.37-7.module+el8+2443+605475b7  rhel8-appstream
+<a id="__codelineno-17-11" name="__codelineno-17-11" href="#__codelineno-17-11"></a>httpd-tools.x86_64            <span class="m">2</span>.4.37-7.module+el8+2443+605475b7  rhel8-appstream
+</code></pre></div>
+<ul>
+<li><strong>yum search KEYWORD</strong> lists packages by keywords found in the name and summary fields only.</li>
+</ul>
+<p>To search for packages that have “web server” in their name, summary, and description fields,
+use <strong>search all</strong>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ yum search all <span class="s1">&#39;web server&#39;</span>
+<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="o">=================</span> Summary <span class="p">&amp;</span> Description Matched: web <span class="nv">server</span> <span class="o">====================</span>
+<a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a>pcp-pmda-weblog.x86_64 : Performance Co-Pilot <span class="o">(</span>PCP<span class="o">)</span> metrics from web server logs
+<a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a>nginx.x86_64 : A high performance web server and reverse proxy <span class="nv">server</span>
+<a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a><span class="o">========================</span> Summary Matched: web <span class="nv">server</span> <span class="o">===========================</span>
+<a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a>libcurl.x86_64 : A library <span class="k">for</span> getting files from web servers
+<a id="__codelineno-18-7" name="__codelineno-18-7" href="#__codelineno-18-7"></a>libcurl.i686 : A library <span class="k">for</span> getting files from web servers
+<a id="__codelineno-18-8" name="__codelineno-18-8" href="#__codelineno-18-8"></a>libcurl.x86_64 : A library <span class="k">for</span> getting files from web <span class="nv">servers</span>
+<a id="__codelineno-18-9" name="__codelineno-18-9" href="#__codelineno-18-9"></a><span class="o">======================</span> Description Matched: web <span class="nv">server</span> <span class="o">=========================</span>
+<a id="__codelineno-18-10" name="__codelineno-18-10" href="#__codelineno-18-10"></a>httpd.x86_64 : Apache HTTP Server
+<a id="__codelineno-18-11" name="__codelineno-18-11" href="#__codelineno-18-11"></a>git-instaweb.x86_64 : Repository browser <span class="k">in</span> gitweb
+<a id="__codelineno-18-12" name="__codelineno-18-12" href="#__codelineno-18-12"></a>...output omitted...
+</code></pre></div>
+<ul>
+<li><strong>yum info PACKAGENAME</strong> returns detailed information about a package, including the disk
+space needed for installation.</li>
+</ul>
+<p>To get information on the Apache HTTP Server:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ yum info httpd
+<a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>Available Packages
+<a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a>Name         : httpd
+<a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a>Version      : <span class="m">2</span>.4.37
+<a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a>Release      : <span class="m">7</span>.module+el8+2443+605475b7
+<a id="__codelineno-19-6" name="__codelineno-19-6" href="#__codelineno-19-6"></a>Arch         : x86_64
+<a id="__codelineno-19-7" name="__codelineno-19-7" href="#__codelineno-19-7"></a>Size         : <span class="m">1</span>.4 M
+<a id="__codelineno-19-8" name="__codelineno-19-8" href="#__codelineno-19-8"></a>Source       : httpd-2.4.37-7.module+el8+2443+605475b7.src.rpm
+<a id="__codelineno-19-9" name="__codelineno-19-9" href="#__codelineno-19-9"></a>Repo         : rhel8-appstream
+<a id="__codelineno-19-10" name="__codelineno-19-10" href="#__codelineno-19-10"></a>Summary      : Apache HTTP Server
+<a id="__codelineno-19-11" name="__codelineno-19-11" href="#__codelineno-19-11"></a>URL          : https://httpd.apache.org/
+<a id="__codelineno-19-12" name="__codelineno-19-12" href="#__codelineno-19-12"></a>License      : ASL <span class="m">2</span>.0
+<a id="__codelineno-19-13" name="__codelineno-19-13" href="#__codelineno-19-13"></a>Description  : The Apache HTTP Server is a powerful, efficient, and extensible
+<a id="__codelineno-19-14" name="__codelineno-19-14" href="#__codelineno-19-14"></a>             : web server.
+</code></pre></div>
+<ul>
+<li><strong>yum provides PATHNAME</strong> displays packages that match the path name specified (which often
+include wildcard characters).</li>
+</ul>
+<p>To find packages that provide the <strong>/var/www/html</strong> directory, use:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ yum provides /var/www/html
+<a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>httpd-filesystem-2.4.37-7.module+el8+2443+605475b7.noarch : The basic directory
+<a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a> layout <span class="k">for</span> the Apache HTTP server
+<a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a>Repo        : rhel8-appstream
+<a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a>Matched from:
+<a id="__codelineno-20-6" name="__codelineno-20-6" href="#__codelineno-20-6"></a>Filename    : /var/www/html
+</code></pre></div>
+<p><strong>Installing and removing software with yum</strong></p>
+<ul>
+<li><strong>yum install PACKAGENAME</strong> obtains and installs a software package, including any
+dependencies.</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ yum install httpd
+<a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a>Dependencies resolved.
+<a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a><span class="o">================================================================================</span>
+<a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a> Package                  Arch       Version             Repository        <span class="nv">Size</span>
+<a id="__codelineno-21-5" name="__codelineno-21-5" href="#__codelineno-21-5"></a><span class="o">================================================================================</span>
+<a id="__codelineno-21-6" name="__codelineno-21-6" href="#__codelineno-21-6"></a>Installing:
+<a id="__codelineno-21-7" name="__codelineno-21-7" href="#__codelineno-21-7"></a> httpd                    x86_64     <span class="m">2</span>.4.37-7.module...  rhel8-appstream   <span class="m">1</span>.4 M
+<a id="__codelineno-21-8" name="__codelineno-21-8" href="#__codelineno-21-8"></a>Installing dependencies:
+<a id="__codelineno-21-9" name="__codelineno-21-9" href="#__codelineno-21-9"></a> apr                      x86_64     <span class="m">1</span>.6.3-8.el8         rhel8-appstream   <span class="m">125</span> k
+<a id="__codelineno-21-10" name="__codelineno-21-10" href="#__codelineno-21-10"></a> apr-util                 x86_64     <span class="m">1</span>.6.1-6.el8         rhel8-appstream   <span class="m">105</span> k
+<a id="__codelineno-21-11" name="__codelineno-21-11" href="#__codelineno-21-11"></a>...output omitted...
+<a id="__codelineno-21-12" name="__codelineno-21-12" href="#__codelineno-21-12"></a>Transaction <span class="nv">Summary</span>
+<a id="__codelineno-21-13" name="__codelineno-21-13" href="#__codelineno-21-13"></a><span class="o">================================================================================</span>
+<a id="__codelineno-21-14" name="__codelineno-21-14" href="#__codelineno-21-14"></a>Install  <span class="m">9</span> Packages
+<a id="__codelineno-21-15" name="__codelineno-21-15" href="#__codelineno-21-15"></a>Total download size: <span class="m">2</span>.0 M
+<a id="__codelineno-21-16" name="__codelineno-21-16" href="#__codelineno-21-16"></a>Installed size: <span class="m">5</span>.4 M
+<a id="__codelineno-21-17" name="__codelineno-21-17" href="#__codelineno-21-17"></a>Is this ok <span class="o">[</span>y/N<span class="o">]</span>: y
+<a id="__codelineno-21-18" name="__codelineno-21-18" href="#__codelineno-21-18"></a>Downloading Packages:
+<a id="__codelineno-21-19" name="__codelineno-21-19" href="#__codelineno-21-19"></a><span class="o">(</span><span class="m">1</span>/9<span class="o">)</span>: apr-util-bdb-1.6.1-6.el8.x86_64.rpm           <span class="m">464</span> kB/s <span class="p">|</span>  <span class="m">25</span> kB     <span class="m">00</span>:00
+<a id="__codelineno-21-20" name="__codelineno-21-20" href="#__codelineno-21-20"></a><span class="o">(</span><span class="m">2</span>/9<span class="o">)</span>: apr-1.6.3-8.el8.x86_64.rpm                    <span class="m">1</span>.9 MB/s <span class="p">|</span> <span class="m">125</span> kB     <span class="m">00</span>:00
+<a id="__codelineno-21-21" name="__codelineno-21-21" href="#__codelineno-21-21"></a><span class="o">(</span><span class="m">3</span>/9<span class="o">)</span>: apr-util-1.6.1-6.el8.x86_64.rpm               <span class="m">1</span>.3 MB/s <span class="p">|</span> <span class="m">105</span> kB     <span class="m">00</span>:00
+<a id="__codelineno-21-22" name="__codelineno-21-22" href="#__codelineno-21-22"></a>...output omitted...
+<a id="__codelineno-21-23" name="__codelineno-21-23" href="#__codelineno-21-23"></a>Total                                                <span class="m">8</span>.6 MB/s <span class="p">|</span> <span class="m">2</span>.0 MB     <span class="m">00</span>:00
+<a id="__codelineno-21-24" name="__codelineno-21-24" href="#__codelineno-21-24"></a>Running transaction check
+<a id="__codelineno-21-25" name="__codelineno-21-25" href="#__codelineno-21-25"></a>Transaction check succeeded.
+<a id="__codelineno-21-26" name="__codelineno-21-26" href="#__codelineno-21-26"></a>Running transaction <span class="nb">test</span>
+<a id="__codelineno-21-27" name="__codelineno-21-27" href="#__codelineno-21-27"></a>Transaction <span class="nb">test</span> succeeded.
+<a id="__codelineno-21-28" name="__codelineno-21-28" href="#__codelineno-21-28"></a>Running transaction
+<a id="__codelineno-21-29" name="__codelineno-21-29" href="#__codelineno-21-29"></a>  Preparing        :                                                         <span class="m">1</span>/1
+<a id="__codelineno-21-30" name="__codelineno-21-30" href="#__codelineno-21-30"></a>  Installing       : apr-1.6.3-8.el8.x86_64                                  <span class="m">1</span>/9
+<a id="__codelineno-21-31" name="__codelineno-21-31" href="#__codelineno-21-31"></a>  Running scriptlet: apr-1.6.3-8.el8.x86_64                                  <span class="m">1</span>/9
+<a id="__codelineno-21-32" name="__codelineno-21-32" href="#__codelineno-21-32"></a>  Installing       : apr-util-bdb-1.6.1-6.el8.x86_64                         <span class="m">2</span>/9
+<a id="__codelineno-21-33" name="__codelineno-21-33" href="#__codelineno-21-33"></a>...output omitted...
+<a id="__codelineno-21-34" name="__codelineno-21-34" href="#__codelineno-21-34"></a>Installed:
+<a id="__codelineno-21-35" name="__codelineno-21-35" href="#__codelineno-21-35"></a>  httpd-2.4.37-7.module+el8+2443+605475b7.x86_64 apr-util-bdb-1.6.1-6.el8.x86_64
+<a id="__codelineno-21-36" name="__codelineno-21-36" href="#__codelineno-21-36"></a>  apr-util-openssl-1.6.1-6.el8.x86_64            apr-1.6.3-8.el8.x86_64
+<a id="__codelineno-21-37" name="__codelineno-21-37" href="#__codelineno-21-37"></a>...output omitted...
+<a id="__codelineno-21-38" name="__codelineno-21-38" href="#__codelineno-21-38"></a>Complete!
+</code></pre></div>
+<ul>
+<li><strong>yum update PACKAGENAME</strong> obtains and installs a newer version of the specified package,
+including any dependencies. Generally the process tries to preserve configuration files in place,
+but in some cases, they may be renamed if the packager thinks the old one will not work after the
+update. With no PACKAGENAME specified, it installs all relevant updates.</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ sudo yum update
+</code></pre></div>
+<p>Since a new kernel can only be tested by booting to that kernel, the package is specifically
+designed so that multiple versions may be installed at once. If the new kernel fails to boot, the
+old kernel is still available. Using <strong>yum update kernel</strong> will actually install the new kernel. The
+configuration files hold a list of packages to always install even if the administrator requests an
+update.</p>
+<div class="admonition info">
+<p class="admonition-title">NOTE</p>
+<p>Use <strong>yum list kernel</strong> to list all installed and available kernels. To view the
+currently running kernel, use the <strong>uname</strong> command. The -r option only shows
+the kernel version and release, and the <strong>-a</strong> option shows the kernel release and
+additional information.</p>
+<p>[user@host ~]$ yum list kernel
+Installed Packages
+kernel.x86_64         4.18.0-60.el8         @anaconda
+kernel.x86_64         4.18.0-67.el8         @rhel-8-for-x86_64-baseos-htb-rpms
+[user@host ~]$ uname -r
+4.18.0-60.el8.x86_64
+[user@host ~]$ uname -a
+Linux host.lab.example.com 4.18.0-60.el8.x86_64 #1 SMP Fri Jan 11 19:08:11 UTC
+2019 x86_64 x86_64 x86_64 GNU/Linux</p>
+</div>
+<ul>
+<li><strong>yum remove PACKAGENAME</strong> removes an installed software package, including any supported
+packages.</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ sudo yum remove httpd
+</code></pre></div>
+<div class="admonition danger">
+<p class="admonition-title">WARNING</p>
+<p>The <strong>yum remove</strong> command removes the packages listed and any package that
+requires the packages being removed (and packages which require those packages,
+and so on). This can lead to unexpected removal of packages, so carefully review the
+list of packages to be removed.</p>
+</div>
+<p><strong>Installing and removing groups of software with yum</strong></p>
+<ul>
+<li><strong>yum</strong> also has the concept of groups, which are collections of related software installed together
+for a particular purpose. In Red Hat Enterprise Linux 8, there are two kinds of groups. Regular
+groups are collections of packages. Environment groups are collections of regular groups. The
+packages or groups provided by a group may be <strong>mandatory</strong> (they must be installed if the group
+is installed), <strong>default</strong> (normally installed if the group is installed), or <strong>optional</strong> (not installed
+when the group is installed, unless specifically requested).</li>
+</ul>
+<p>Like <strong>yum list</strong>, the <strong>yum group list</strong> command shows the names of installed and available
+groups.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ yum group list
+<a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a>Available Environment Groups:
+<a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a>   Server with GUI
+<a id="__codelineno-24-4" name="__codelineno-24-4" href="#__codelineno-24-4"></a>   Minimal Install
+<a id="__codelineno-24-5" name="__codelineno-24-5" href="#__codelineno-24-5"></a>   Server
+<a id="__codelineno-24-6" name="__codelineno-24-6" href="#__codelineno-24-6"></a>...output omitted...
+<a id="__codelineno-24-7" name="__codelineno-24-7" href="#__codelineno-24-7"></a>Available Groups:
+<a id="__codelineno-24-8" name="__codelineno-24-8" href="#__codelineno-24-8"></a>   Container Management
+<a id="__codelineno-24-9" name="__codelineno-24-9" href="#__codelineno-24-9"></a>   .NET Core Development
+<a id="__codelineno-24-10" name="__codelineno-24-10" href="#__codelineno-24-10"></a>   RPM Development Tools
+<a id="__codelineno-24-11" name="__codelineno-24-11" href="#__codelineno-24-11"></a>...output omitted...
+</code></pre></div>
+<p>Some groups are normally installed through environment groups and are hidden by default. List
+these hidden groups with the <strong>yum group list hidden</strong> command.</p>
+<ul>
+<li><strong>yum group info</strong> displays information about a group. It includes a list of mandatory, default,
+and optional package names.</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ yum group info <span class="s2">&quot;RPM Development Tools&quot;</span>
+<a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a>Group: RPM Development Tools
+<a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a> Description: These tools include core development tools such rpmbuild.
+<a id="__codelineno-25-4" name="__codelineno-25-4" href="#__codelineno-25-4"></a>  Mandatory Packages:
+<a id="__codelineno-25-5" name="__codelineno-25-5" href="#__codelineno-25-5"></a>    redhat-rpm-config
+<a id="__codelineno-25-6" name="__codelineno-25-6" href="#__codelineno-25-6"></a>    rpm-build
+<a id="__codelineno-25-7" name="__codelineno-25-7" href="#__codelineno-25-7"></a>  Default Packages:
+<a id="__codelineno-25-8" name="__codelineno-25-8" href="#__codelineno-25-8"></a>    rpmdevtools
+<a id="__codelineno-25-9" name="__codelineno-25-9" href="#__codelineno-25-9"></a>  Optional Packages:
+<a id="__codelineno-25-10" name="__codelineno-25-10" href="#__codelineno-25-10"></a>    rpmlint
+</code></pre></div>
+<ul>
+<li><strong>yum group install</strong> installs a group that installs its mandatory and default packages and the
+packages they depend on.</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ sudo yum group install <span class="s2">&quot;RPM Development Tools&quot;</span>
+<a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a>...output omitted...
+<a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a>Installing Groups:
+<a id="__codelineno-26-4" name="__codelineno-26-4" href="#__codelineno-26-4"></a> RPM Development Tools
+<a id="__codelineno-26-5" name="__codelineno-26-5" href="#__codelineno-26-5"></a> Transaction <span class="nv">Summary</span>
+<a id="__codelineno-26-6" name="__codelineno-26-6" href="#__codelineno-26-6"></a> <span class="o">===============================================================================</span>
+</code></pre></div>
+<div class="admonition danger">
+<p class="admonition-title">IMPORTANT</p>
+<p>The behavior of Yum groups changed starting in Red Hat Enterprise Linux 7. In
+RHEL 7 and later, groups are treated as objects, and are tracked by the system. If an
+installed group is updated, and new mandatory or default packages have been added
+to the group by the Yum repository, those new packages are installed upon update.</p>
+<p>RHEL 6 and earlier consider a group to be installed if all its mandatory packages
+have been installed, or if it had no mandatory packages, or if any default or optional
+packages in the group are installed. Starting in RHEL 7, a group is considered to be
+installed only if <strong>yum group install</strong> was used to install it. The command <strong>yum
+group mark install GROUPNAME</strong> can be used to mark a group as installed, and
+any missing packages and their dependencies are installed upon the next update.</p>
+<p>Finally, RHEL 6 and earlier did not have the two-word form of the <strong>yum group</strong>
+commands. In other words, in RHEL 6 the command <strong>yum grouplist</strong> existed, but
+the equivalent RHEL 7 and RHEL 8 command <strong>yum group list</strong> did not.</p>
+</div>
+<p><strong>Viewing transaction history</strong></p>
+<ul>
+<li>All install and remove transactions are logged in <strong>/var/log/dnf.rpm.log</strong>.</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ tail -5 /var/log/dnf.rpm.log
+<a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a><span class="m">2019</span>-02-26T18:27:00Z SUBDEBUG Installed: rpm-build-4.14.2-9.el8.x86_64
+<a id="__codelineno-27-3" name="__codelineno-27-3" href="#__codelineno-27-3"></a><span class="m">2019</span>-02-26T18:27:01Z SUBDEBUG Installed: rpm-build-4.14.2-9.el8.x86_64
+<a id="__codelineno-27-4" name="__codelineno-27-4" href="#__codelineno-27-4"></a><span class="m">2019</span>-02-26T18:27:01Z SUBDEBUG Installed: rpmdevtools-8.10-7.el8.noarch
+<a id="__codelineno-27-5" name="__codelineno-27-5" href="#__codelineno-27-5"></a><span class="m">2019</span>-02-26T18:27:01Z SUBDEBUG Installed: rpmdevtools-8.10-7.el8.noarch
+<a id="__codelineno-27-6" name="__codelineno-27-6" href="#__codelineno-27-6"></a><span class="m">2019</span>-02-26T18:38:40Z INFO --- logging initialized ---
+</code></pre></div>
+<ul>
+<li><strong>yum history</strong> displays a summary of install and remove transactions.</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ sudo yum <span class="nb">history</span>
+<a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a>ID     <span class="p">|</span> Command line             <span class="p">|</span> Date and <span class="nb">time</span>    <span class="p">|</span> Action<span class="o">(</span>s<span class="o">)</span>      <span class="p">|</span> Altered
+<a id="__codelineno-28-3" name="__codelineno-28-3" href="#__codelineno-28-3"></a>-------------------------------------------------------------------------------
+<a id="__codelineno-28-4" name="__codelineno-28-4" href="#__codelineno-28-4"></a>     <span class="m">7</span> <span class="p">|</span> group install RPM Develo <span class="p">|</span> <span class="m">2019</span>-02-26 <span class="m">13</span>:26 <span class="p">|</span> Install        <span class="p">|</span>   <span class="m">65</span>
+<a id="__codelineno-28-5" name="__codelineno-28-5" href="#__codelineno-28-5"></a>     <span class="m">6</span> <span class="p">|</span> update kernel            <span class="p">|</span> <span class="m">2019</span>-02-26 <span class="m">11</span>:41 <span class="p">|</span> Install        <span class="p">|</span>    <span class="m">4</span>
+<a id="__codelineno-28-6" name="__codelineno-28-6" href="#__codelineno-28-6"></a>     <span class="m">5</span> <span class="p">|</span> install httpd            <span class="p">|</span> <span class="m">2019</span>-02-25 <span class="m">14</span>:31 <span class="p">|</span> Install        <span class="p">|</span>    <span class="m">9</span>
+<a id="__codelineno-28-7" name="__codelineno-28-7" href="#__codelineno-28-7"></a>     <span class="m">4</span> <span class="p">|</span> -y install @base firewal <span class="p">|</span> <span class="m">2019</span>-02-04 <span class="m">11</span>:27 <span class="p">|</span> Install        <span class="p">|</span>  <span class="m">127</span> EE
+<a id="__codelineno-28-8" name="__codelineno-28-8" href="#__codelineno-28-8"></a>     <span class="m">3</span> <span class="p">|</span> -C -y remove firewalld - <span class="p">|</span> <span class="m">2019</span>-01-16 <span class="m">13</span>:12 <span class="p">|</span> Removed        <span class="p">|</span>   <span class="m">11</span> EE
+<a id="__codelineno-28-9" name="__codelineno-28-9" href="#__codelineno-28-9"></a>     <span class="m">2</span> <span class="p">|</span> -C -y remove linux-firmw <span class="p">|</span> <span class="m">2019</span>-01-16 <span class="m">13</span>:12 <span class="p">|</span> Removed        <span class="p">|</span>    <span class="m">1</span>
+<a id="__codelineno-28-10" name="__codelineno-28-10" href="#__codelineno-28-10"></a>     <span class="m">1</span> <span class="p">|</span>                          <span class="p">|</span> <span class="m">2019</span>-01-16 <span class="m">13</span>:05 <span class="p">|</span> Install        <span class="p">|</span>  <span class="m">447</span> EE
+</code></pre></div>
+<ul>
+<li>The <strong>history undo</strong> option reverses a transaction.</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ sudo yum <span class="nb">history</span> undo <span class="m">5</span>
+<a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a>Undoing transaction <span class="m">7</span>, from Tue <span class="m">26</span> Feb <span class="m">2019</span> <span class="m">10</span>:40:32 AM EST
+<a id="__codelineno-29-3" name="__codelineno-29-3" href="#__codelineno-29-3"></a>    Install apr-1.6.3-8.el8.x86_64                              @rhel8-appstream
+<a id="__codelineno-29-4" name="__codelineno-29-4" href="#__codelineno-29-4"></a>    Install apr-util-1.6.1-6.el8.x86_64                         @rhel8-appstream
+<a id="__codelineno-29-5" name="__codelineno-29-5" href="#__codelineno-29-5"></a>    Install apr-util-bdb-1.6.1-6.el8.x86_64                     @rhel8-appstream
+<a id="__codelineno-29-6" name="__codelineno-29-6" href="#__codelineno-29-6"></a>    Install apr-util-openssl-1.6.1-6.el8.x86_64                 @rhel8-appstream
+<a id="__codelineno-29-7" name="__codelineno-29-7" href="#__codelineno-29-7"></a>    Install httpd-2.4.37-7.module+el8+2443+605475b7.x86_64      @rhel8-appstream
+<a id="__codelineno-29-8" name="__codelineno-29-8" href="#__codelineno-29-8"></a>...output omitted...
+</code></pre></div>
+<h4 id="summary-of-yum-commands">SUMMARY OF YUM COMMANDS<a class="headerlink" href="#summary-of-yum-commands" title="Permanent link">&para;</a></h4>
+<p>Packages can be located, installed, updated, and removed by name or by package groups.</p>
+<table>
+<thead>
+<tr>
+<th align="left">TASK:</th>
+<th align="left">COMMAND:</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">List installed and available packages by name</td>
+<td align="left">yum list [NAME-PATTERN]</td>
+</tr>
+<tr>
+<td align="left">List installed and available groups</td>
+<td align="left">yum group list</td>
+</tr>
+<tr>
+<td align="left">Search for a package by keyword</td>
+<td align="left">yum search KEYWORD</td>
+</tr>
+<tr>
+<td align="left">Show details of a package</td>
+<td align="left">yum info PACKAGENAME</td>
+</tr>
+<tr>
+<td align="left">Install a package</td>
+<td align="left">yum install PACKAGENAME</td>
+</tr>
+<tr>
+<td align="left">Install a package group</td>
+<td align="left">yum group install GROUPNAME</td>
+</tr>
+<tr>
+<td align="left">Update all packages</td>
+<td align="left">yum update</td>
+</tr>
+<tr>
+<td align="left">Remove a package</td>
+<td align="left">yum remove PACKAGENAME</td>
+</tr>
+<tr>
+<td align="left">Display transaction history</td>
+<td align="left">yum history</td>
+</tr>
+</tbody>
+</table>
+<h3 id="enabling-yum-software-repositories">ENABLING YUM SOFTWARE REPOSITORIES<a class="headerlink" href="#enabling-yum-software-repositories" title="Permanent link">&para;</a></h3>
+<h4 id="enabling-red-hat-software-repositories">ENABLING RED HAT SOFTWARE REPOSITORIES<a class="headerlink" href="#enabling-red-hat-software-repositories" title="Permanent link">&para;</a></h4>
+<p>Registering a system to the subscription management service automatically configures access to
+software repositories based on the attached subscriptions. To view all available repositories:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ yum repolist all
+<a id="__codelineno-30-2" name="__codelineno-30-2" href="#__codelineno-30-2"></a>Loaded plugins: langpacks
+<a id="__codelineno-30-3" name="__codelineno-30-3" href="#__codelineno-30-3"></a>repo id                                    repo name                              
+<a id="__codelineno-30-4" name="__codelineno-30-4" href="#__codelineno-30-4"></a>          status
+<a id="__codelineno-30-5" name="__codelineno-30-5" href="#__codelineno-30-5"></a>rhel-8-server-debug-rpms/8Server/x86_64    Red Hat Enterprise Linux <span class="m">8</span> Server
+<a id="__codelineno-30-6" name="__codelineno-30-6" href="#__codelineno-30-6"></a> <span class="o">(</span>Debug RPMs<span class="o">)</span>   disabled
+<a id="__codelineno-30-7" name="__codelineno-30-7" href="#__codelineno-30-7"></a>rhel-8-server-rpms/8Server/x86_64          Red Hat Enterprise Linux <span class="m">8</span> Server
+<a id="__codelineno-30-8" name="__codelineno-30-8" href="#__codelineno-30-8"></a> <span class="o">(</span>RPMs<span class="o">)</span>         enabled: <span class="m">5</span>,071
+<a id="__codelineno-30-9" name="__codelineno-30-9" href="#__codelineno-30-9"></a>rhel-8-server-source-rpms/8Server/x86_64   Red Hat Enterprise Linux <span class="m">8</span> Server
+<a id="__codelineno-30-10" name="__codelineno-30-10" href="#__codelineno-30-10"></a> <span class="o">(</span>Source RPMs<span class="o">)</span>  disabled
+<a id="__codelineno-30-11" name="__codelineno-30-11" href="#__codelineno-30-11"></a>repolist: <span class="m">5</span>,071
+</code></pre></div>
+<p>The <strong>yum-config-manager</strong> command can be used to enable or disable repositories. To enable a
+repository, the command sets the enabled parameter to <strong>1</strong>. For example, the following command
+enables the <strong>rhel-8-server-debug-rpms</strong> repository:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ yum-config-manager --enable rhel-8-server-debug-rpms
+<a id="__codelineno-31-2" name="__codelineno-31-2" href="#__codelineno-31-2"></a>Loaded plugins: <span class="nv">langpacks</span>
+<a id="__codelineno-31-3" name="__codelineno-31-3" href="#__codelineno-31-3"></a><span class="o">=====================</span> repo: rhel-8-server-debug-rpms <span class="o">======================</span>
+<a id="__codelineno-31-4" name="__codelineno-31-4" href="#__codelineno-31-4"></a><span class="o">[</span>rhel-8-server-debug-rpms<span class="o">]</span>
+<a id="__codelineno-31-5" name="__codelineno-31-5" href="#__codelineno-31-5"></a><span class="nv">async</span> <span class="o">=</span> True
+<a id="__codelineno-31-6" name="__codelineno-31-6" href="#__codelineno-31-6"></a><span class="nv">bandwidth</span> <span class="o">=</span> <span class="m">0</span>
+<a id="__codelineno-31-7" name="__codelineno-31-7" href="#__codelineno-31-7"></a><span class="nv">base_persistdir</span> <span class="o">=</span> /var/lib/yum/repos/x86_64/8Server
+<a id="__codelineno-31-8" name="__codelineno-31-8" href="#__codelineno-31-8"></a><span class="nv">baseurl</span> <span class="o">=</span> https://cdn.redhat.com/content/dist/rhel/server/8/8Server/x86_64/debug
+<a id="__codelineno-31-9" name="__codelineno-31-9" href="#__codelineno-31-9"></a><span class="nv">cache</span> <span class="o">=</span> <span class="m">0</span>
+<a id="__codelineno-31-10" name="__codelineno-31-10" href="#__codelineno-31-10"></a><span class="nv">cachedir</span> <span class="o">=</span> /var/cache/yum/x86_64/8Server/rhel-8-server-debug-rpms
+<a id="__codelineno-31-11" name="__codelineno-31-11" href="#__codelineno-31-11"></a><span class="nv">check_config_file_age</span> <span class="o">=</span> True
+<a id="__codelineno-31-12" name="__codelineno-31-12" href="#__codelineno-31-12"></a><span class="nv">cost</span> <span class="o">=</span> <span class="m">1000</span>
+<a id="__codelineno-31-13" name="__codelineno-31-13" href="#__codelineno-31-13"></a><span class="nv">deltarpm_percentage</span> <span class="o">=</span>
+<a id="__codelineno-31-14" name="__codelineno-31-14" href="#__codelineno-31-14"></a><span class="nv">enabled</span> <span class="o">=</span> <span class="m">1</span>
+<a id="__codelineno-31-15" name="__codelineno-31-15" href="#__codelineno-31-15"></a>...output omitted...
+</code></pre></div>
+<p>Non-Red Hat sources provide software through third-party repositories, which can be accessed
+by the <strong>yum</strong> command from a website, FTP server, or the local file system. For example, Adobe
+provides some of its software for Linux through a Yum repository. In a Red Hat classroom, the
+content.example.com classroom server hosts Yum repositories.</p>
+<p>To enable support for a new third-party repository, create a file in the <strong>/etc/yum.repos.d/</strong>
+directory. Repository configuration files must end with a <strong>.repo</strong> extension. The repository
+definition contains the URL of the repository, a name, whether to use GPG to check the package
+signatures, and if so, the URL pointing to the trusted GPG key.</p>
+<p><strong>Creating Yum Repositories</strong></p>
+<p>Create Yum repositories with the yum-config-manager command.
+The following command creates a file named /etc/yum.repos.d/
+dl.fedoraproject.org_pub_epel_8_x86_64_.repo with the output shown.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ yum-config-manager --add-repo<span class="o">=</span><span class="s2">&quot;http://dl.fedoraproject.org/pub/</span>
+<a id="__codelineno-32-2" name="__codelineno-32-2" href="#__codelineno-32-2"></a><span class="s2">epel/8/x86_64/&quot;</span>
+<a id="__codelineno-32-3" name="__codelineno-32-3" href="#__codelineno-32-3"></a>Loaded plugins: langpacks
+<a id="__codelineno-32-4" name="__codelineno-32-4" href="#__codelineno-32-4"></a>adding repo from: http://dl.fedoraproject.org/pub/epel/8/x86_64/
+<a id="__codelineno-32-5" name="__codelineno-32-5" href="#__codelineno-32-5"></a><span class="o">[</span>dl.fedoraproject.org_pub_epel_8_x86_64_<span class="o">]</span>
+<a id="__codelineno-32-6" name="__codelineno-32-6" href="#__codelineno-32-6"></a><span class="nv">name</span><span class="o">=</span>added from: http://dl.fedoraproject.org/pub/epel/8/x86_64/
+<a id="__codelineno-32-7" name="__codelineno-32-7" href="#__codelineno-32-7"></a><span class="nv">baseurl</span><span class="o">=</span>http://dl.fedoraproject.org/pub/epel/8/x86_64/
+<a id="__codelineno-32-8" name="__codelineno-32-8" href="#__codelineno-32-8"></a><span class="nv">enabled</span><span class="o">=</span><span class="m">1</span>
+</code></pre></div>
+<p>Modify this file to provide customized values and location of a GPG key. Keys are stored in various
+locations on the remote repository site, such as, http://dl.fedoraproject.org/pub/
+epel/RPM-GPG-KEY-EPEL-8. Administrators should download the key to a local file rather than
+allowing <strong>yum</strong> to retrieve the key from an external source. For example:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a><span class="o">[</span>EPEL<span class="o">]</span>
+<a id="__codelineno-33-2" name="__codelineno-33-2" href="#__codelineno-33-2"></a><span class="nv">name</span><span class="o">=</span>EPEL <span class="m">8</span>
+<a id="__codelineno-33-3" name="__codelineno-33-3" href="#__codelineno-33-3"></a><span class="nv">baseurl</span><span class="o">=</span>http://dl.fedoraproject.org/pub/epel/8/x86_64/
+<a id="__codelineno-33-4" name="__codelineno-33-4" href="#__codelineno-33-4"></a><span class="nv">enabled</span><span class="o">=</span><span class="m">1</span>
+<a id="__codelineno-33-5" name="__codelineno-33-5" href="#__codelineno-33-5"></a><span class="nv">gpgcheck</span><span class="o">=</span><span class="m">1</span>
+<a id="__codelineno-33-6" name="__codelineno-33-6" href="#__codelineno-33-6"></a><span class="nv">gpgkey</span><span class="o">=</span>file:///etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-8
+</code></pre></div>
+<p><strong>RPM Configuration Packages for Local Repositories</strong></p>
+<p>Some repositories provide a configuration file and GPG public key as part of an RPM package
+that can be downloaded and installed using the <strong>yum localinstall</strong> command. For example,
+the volunteer project called Extra Packages for Enterprise Linux (EPEL) provides software not
+supported by Red Hat but compatible with Red Hat Enterprise Linux.</p>
+<p>The following command installs the Red Hat Enterprise Linux 8 EPEL repo package:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ rpm --import http://dl.fedoraproject.org/pub/epel/RPM-GPG-KEY-
+<a id="__codelineno-34-2" name="__codelineno-34-2" href="#__codelineno-34-2"></a>EPEL-8
+<a id="__codelineno-34-3" name="__codelineno-34-3" href="#__codelineno-34-3"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ yum install http://dl.fedoraproject.org/pub/epel/8/x86_64/e/epel-
+<a id="__codelineno-34-4" name="__codelineno-34-4" href="#__codelineno-34-4"></a>release-8-2.noarch.rpm
+</code></pre></div>
+<p>Configuration files often list multiple repository references in a single file. Each repository
+reference begins with a single-word name in square brackets.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ cat /etc/yum.repos.d/epel.repo
+<a id="__codelineno-35-2" name="__codelineno-35-2" href="#__codelineno-35-2"></a><span class="o">[</span>epel<span class="o">]</span>
+<a id="__codelineno-35-3" name="__codelineno-35-3" href="#__codelineno-35-3"></a><span class="nv">name</span><span class="o">=</span>Extra Packages <span class="k">for</span> Enterprise Linux <span class="m">8</span> - <span class="nv">$basearch</span>
+<a id="__codelineno-35-4" name="__codelineno-35-4" href="#__codelineno-35-4"></a><span class="c1">#baseurl=http://download.fedoraproject.org/pub/epel/8/$basearch</span>
+<a id="__codelineno-35-5" name="__codelineno-35-5" href="#__codelineno-35-5"></a><span class="nv">mirrorlist</span><span class="o">=</span>https://mirrors.fedoraproject.org/metalink?repo<span class="o">=</span>epel-8<span class="p">&amp;</span><span class="nv">arch</span><span class="o">=</span><span class="nv">$basearch</span>
+<a id="__codelineno-35-6" name="__codelineno-35-6" href="#__codelineno-35-6"></a><span class="nv">failovermethod</span><span class="o">=</span>priority
+<a id="__codelineno-35-7" name="__codelineno-35-7" href="#__codelineno-35-7"></a><span class="nv">enabled</span><span class="o">=</span><span class="m">1</span>
+<a id="__codelineno-35-8" name="__codelineno-35-8" href="#__codelineno-35-8"></a><span class="nv">gpgcheck</span><span class="o">=</span><span class="m">0</span>
+<a id="__codelineno-35-9" name="__codelineno-35-9" href="#__codelineno-35-9"></a><span class="nv">gpgkey</span><span class="o">=</span>file:///etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-8
+<a id="__codelineno-35-10" name="__codelineno-35-10" href="#__codelineno-35-10"></a><span class="o">[</span>epel-debuginfo<span class="o">]</span>
+<a id="__codelineno-35-11" name="__codelineno-35-11" href="#__codelineno-35-11"></a><span class="nv">name</span><span class="o">=</span>Extra Packages <span class="k">for</span> Enterprise Linux <span class="m">8</span> - <span class="nv">$basearch</span> - Debug
+<a id="__codelineno-35-12" name="__codelineno-35-12" href="#__codelineno-35-12"></a><span class="c1">#baseurl=http://download.fedoraproject.org/pub/epel/8/$basearch/debug</span>
+<a id="__codelineno-35-13" name="__codelineno-35-13" href="#__codelineno-35-13"></a><span class="nv">mirrorlist</span><span class="o">=</span>https://mirrors.fedoraproject.org/metalink?repo<span class="o">=</span>epel-debug-8<span class="p">&amp;</span><span class="nv">arch</span><span class="o">=</span>
+<a id="__codelineno-35-14" name="__codelineno-35-14" href="#__codelineno-35-14"></a><span class="nv">$basearch</span>
+<a id="__codelineno-35-15" name="__codelineno-35-15" href="#__codelineno-35-15"></a><span class="nv">failovermethod</span><span class="o">=</span>priority
+<a id="__codelineno-35-16" name="__codelineno-35-16" href="#__codelineno-35-16"></a><span class="nv">enabled</span><span class="o">=</span><span class="m">0</span>
+<a id="__codelineno-35-17" name="__codelineno-35-17" href="#__codelineno-35-17"></a><span class="nv">gpgkey</span><span class="o">=</span>file:///etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-8
+<a id="__codelineno-35-18" name="__codelineno-35-18" href="#__codelineno-35-18"></a><span class="nv">gpgcheck</span><span class="o">=</span><span class="m">1</span>
+<a id="__codelineno-35-19" name="__codelineno-35-19" href="#__codelineno-35-19"></a><span class="o">[</span>epel-source<span class="o">]</span>
+<a id="__codelineno-35-20" name="__codelineno-35-20" href="#__codelineno-35-20"></a><span class="nv">name</span><span class="o">=</span>Extra Packages <span class="k">for</span> Enterprise Linux <span class="m">8</span> - <span class="nv">$basearch</span> - Source
+<a id="__codelineno-35-21" name="__codelineno-35-21" href="#__codelineno-35-21"></a><span class="c1">#baseurl=http://download.fedoraproject.org/pub/epel/8/SRPMS</span>
+<a id="__codelineno-35-22" name="__codelineno-35-22" href="#__codelineno-35-22"></a><span class="nv">mirrorlist</span><span class="o">=</span>https://mirrors.fedoraproject.org/metalink?repo<span class="o">=</span>epel-source-8<span class="p">&amp;</span><span class="nv">arch</span><span class="o">=</span>
+<a id="__codelineno-35-23" name="__codelineno-35-23" href="#__codelineno-35-23"></a><span class="nv">$basearch</span>
+<a id="__codelineno-35-24" name="__codelineno-35-24" href="#__codelineno-35-24"></a><span class="nv">failovermethod</span><span class="o">=</span>priority
+<a id="__codelineno-35-25" name="__codelineno-35-25" href="#__codelineno-35-25"></a><span class="nv">enabled</span><span class="o">=</span><span class="m">0</span>
+<a id="__codelineno-35-26" name="__codelineno-35-26" href="#__codelineno-35-26"></a><span class="nv">gpgkey</span><span class="o">=</span>file:///etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-8
+<a id="__codelineno-35-27" name="__codelineno-35-27" href="#__codelineno-35-27"></a><span class="nv">gpgcheck</span><span class="o">=</span><span class="m">1</span>
+</code></pre></div>
+<p>To define a repository, but not search it by default, insert the enabled=0 parameter. Repositories
+can be enabled and disabled persistently with <strong>yum-config-manager</strong> command or temporarily
+with yum command options, <strong>--enablerepo=PATTERN</strong> and <strong>--disablerepo=PATTERN</strong>.</p>
+<div class="admonition danger">
+<p class="admonition-title">WARNING</p>
+<p>Install the RPM GPG key before installing signed packages. This verifies that the
+packages belong to a key which has been imported. Otherwise, the <strong>yum</strong> command
+fails due to a missing key. The <strong>--nogpgcheck</strong> option can be used to ignore missing
+GPG keys, but this could cause forged or insecure packages to be installed on the
+system, potentially compromising its security.</p>
+</div>
+<h3 id="managing-package-module-streams">MANAGING PACKAGE MODULE STREAMS<a class="headerlink" href="#managing-package-module-streams" title="Permanent link">&para;</a></h3>
+<h4 id="introduction-to-application-stream">INTRODUCTION TO APPLICATION STREAM<a class="headerlink" href="#introduction-to-application-stream" title="Permanent link">&para;</a></h4>
+<p>Red Hat Enterprise Linux 8.0 introduces the concept of Application Streams. Multiple versions of
+user space components shipped with the distribution are now delivered at the same time. They
+may be updated more frequently than the core operating system packages. This provides you with
+greater flexibility to customize Red Hat Enterprise Linux without impacting the underlying stability
+of the platform or specific deployments.</p>
+<p>Traditionally, managing alternate versions of an application's software package and its related
+packages meant maintaining different repositories for each different version. For developers who
+wanted the latest version of an application and administrators who wanted the most stable version
+of the application, this created a situation that was tedious to manage. This process is simplified
+in Red Hat Enterprise Linux 8 using a new technology called <em>Modularity</em>. Modularity allows a single
+repository to host multiple versions of an application's package and its dependencies.</p>
+<p>Red Hat Enterprise Linux 8 content is distributed through two main software repositories: BaseOS
+and Application Stream (AppStream).</p>
+<p><strong>BaseOS</strong></p>
+<p>The BaseOS repository provides the core operating system content for Red Hat Enterprise Linux
+as RPM packages. BaseOS components have a life cycle identical to that of content in previous
+Red Hat Enterprise Linux releases.</p>
+<p><strong>Application Stream</strong></p>
+<p>The Application Stream repository provides content with varying life cycles as both modules and
+traditional packages. Application Stream contains necessary parts of the system, as well as a wide
+range of applications previously available as a part of Red Hat Software Collections and other
+products and programs.</p>
+<div class="admonition danger">
+<p class="admonition-title">IMPORTANT</p>
+<p>Both BaseOS and AppStream are a necessary part of a Red Hat Enterprise Linux 8
+system.</p>
+</div>
+<p>The Application Stream repository contains two types of content: Modules and traditional RPM
+packages. A module describes a set of RPM packages that belong together. Modules can contain
+several streams to make multiple versions of applications available for installation. Enabling a
+module stream gives the system access to the RPM packages within that module stream.</p>
+<h4 id="modules">MODULES<a class="headerlink" href="#modules" title="Permanent link">&para;</a></h4>
+<p>A module is a set of RPM packages that are a consistent set that belong together. Typically, this
+is organized around a specific version of a software application or programming language. A
+typical module can contain packages with an application, packages with the application’s specific
+dependency libraries, packages with documentation for the application, and packages with helper
+utilities.</p>
+<p><strong>Module Streams</strong></p>
+<p>Each module can have one or more module streams, which hold different versions of the content.
+Each of the streams receives updates independently. Think of the module stream as a virtual
+repository in the Application Stream physical repository.</p>
+<p>For each module, only one of its streams can be enabled and provide its packages.</p>
+<p><strong>Module Profiles</strong></p>
+<p>Each module can have one or more profiles. A profile is a list of certain packages to be installed
+together for a particular use-case such as for a server, client, development, minimal install, or
+other.</p>
+<p>Installing a particular module profile simply installs a particular set of packages from the module
+stream. You can subsequently install or uninstall packages normally. If you do not specify a profile,
+the module will install its default profile.</p>
+<h4 id="managing-modules-using-yum">MANAGING MODULES USING YUM<a class="headerlink" href="#managing-modules-using-yum" title="Permanent link">&para;</a></h4>
+<p>Yum version 4, new in Red Hat Enterprise Linux 8, adds support for the new modular features of
+Application Stream.</p>
+<p>For handling the modular content, the <strong>yum module</strong> command has been added. Otherwise, <strong>yum</strong>
+works with modules much like does with regular packages.</p>
+<p><strong>Listing Modules</strong></p>
+<p>To display a list of available modules, use yum module list:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ yum module list
+<a id="__codelineno-36-2" name="__codelineno-36-2" href="#__codelineno-36-2"></a>   Red Hat Enterprise Linux <span class="m">8</span>.0 AppStream - AppStream HTB <span class="o">(</span>RPMs<span class="o">)</span>
+<a id="__codelineno-36-3" name="__codelineno-36-3" href="#__codelineno-36-3"></a>   Name                    Stream        Profiles   Summary
+<a id="__codelineno-36-4" name="__codelineno-36-4" href="#__codelineno-36-4"></a>   <span class="m">389</span>-ds                  <span class="m">1</span>.4           default    <span class="m">389</span> Directory Server <span class="o">(</span>base<span class="o">)</span>
+<a id="__codelineno-36-5" name="__codelineno-36-5" href="#__codelineno-36-5"></a>   ant                     <span class="m">1</span>.10 <span class="o">[</span>d<span class="o">]</span>      common <span class="o">[</span>d<span class="o">]</span> Java build tool
+<a id="__codelineno-36-6" name="__codelineno-36-6" href="#__codelineno-36-6"></a>   container-tools         <span class="m">1</span>.0 <span class="o">[</span>d<span class="o">]</span>       common <span class="o">[</span>d<span class="o">]</span> Common tools and dependencies
+</code></pre></div>
+<div class="admonition info">
+<p class="admonition-title">NOTE</p>
+<p>Use the Hint at the end of the output to help determine which streams and profiles
+are enabled, disabled, installed, as well as which ones are the defaults.</p>
+</div>
+<p>To list the module streams for a specific module and retrieve their status:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-37-1" name="__codelineno-37-1" href="#__codelineno-37-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ yum module list perl
+<a id="__codelineno-37-2" name="__codelineno-37-2" href="#__codelineno-37-2"></a>Red Hat Enterprise Linux <span class="m">8</span> <span class="k">for</span> x86_64 - AppStream HTB <span class="o">(</span>RPMs<span class="o">)</span>
+<a id="__codelineno-37-3" name="__codelineno-37-3" href="#__codelineno-37-3"></a>Name  Stream       Profiles             Summary
+<a id="__codelineno-37-4" name="__codelineno-37-4" href="#__codelineno-37-4"></a>perl  <span class="m">5</span>.24         common <span class="o">[</span>d<span class="o">]</span>, minimal  Practical Extraction and Report Language
+<a id="__codelineno-37-5" name="__codelineno-37-5" href="#__codelineno-37-5"></a>perl  <span class="m">5</span>.26 <span class="o">[</span>d<span class="o">]</span>     common <span class="o">[</span>d<span class="o">]</span>, minimal  Practical Extraction and Report Language
+</code></pre></div>
+<p>To list the packages installed by the default module stream:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-38-1" name="__codelineno-38-1" href="#__codelineno-38-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ yum module info perl
+<a id="__codelineno-38-2" name="__codelineno-38-2" href="#__codelineno-38-2"></a>    Name             : perl
+<a id="__codelineno-38-3" name="__codelineno-38-3" href="#__codelineno-38-3"></a>    Stream           : <span class="m">5</span>.26 <span class="o">[</span>d<span class="o">][</span>a<span class="o">]</span>
+<a id="__codelineno-38-4" name="__codelineno-38-4" href="#__codelineno-38-4"></a>    Version          : <span class="m">820181219174508</span>
+<a id="__codelineno-38-5" name="__codelineno-38-5" href="#__codelineno-38-5"></a>    Context          : 9edba152
+<a id="__codelineno-38-6" name="__codelineno-38-6" href="#__codelineno-38-6"></a>    Profiles         : common, minimal
+<a id="__codelineno-38-7" name="__codelineno-38-7" href="#__codelineno-38-7"></a>    Default profiles : default
+<a id="__codelineno-38-8" name="__codelineno-38-8" href="#__codelineno-38-8"></a>    Repo             : rhel-8-for-x86_64-appstream-htb-rpms
+<a id="__codelineno-38-9" name="__codelineno-38-9" href="#__codelineno-38-9"></a>    Summary          : Practical Extraction and Report Language
+<a id="__codelineno-38-10" name="__codelineno-38-10" href="#__codelineno-38-10"></a>    ...output omitted...
+<a id="__codelineno-38-11" name="__codelineno-38-11" href="#__codelineno-38-11"></a>    Artifacts   : perl-4:5.24.4-401.module+el8+2464+d274aed1.x86_64
+<a id="__codelineno-38-12" name="__codelineno-38-12" href="#__codelineno-38-12"></a>                : perl-Algorithm-Diff-0:1.1903-9.module+el8+2464+d274aed1.noarch
+<a id="__codelineno-38-13" name="__codelineno-38-13" href="#__codelineno-38-13"></a>                : perl-Archive-Tar-0:2.30-1.module+el8+2464+d274aed1.noarch
+<a id="__codelineno-38-14" name="__codelineno-38-14" href="#__codelineno-38-14"></a>    ...output omitted...
+</code></pre></div>
+<div class="admonition info">
+<p class="admonition-title">NOTE</p>
+<p>Without specifying a module stream, <strong>yum module info</strong> shows details of the
+default module stream. Use the <em>module-name:stream</em> format to view a specific
+module stream. Add the <strong>--profile</strong> option to display information about packages
+installed by each of the module's profiles. For example:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-39-1" name="__codelineno-39-1" href="#__codelineno-39-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ yum module info --profile perl:5.24
+</code></pre></div>
+</div>
+<p><strong>Enabling Module Streams and Installing Modules</strong></p>
+<p>Module streams must be enabled in order to install their module. To simplify this process, when
+a module is installed it enables its module stream if necessary. Module streams can be enabled
+manually using <strong>yum module enable</strong> and providing the name of the module stream.</p>
+<div class="admonition danger">
+<p class="admonition-title">IMPORTANT</p>
+<p>Only one module stream may be enabled for a given module. Enabling an additional
+module stream will disable the original module stream.</p>
+</div>
+<p>Install a module using the default stream and profiles:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-40-1" name="__codelineno-40-1" href="#__codelineno-40-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ sudo yum module install -y perl
+<a id="__codelineno-40-2" name="__codelineno-40-2" href="#__codelineno-40-2"></a>Dependencies resolved.
+<a id="__codelineno-40-3" name="__codelineno-40-3" href="#__codelineno-40-3"></a><span class="o">================================================================================</span>
+<a id="__codelineno-40-4" name="__codelineno-40-4" href="#__codelineno-40-4"></a> Package         Arch   Version      Repository                            <span class="nv">Size</span>
+<a id="__codelineno-40-5" name="__codelineno-40-5" href="#__codelineno-40-5"></a><span class="o">================================================================================</span>
+<a id="__codelineno-40-6" name="__codelineno-40-6" href="#__codelineno-40-6"></a>Installing group/module packages:
+<a id="__codelineno-40-7" name="__codelineno-40-7" href="#__codelineno-40-7"></a> perl            x86_64 <span class="m">4</span>:5.26.3-416.el8
+<a id="__codelineno-40-8" name="__codelineno-40-8" href="#__codelineno-40-8"></a>                                     rhel-8-for-x86_64-appstream-htb-rpms  <span class="m">72</span> k
+<a id="__codelineno-40-9" name="__codelineno-40-9" href="#__codelineno-40-9"></a>Installing dependencies:
+<a id="__codelineno-40-10" name="__codelineno-40-10" href="#__codelineno-40-10"></a>...output omitted...
+<a id="__codelineno-40-11" name="__codelineno-40-11" href="#__codelineno-40-11"></a>Running transaction
+<a id="__codelineno-40-12" name="__codelineno-40-12" href="#__codelineno-40-12"></a>  Preparing        :                                                        <span class="m">1</span>/1
+<a id="__codelineno-40-13" name="__codelineno-40-13" href="#__codelineno-40-13"></a>  Installing       : perl-Exporter-5.72-396.el8.noarch                    <span class="m">1</span>/155
+<a id="__codelineno-40-14" name="__codelineno-40-14" href="#__codelineno-40-14"></a>  Installing       : perl-Carp-1.42-396.el8.noarch                        <span class="m">2</span>/155
+<a id="__codelineno-40-15" name="__codelineno-40-15" href="#__codelineno-40-15"></a>...output omitted...
+<a id="__codelineno-40-16" name="__codelineno-40-16" href="#__codelineno-40-16"></a>Installed:
+<a id="__codelineno-40-17" name="__codelineno-40-17" href="#__codelineno-40-17"></a>  perl-4:5.26.3-416.el8.x86_64
+<a id="__codelineno-40-18" name="__codelineno-40-18" href="#__codelineno-40-18"></a>  perl-Encode-Locale-1.05-9.el8.noarch
+<a id="__codelineno-40-19" name="__codelineno-40-19" href="#__codelineno-40-19"></a>...output omitted...
+<a id="__codelineno-40-20" name="__codelineno-40-20" href="#__codelineno-40-20"></a>Complete!
+</code></pre></div>
+<div class="admonition info">
+<p class="admonition-title">NOTE</p>
+<p>The same results could have been accomplished by running <strong>yum install @perl</strong>.
+The @ notation informs <strong>yum</strong> that the argument is a module name instead of a
+package name.</p>
+</div>
+<p>To verify the status of the module stream and the installed profile:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-41-1" name="__codelineno-41-1" href="#__codelineno-41-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ yum module list perl
+<a id="__codelineno-41-2" name="__codelineno-41-2" href="#__codelineno-41-2"></a>Red Hat Enterprise Linux <span class="m">8</span>.0 AppStream - AppStream HTB <span class="o">(</span>RPMs<span class="o">)</span>
+<a id="__codelineno-41-3" name="__codelineno-41-3" href="#__codelineno-41-3"></a>Name  Stream       Profiles             Summary
+<a id="__codelineno-41-4" name="__codelineno-41-4" href="#__codelineno-41-4"></a>perl  <span class="m">5</span>.24         common, minimal      Practical Extraction and Report Language
+<a id="__codelineno-41-5" name="__codelineno-41-5" href="#__codelineno-41-5"></a>perl  <span class="m">5</span>.26 <span class="o">[</span>d<span class="o">][</span>e<span class="o">]</span>  common <span class="o">[</span>i<span class="o">]</span>, minimal  Practical Extraction and Report Language
+<a id="__codelineno-41-6" name="__codelineno-41-6" href="#__codelineno-41-6"></a>Hint: <span class="o">[</span>d<span class="o">]</span>efault, <span class="o">[</span>e<span class="o">]</span>nabled, <span class="o">[</span>x<span class="o">]</span>disabled, <span class="o">[</span>i<span class="o">]</span>nstalled
+</code></pre></div>
+<p><strong>Removing Modules and Disabling Module Streams</strong></p>
+<p>Removing a module removes all of the packages installed by profiles of the currently enabled
+module stream, and any further packages and modules that depend on these. Packages installed
+from this module stream not listed in any of its profiles remain installed on the system and can be
+removed manually.</p>
+<div class="admonition danger">
+<p class="admonition-title">WARNING</p>
+<p>Removing modules and switching module streams can be a bit tricky. Switching
+the stream enabled for a module is equivalent to resetting the current stream and
+enabling the new stream. It does not automatically change any installed packages.
+You have to do that manually.</p>
+<p>Directly installing a module stream that is different than the one that is currently
+installed is not recommended, because upgrade scripts might run during the
+installation that would break things with the original module stream. That could lead
+to data loss or other configuration issues.</p>
+<p>Proceed with caution.</p>
+</div>
+<p>To remove an installed module:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-42-1" name="__codelineno-42-1" href="#__codelineno-42-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ sudo yum module remove -y perl
+<a id="__codelineno-42-2" name="__codelineno-42-2" href="#__codelineno-42-2"></a>  Dependencies resolved.
+<a id="__codelineno-42-3" name="__codelineno-42-3" href="#__codelineno-42-3"></a>  <span class="o">================================================================================</span>
+<a id="__codelineno-42-4" name="__codelineno-42-4" href="#__codelineno-42-4"></a>   Package                        ArchVersion            Repository               
+<a id="__codelineno-42-5" name="__codelineno-42-5" href="#__codelineno-42-5"></a>             <span class="nv">Size</span>
+<a id="__codelineno-42-6" name="__codelineno-42-6" href="#__codelineno-42-6"></a>  <span class="o">================================================================================</span>
+<a id="__codelineno-42-7" name="__codelineno-42-7" href="#__codelineno-42-7"></a>  Removing:
+<a id="__codelineno-42-8" name="__codelineno-42-8" href="#__codelineno-42-8"></a>   perl                           x86_644:5.26.3-416.el8   @rhel-8-for-x86_64-
+<a id="__codelineno-42-9" name="__codelineno-42-9" href="#__codelineno-42-9"></a>appstream-htb-rpms <span class="m">0</span>
+<a id="__codelineno-42-10" name="__codelineno-42-10" href="#__codelineno-42-10"></a>  Removing unused dependencies:
+<a id="__codelineno-42-11" name="__codelineno-42-11" href="#__codelineno-42-11"></a>  ...output omitted...
+<a id="__codelineno-42-12" name="__codelineno-42-12" href="#__codelineno-42-12"></a>  Running transaction
+<a id="__codelineno-42-13" name="__codelineno-42-13" href="#__codelineno-42-13"></a>  Preparing        :                                                        <span class="m">1</span>/1
+<a id="__codelineno-42-14" name="__codelineno-42-14" href="#__codelineno-42-14"></a>  Erasing          : perl-4:5.26.3-416.el8.x86_64                         <span class="m">1</span>/155
+<a id="__codelineno-42-15" name="__codelineno-42-15" href="#__codelineno-42-15"></a>  Erasing          : perl-CPAN-2.18-397.el8.noarch                        <span class="m">2</span>/155
+<a id="__codelineno-42-16" name="__codelineno-42-16" href="#__codelineno-42-16"></a>  ...output omitted...
+<a id="__codelineno-42-17" name="__codelineno-42-17" href="#__codelineno-42-17"></a>  Removed:
+<a id="__codelineno-42-18" name="__codelineno-42-18" href="#__codelineno-42-18"></a>  perl-4:5.26.3-416.el8.x86_64
+<a id="__codelineno-42-19" name="__codelineno-42-19" href="#__codelineno-42-19"></a>  dwz-0.12-9.el8.x86_64
+<a id="__codelineno-42-20" name="__codelineno-42-20" href="#__codelineno-42-20"></a>  ...output omitted...
+<a id="__codelineno-42-21" name="__codelineno-42-21" href="#__codelineno-42-21"></a>  Complete!
+</code></pre></div>
+<p>After the module is removed, the module stream is still enabled. To verify the module stream is still
+enabled:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-43-1" name="__codelineno-43-1" href="#__codelineno-43-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ yum module list perl
+<a id="__codelineno-43-2" name="__codelineno-43-2" href="#__codelineno-43-2"></a>Red Hat Enterprise Linux <span class="m">8</span>.0 AppStream - AppStream HTB <span class="o">(</span>RPMs<span class="o">)</span>
+<a id="__codelineno-43-3" name="__codelineno-43-3" href="#__codelineno-43-3"></a>Name  Stream       Profiles             Summary
+<a id="__codelineno-43-4" name="__codelineno-43-4" href="#__codelineno-43-4"></a>perl  <span class="m">5</span>.24         common <span class="o">[</span>d<span class="o">]</span>, minimal  Practical Extraction and Report Language
+<a id="__codelineno-43-5" name="__codelineno-43-5" href="#__codelineno-43-5"></a>perl  <span class="m">5</span>.26 <span class="o">[</span>d<span class="o">][</span>e<span class="o">]</span>   common <span class="o">[</span>d<span class="o">]</span>, minimal  Practical Extraction and Report Language
+<a id="__codelineno-43-6" name="__codelineno-43-6" href="#__codelineno-43-6"></a>Hint: <span class="o">[</span>d<span class="o">]</span>efault, <span class="o">[</span>e<span class="o">]</span>nabled, <span class="o">[</span>x<span class="o">]</span>disabled, <span class="o">[</span>i<span class="o">]</span>nstalled
+</code></pre></div>
+<p>To disable the module stream:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-44-1" name="__codelineno-44-1" href="#__codelineno-44-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ sudo yum module disable perl
+<a id="__codelineno-44-2" name="__codelineno-44-2" href="#__codelineno-44-2"></a>  ...output omitted...
+<a id="__codelineno-44-3" name="__codelineno-44-3" href="#__codelineno-44-3"></a>Dependencies resolved.
+<a id="__codelineno-44-4" name="__codelineno-44-4" href="#__codelineno-44-4"></a><span class="o">=================================================================================</span>
+<a id="__codelineno-44-5" name="__codelineno-44-5" href="#__codelineno-44-5"></a> Package           Arch             Version              Repository         <span class="nv">Size</span>
+<a id="__codelineno-44-6" name="__codelineno-44-6" href="#__codelineno-44-6"></a><span class="o">=================================================================================</span>
+<a id="__codelineno-44-7" name="__codelineno-44-7" href="#__codelineno-44-7"></a>Disabling module streams:
+<a id="__codelineno-44-8" name="__codelineno-44-8" href="#__codelineno-44-8"></a> perl                               <span class="m">5</span>.26
+<a id="__codelineno-44-9" name="__codelineno-44-9" href="#__codelineno-44-9"></a>Is this ok <span class="o">[</span>y/N<span class="o">]</span>: y
+<a id="__codelineno-44-10" name="__codelineno-44-10" href="#__codelineno-44-10"></a>Complete!
+</code></pre></div>
+<p><strong>Switching Module Streams</strong>
+Switching module streams generally requires upgrading or downgrading the content to a different
+version.</p>
+<p>To ensure a clean switch, you should remove the modules provided by the module stream first.
+That will remove all the packages installed by the profiles of the module, and any modules and
+packages that those packages have dependencies on.</p>
+<p>To enable a different module stream and install the module:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-45-1" name="__codelineno-45-1" href="#__codelineno-45-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ sudo yum module install perl:5.24
+</code></pre></div>
+<p>The new module stream will be enabled and the current stream disabled. It may be necessary to
+update or downgrade packages from the previous module stream that are not listed in the new
+profile. Use the <strong>yum distro-sync</strong> to perform this task if required. There may also be packages
+that remain installed from the previous module stream. Remove those using <strong>yum remove</strong>.</p>
+<h3 id="summary">SUMMARY<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h3>
+<p>In this chapter, you learned:</p>
+<ul>
+<li>
+<p>Red Hat Subscription Management provides tools to entitle machines to product subscriptions,
+get updates to software packages, and track information about support contracts and
+subscriptions used by the systems.</p>
+</li>
+<li>
+<p>Software is provided as RPM packages, which make it easy to install, upgrade, and uninstall
+software from the system.</p>
+</li>
+<li>
+<p>The <strong>rpm</strong> command can be used to query a local database to provide information about the
+contents of installed packages and install downloaded package files.</p>
+</li>
+<li>
+<p><strong>yum</strong> is a powerful command-line tool that can be used to install, update, remove, and query
+software packages.</p>
+</li>
+<li>
+<p>Red Hat Enterprise Linux 8 uses Application Streams to provide a single repository to host
+multiple versions of an application's packages and its dependencies.</p>
+</li>
+</ul>
+
+  <hr>
+<div class="md-source-file">
+  <small>
+    
+      Last update:
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">November 22, 2022</span>
+      
+    
+  </small>
+</div>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+          <a href="#" class="md-top md-icon" data-md-component="top" hidden>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+            Back to top
+          </a>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+    <nav class="md-footer__inner md-grid" aria-label="Footer" >
+      
+        
+        <a href="../archiv/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Archiving And Transferring Files" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Archiving And Transferring Files
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../filsys/" class="md-footer__link md-footer__link--next" aria-label="Next: Accessing Linux File Systems" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Accessing Linux File Systems
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2022 Divijesh Varma. All rights reserved.
+    </div>
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.instant", "navigation.tracking", "navigation.tabs", "navigation.tabs.sticky", "navigation.expand", "navigation.top", "navigation.sections", "content.tooltips", "header.autohide"], "search": "../../assets/javascripts/workers/search.16e2a7d4.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d6c3db9e.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="../../javascripts/feedback.js"></script>
+      
+    
+  </body>
+</html>

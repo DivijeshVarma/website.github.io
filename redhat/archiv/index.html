@@ -1,0 +1,2914 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://www.privacyguides.org/redhat/archiv/">
+      
+      <link rel="icon" href="../../assets/img/layout/favicon.ico">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-8.5.10">
+    
+    
+      
+        <title>Archiving And Transferring Files - Divijesh Varma</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.472b142f.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.08040f6c.min.css">
+        
+      
+      
+
+    
+    
+    
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent="teal">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#managing-compressed-tar-archives" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Divijesh Varma" class="md-header__button md-logo" aria-label="Divijesh Varma" data-md-component="logo">
+      
+  <img src="../../assets/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Divijesh Varma
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Archiving And Transferring Files
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent="teal"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 1 7 7c0 2.38-1.19 4.47-3 5.74V17a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 0 1 7-7M9 21v-1h6v1a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1m3-17a5 5 0 0 0-5 5c0 2.05 1.23 3.81 3 4.58V16h4v-2.42c1.77-.77 3-2.53 3-4.58a5 5 0 0 0-5-5Z"/></svg>
+            </label>
+          
+        
+          
+          
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="deep-purple" data-md-color-accent="deep-orange"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 2.38 1.19 4.47 3 5.74V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.26c1.81-1.27 3-3.36 3-5.74a7 7 0 0 0-7-7M9 21a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-1H9v1Z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../.." class="md-tabs__link">
+      Home
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../linux/vi/" class="md-tabs__link">
+        Linux
+      </a>
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../intro/" class="md-tabs__link md-tabs__link--active">
+        RedHat
+      </a>
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../english/vol1/" class="md-tabs__link">
+        English
+      </a>
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../basics/threat-modeling/" class="md-tabs__link">
+        Knowledge Base
+      </a>
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../tools/" class="md-tabs__link">
+        Recommendations
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../about/" class="md-tabs__link">
+        About
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Divijesh Varma" class="md-nav__button md-logo" aria-label="Divijesh Varma" data-md-component="logo">
+      
+  <img src="../../assets/logo.png" alt="logo">
+
+    </a>
+    Divijesh Varma
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          Linux
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Linux" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Linux
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_2_1" type="checkbox" id="__nav_2_1" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_1">
+          Editors
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Editors" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_1">
+          <span class="md-nav__icon md-icon"></span>
+          Editors
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/vi/" class="md-nav__link">
+        Vim
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/nano/" class="md-nav__link">
+        Nano
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_2_2" type="checkbox" id="__nav_2_2" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_2">
+          Notes
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Notes" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_2">
+          <span class="md-nav__icon md-icon"></span>
+          Notes
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/rhcsa/" class="md-nav__link">
+        Tritree
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/user/" class="md-nav__link">
+        User Management
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/acl/" class="md-nav__link">
+        Access control lists (ACLs)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/network/" class="md-nav__link">
+        Networking
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/ssh/" class="md-nav__link">
+        OpenSSH
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/process/" class="md-nav__link">
+        Process Management
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/software/" class="md-nav__link">
+        Software Management
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/systemd/" class="md-nav__link">
+        Systemd Management
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/cron/" class="md-nav__link">
+        Cron Jobs
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/logs/" class="md-nav__link">
+        Logs
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/disk/" class="md-nav__link">
+        Disk Management
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3">
+          RedHat
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="RedHat" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          RedHat
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+    
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_1" type="checkbox" id="__nav_3_1" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_1">
+          RHSA I (RH124)
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="RHSA I (RH124)" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_1">
+          <span class="md-nav__icon md-icon"></span>
+          RHSA I (RH124)
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../intro/" class="md-nav__link">
+        Introduction
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../access/" class="md-nav__link">
+        Accessing The Command Line
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../manage/" class="md-nav__link">
+        Managing Files From The Command Line
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../help/" class="md-nav__link">
+        Getting Help In Red Hat Enterprise Linux
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../edit/" class="md-nav__link">
+        Creating, Viewing, And Editing Text Files
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../users/" class="md-nav__link">
+        Managing Local Users And Groups
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../control/" class="md-nav__link">
+        Controlling Access To Files
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../monitor/" class="md-nav__link">
+        Monitoring And Managing Linux Processes
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../service/" class="md-nav__link">
+        Controlling Services And Daemons
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../secssh/" class="md-nav__link">
+        Configuring And Securing Ssh
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../store/" class="md-nav__link">
+        Analyzing And Storing Logs
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mannet/" class="md-nav__link">
+        Managing Networking
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Archiving And Transferring Files
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Archiving And Transferring Files
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#managing-compressed-tar-archives" class="md-nav__link">
+    MANAGING COMPRESSED TAR ARCHIVES
+  </a>
+  
+    <nav class="md-nav" aria-label="MANAGING COMPRESSED TAR ARCHIVES">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-tar-command" class="md-nav__link">
+    THE tar COMMAND
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#selected-tar-options" class="md-nav__link">
+    SELECTED tar OPTIONS
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#listing-options-of-the-tar-command" class="md-nav__link">
+    LISTING OPTIONS OF THE tar COMMAND
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#archiving-files-and-directories" class="md-nav__link">
+    ARCHIVING FILES AND DIRECTORIES
+  </a>
+  
+    <nav class="md-nav" aria-label="ARCHIVING FILES AND DIRECTORIES">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#listing-contents-of-an-archive" class="md-nav__link">
+    LISTING CONTENTS OF AN ARCHIVE
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#extracting-files-from-an-archive" class="md-nav__link">
+    EXTRACTING FILES FROM AN ARCHIVE
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#creating-a-compressed-archive" class="md-nav__link">
+    CREATING A COMPRESSED ARCHIVE
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#extracting-a-compressed-archive" class="md-nav__link">
+    EXTRACTING A COMPRESSED ARCHIVE
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#transferring-files-between-systems-securely" class="md-nav__link">
+    TRANSFERRING FILES BETWEEN SYSTEMS SECURELY
+  </a>
+  
+    <nav class="md-nav" aria-label="TRANSFERRING FILES BETWEEN SYSTEMS SECURELY">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#transferring-files-using-secure-copy" class="md-nav__link">
+    TRANSFERRING FILES USING SECURE COPY
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#transferring-files-using-the-secure-file-transfer-program" class="md-nav__link">
+    TRANSFERRING FILES USING THE SECURE FILE TRANSFER PROGRAM
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#synchronizing-files-between-systems-securely" class="md-nav__link">
+    SYNCHRONIZING FILES BETWEEN SYSTEMS SECURELY
+  </a>
+  
+    <nav class="md-nav" aria-label="SYNCHRONIZING FILES BETWEEN SYSTEMS SECURELY">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#synchronize-files-and-directories-with-rsync" class="md-nav__link">
+    SYNCHRONIZE FILES AND DIRECTORIES WITH rsync
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    SUMMARY
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pack/" class="md-nav__link">
+        Installing And Updating Software Packages
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../filsys/" class="md-nav__link">
+        Accessing Linux File Systems
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../support/" class="md-nav__link">
+        Analyzing Servers And Getting Support
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../review/" class="md-nav__link">
+        Comprehensive Review
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4">
+          English
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="English" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          English
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_4_1" type="checkbox" id="__nav_4_1" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_1">
+          Tutorial
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Tutorial" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_1">
+          <span class="md-nav__icon md-icon"></span>
+          Tutorial
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../english/vol1/" class="md-nav__link">
+        Vol-1
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../english/vol2/" class="md-nav__link">
+        Vol-2
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../english/vol3/" class="md-nav__link">
+        Vol-3
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../english/vol4/" class="md-nav__link">
+        Vol-4
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5">
+          Knowledge Base
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Knowledge Base" data-md-level="1">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          Knowledge Base
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_5_1" type="checkbox" id="__nav_5_1" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5_1">
+          The Basics
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="The Basics" data-md-level="2">
+        <label class="md-nav__title" for="__nav_5_1">
+          <span class="md-nav__icon md-icon"></span>
+          The Basics
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../basics/threat-modeling/" class="md-nav__link">
+        Threat Modeling
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../basics/dns/" class="md-nav__link">
+        Introduction to DNS
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../basics/multi-factor-authentication/" class="md-nav__link">
+        Multi-factor Authentication
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../basics/account-deletion/" class="md-nav__link">
+        Account Deletion
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_5_2" type="checkbox" id="__nav_5_2" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5_2">
+          Android
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Android" data-md-level="2">
+        <label class="md-nav__title" for="__nav_5_2">
+          <span class="md-nav__icon md-icon"></span>
+          Android
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../android/overview/" class="md-nav__link">
+        Android Overview
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../android/grapheneos-vs-calyxos/" class="md-nav__link">
+        GrapheneOS vs CalyxOS
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_5_3" type="checkbox" id="__nav_5_3" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5_3">
+          Linux
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Linux" data-md-level="2">
+        <label class="md-nav__title" for="__nav_5_3">
+          <span class="md-nav__icon md-icon"></span>
+          Linux
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux-desktop/overview/" class="md-nav__link">
+        Linux Overview
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux-desktop/hardening/" class="md-nav__link">
+        System Hardening
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux-desktop/sandboxing/" class="md-nav__link">
+        Application Sandboxing
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_5_4" type="checkbox" id="__nav_5_4" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5_4">
+          Advanced
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Advanced" data-md-level="2">
+        <label class="md-nav__title" for="__nav_5_4">
+          <span class="md-nav__icon md-icon"></span>
+          Advanced
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setup/integrating-metadata-removal/" class="md-nav__link">
+        Integrating Metadata Removal
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_6" type="checkbox" id="__nav_6" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6">
+          Recommendations
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Recommendations" data-md-level="1">
+        <label class="md-nav__title" for="__nav_6">
+          <span class="md-nav__icon md-icon"></span>
+          Recommendations
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tools/" class="md-nav__link">
+        Privacy Tools
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_6_2" type="checkbox" id="__nav_6_2" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6_2">
+          Browsers
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Browsers" data-md-level="2">
+        <label class="md-nav__title" for="__nav_6_2">
+          <span class="md-nav__icon md-icon"></span>
+          Browsers
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../browsers/" class="md-nav__link">
+        Web Browsers
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_6_3" type="checkbox" id="__nav_6_3" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6_3">
+          Operating Systems
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Operating Systems" data-md-level="2">
+        <label class="md-nav__title" for="__nav_6_3">
+          <span class="md-nav__icon md-icon"></span>
+          Operating Systems
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../android/" class="md-nav__link">
+        Android
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux-desktop/" class="md-nav__link">
+        Linux
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../qubes/" class="md-nav__link">
+        Qubes OS
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../router/" class="md-nav__link">
+        Router Firmware
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_6_4" type="checkbox" id="__nav_6_4" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6_4">
+          Providers
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Providers" data-md-level="2">
+        <label class="md-nav__title" for="__nav_6_4">
+          <span class="md-nav__icon md-icon"></span>
+          Providers
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cloud/" class="md-nav__link">
+        Cloud Storage
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dns/" class="md-nav__link">
+        DNS Resolvers
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../email/" class="md-nav__link">
+        Email Services
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../search-engines/" class="md-nav__link">
+        Search Engines
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vpn/" class="md-nav__link">
+        VPN Services
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_6_5" type="checkbox" id="__nav_6_5" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6_5">
+          Software
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Software" data-md-level="2">
+        <label class="md-nav__title" for="__nav_6_5">
+          <span class="md-nav__icon md-icon"></span>
+          Software
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../calendar-contacts/" class="md-nav__link">
+        Calendar and Contact Sync
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../notebooks/" class="md-nav__link">
+        Notebooks
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../email-clients/" class="md-nav__link">
+        Email Clients
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../encryption/" class="md-nav__link">
+        Encryption Software
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../file-sharing/" class="md-nav__link">
+        File Sharing and Sync
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../metadata-removal-tools/" class="md-nav__link">
+        Metadata Removal Tools
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../multi-factor-authentication/" class="md-nav__link">
+        Multi-Factor Authenticators
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../passwords/" class="md-nav__link">
+        Password Managers
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../productivity/" class="md-nav__link">
+        Productivity Tools
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../real-time-communication/" class="md-nav__link">
+        Real-Time Communication
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../news-aggregators/" class="md-nav__link">
+        News Aggregators
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../self-contained-networks/" class="md-nav__link">
+        Self-Contained Networks
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../video-streaming/" class="md-nav__link">
+        Video Streaming
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_7" type="checkbox" id="__nav_7" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_7">
+          About
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="About" data-md-level="1">
+        <label class="md-nav__title" for="__nav_7">
+          <span class="md-nav__icon md-icon"></span>
+          About
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/" class="md-nav__link">
+        Heading
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#managing-compressed-tar-archives" class="md-nav__link">
+    MANAGING COMPRESSED TAR ARCHIVES
+  </a>
+  
+    <nav class="md-nav" aria-label="MANAGING COMPRESSED TAR ARCHIVES">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-tar-command" class="md-nav__link">
+    THE tar COMMAND
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#selected-tar-options" class="md-nav__link">
+    SELECTED tar OPTIONS
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#listing-options-of-the-tar-command" class="md-nav__link">
+    LISTING OPTIONS OF THE tar COMMAND
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#archiving-files-and-directories" class="md-nav__link">
+    ARCHIVING FILES AND DIRECTORIES
+  </a>
+  
+    <nav class="md-nav" aria-label="ARCHIVING FILES AND DIRECTORIES">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#listing-contents-of-an-archive" class="md-nav__link">
+    LISTING CONTENTS OF AN ARCHIVE
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#extracting-files-from-an-archive" class="md-nav__link">
+    EXTRACTING FILES FROM AN ARCHIVE
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#creating-a-compressed-archive" class="md-nav__link">
+    CREATING A COMPRESSED ARCHIVE
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#extracting-a-compressed-archive" class="md-nav__link">
+    EXTRACTING A COMPRESSED ARCHIVE
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#transferring-files-between-systems-securely" class="md-nav__link">
+    TRANSFERRING FILES BETWEEN SYSTEMS SECURELY
+  </a>
+  
+    <nav class="md-nav" aria-label="TRANSFERRING FILES BETWEEN SYSTEMS SECURELY">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#transferring-files-using-secure-copy" class="md-nav__link">
+    TRANSFERRING FILES USING SECURE COPY
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#transferring-files-using-the-secure-file-transfer-program" class="md-nav__link">
+    TRANSFERRING FILES USING THE SECURE FILE TRANSFER PROGRAM
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#synchronizing-files-between-systems-securely" class="md-nav__link">
+    SYNCHRONIZING FILES BETWEEN SYSTEMS SECURELY
+  </a>
+  
+    <nav class="md-nav" aria-label="SYNCHRONIZING FILES BETWEEN SYSTEMS SECURELY">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#synchronize-files-and-directories-with-rsync" class="md-nav__link">
+    SYNCHRONIZE FILES AND DIRECTORIES WITH rsync
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    SUMMARY
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+  
+
+
+
+
+  <h1>Archiving And Transferring Files</h1>
+
+<h3 id="managing-compressed-tar-archives">MANAGING COMPRESSED TAR ARCHIVES<a class="headerlink" href="#managing-compressed-tar-archives" title="Permanent link">&para;</a></h3>
+<h4 id="the-tar-command">THE tar COMMAND<a class="headerlink" href="#the-tar-command" title="Permanent link">&para;</a></h4>
+<p>Archiving and compressing files are useful when creating backups and transferring data across
+a network. One of the oldest and most common commands for creating and working with backup
+archives is the <strong>tar</strong> command.</p>
+<p>With <strong>tar</strong>, users can gather large sets of files into a single file (archive). A <strong>tar</strong> archive is a
+structured sequence of file data mixed in with metadata about each file and an index so that
+individual files can be extracted. The archive can be compressed using gzip, bzip2, or xz
+compression.</p>
+<p>The <strong>tar</strong> command can list the contents of archives or extract their files to the current system.</p>
+<h4 id="selected-tar-options">SELECTED tar OPTIONS<a class="headerlink" href="#selected-tar-options" title="Permanent link">&para;</a></h4>
+<p>tar command options are divided into operations (the action you want to take): general options
+and compression options. The table below shows common options, long version of options, and
+their description:</p>
+<p><strong>Overview of tar Operations</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left">OPTION</th>
+<th align="left">DESCRIPTION</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">"-c, --create"</td>
+<td align="left">Create a new archive.</td>
+</tr>
+<tr>
+<td align="left">"-x, --extract"</td>
+<td align="left">Extract from an existing archive.</td>
+</tr>
+<tr>
+<td align="left">"-t, --list"</td>
+<td align="left">List the table of contents of an archive.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Selected tar General Options</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left">OPTION</th>
+<th align="left">DESCRIPTION</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">"-v, --verbose"</td>
+<td align="left">Verbose. Shows which files get archived or extracted.</td>
+</tr>
+<tr>
+<td align="left">"-f, --file="</td>
+<td align="left">File name. This option must be followed by the file name of the archive to use or create.</td>
+</tr>
+<tr>
+<td align="left">"-p, --preserve-permissions"</td>
+<td align="left">Preserve the permissions of files and directories when extracting an archive, without subtracting the umask.</td>
+</tr>
+<tr>
+<td align="left">"-z, --gzip"</td>
+<td align="left">Use gzip compression (.tar.gz).</td>
+</tr>
+<tr>
+<td align="left">"-j, --bzip2"</td>
+<td align="left">Use bzip2 compression (.tar.bz2). bzip2 typically achieves a better compression ratio than gzip.</td>
+</tr>
+<tr>
+<td align="left">"-J, --xz"</td>
+<td align="left">Use xz compression (.tar.xz). The xz compression typically achieves a better compression ratio than bzip2.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="listing-options-of-the-tar-command">LISTING OPTIONS OF THE tar COMMAND<a class="headerlink" href="#listing-options-of-the-tar-command" title="Permanent link">&para;</a></h4>
+<p>The <strong>tar</strong> command expects one of the three following options:</p>
+<ul>
+<li>Use the <strong>-c</strong> or <strong>--create</strong> option to create an archive.</li>
+<li>Use the <strong>-t</strong> or <strong>--list</strong> option to list the contents of an archive.</li>
+<li>Use the <strong>-x</strong> or <strong>--extract</strong> option to extract an archive.</li>
+</ul>
+<p>Other commonly used options are:</p>
+<ul>
+<li>Use the <strong>-f</strong> or <strong>--file=</strong> option with a file name as an argument of the archive to operate.</li>
+<li>Use the <strong>-v</strong> or <strong>--verbose</strong> option for verbosity; useful to see which files get added to or
+extracted from the archive.</li>
+</ul>
+<div class="admonition info">
+<p class="admonition-title">NOTE</p>
+<p>The tar command actually supports a third, old option style that uses the standard
+single-letter options with no leading -. It is still commonly encountered, and
+you might run into this syntax when working with other people's instructions or
+commands. The <strong>info tar 'old options'</strong> command discusses how this differs
+from normal short options in some detail.</p>
+<p>You can ignore old options for now and focus on the standard short and long options
+syntax.</p>
+</div>
+<h3 id="archiving-files-and-directories">ARCHIVING FILES AND DIRECTORIES<a class="headerlink" href="#archiving-files-and-directories" title="Permanent link">&para;</a></h3>
+<p>The first option to use when creating a new archive is the <strong>c</strong> option, followed by the <strong>f</strong> option, then
+a single space, then the file name of the archive to be created, and finally the list of files and
+directories that should get added to the archive. The archive is created in the current directory
+unless specified otherwise.</p>
+<div class="admonition danger">
+<p class="admonition-title">WARNING</p>
+<p>Before creating a tar archive, verify that there is no other archive in the directory
+with the same name as the new archive to be created. The <strong>tar</strong> command overwrites
+an existing archive without warning.</p>
+</div>
+<p>The following command creates an archive named <strong>archive.tar</strong> with the contents of <strong>file1</strong>,
+<strong>file2</strong>, and <strong>file3</strong> in the user's home directory.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ tar -cf archive.tar file1 file2 file3
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ ls archive.tar
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>archive.tar
+</code></pre></div>
+<p>The above <strong>tar</strong> command can also be executed using the long version options.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ tar --file<span class="o">=</span>archive.tar --create file1 file2 file3
+</code></pre></div>
+<div class="admonition info">
+<p class="admonition-title">NOTE</p>
+<p>When archiving files by absolute path names, the leading / of the path is removed
+from the file name by default. Removing the leading / of the path help users to avoid
+overwriting important files when extracting the archive. The <strong>tar</strong> command extracts
+files relative to the current working directory.</p>
+</div>
+<p>For <strong>tar</strong> to be able to archive the selected files, it is mandatory that the user executing the <strong>tar</strong>
+command can read the files. For example, creating a new archive of the <strong>/etc</strong> folder and all of
+its content requires root privileges, because only the root user is allowed to read all of the
+files present in the <strong>/etc</strong> directory. An unprivileged user can create an archive of the <strong>/etc</strong>
+directory, but the archive omits files which do not include read permission for the user, and it omits
+directories which do not include both read and execute permission for the user.</p>
+<p>To create the tar archive named, <strong>/root/etc.tar</strong>, with the <strong>/etc</strong> directory as content as user
+root:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># tar -cf /root/etc.tar /etc</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>tar: Removing leading <span class="sb">`</span>/<span class="err">&#39;</span> from member names
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># </span>
+</code></pre></div>
+<div class="admonition danger">
+<p class="admonition-title">IMPORTANT</p>
+<p>Some advanced permissions that we have not covered in this course, such as ACLs
+and SELinux contexts, are not automatically stored in a <strong>tar</strong> archive. Use the <strong>--
+xattrs</strong> option when creating an archive to store those extended attributes in the
+tar archive.</p>
+</div>
+<h4 id="listing-contents-of-an-archive">LISTING CONTENTS OF AN ARCHIVE<a class="headerlink" href="#listing-contents-of-an-archive" title="Permanent link">&para;</a></h4>
+<p>The <strong>t</strong> option directs <strong>tar</strong> to list the contents (table of contents, hence t) of the archive. Use the <strong>f</strong>
+option with the name of the archive to be queried. For example:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># tar -tf /root/etc.tar</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>etc/
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>etc/fstab
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>etc/crypttab
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>etc/mtab
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>...output omitted...
+</code></pre></div>
+<h4 id="extracting-files-from-an-archive">EXTRACTING FILES FROM AN ARCHIVE<a class="headerlink" href="#extracting-files-from-an-archive" title="Permanent link">&para;</a></h4>
+<p>A tar archive should usually be extracted in an empty directory to ensure it does not overwrite any
+existing files. When root extracts an archive, the <strong>tar</strong> command preserves the original user and
+group ownership of the files. If a regular user extracts files using tar, the file ownership belongs to
+the user extracting the files from the archive.</p>
+<p>To restore files from the <strong>/root/etc.tar</strong> archive to the <strong>/root/etcbackup</strong> directory, run:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># mkdir /root/etcbackup</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># cd /root/etcbackup</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="o">[</span>root@host etcbackup<span class="o">]</span><span class="c1"># tar -tf /root/etc.tar</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>etc/
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>etc/fstab
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>etc/crypttab
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>etc/mtab
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>...output omitted...
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="o">[</span>root@host etcbackup<span class="o">]</span><span class="c1"># tar -xf /root/etc.tar</span>
+</code></pre></div>
+<p>By default, when files get extracted from an archive, the umask is subtracted from the permissions
+of archive content. To preserve the permissions of an archived file, the <strong>p</strong> option when extracting an
+archive.</p>
+<p>In this example, an archive named, <strong>/root/myscripts.tar</strong>, is extracted in the <strong>/root/scripts</strong>
+directory while preserving the permissions of the extracted files:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># mkdir /root/scripts</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># cd /root/scripts</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="o">[</span>root@host scripts<span class="o">]</span><span class="c1"># tar -xpf /root/myscripts.tar</span>
+</code></pre></div>
+<h4 id="creating-a-compressed-archive">CREATING A COMPRESSED ARCHIVE<a class="headerlink" href="#creating-a-compressed-archive" title="Permanent link">&para;</a></h4>
+<p>The <strong>tar</strong> command supports three compression methods. There are three different compression
+methods supported by the <strong>tar</strong> command. The gzip compression is the fastest and oldest one
+and is most widely available across distributions and even across platforms. bzip2 compression
+creates smaller archive files compared to gzip but is less widely available than gzip, while the xz
+compression method is relatively new, but usually offers the best compression ratio of the methods
+available.</p>
+<div class="admonition info">
+<p class="admonition-title">NOTE</p>
+<p>The effectiveness of any compression algorithm depends on the type of data that
+is compressed. Data files that are already compressed, such as compressed picture
+formats or RPM files, usually lead to a low compression ratio.</p>
+</div>
+<p>It is good practice to use a single top-level directory, which can contain other directories and files,
+to simplify the extraction of the files in an organized way.</p>
+<p>Use one of the following options to create a compressed tar archive:</p>
+<ul>
+<li><strong>-z</strong> or <strong>--gzip</strong> for gzip compression (<strong>filename.tar.gz</strong> or <strong>filename.tgz</strong>)</li>
+<li><strong>-j</strong> or <strong>--bzip2</strong> for bzip2 compression (<strong>filename.tar.bz2</strong>)</li>
+<li><strong>-J</strong> or <strong>-xz</strong> for xz compression (<strong>filename.tar.xz</strong>)</li>
+</ul>
+<p>To create a gzip compressed archive named <strong>/root/etcbackup.tar.gz</strong>, with the contents
+from the <strong>/etc</strong> directory on host:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># tar -czf /root/etcbackup.tar.gz /etc</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>tar: Removing leading <span class="sb">`</span>/<span class="err">&#39;</span> from member names
+</code></pre></div>
+<p>To create a bzip2 compressed archive named <strong>/root/logbackup.tar.bz2</strong>, with the contents
+from the <strong>/var/log</strong> directory on host:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="o">[</span>root@host ~<span class="o">]</span>$ tar -cjf /root/logbackup.tar.bz2 /var/log
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>tar: Removing leading <span class="sb">`</span>/<span class="err">&#39;</span> from member names
+</code></pre></div>
+<p>To create a xz compressed archive named, <strong>/root/sshconfig.tar.xz</strong>, with the contents from
+the <strong>/etc/ssh</strong> directory on host:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="o">[</span>root@host ~<span class="o">]</span>$ tar -cJf /root/sshconfig.tar.xz /etc/ssh
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>tar: Removing leading <span class="sb">`</span>/<span class="err">&#39;</span> from member names
+</code></pre></div>
+<p>After creating an archive, verify the content of an archive using the tf options. It is not mandatory
+to use the option for compression agent when listing the content of a compressed archive file. For
+example, to list the content archived in the <strong>/root/etcbackup.tar.gz</strong> file, which uses the gzip
+compression, use the following command:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># tar -tf /root/etcbackup.tar.gz /etc</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>etc/
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>etc/fstab
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>etc/crypttab
+<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>etc/mtab
+<a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a>...output omitted...
+</code></pre></div>
+<h4 id="extracting-a-compressed-archive">EXTRACTING A COMPRESSED ARCHIVE<a class="headerlink" href="#extracting-a-compressed-archive" title="Permanent link">&para;</a></h4>
+<p>The first step when extracting a compressed <strong>tar</strong> archive is to determine where the archived
+files should be extracted to, then create and change to the target directory. The <strong>tar</strong> command
+determines which compression was used and it is usually not necessary to use the same
+compression option used when creating the archive. It is valid to add the decompression method to
+the <strong>tar</strong> command. If one chooses to do so, the correct decompression type option must be used;
+otherwise tar yields an error about the decompression type specified in the options not matching
+the file's decompression type.</p>
+<p>To extract the contents of a gzip compressed archive named <strong>/root/etcbackup.tar.gz</strong> in the
+<strong>/tmp/etcbackup</strong> directory:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># mkdir /tmp/etcbackup</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># cd /tmp/etcbackup</span>
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="o">[</span>root@host etcbackup<span class="o">]</span><span class="c1"># tar -tf /root/etcbackup.tar.gz</span>
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>etc/
+<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>etc/fstab
+<a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>etc/crypttab
+<a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a>etc/mtab
+<a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a>...output omitted...
+<a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a><span class="o">[</span>root@host etcbackup<span class="o">]</span><span class="c1"># tar -xzf /root/etcbackup.tar.gz</span>
+</code></pre></div>
+<p>To extract the contents of a bzip2 compressed archive named <strong>/root/logbackup.tar.bz2</strong> in
+the <strong>/tmp/logbackup</strong> directory:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># mkdir /tmp/logbackup</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># cd /tmp/logbackup</span>
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="o">[</span>root@host logbackup<span class="o">]</span><span class="c1"># tar -tf /root/logbackup.tar.bz2</span>
+<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>var/log/
+<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>var/log/lastlog
+<a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a>var/log/README
+<a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a>var/log/private/
+<a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a>var/log/wtmp
+<a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a>var/log/btmp
+<a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a>...output omitted...
+<a id="__codelineno-11-11" name="__codelineno-11-11" href="#__codelineno-11-11"></a><span class="o">[</span>root@host logbackup<span class="o">]</span><span class="c1"># tar -xjf /root/logbackup.tar.bz2</span>
+</code></pre></div>
+<p>To extract the contents of a xz compressed archive named <strong>/root/sshbackup.tar.xz</strong> in the <strong>/
+tmp/sshbackup</strong> directory:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="o">[</span>root@host ~<span class="o">]</span>$ mkdir /tmp/sshbackup
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># cd /tmp/sshbackup</span>
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="o">[</span>root@host logbackup<span class="o">]</span><span class="c1"># tar -tf /root/sshbackup.tar.xz</span>
+<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>etc/ssh/
+<a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>etc/ssh/moduli
+<a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a>etc/ssh/ssh_config
+<a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a>etc/ssh/ssh_config.d/
+<a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a>etc/ssh/ssh_config.d/05-redhat.conf
+<a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a>etc/ssh/sshd_config
+<a id="__codelineno-12-10" name="__codelineno-12-10" href="#__codelineno-12-10"></a>...output omitted...
+<a id="__codelineno-12-11" name="__codelineno-12-11" href="#__codelineno-12-11"></a><span class="o">[</span>root@host sshbackup<span class="o">]</span><span class="c1"># tar -xJf /root/sshbackup.tar.xz</span>
+</code></pre></div>
+<p>Listing a compressed tar archive works in the same way as listing an uncompressed <strong>tar</strong> archive.</p>
+<div class="admonition info">
+<p class="admonition-title">NOTE</p>
+<p>Additionally, gzip, bzip2, and xz can be used independently to compress single
+files. For example, the gzip etc.tar command results in the etc.tar.gz
+compressed file, while the bzip2 abc.tar command results in the abc.tar.bz2
+compressed file, and the xz myarchive.tar command results in the
+myarchive.tar.xz compressed file.</p>
+<p>The corresponding commands to decompress are gunzip, bunzip2, and unxz.
+For example, the gunzip <strong>/tmp/etc.tar.gz</strong> command results in the etc.tar
+uncompressed tar file, while the bunzip2 abc.tar.bz2 command results in the
+abc.tar uncompressed tar file, and the unxz myarchive.tar.xz command
+results in the myarchive.tar uncompressed tar file.</p>
+</div>
+<h3 id="transferring-files-between-systems-securely">TRANSFERRING FILES BETWEEN SYSTEMS SECURELY<a class="headerlink" href="#transferring-files-between-systems-securely" title="Permanent link">&para;</a></h3>
+<h4 id="transferring-files-using-secure-copy">TRANSFERRING FILES USING SECURE COPY<a class="headerlink" href="#transferring-files-using-secure-copy" title="Permanent link">&para;</a></h4>
+<p>OpenSSH is useful for securely running shell commands on remote systems. The Secure Copy
+command, <strong>scp</strong>, which is part of the OpenSSH suite, copies files from a remote system to the
+local system or from the local system to a remote system. The command uses the SSH server for
+authentication and encrypts data when it is being transferred.</p>
+<p>You can specify a remote location for the source or destination of the files you are copying. The
+format of the remote location should be in the form [<strong>user@]host:/path</strong>. The <strong>user@</strong> portion of
+the argument is optional. If it is missing, your current local username will be used. When you run
+the command, your scp client will authenticate to the remote SSH server just like ssh, using key-
+based authentication or prompting you for your password.</p>
+<p>The following example demonstrates how to copy the local <strong>/etc/yum.conf</strong> and <strong>/etc/hosts</strong>
+files on host, to the remoteuser's home directory on the remotehost remote system:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ scp /etc/yum.conf /etc/hosts remoteuser@remotehost:/home/remoteuser
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>remoteuser@remotehost<span class="err">&#39;</span>s password: password
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>yum.conf                                   <span class="m">100</span>%  <span class="m">813</span>     <span class="m">0</span>.8KB/s   <span class="m">00</span>:00
+<a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>hosts                                      <span class="m">100</span>%  <span class="m">227</span>     <span class="m">0</span>.2KB/s   <span class="m">00</span>:00
+</code></pre></div>
+<p>You can also copy a file in the other direction, from a remote system to the local file system. In this
+example, the file <strong>/etc/hostname</strong> on remotehost is copyed to the local directory <strong>/home/user</strong>.
+The <strong>scp</strong> command authenticates to remotehost as the user remoteuser.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ scp remoteuser@remotehost:/etc/hostname /home/user
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>remoteuser@remotehost<span class="err">&#39;</span>s password: password
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>hostname                                   <span class="m">100</span>%   <span class="m">22</span>     <span class="m">0</span>.0KB/s   <span class="m">00</span>:00
+</code></pre></div>
+<p>To copy a whole directory tree recursively, use the <strong>-r</strong> option. In the following example, the remote
+directory <strong>/var/log</strong> on remotehost is copied recursively to the local directory <strong>/tmp/</strong> on host.
+You must connect to the remote system as root to make sure you can read all files in the remote <strong>/
+var/log</strong> directory.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ scp -r root@remoteuser:/var/log /tmp
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>root@remotehost<span class="err">&#39;</span>s password: password
+<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>...output omitted...
+</code></pre></div>
+<h4 id="transferring-files-using-the-secure-file-transfer-program">TRANSFERRING FILES USING THE SECURE FILE TRANSFER PROGRAM<a class="headerlink" href="#transferring-files-using-the-secure-file-transfer-program" title="Permanent link">&para;</a></h4>
+<p>To interactively upload or download files from a SSH server, use the Secure File Transfer Program,
+<strong>sftp</strong>. A session with the <strong>sftp</strong> command uses the secure authentication mechanism and
+encrypted data transfer to and from the SSH server.</p>
+<p>Just like the <strong>scp</strong> command, the <strong>sftp</strong> command uses [<strong>user@]host</strong> to identify the target system
+and user name. If you do not specify a user, the command will attempt to log in using your local
+user name as the remote user name. You will then be presented with an sftp&gt; prompt.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ sftp remoteuser@remotehost
+<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>remoteuser@remotehost<span class="err">&#39;</span>s password: password
+<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>Connected to remotehost.
+<a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a>sftp&gt; 
+</code></pre></div>
+<p>The interactive <strong>sftp</strong> session accepts various commands that work the same way on the remote
+file system as they do in the local file system, such as <strong>ls, cd, mkdir, rmdir, and pwd</strong>. The <strong>put</strong>
+command uploads a file to the remote system. The <strong>get</strong> command downloads a file from the remote
+system. The <strong>exit</strong> command exits the sftp session.</p>
+<p>To upload the <strong>/etc/hosts</strong> file on the local system to the newly created directory <strong>/home/
+remoteuser/hostbackup</strong> on remotehost. The sftp session always assumes that the <strong>put</strong>
+command is followed by a file on the local file system and starts in the connecting user's home
+directory; in this case, <strong>/home/remoteuser</strong>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>sftp&gt; mkdir hostbackup
+<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>sftp&gt; <span class="nb">cd</span> hostbackup
+<a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>sftp&gt; put /etc/hosts
+<a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a>Uploading /etc/hosts to /home/remoteuser/hostbackup/hosts
+<a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a>/etc/hosts                                 <span class="m">100</span>%  <span class="m">227</span>     <span class="m">0</span>.2KB/s   <span class="m">00</span>:00
+<a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a>sftp&gt; 
+</code></pre></div>
+<p>To download <strong>/etc/yum.conf</strong> from the remote host to the current directory on the local system,
+execute the command <strong>get /etc/yum.conf</strong> and exit the <strong>sftp</strong> session with the <strong>exit</strong> command.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>sftp&gt; get /etc/yum.conf
+<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>Fetching /etc/yum.conf to yum.conf
+<a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a>/etc/yum.conf                              <span class="m">100</span>%  <span class="m">813</span>     <span class="m">0</span>.8KB/s   <span class="m">00</span>:00
+<a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a>sftp&gt; <span class="nb">exit</span>
+<a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ 
+</code></pre></div>
+<h3 id="synchronizing-files-between-systems-securely">SYNCHRONIZING FILES BETWEEN SYSTEMS SECURELY<a class="headerlink" href="#synchronizing-files-between-systems-securely" title="Permanent link">&para;</a></h3>
+<h4 id="synchronize-files-and-directories-with-rsync">SYNCHRONIZE FILES AND DIRECTORIES WITH rsync<a class="headerlink" href="#synchronize-files-and-directories-with-rsync" title="Permanent link">&para;</a></h4>
+<p>The <strong>rsync</strong> command is another way to securely copy files from one system to another. The tool
+uses an algorithm that minimizes the amount of data copied by synchronizing only the portions
+of files that have changed. It differs from <strong>scp</strong> in that if two files or directories are similar between
+two servers, <strong>rsync</strong> copies the differences between the file systems on the two servers, while <strong>scp</strong>
+would need to copy everything.</p>
+<p>One of the advantages of <strong>rsync</strong> is that it can copy files between a local system and a remote
+system securely and efficiently. While the initial synchronization of a directory takes about the
+same time as copying it, any subsequent synchronization only requires the differences to be
+copied over the network, speeding updates, possibly substantially.</p>
+<p>One of the most important options of <strong>rsync</strong> is the <strong>-n</strong> option to perform a dry run. A dry run is a
+simulation of what happens when the command gets executed. The dry run shows the changes
+<strong>rsync</strong> would perform when the command is run without the dry run option. You should perform
+a dry run before performing an <strong>rsync</strong> operation to ensure no important files get overwritten or
+deleted.</p>
+<p>The two most common options when synchronizing files and directories with <strong>rsync</strong> are the <strong>-v</strong> and
+<strong>-a</strong> options.</p>
+<p>The <strong>-v</strong> or <strong>--verbose</strong> option provides more detailed output as the synchronization runs. This is
+useful for troubleshooting and to help see progress.</p>
+<p>The <strong>-a</strong> or <strong>--archive</strong> option enables "archive mode". This is a quick way to enable recursive
+copying and turn on a large number of useful options to preserve most characteristics of the files.
+Archive mode is the same as specifying the following options:</p>
+<p><strong>Options Enabled with rsync -a (Archive Mode)</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left">OPTION</th>
+<th align="left">DESCRIPTION</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">"-r, --recursive"</td>
+<td align="left">synchronize recursively the whole directory tree</td>
+</tr>
+<tr>
+<td align="left">"-l, --links"</td>
+<td align="left">synchronize symbolic links</td>
+</tr>
+<tr>
+<td align="left">"-p, --perms"</td>
+<td align="left">preserve permissions</td>
+</tr>
+<tr>
+<td align="left">"-t, --times"</td>
+<td align="left">preserve time stamps</td>
+</tr>
+<tr>
+<td align="left">"-g, --group"</td>
+<td align="left">preserve group ownership</td>
+</tr>
+<tr>
+<td align="left">"-o, --owner"</td>
+<td align="left">preserve the owner of the files</td>
+</tr>
+<tr>
+<td align="left">"-D, --devices"</td>
+<td align="left">synchronize device file</td>
+</tr>
+</tbody>
+</table>
+<p>Archive mode does not preserve hard links, because this can add significant time to the
+synchronization. If you want to preserve hard links too, add the <strong>-H</strong> option.</p>
+<div class="admonition info">
+<p class="admonition-title">NOTE</p>
+<p>If you are using advanced permissions, you might need to add two additional
+options:</p>
+<ul>
+<li>-A to preserve ACLs</li>
+<li>-X to preserve SELinux contexts</li>
+</ul>
+</div>
+<p>You can use <strong>rsync</strong> to synchronize the contents of a local file or directory with a file or directory on
+a remote machine, using either machine as the source. You can also synchronize the contents of
+two local files or directories.</p>
+<p>For example, to synchronize contents of the <strong>/var/log</strong> directory to the <strong>/tmp</strong> directory:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ su -
+<a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>Password: password
+<a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># rsync -av /var/log /tmp</span>
+<a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a>receiving incremental file list
+<a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a>log/
+<a id="__codelineno-19-6" name="__codelineno-19-6" href="#__codelineno-19-6"></a>log/README
+<a id="__codelineno-19-7" name="__codelineno-19-7" href="#__codelineno-19-7"></a>log/boot.log
+<a id="__codelineno-19-8" name="__codelineno-19-8" href="#__codelineno-19-8"></a>...output omitted...
+<a id="__codelineno-19-9" name="__codelineno-19-9" href="#__codelineno-19-9"></a>log/tuned/tuned.log
+<a id="__codelineno-19-10" name="__codelineno-19-10" href="#__codelineno-19-10"></a>
+<a id="__codelineno-19-11" name="__codelineno-19-11" href="#__codelineno-19-11"></a>sent <span class="m">11</span>,592,423 bytes  received <span class="m">779</span> bytes  <span class="m">23</span>,186,404.00 bytes/sec
+<a id="__codelineno-19-12" name="__codelineno-19-12" href="#__codelineno-19-12"></a>total size is <span class="m">11</span>,586,755  speedup is <span class="m">1</span>.00
+<a id="__codelineno-19-13" name="__codelineno-19-13" href="#__codelineno-19-13"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ ls /tmp
+<a id="__codelineno-19-14" name="__codelineno-19-14" href="#__codelineno-19-14"></a>log  ssh-RLjDdarkKiW1
+<a id="__codelineno-19-15" name="__codelineno-19-15" href="#__codelineno-19-15"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ 
+</code></pre></div>
+<p>A trailing slash at the end of the source directory synchronizes the content of a directory without
+newly creating the subdirectory in the target directory. In this example, the <strong>log</strong> directory is not
+created in the <strong>/tmp</strong> directory. Only the content of the <strong>/var/log/</strong> directory is synchronized into
+the <strong>/tmp</strong> directory.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># rsync -av /var/log/ /tmp</span>
+<a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>sending incremental file list
+<a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a>./
+<a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a>README
+<a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a>boot.log
+<a id="__codelineno-20-6" name="__codelineno-20-6" href="#__codelineno-20-6"></a>...output omitted...
+<a id="__codelineno-20-7" name="__codelineno-20-7" href="#__codelineno-20-7"></a>tuned/tuned.log
+<a id="__codelineno-20-8" name="__codelineno-20-8" href="#__codelineno-20-8"></a>sent <span class="m">11</span>,592,389 bytes  received <span class="m">778</span> bytes  <span class="m">23</span>,186,334.00 bytes/sec
+<a id="__codelineno-20-9" name="__codelineno-20-9" href="#__codelineno-20-9"></a>total size is <span class="m">11</span>,586,755  speedup is <span class="m">1</span>.00
+<a id="__codelineno-20-10" name="__codelineno-20-10" href="#__codelineno-20-10"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># ls /tmp</span>
+<a id="__codelineno-20-11" name="__codelineno-20-11" href="#__codelineno-20-11"></a>anaconda                  dnf.rpm.log-20190318  private
+<a id="__codelineno-20-12" name="__codelineno-20-12" href="#__codelineno-20-12"></a>audit                     dnf.rpm.log-20190324  qemu-ga
+<a id="__codelineno-20-13" name="__codelineno-20-13" href="#__codelineno-20-13"></a>boot.log                  dnf.rpm.log-20190331  README
+<a id="__codelineno-20-14" name="__codelineno-20-14" href="#__codelineno-20-14"></a>...output omitted...
+</code></pre></div>
+<div class="admonition danger">
+<p class="admonition-title">IMPORTANT</p>
+<p>When entering the source directory for the <strong>rsync</strong> command, it is essential
+to remember that whether a trailing slash is present on the directory name is
+significant. It determines whether the directory or just the contents of the directory
+are synchronized to the target.</p>
+<p>Bash <strong>Tab</strong>-completion automatically adds a trailing slash to the end of directory
+names.</p>
+</div>
+<p>Just like the <strong>scp</strong> and <strong>sftp</strong> commands, for rsync you specify remote locations using the
+[<strong>user@]host:/path</strong> format. The remote location can be either the source system or destination
+system, but one of the two machines has to be local.</p>
+<p>In order to preserve file ownership, you need to be root on the destination system. If the
+destination is remote, authenticate as root. If the destination is local, you must run <strong>rsync</strong> as
+root.</p>
+<p>In this example, synchronize the local <strong>/var/log</strong> directory to the <strong>/tmp</strong> directory on the
+remotehost system:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># rsync -av /var/log remotehost:/tmp</span>
+<a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a>root@remotehost<span class="err">&#39;</span>s password: password
+<a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a>receiving incremental file list
+<a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a>log/
+<a id="__codelineno-21-5" name="__codelineno-21-5" href="#__codelineno-21-5"></a>log/README
+<a id="__codelineno-21-6" name="__codelineno-21-6" href="#__codelineno-21-6"></a>log/boot.log
+<a id="__codelineno-21-7" name="__codelineno-21-7" href="#__codelineno-21-7"></a>...output omitted...
+<a id="__codelineno-21-8" name="__codelineno-21-8" href="#__codelineno-21-8"></a>sent <span class="m">9</span>,783 bytes  received <span class="m">290</span>,576 bytes  <span class="m">85</span>,816.86 bytes/sec
+<a id="__codelineno-21-9" name="__codelineno-21-9" href="#__codelineno-21-9"></a>total size is <span class="m">11</span>,585,690  speedup is <span class="m">38</span>.57
+</code></pre></div>
+<p>In the same way, the <strong>/var/log</strong> remote directory on remotehost can be synchronized to the <strong>/
+tmp</strong> local directory on host:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># rsync -av remotehost:/var/log /tmp</span>
+<a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a>root@remotehost<span class="err">&#39;</span>s password: password
+<a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a>receiving incremental file list
+<a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a>log/boot.log
+<a id="__codelineno-22-5" name="__codelineno-22-5" href="#__codelineno-22-5"></a>log/dnf.librepo.log
+<a id="__codelineno-22-6" name="__codelineno-22-6" href="#__codelineno-22-6"></a>log/dnf.log
+<a id="__codelineno-22-7" name="__codelineno-22-7" href="#__codelineno-22-7"></a>...output omitted...
+<a id="__codelineno-22-8" name="__codelineno-22-8" href="#__codelineno-22-8"></a>sent <span class="m">9</span>,783 bytes  received <span class="m">290</span>,576 bytes  <span class="m">85</span>,816.86 bytes/sec
+<a id="__codelineno-22-9" name="__codelineno-22-9" href="#__codelineno-22-9"></a>total size is <span class="m">11</span>,585,690  speedup is <span class="m">38</span>.57
+</code></pre></div>
+<h3 id="summary">SUMMARY<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h3>
+<p>In this chapter, you learned:</p>
+<ul>
+<li>
+<p>The <strong>tar</strong> command creates an archive file from a set of files and directories, extracts files from
+the archive, and lists the contents of an archive.</p>
+</li>
+<li>
+<p>The <strong>tar</strong> command provides a set of different compression methods reduce archive size.</p>
+</li>
+<li>
+<p>Besides providing a secure remote shell, the SSH service also provides the <strong>scp</strong> and <strong>sftp</strong>
+commands as secure ways to transfer files from and to a remote system running the SSH server.</p>
+</li>
+<li>
+<p>The <strong>rsync</strong> command securely and efficiently synchronizes files between two directories, either
+one of which can be on a remote system.</p>
+</li>
+</ul>
+
+  <hr>
+<div class="md-source-file">
+  <small>
+    
+      Last update:
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">November 22, 2022</span>
+      
+    
+  </small>
+</div>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+          <a href="#" class="md-top md-icon" data-md-component="top" hidden>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+            Back to top
+          </a>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+    <nav class="md-footer__inner md-grid" aria-label="Footer" >
+      
+        
+        <a href="../mannet/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Managing Networking" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Managing Networking
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../pack/" class="md-footer__link md-footer__link--next" aria-label="Next: Installing And Updating Software Packages" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Installing And Updating Software Packages
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2022 Divijesh Varma. All rights reserved.
+    </div>
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.instant", "navigation.tracking", "navigation.tabs", "navigation.tabs.sticky", "navigation.expand", "navigation.top", "navigation.sections", "content.tooltips", "header.autohide"], "search": "../../assets/javascripts/workers/search.16e2a7d4.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d6c3db9e.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="../../javascripts/feedback.js"></script>
+      
+    
+  </body>
+</html>
