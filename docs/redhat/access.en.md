@@ -619,3 +619,7 @@ that helps a user organize windows and start applications.
 
 - You can use **Tab** completion to complete file names when typing them as arguments to
 commands.
+
+### LAB
+
+pdf - 60

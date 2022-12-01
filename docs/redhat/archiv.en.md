@@ -565,3 +565,7 @@ commands as secure ways to transfer files from and to a remote system running th
 
 - The **rsync** command securely and efficiently synchronizes files between two directories, either
 one of which can be on a remote system.
+
+### LAB
+
+pdf - 489

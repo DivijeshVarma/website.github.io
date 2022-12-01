@@ -233,3 +233,7 @@ offer it as supported enterprise-ready products.
 
 - Red Hat Enterprise Linux is Red Hat's open source, enterprise-ready, commercially-supported
 Linux distribution.
+
+### Quiz Solutions
+
+pdf - 30

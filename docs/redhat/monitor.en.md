@@ -734,3 +734,7 @@ and **killall** commands use signals to control processes.
 
 - Load average is an estimate of how busy the system is. To display load average values, you can
 use the **top, uptime**, or **w** command.
+
+### LAB
+
+pdf - 297

@@ -79,3 +79,7 @@ support cases from the server's command line.
 
 - Red Hat Insights is a SaaS-based predictive analytics tool to help you identify and remediate
 threats to your systems' security, performance, availability, and stability.
+
+### LAB
+
+pdf - 616

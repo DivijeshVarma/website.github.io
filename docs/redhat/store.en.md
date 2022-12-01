@@ -782,3 +782,7 @@ appropriate files.
 - The systemd journals are temporary and do not persist across reboot.
 
 - The chronyd service helps to synchronize time settings with a time source.
+
+### LAB
+
+pdf - 404

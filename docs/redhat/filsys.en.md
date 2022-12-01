@@ -726,3 +726,7 @@ graphical environment.
 
 - The **find** command performs a real-time search in the local file systems to find files based on
 search criteria.
+
+### LAB
+
+pdf - 573

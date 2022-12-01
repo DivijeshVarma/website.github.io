@@ -1187,3 +1187,7 @@ NetworkManager.
 - The system's static host name is stored in the **/etc/hostname** file. The **hostnamectl**
 command is used to modify or view the status of the system's host name and related settings.
 The **hostname** command displays or temporarily modifies the system's host name.
+
+### LAB
+
+pdf - 462

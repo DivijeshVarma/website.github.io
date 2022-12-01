@@ -577,3 +577,7 @@ of a directory tree.
 - The **umask** command without arguments displays the current umask value of the shell. Every
 process on the system has a umask. The default umask values for Bash are defined in the **/etc/
 profile** and **/etc/bashrc** files.
+
+### LAB
+
+pdf - 254

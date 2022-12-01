@@ -1139,3 +1139,7 @@ software packages.
 
 - Red Hat Enterprise Linux 8 uses Application Streams to provide a single repository to host
 multiple versions of an application's packages and its dependencies.
+
+### LAB
+
+pdf - 541

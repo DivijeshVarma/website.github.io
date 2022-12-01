@@ -467,3 +467,7 @@ command exports the public key to remote systems.
 
 - It is a recommended practice to configure sshd to disable remote logins as root and to require
 public key authentication rather than password-based authentication.
+
+### LAB
+
+pdf - 359

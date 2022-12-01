@@ -675,3 +675,7 @@ installed.
 - Shell variables can help you run commands and are unique to a particular shell session.
 
 - Environment variables can help you configure the behavior of the shell or the processes it starts.
+
+### LAB
+
+pdf - 173

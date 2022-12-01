@@ -450,3 +450,7 @@ network services started by systemd.
 service unit depends.
 
 - systemd can mask a service unit so that it does not run even to satisfy dependencies.
+
+### LAB
+
+pdf - 326

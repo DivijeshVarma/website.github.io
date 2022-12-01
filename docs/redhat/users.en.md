@@ -827,3 +827,7 @@ and **/etc/shadow**.
 - The **groupadd, groupmod**, and **groupdel** commands can be used to manage groups.
 
 - The **chage** command can be used to configure and view password expiration settings for users.
+
+### LAB
+
+pdf - 221
