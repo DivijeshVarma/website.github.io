@@ -1,5 +1,5 @@
 docs_dir: 'docs'
-site_url: "https://www.privacyguides.org/"
+site_url: "https://divijesh.tech/"
 site_dir: 'site'
 
 site_name: Divijesh Varma
@@ -49,6 +49,7 @@ extra:
 copyright: Copyright &copy; 2022 Divijesh Varma. All rights reserved.
 
 theme:
+  font: false
   name: material
   custom_dir: theme
   logo: assets/logo.png
@@ -70,9 +71,6 @@ theme:
       quote: octicons/quote-16
   icon:
     repo: fontawesome/brands/github
-  font:
-    text: Zen Dots
-    code: Zen Dots
   features:
     - navigation.instant
     - navigation.tracking
