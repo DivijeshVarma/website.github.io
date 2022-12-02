@@ -163,3 +163,69 @@ clarify the commands being executed, as well as the values of variables being in
 
 ### RUNNING COMMANDS MORE EFFICIENTLY USING LOOPS
 
+#### USING LOOPS TO ITERATE COMMANDS
+
+System administrators often encounter repetitive tasks in their day-to-day activities. Repetitive
+tasks can take the form of executing an action multiple times on a target, such as checking a
+process every minute for 10 minutes to see if it has completed. Task repetition can also take the
+form of executing an action once across multiple targets, such as backing up each database on a
+system. The for loop is one of the multiple shell looping constructs offered by Bash, and can be
+used for task iterations.
+
+**Processing Items from the Command Line**
+
+Bash's for loop construct uses the following syntax.
+
+```
+for VARIABLE in LIST; do
+COMMAND VARIABLE
+done
+
+```
+The loop processes the strings provided in LIST in order one by one and exits after processing the
+last string in the list. Each string in the list is temporarily stored as the value of VARIABLE, while the
+**for** loop executes the block of commands contained in its construct. The naming of the variable is
+arbitrary. Typically, the variable value is referenced by commands in the command block.
+
+The list of strings provided to a **for** loop can be supplied in several ways. It can be a list of
+strings entered directly by the user, or be generated from different types of shell expansion,
+such as variable, brace, or file-name expansion, or command substitution. Some examples that
+demonstrate the different ways strings can be provided to **for** loops follow.
+
+```bash
+[user@host ~]$ for HOST in host1 host2 host3; do echo $HOST; done
+host1
+host2
+host3
+[user@host ~]$ for HOST in host{1,2,3}; do echo $HOST; done
+host1
+host2
+host3
+[user@host ~]$ for HOST in host{1..3}; do echo $HOST; done
+host1
+host2
+host3
+[user@host ~]$ for FILE in file*; do ls $FILE; done
+filea
+fileb
+filec
+[user@host ~]$ for FILE in file{a..c}; do ls $FILE; done
+filea
+fileb
+filec
+[user@host ~]$ for PACKAGE in $(rpm -qa | grep kernel); \
+do echo "$PACKAGE was installed on \
+$(date -d @$(rpm -q --qf "%{INSTALLTIME}\n" $PACKAGE))"; done
+abrt-addon-kerneloops-2.1.11-12.el7.x86_64 was installed on Tue Apr 22 00:09:07
+EDT 2014
+kernel-3.10.0-121.el7.x86_64 was installed on Thu Apr 10 15:27:52 EDT 2014
+kernel-tools-3.10.0-121.el7.x86_64 was installed on Thu Apr 10 15:28:01 EDT 2014
+kernel-tools-libs-3.10.0-121.el7.x86_64 was installed on Thu Apr 10 15:26:22 EDT
+2014
+[user@host ~]$ for EVEN in $(seq 2 2 10); do echo "$EVEN"; done
+2
+4
+6
+8
+10
+```
