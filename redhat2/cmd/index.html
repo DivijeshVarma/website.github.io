@@ -31,6 +31,12 @@
     
     
       
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
     
     
       <link rel="stylesheet" href="../../stylesheets/extra.css">
@@ -2213,17 +2219,19 @@ The question mark (?) is a <strong>meta-character</strong> that also needs prote
 By default, the text displays on standard output (STDOUT), but it can also be directed to standard
 error (STDERR) using output redirection. In the following simple Bash script, the <strong>echo</strong> command
 displays the message "<strong>Hello, world</strong>" to STDOUT.</p>
-<p><div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ cat ~/bin/hello
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ cat ~/bin/hello
 <a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="c1">#!/bin/bash</span>
 <a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="nb">echo</span> <span class="s2">&quot;Hello, world&quot;</span>
 <a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ hello
 <a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>Hello, world
 </code></pre></div>
-!!! info 'NOTE'</p>
+<div class="admonition info">
+<p class="admonition-title">NOTE</p>
 <p>This user can just run <strong>hello</strong> at the prompt because the <strong>~/bin</strong> (<strong>/home/user/bin</strong>)
-  directory is in the user's PATH variable and the <strong>hello</strong> script in it is executable. The
-  shell automatically finds the script there, as long as there is no other executable file
-  called <strong>hello</strong> in any of the directories listed prior to <strong>/home/user/bin</strong> in the PATH.</p>
+directory is in the user's PATH variable and the <strong>hello</strong> script in it is executable. The
+shell automatically finds the script there, as long as there is no other executable file
+called <strong>hello</strong> in any of the directories listed prior to <strong>/home/user/bin</strong> in the PATH.</p>
+</div>
 <p>The <strong>echo</strong> command is widely used in shell scripts to display informational or error messages.
 These messages can be a helpful indicator of the progress of a script and can be directed either to
 standard output, standard error, or be redirected to a log file for archiving. When displaying error
