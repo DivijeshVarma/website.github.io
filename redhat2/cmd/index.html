@@ -1048,6 +1048,19 @@
     RUNNING COMMANDS MORE EFFICIENTLY USING LOOPS
   </a>
   
+    <nav class="md-nav" aria-label="RUNNING COMMANDS MORE EFFICIENTLY USING LOOPS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#using-loops-to-iterate-commands" class="md-nav__link">
+    USING LOOPS TO ITERATE COMMANDS
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
     </ul>
@@ -2118,6 +2131,19 @@
     RUNNING COMMANDS MORE EFFICIENTLY USING LOOPS
   </a>
   
+    <nav class="md-nav" aria-label="RUNNING COMMANDS MORE EFFICIENTLY USING LOOPS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#using-loops-to-iterate-commands" class="md-nav__link">
+    USING LOOPS TO ITERATE COMMANDS
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
     </ul>
@@ -2264,6 +2290,63 @@ The <strong>echo</strong> command can also be very helpful when trying to debug 
 addition of <strong>echo</strong> statements to the portion of the script that is not behaving as expected can help
 clarify the commands being executed, as well as the values of variables being invoked.</p>
 <h3 id="running-commands-more-efficiently-using-loops">RUNNING COMMANDS MORE EFFICIENTLY USING LOOPS<a class="headerlink" href="#running-commands-more-efficiently-using-loops" title="Permanent link">&para;</a></h3>
+<h4 id="using-loops-to-iterate-commands">USING LOOPS TO ITERATE COMMANDS<a class="headerlink" href="#using-loops-to-iterate-commands" title="Permanent link">&para;</a></h4>
+<p>System administrators often encounter repetitive tasks in their day-to-day activities. Repetitive
+tasks can take the form of executing an action multiple times on a target, such as checking a
+process every minute for 10 minutes to see if it has completed. Task repetition can also take the
+form of executing an action once across multiple targets, such as backing up each database on a
+system. The for loop is one of the multiple shell looping constructs offered by Bash, and can be
+used for task iterations.</p>
+<p><strong>Processing Items from the Command Line</strong></p>
+<p>Bash's for loop construct uses the following syntax.</p>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>for VARIABLE in LIST; do
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>COMMAND VARIABLE
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>done
+</code></pre></div>
+The loop processes the strings provided in LIST in order one by one and exits after processing the
+last string in the list. Each string in the list is temporarily stored as the value of VARIABLE, while the
+<strong>for</strong> loop executes the block of commands contained in its construct. The naming of the variable is
+arbitrary. Typically, the variable value is referenced by commands in the command block.</p>
+<p>The list of strings provided to a <strong>for</strong> loop can be supplied in several ways. It can be a list of
+strings entered directly by the user, or be generated from different types of shell expansion,
+such as variable, brace, or file-name expansion, or command substitution. Some examples that
+demonstrate the different ways strings can be provided to <strong>for</strong> loops follow.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ <span class="k">for</span> HOST <span class="k">in</span> host1 host2 host3<span class="p">;</span> <span class="k">do</span> <span class="nb">echo</span> <span class="nv">$HOST</span><span class="p">;</span> <span class="k">done</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>host1
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>host2
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>host3
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ <span class="k">for</span> HOST <span class="k">in</span> host<span class="o">{</span><span class="m">1</span>,2,3<span class="o">}</span><span class="p">;</span> <span class="k">do</span> <span class="nb">echo</span> <span class="nv">$HOST</span><span class="p">;</span> <span class="k">done</span>
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>host1
+<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>host2
+<a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a>host3
+<a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ <span class="k">for</span> HOST <span class="k">in</span> host<span class="o">{</span><span class="m">1</span>..3<span class="o">}</span><span class="p">;</span> <span class="k">do</span> <span class="nb">echo</span> <span class="nv">$HOST</span><span class="p">;</span> <span class="k">done</span>
+<a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a>host1
+<a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a>host2
+<a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a>host3
+<a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ <span class="k">for</span> FILE <span class="k">in</span> file*<span class="p">;</span> <span class="k">do</span> ls <span class="nv">$FILE</span><span class="p">;</span> <span class="k">done</span>
+<a id="__codelineno-8-14" name="__codelineno-8-14" href="#__codelineno-8-14"></a>filea
+<a id="__codelineno-8-15" name="__codelineno-8-15" href="#__codelineno-8-15"></a>fileb
+<a id="__codelineno-8-16" name="__codelineno-8-16" href="#__codelineno-8-16"></a>filec
+<a id="__codelineno-8-17" name="__codelineno-8-17" href="#__codelineno-8-17"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ <span class="k">for</span> FILE <span class="k">in</span> file<span class="o">{</span>a..c<span class="o">}</span><span class="p">;</span> <span class="k">do</span> ls <span class="nv">$FILE</span><span class="p">;</span> <span class="k">done</span>
+<a id="__codelineno-8-18" name="__codelineno-8-18" href="#__codelineno-8-18"></a>filea
+<a id="__codelineno-8-19" name="__codelineno-8-19" href="#__codelineno-8-19"></a>fileb
+<a id="__codelineno-8-20" name="__codelineno-8-20" href="#__codelineno-8-20"></a>filec
+<a id="__codelineno-8-21" name="__codelineno-8-21" href="#__codelineno-8-21"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ <span class="k">for</span> PACKAGE <span class="k">in</span> <span class="k">$(</span>rpm -qa <span class="p">|</span> grep kernel<span class="k">)</span><span class="p">;</span> <span class="se">\</span>
+<a id="__codelineno-8-22" name="__codelineno-8-22" href="#__codelineno-8-22"></a><span class="k">do</span> <span class="nb">echo</span> <span class="s2">&quot;</span><span class="nv">$PACKAGE</span><span class="s2"> was installed on \</span>
+<a id="__codelineno-8-23" name="__codelineno-8-23" href="#__codelineno-8-23"></a><span class="k">$(</span>date -d @<span class="k">$(</span>rpm -q --qf <span class="s2">&quot;%{INSTALLTIME}\n&quot;</span> <span class="nv">$PACKAGE</span><span class="k">))</span><span class="s2">&quot;</span><span class="p">;</span> <span class="k">done</span>
+<a id="__codelineno-8-24" name="__codelineno-8-24" href="#__codelineno-8-24"></a>abrt-addon-kerneloops-2.1.11-12.el7.x86_64 was installed on Tue Apr <span class="m">22</span> <span class="m">00</span>:09:07
+<a id="__codelineno-8-25" name="__codelineno-8-25" href="#__codelineno-8-25"></a>EDT <span class="m">2014</span>
+<a id="__codelineno-8-26" name="__codelineno-8-26" href="#__codelineno-8-26"></a>kernel-3.10.0-121.el7.x86_64 was installed on Thu Apr <span class="m">10</span> <span class="m">15</span>:27:52 EDT <span class="m">2014</span>
+<a id="__codelineno-8-27" name="__codelineno-8-27" href="#__codelineno-8-27"></a>kernel-tools-3.10.0-121.el7.x86_64 was installed on Thu Apr <span class="m">10</span> <span class="m">15</span>:28:01 EDT <span class="m">2014</span>
+<a id="__codelineno-8-28" name="__codelineno-8-28" href="#__codelineno-8-28"></a>kernel-tools-libs-3.10.0-121.el7.x86_64 was installed on Thu Apr <span class="m">10</span> <span class="m">15</span>:26:22 EDT
+<a id="__codelineno-8-29" name="__codelineno-8-29" href="#__codelineno-8-29"></a><span class="m">2014</span>
+<a id="__codelineno-8-30" name="__codelineno-8-30" href="#__codelineno-8-30"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ <span class="k">for</span> EVEN <span class="k">in</span> <span class="k">$(</span>seq <span class="m">2</span> <span class="m">2</span> <span class="m">10</span><span class="k">)</span><span class="p">;</span> <span class="k">do</span> <span class="nb">echo</span> <span class="s2">&quot;</span><span class="nv">$EVEN</span><span class="s2">&quot;</span><span class="p">;</span> <span class="k">done</span>
+<a id="__codelineno-8-31" name="__codelineno-8-31" href="#__codelineno-8-31"></a><span class="m">2</span>
+<a id="__codelineno-8-32" name="__codelineno-8-32" href="#__codelineno-8-32"></a><span class="m">4</span>
+<a id="__codelineno-8-33" name="__codelineno-8-33" href="#__codelineno-8-33"></a><span class="m">6</span>
+<a id="__codelineno-8-34" name="__codelineno-8-34" href="#__codelineno-8-34"></a><span class="m">8</span>
+<a id="__codelineno-8-35" name="__codelineno-8-35" href="#__codelineno-8-35"></a><span class="m">10</span>
+</code></pre></div>
 
   <hr>
 <div class="md-source-file">
