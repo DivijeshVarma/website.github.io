@@ -160,3 +160,6 @@ ERROR: Houston, we have a problem.
 The **echo** command can also be very helpful when trying to debug a problematic shell script. The
 addition of **echo** statements to the portion of the script that is not behaving as expected can help
 clarify the commands being executed, as well as the values of variables being invoked.
+
+### RUNNING COMMANDS MORE EFFICIENTLY USING LOOPS
+
