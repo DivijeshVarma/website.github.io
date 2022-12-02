@@ -71,8 +71,8 @@ theme:
   icon:
     repo: fontawesome/brands/github
   font:
-    text: Roboto
-    code: Roboto Mono
+    text: Zen Dots
+    code: Zen Dots
   features:
     - navigation.instant
     - navigation.tracking
