@@ -207,6 +207,8 @@ nav:
       - 'redhat/filsys.en.md'
       - 'redhat/support.en.md'
       - 'redhat/review.en.md'
+    - 'RHSA II (RH134)':
+      - 'redhat2/cmd.en.md'
   - 'English':
     - 'Tutorial':
       - 'english/vol1.en.md'
