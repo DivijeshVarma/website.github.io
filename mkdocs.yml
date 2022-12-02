@@ -70,10 +70,9 @@ theme:
       quote: octicons/quote-16
   icon:
     repo: fontawesome/brands/github
-  font: false
-  #font:
-   # text: Roboto
-   # code: Roboto Mono
+  font:
+    text: Roboto
+    code: Roboto Mono
   features:
     - navigation.instant
     - navigation.tracking

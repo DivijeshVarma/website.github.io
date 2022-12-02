@@ -132,12 +132,13 @@ echo "Hello, world"
 Hello, world
 
 ```
-!!! info 'NOTE'
-  
-  This user can just run **hello** at the prompt because the **~/bin** (**/home/user/bin**)
-  directory is in the user's PATH variable and the **hello** script in it is executable. The
-  shell automatically finds the script there, as long as there is no other executable file
-  called **hello** in any of the directories listed prior to **/home/user/bin** in the PATH.
+!!! info "NOTE"
+
+	This user can just run **hello** at the prompt because the **~/bin** (**/home/user/bin**)
+	directory is in the user's PATH variable and the **hello** script in it is executable. The
+	shell automatically finds the script there, as long as there is no other executable file
+	called **hello** in any of the directories listed prior to **/home/user/bin** in the PATH.
+
 
 The **echo** command is widely used in shell scripts to display informational or error messages.
 These messages can be a helpful indicator of the progress of a script and can be directed either to
