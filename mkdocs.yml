@@ -206,6 +206,9 @@ nav:
       - 'redhat/review.en.md'
     - 'RHSA II (RH134)':
       - 'redhat2/cmd.en.md'
+      - 'redhat2/tasks.en.md'
+      - 'redhat2/tuning.en.md'
+      - 'redhat2/acls.en.md'
   - 'English':
     - 'Tutorial':
       - 'english/vol1.en.md'
