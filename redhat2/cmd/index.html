@@ -8,7 +8,7 @@
       
       
       
-        <link rel="canonical" href="https://www.privacyguides.org/redhat2/cmd/">
+        <link rel="canonical" href="https://divijesh.tech/redhat2/cmd/">
       
       <link rel="icon" href="../../assets/img/layout/favicon.ico">
       <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-8.5.10">
@@ -30,12 +30,6 @@
     
     
     
-      
-        
-        
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Zen+Dots:300,300i,400,400i,700,700i%7CZen+Dots:400,400i,700,700i&display=fallback">
-        <style>:root{--md-text-font:"Zen Dots";--md-code-font:"Zen Dots"}</style>
       
     
     
@@ -1063,10 +1057,120 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#using-exit-codes-within-a-script" class="md-nav__link">
+    USING EXIT CODES WITHIN A SCRIPT
+  </a>
+  
+    <nav class="md-nav" aria-label="USING EXIT CODES WITHIN A SCRIPT">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#testing-script-inputs" class="md-nav__link">
+    TESTING SCRIPT INPUTS
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conditional-structures" class="md-nav__link">
+    CONDITIONAL STRUCTURES
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#matching-text-in-command-output-with-regular-expressions" class="md-nav__link">
+    MATCHING TEXT IN COMMAND OUTPUT WITH REGULAR EXPRESSIONS
+  </a>
+  
+    <nav class="md-nav" aria-label="MATCHING TEXT IN COMMAND OUTPUT WITH REGULAR EXPRESSIONS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#writing-regular-expressions" class="md-nav__link">
+    WRITING REGULAR EXPRESSIONS
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#matching-regular-expressions-with-grep" class="md-nav__link">
+    MATCHING REGULAR EXPRESSIONS WITH GREP
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    SUMMARY
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lab" class="md-nav__link">
+    LAB
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
       
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tasks/" class="md-nav__link">
+        Scheduling Future Tasks
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tuning/" class="md-nav__link">
+        Tuning System Performance
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../acls/" class="md-nav__link">
+        Controlling Access To Files With Acls
+      </a>
     </li>
   
 
@@ -2146,6 +2250,74 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#using-exit-codes-within-a-script" class="md-nav__link">
+    USING EXIT CODES WITHIN A SCRIPT
+  </a>
+  
+    <nav class="md-nav" aria-label="USING EXIT CODES WITHIN A SCRIPT">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#testing-script-inputs" class="md-nav__link">
+    TESTING SCRIPT INPUTS
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conditional-structures" class="md-nav__link">
+    CONDITIONAL STRUCTURES
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#matching-text-in-command-output-with-regular-expressions" class="md-nav__link">
+    MATCHING TEXT IN COMMAND OUTPUT WITH REGULAR EXPRESSIONS
+  </a>
+  
+    <nav class="md-nav" aria-label="MATCHING TEXT IN COMMAND OUTPUT WITH REGULAR EXPRESSIONS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#writing-regular-expressions" class="md-nav__link">
+    WRITING REGULAR EXPRESSIONS
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#matching-regular-expressions-with-grep" class="md-nav__link">
+    MATCHING REGULAR EXPRESSIONS WITH GREP
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    SUMMARY
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lab" class="md-nav__link">
+    LAB
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -2347,13 +2519,646 @@ demonstrate the different ways strings can be provided to <strong>for</strong> l
 <a id="__codelineno-8-34" name="__codelineno-8-34" href="#__codelineno-8-34"></a><span class="m">8</span>
 <a id="__codelineno-8-35" name="__codelineno-8-35" href="#__codelineno-8-35"></a><span class="m">10</span>
 </code></pre></div>
+<h3 id="using-exit-codes-within-a-script">USING EXIT CODES WITHIN A SCRIPT<a class="headerlink" href="#using-exit-codes-within-a-script" title="Permanent link">&para;</a></h3>
+<p>After a script has processed all of its contents, it exits to the process that called it. However, there
+may be times when it is desirable to exit a script before it finishes, such as when an error condition
+is encountered. This can be accomplished with the use of the <strong>exit</strong> command within a script. When
+a script encounters the <strong>exit</strong> command, it exits immediately and does not process the remainder
+of the script.</p>
+<p>The <strong>exit</strong> command can be executed with an optional integer argument between <strong>0</strong> and <strong>255</strong>, which
+represents an exit code. An exit code is a code that is returned after a process has completed. An
+exit code value of <strong>0</strong> represents no error. All other nonzero values indicate an error exit code. You
+can use different nonzero values to differentiate between different types of errors encountered.
+This exit code is passed back to the parent process, which stores it in the ? variable and can be
+accessed with <strong>$?</strong> as demonstrated in the following examples.</p>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="o">[</span>user@host bin<span class="o">]</span>$ cat hello
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="c1">#!/bin/bash</span>
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="nb">echo</span> <span class="s2">&quot;Hello, world&quot;</span>
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="nb">exit</span> <span class="m">0</span>
+<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="o">[</span>user@host bin<span class="o">]</span>$ ./hello
+<a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a>Hello, world
+<a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a><span class="o">[</span>user@host bin<span class="o">]</span>$ <span class="nb">echo</span> <span class="nv">$?</span>
+<a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a><span class="m">0</span>
+</code></pre></div>
+If the <strong>exit</strong> command is called without an argument, then the script exits and passes the exit
+status of the last command executed to the parent process.</p>
+<h4 id="testing-script-inputs">TESTING SCRIPT INPUTS<a class="headerlink" href="#testing-script-inputs" title="Permanent link">&para;</a></h4>
+<p>To ensure that scripts are not easily disrupted by unexpected conditions, it is good practice to
+not make assumptions regarding input, such as command-line arguments, user input, command
+substitutions, variable expansions, and file-name expansions. Integrity checking can be performed
+by using Bash's test command.</p>
+<p>Like all commands, the test command produces an exit code upon completion, which is stored
+as the value $?. To see the conclusion of a test, display the value of $? immediately following the
+execution of the test command. Again, an exit status value of 0 indicates the test succeeded, and
+nonzero values indicate the test failed.</p>
+<p>Tests are performed using a variety of operators. Operators can be used to determine if a number
+is greater than, greater than or equal to, less than, less than or equal to, or equal to another
+number. They can be used to test if a string of text is the same or not the same as another string of
+text. Operators can also be used to evaluate if a variable has a value or not.</p>
+<div class="admonition info">
+<p class="admonition-title">NOTE</p>
+<p>Many types of operators are used in shell scripting, in addition to the comparison
+operators taught here. The man page for <strong>test</strong>(1) lists the important conditional
+expression operators with descriptions. The <strong>bash</strong>(1) man page also explains
+operator use and evaluation, but is a very difficult read for beginners. It is
+recommended that students further their advanced shell scripting needs through
+books and courses dedicated to shell programming.</p>
+</div>
+<p>The following examples demonstrate the use of the <strong>test</strong> command using Bash's numeric comparison operators.</p>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ <span class="nb">test</span> <span class="m">1</span> -gt <span class="m">0</span> <span class="p">;</span> <span class="nb">echo</span> <span class="nv">$?</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="m">0</span>
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ <span class="nb">test</span> <span class="m">0</span> -gt <span class="m">1</span> <span class="p">;</span> <span class="nb">echo</span> <span class="nv">$?</span>
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="m">1</span>
+</code></pre></div>
+Tests can be performed using the Bash test command syntax, [ <strong><TESTEXPRESSION></strong> ].
+They can also be performed using Bash's newer extended test command syntax,
+[[ <strong><TESTEXPRESSION></strong> ]], which has been available since Bash version 2.02 and provides
+features such as glob pattern matching and regex pattern matching.</p>
+<p>The following examples demonstrate the use of Bash's <strong>test</strong> command syntax and Bash's numeric
+comparison operators.</p>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ <span class="o">[</span> <span class="m">1</span> -eq <span class="m">1</span> <span class="o">]</span><span class="p">;</span> <span class="nb">echo</span> <span class="nv">$?</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="m">0</span>
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ <span class="o">[</span> <span class="m">1</span> -ne <span class="m">1</span> <span class="o">]</span><span class="p">;</span> <span class="nb">echo</span> <span class="nv">$?</span>
+<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="m">1</span>
+<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ <span class="o">[</span> <span class="m">8</span> -gt <span class="m">2</span> <span class="o">]</span><span class="p">;</span> <span class="nb">echo</span> <span class="nv">$?</span>
+<a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a><span class="m">0</span>
+<a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ <span class="o">[</span> <span class="m">2</span> -ge <span class="m">2</span> <span class="o">]</span><span class="p">;</span> <span class="nb">echo</span> <span class="nv">$?</span>
+<a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a><span class="m">0</span>
+<a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ <span class="o">[</span> <span class="m">2</span> -lt <span class="m">2</span> <span class="o">]</span><span class="p">;</span> <span class="nb">echo</span> <span class="nv">$?</span>
+<a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a><span class="m">1</span>
+<a id="__codelineno-11-11" name="__codelineno-11-11" href="#__codelineno-11-11"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ <span class="o">[</span> <span class="m">1</span> -lt <span class="m">2</span> <span class="o">]</span><span class="p">;</span> <span class="nb">echo</span> <span class="nv">$?</span>
+<a id="__codelineno-11-12" name="__codelineno-11-12" href="#__codelineno-11-12"></a><span class="m">0</span>
+</code></pre></div>
+The following examples demonstrate the use of Bash's string comparison operators.</p>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ <span class="o">[</span> <span class="nv">abc</span> <span class="o">=</span> abc <span class="o">]</span><span class="p">;</span> <span class="nb">echo</span> <span class="nv">$?</span>
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="m">0</span>
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ <span class="o">[</span> <span class="nv">abc</span> <span class="o">==</span> def <span class="o">]</span><span class="p">;</span> <span class="nb">echo</span> <span class="nv">$?</span>
+<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="m">1</span>
+<a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ <span class="o">[</span> abc !<span class="o">=</span> def <span class="o">]</span><span class="p">;</span> <span class="nb">echo</span> <span class="nv">$?</span>
+<a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a><span class="m">0</span>
+</code></pre></div>
+The following examples demonstrate the use of Bash's string unary operators.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ <span class="nv">STRING</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">;</span> <span class="o">[</span> -z <span class="s2">&quot;</span><span class="nv">$STRING</span><span class="s2">&quot;</span> <span class="o">]</span><span class="p">;</span> <span class="nb">echo</span> <span class="nv">$?</span>
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="m">0</span>
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ <span class="nv">STRING</span><span class="o">=</span><span class="s1">&#39;abc&#39;</span><span class="p">;</span> <span class="o">[</span> -n <span class="s2">&quot;</span><span class="nv">$STRING</span><span class="s2">&quot;</span> <span class="o">]</span><span class="p">;</span> <span class="nb">echo</span> <span class="nv">$?</span>
+<a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a><span class="m">0</span>
+</code></pre></div>
+<div class="admonition info">
+<p class="admonition-title">NOTE</p>
+<p>The space characters inside the test brackets are mandatory, because they
+separate the words and elements within the test expression. The shell's command
+parsing routine divides all command lines into words and operators by recognizing
+spaces and other metacharacters, using built-in parsing rules. For full treatment
+of this advanced concept, see the man page getopt(3). The left square bracket
+character ([) is itself a built-in alias for the test command. Shell words, whether
+they are commands, subcommands, options, arguments or other token elements,
+are always delimited by spaces.</p>
+</div>
+<h3 id="conditional-structures">CONDITIONAL STRUCTURES<a class="headerlink" href="#conditional-structures" title="Permanent link">&para;</a></h3>
+<p>Simple shell scripts represent a collection of commands that are executed from beginning to end.
+Conditional structures allow users to incorporate decision making into shell scripts, so that certain
+portions of the script are executed only when certain conditions are met.</p>
+<p><strong>Using the if/then Construct</strong></p>
+<p>The simplest of the conditional structures in Bash is the if/then construct, which has the following
+syntax.</p>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>if &lt;CONDITION&gt;; then
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>&lt;STATEMENT&gt;
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>...
+<a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a>&lt;STATEMENT&gt;
+<a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a>fi
+</code></pre></div>
+With this construct, if a given condition is met, one or more actions are taken. If the given
+condition is not met, then no action is taken. The numeric, string, and file tests previously
+demonstrated are frequently utilized for testing the conditions in <strong>if/then</strong> statements. The <strong>fi</strong>
+statement at the end closes the <strong>if/then</strong> construct. The following code section demonstrates the
+use of an <strong>if/then</strong> construct to start the psacct service if it is not active.</p>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ systemctl is-active psacct &gt; /dev/null <span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span>
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ <span class="k">if</span> <span class="o">[</span> <span class="nv">$?</span> -ne <span class="m">0</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>&gt; sudo systemctl start psacct
+<a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a>&gt; <span class="k">fi</span>
+</code></pre></div>
+<strong>Using the if/then/else Construct</strong></p>
+<p>The <strong>if/then</strong> construct can be further expanded so that different sets of actions can be taken
+depending on whether a condition is met. This is accomplished with the <strong>if/then/else</strong> construct.</p>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>if &lt;CONDITION&gt;; then
+<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>&lt;STATEMENT&gt;
+<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>...
+<a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a>&lt;STATEMENT&gt;
+<a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a>else
+<a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a>&lt;STATEMENT&gt;
+<a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a>...
+<a id="__codelineno-16-8" name="__codelineno-16-8" href="#__codelineno-16-8"></a>&lt;STATEMENT&gt;
+<a id="__codelineno-16-9" name="__codelineno-16-9" href="#__codelineno-16-9"></a>fi
+</code></pre></div>
+The following code section demonstrates the use of an <strong>if/then/else</strong> statement to start the
+psacct service if it is not active and to stop it if it is active.</p>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>[user@host ~]$ systemctl is-active psacct &gt; /dev/null 2&gt;&amp;1
+<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>[user@host ~]$ if [ $? -ne 0 ]; then
+<a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>&gt; sudo systemctl start psacct
+<a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a>&gt; else
+<a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a>&gt; sudo systemctl stop psacct
+<a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a>&gt; fi
+</code></pre></div>
+<strong>Using the if/then/elif/then/else Construct</strong></p>
+<p>Lastly, the <strong>if/then/else</strong> construct can be further expanded to test more than one condition,
+executing a different set of actions when a condition is met. The construct for this is shown in the
+following example:</p>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>if &lt;CONDITION&gt;; then
+<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>&lt;STATEMENT&gt;
+<a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a>...
+<a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a>&lt;STATEMENT&gt;
+<a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a>elif &lt;CONDITION&gt;; then
+<a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a>&lt;STATEMENT&gt;
+<a id="__codelineno-18-7" name="__codelineno-18-7" href="#__codelineno-18-7"></a>...
+<a id="__codelineno-18-8" name="__codelineno-18-8" href="#__codelineno-18-8"></a>&lt;STATEMENT&gt;
+<a id="__codelineno-18-9" name="__codelineno-18-9" href="#__codelineno-18-9"></a>else
+<a id="__codelineno-18-10" name="__codelineno-18-10" href="#__codelineno-18-10"></a>&lt;STATEMENT&gt;
+<a id="__codelineno-18-11" name="__codelineno-18-11" href="#__codelineno-18-11"></a>...
+<a id="__codelineno-18-12" name="__codelineno-18-12" href="#__codelineno-18-12"></a>&lt;STATEMENT&gt;
+<a id="__codelineno-18-13" name="__codelineno-18-13" href="#__codelineno-18-13"></a>fi
+</code></pre></div>
+In this conditional structure, Bash tests the conditions in the order presented. When it finds a
+condition that is true, Bash executes the actions associated with the condition and then skips
+the remainder of the conditional structure. If none of the conditions are true, Bash executes the
+actions enumerated in the <strong>else</strong> clause.</p>
+<p>The following code section demonstrates the use of an <strong>if/then/elif/then/else</strong> statement
+to run the <strong>mysql</strong> client if the mariadb service is active, run the <strong>psql</strong> client if the postgresql
+service is active, or run the <strong>sqlite3</strong> client if both the mariadb and postgresql services are not
+active.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ systemctl is-active mariadb &gt; /dev/null <span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span>
+<a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a><span class="nv">MARIADB_ACTIVE</span><span class="o">=</span><span class="nv">$?</span>
+<a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ sudo systemctl is-active postgresql &gt; /dev/null <span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span>
+<a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a><span class="nv">POSTGRESQL_ACTIVE</span><span class="o">=</span><span class="nv">$?</span>
+<a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ <span class="k">if</span> <span class="o">[</span> <span class="s2">&quot;</span><span class="nv">$MARIADB_ACTIVE</span><span class="s2">&quot;</span> -eq <span class="m">0</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+<a id="__codelineno-19-6" name="__codelineno-19-6" href="#__codelineno-19-6"></a>&gt; mysql
+<a id="__codelineno-19-7" name="__codelineno-19-7" href="#__codelineno-19-7"></a>&gt; <span class="k">elif</span> <span class="o">[</span> <span class="s2">&quot;</span><span class="nv">$POSTGRESQL_ACTIVE</span><span class="s2">&quot;</span> -eq <span class="m">0</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+<a id="__codelineno-19-8" name="__codelineno-19-8" href="#__codelineno-19-8"></a>&gt; psql
+<a id="__codelineno-19-9" name="__codelineno-19-9" href="#__codelineno-19-9"></a>&gt; <span class="k">else</span>
+<a id="__codelineno-19-10" name="__codelineno-19-10" href="#__codelineno-19-10"></a>&gt; sqlite3
+<a id="__codelineno-19-11" name="__codelineno-19-11" href="#__codelineno-19-11"></a>&gt; <span class="k">fi</span>
+</code></pre></div>
+<h3 id="matching-text-in-command-output-with-regular-expressions">MATCHING TEXT IN COMMAND OUTPUT WITH REGULAR EXPRESSIONS<a class="headerlink" href="#matching-text-in-command-output-with-regular-expressions" title="Permanent link">&para;</a></h3>
+<h4 id="writing-regular-expressions">WRITING REGULAR EXPRESSIONS<a class="headerlink" href="#writing-regular-expressions" title="Permanent link">&para;</a></h4>
+<p>Regular expressions provide a pattern matching mechanism that facilitates finding specific
+content. The <strong>vim , grep, and less</strong> commands can all use regular expressions. Programming
+languages such as Perl, Python, and C can all use regular expressions when using pattern matching
+criteria.</p>
+<p>Regular expressions are a language of their own, which means they have their own syntax and
+rules. This section looks at the syntax used when creating regular expressions, as well as showing
+some regular expression examples.</p>
+<p><strong>Describing a Simple Regular Expression</strong></p>
+<p>The simplest regular expression is an exact match. An exact match is when the characters in the
+regular expression match the type and order in the data that is being searched.</p>
+<p>Suppose a user is looking through the following file looking for all occurrences of the pattern <strong>cat</strong>:</p>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>cat
+<a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>dog
+<a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a>concatenate
+<a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a>dogma
+<a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a>category
+<a id="__codelineno-20-6" name="__codelineno-20-6" href="#__codelineno-20-6"></a>educated
+<a id="__codelineno-20-7" name="__codelineno-20-7" href="#__codelineno-20-7"></a>boondoggle
+<a id="__codelineno-20-8" name="__codelineno-20-8" href="#__codelineno-20-8"></a>vindication
+<a id="__codelineno-20-9" name="__codelineno-20-9" href="#__codelineno-20-9"></a>chilidog
+</code></pre></div>
+<strong>cat</strong> is an exact match of a <strong>c</strong>, followed by an <strong>a</strong>, followed by a <strong>t</strong> with no other characters in between.
+Using <strong>cat</strong> as the regular expression to search the previous file returns the following matches:</p>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>cat
+<a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a>concatenate
+<a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a>category
+<a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a>educated
+<a id="__codelineno-21-5" name="__codelineno-21-5" href="#__codelineno-21-5"></a>vindication
+</code></pre></div>
+<strong>Matching the Start and End of a Line</strong></p>
+<p>The previous section used an exact match regular expression on a file. Note that the regular
+expression would match the search string no matter where on the line it occurred: the beginning,
+end, or middle of the word or line. Use a line anchor to control the location of where the regular
+expression looks for a match.</p>
+<p>To search at the beginning of a line, use the caret character (^). To search at the end of a line, use
+the dollar sign ($).</p>
+<p>Using the same file as above, the <strong>^cat</strong> regular expression would match two words. The <strong>$cat</strong>
+regular expression would not find any matching words.</p>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>cat
+<a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a>dog
+<a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a>concatenate
+<a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a>dogma
+<a id="__codelineno-22-5" name="__codelineno-22-5" href="#__codelineno-22-5"></a>category
+<a id="__codelineno-22-6" name="__codelineno-22-6" href="#__codelineno-22-6"></a>educated
+<a id="__codelineno-22-7" name="__codelineno-22-7" href="#__codelineno-22-7"></a>boondoggle
+<a id="__codelineno-22-8" name="__codelineno-22-8" href="#__codelineno-22-8"></a>vindication
+<a id="__codelineno-22-9" name="__codelineno-22-9" href="#__codelineno-22-9"></a>chilidog
+</code></pre></div>
+To locate lines in the file ending with <strong>dog</strong>, use that exact expression and an end of line anchor to
+create the regular expression dog<span class="arithmatex">\(. Applying dog\)</span> to the file would find two matches:</p>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>dog
+<a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a>chilidog
+</code></pre></div>
+To locate the only word on a line, use both the beginning and end-of-line anchors. For example, to
+locate the word <strong>cat</strong> when it is the only word on a line, use <strong>^cat$</strong>.</p>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>cat dog rabbit
+<a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a>cat
+<a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a>horse cat cow
+<a id="__codelineno-24-4" name="__codelineno-24-4" href="#__codelineno-24-4"></a>cat pig
+</code></pre></div>
+<strong>Adding Wildcards and Multipliers to Regular Expressions</strong></p>
+<p>Regular expressions use a period or dot (.) to match any single character with the exception
+of the newline character. A regular expression of c.t searches for a string that contains a c
+followed by any single character followed by a t. Example matches include <strong>cat, concatenate,
+vindication, c5t, and c$t</strong>.</p>
+<p>Using an unrestricted wildcard you cannot predict the character that would match the wildcard. To
+match specific characters, replace the unrestricted wildcard with acceptable characters. Changing
+the regular expression to <strong>c[aou]t</strong> matches patterns that start with a c, followed by either an a, o,
+or u, followed by a t.</p>
+<p>Multipliers are a mechanism used often with wildcards. Multipliers apply to the previous character
+in the regular expression. One of the more common multipliers used is the asterisk, or star
+character (<em>). When used in a regular expression, this multiplier means match zero or more of the
+previous expression. You can use * with expressions, not just characters. For example, c[aou]</em>t. A
+regular expression of c.<em>t matches </em><em>cat, coat, culvert</em>*, and even ct (zero characters between
+the c and the t). Any data starting with a c, then zero or more characters, ending with a t.</p>
+<p>Another type of multiplier would indicate the number of previous characters desired in the pattern.
+An example of using an explicit multiplier would be <strong>'c.{2}t'</strong>. This regular expression will
+match any word beginning with a c, followed by exactly any two characters, and ending with a t.
+<strong>'c.{2}t'</strong> would match two words in the example below:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a>cat
+<a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a>coat convert
+<a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a>cart covert
+<a id="__codelineno-25-4" name="__codelineno-25-4" href="#__codelineno-25-4"></a>cypher
+</code></pre></div>
+<div class="admonition info">
+<p class="admonition-title">NOTE</p>
+<p>It is recommend practice to use single quotes to encapsulate the regular expression
+because they often contain shell metacharacters (such as <strong>$, </strong><em>, and </em><em>{}</em>*). This
+ensures that the characters are interpreted by the command and not by the shell.</p>
+</div>
+<div class="admonition info">
+<p class="admonition-title">NOTE</p>
+<p>This course has introduced two distinct metacharacter text parsing systems: shell
+pattern matching (also known as file globbing or file-name expansion), and regular
+expressions. Because both systems use similar metacharacters, such as the asterisk
+(*), but have differences in metacharacter interpretation and rules, the two systems
+can be confusing until each is sufficiently mastered.</p>
+<p>Pattern matching is a command-line parsing technique designed for specifying
+many file names easily, and is primarily supported only for representing file-name
+patterns on the command line. Regular expressions are designed to represent
+any form or pattern in text strings, no matter how complex. Regular expression
+are internally supported by numerous text processing commands, such as <strong>grep,
+sed, awk, python, perl</strong>, and many applications, with some minimal command-
+dependent variations in interpretation rules.</p>
+</div>
+<p><strong>Regular Expressions</strong></p>
+<table>
+<thead>
+<tr>
+<th>OPTION</th>
+<th>DESCRIPTION</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>.</td>
+<td>The period (.) matches any single character.</td>
+</tr>
+<tr>
+<td>?</td>
+<td>The preceding item is optional and will be matched at most once.</td>
+</tr>
+<tr>
+<td>*</td>
+<td>The preceding item will be matched zero or more times.</td>
+</tr>
+<tr>
+<td>+</td>
+<td>The preceding item will be matched one or more times.</td>
+</tr>
+<tr>
+<td>{n}</td>
+<td>The preceding item is matched exactly n times.</td>
+</tr>
+<tr>
+<td>{n,}</td>
+<td>The preceding item is matched n or more times.</td>
+</tr>
+<tr>
+<td>{,m}</td>
+<td>The preceding item is matched at most m times.</td>
+</tr>
+<tr>
+<td>{n,m}</td>
+<td>The preceding item is matched at least n times, but not more than m times.</td>
+</tr>
+<tr>
+<td>[:alnum:]</td>
+<td>Alphanumeric characters: '[:alpha:]' and '[:digit:]'; in the 'C' locale and ASCII character encoding this is the same as '[0-9A-Za-z]'.</td>
+</tr>
+<tr>
+<td>[:alpha:]</td>
+<td>Alphabetic characters: '[:lower:]' and '[:upper:]'; in the 'C' locale and ASCII character encoding, this is the same as '[A-Za-z]'.</td>
+</tr>
+<tr>
+<td>[:blank:]</td>
+<td>Blank characters: space and tab.</td>
+</tr>
+<tr>
+<td>[:cntrl:]</td>
+<td>Control characters. In ASCII, these characters have octal codes 000 through 037, and 177 (DEL). In other character sets, these are the equivalent characters, if any.</td>
+</tr>
+<tr>
+<td>[:digit:]</td>
+<td>Digits: 0 1 2 3 4 5 6 7 8 9.</td>
+</tr>
+<tr>
+<td>[:graph:]</td>
+<td>Graphical characters: '[:alnum:]' and '[:punct:]'.</td>
+</tr>
+<tr>
+<td>[:lower:]</td>
+<td>Lower-case letters; in the 'C' locale and ASCII character encoding, this is a b c d e f g h i j k l m n o p q r s t u v w x y z.</td>
+</tr>
+<tr>
+<td>[:print:]</td>
+<td>Printable characters: '[:alnum:]', '[:punct:]', and space.</td>
+</tr>
+<tr>
+<td>[:punct:]</td>
+<td>Punctuation characters; in the 'C' locale and ASCII character encoding, this is! " # $ % &amp; ' ( ) * + , - . / : ; &lt; = &gt; ? @ [  ] ^ _ ' {</td>
+</tr>
+<tr>
+<td>[:space:]</td>
+<td>Space characters: in the 'C' locale, this is tab, newline, vertical tab, form feed,carriage return, and space.</td>
+</tr>
+<tr>
+<td>[:upper:]</td>
+<td>Upper-case letters: in the 'C' locale and ASCII character encoding, this is A B C D E F G H I J K L M N O P Q R S T U V W X Y Z.</td>
+</tr>
+<tr>
+<td>[:xdigit:]</td>
+<td>Hexadecimal digits: 0 1 2 3 4 5 6 7 8 9 A B C D E F a b c d e f.</td>
+</tr>
+<tr>
+<td>\b</td>
+<td>Match the empty string at the edge of a word.</td>
+</tr>
+<tr>
+<td>\B</td>
+<td>Match the empty string provided it is not at the edge of a word.</td>
+</tr>
+<tr>
+<td>\&lt;</td>
+<td>Match the empty string at the beginning of word.</td>
+</tr>
+<tr>
+<td>">"</td>
+<td>Match the empty string at the end of word.</td>
+</tr>
+<tr>
+<td>\w</td>
+<td>Match word constituent. Synonym for '[_[:alnum:]]'.</td>
+</tr>
+<tr>
+<td>\W</td>
+<td>Match non-word constituent. Synonym for '[^_[:alnum:]]'.</td>
+</tr>
+<tr>
+<td>\s</td>
+<td>Match white space. Synonym for '[[:space:]]'.</td>
+</tr>
+<tr>
+<td>\S</td>
+<td>Match non-whitespace. Synonym for '[^[:space:]]'.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="matching-regular-expressions-with-grep">MATCHING REGULAR EXPRESSIONS WITH GREP<a class="headerlink" href="#matching-regular-expressions-with-grep" title="Permanent link">&para;</a></h3>
+<p>The <strong>grep</strong> command, provided as part of the distribution, uses regular expressions to isolate
+matching data.</p>
+<p><strong>Isolating data using the grep command</strong></p>
+<p>The grep command provides a regular expression and a file on which the regular expression
+should be matched.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ grep <span class="s1">&#39;^computer&#39;</span> /usr/share/dict/words
+<a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a>computer
+<a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a>computerese
+<a id="__codelineno-26-4" name="__codelineno-26-4" href="#__codelineno-26-4"></a>computerise
+<a id="__codelineno-26-5" name="__codelineno-26-5" href="#__codelineno-26-5"></a>computerite
+<a id="__codelineno-26-6" name="__codelineno-26-6" href="#__codelineno-26-6"></a>computerizable
+<a id="__codelineno-26-7" name="__codelineno-26-7" href="#__codelineno-26-7"></a>computerization
+<a id="__codelineno-26-8" name="__codelineno-26-8" href="#__codelineno-26-8"></a>computerize
+<a id="__codelineno-26-9" name="__codelineno-26-9" href="#__codelineno-26-9"></a>computerized
+<a id="__codelineno-26-10" name="__codelineno-26-10" href="#__codelineno-26-10"></a>computerizes
+<a id="__codelineno-26-11" name="__codelineno-26-11" href="#__codelineno-26-11"></a>computerizing
+<a id="__codelineno-26-12" name="__codelineno-26-12" href="#__codelineno-26-12"></a>computerlike
+<a id="__codelineno-26-13" name="__codelineno-26-13" href="#__codelineno-26-13"></a>computernik
+<a id="__codelineno-26-14" name="__codelineno-26-14" href="#__codelineno-26-14"></a>computers
+</code></pre></div>
+<div class="admonition info">
+<p class="admonition-title">NOTE<p>It is recommend practice to use single quotes to encapsulate the regular expression
+because they often contain shell metacharacters (such as $, *, and {}). This ensures
+that the characters are interpreted by <em>grep</em> and not by the shell.</p>
+</p>
+</div>
+<p>The <strong>grep</strong> command can be used in conjunction with other commands using a pipe operator (|).
+For example:</p>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># ps aux | grep chrony</span>
+<a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a>chrony  <span class="m">662</span>     <span class="m">0</span>.0     <span class="m">0</span>.1     <span class="m">29440</span>   <span class="m">2468</span> ?    S     <span class="m">10</span>:56   <span class="m">0</span>:00 /usr/sbin/chronyd
+</code></pre></div>
+<strong>grep Options</strong></p>
+<p>The <strong>grep</strong> command has many useful options for adjusting how it uses the provided regular
+expression with data.</p>
+<p><strong>Table of Common grep Options</strong></p>
+<table>
+<thead>
+<tr>
+<th>OPTION</th>
+<th>FUNCTION</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-i</td>
+<td>Use the regular expression provided but do not enforce case sensitivity (run case-insensitive).</td>
+</tr>
+<tr>
+<td>-v</td>
+<td>Only display lines that do not contain matches to the regular expression.</td>
+</tr>
+<tr>
+<td>-r</td>
+<td>Apply the search for data matching the regular expression recursively to a group of files or directories.</td>
+</tr>
+<tr>
+<td>-A NUMBER</td>
+<td>Display NUMBER of lines after the regular expression match.</td>
+</tr>
+<tr>
+<td>-B NUMBER</td>
+<td>Display NUMBER of lines before the regular expression match.</td>
+</tr>
+<tr>
+<td>-e</td>
+<td>With multiple -e options used, multiple regular expressions can be supplied and will be used with a logical OR.</td>
+</tr>
+</tbody>
+</table>
+<p>There are many other options to <strong>grep</strong>. Use the <strong>man</strong> page to research them.</p>
+<p><strong>grep Examples</strong></p>
+<p>The next examples use varied configuration files and log files.</p>
+<p>Regular expressions are case-sensitive by default. Use the <strong>-i</strong> option with <strong>grep</strong> to run a case-
+insensitive search. The following example searches for the pattern <strong>serverroot</strong>.</p>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ cat /etc/httpd/conf/httpd.conf
+<a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a>...output omitted...
+<a id="__codelineno-28-3" name="__codelineno-28-3" href="#__codelineno-28-3"></a>ServerRoot <span class="s2">&quot;/etc/httpd&quot;</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a>#
+<a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a># Listen: Allows you to bind Apache to specific IP addresses and/or
+<a id="__codelineno-29-3" name="__codelineno-29-3" href="#__codelineno-29-3"></a># ports, instead of the default. See also the &lt;VirtualHost&gt;
+<a id="__codelineno-29-4" name="__codelineno-29-4" href="#__codelineno-29-4"></a># directive.
+<a id="__codelineno-29-5" name="__codelineno-29-5" href="#__codelineno-29-5"></a>#
+<a id="__codelineno-29-6" name="__codelineno-29-6" href="#__codelineno-29-6"></a># Change this to Listen on specific IP addresses as shown below to
+<a id="__codelineno-29-7" name="__codelineno-29-7" href="#__codelineno-29-7"></a># prevent Apache from glomming onto all bound IP addresses.
+<a id="__codelineno-29-8" name="__codelineno-29-8" href="#__codelineno-29-8"></a>#
+<a id="__codelineno-29-9" name="__codelineno-29-9" href="#__codelineno-29-9"></a>#Listen 12.34.56.78:80
+<a id="__codelineno-29-10" name="__codelineno-29-10" href="#__codelineno-29-10"></a>Listen 80
+</code></pre></div></p>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ grep -i serverroot /etc/httpd/conf/httpd.conf
+<a id="__codelineno-30-2" name="__codelineno-30-2" href="#__codelineno-30-2"></a><span class="c1"># with &quot;/&quot;, the value of ServerRoot is prepended -- so &#39;log/access_log&#39;</span>
+<a id="__codelineno-30-3" name="__codelineno-30-3" href="#__codelineno-30-3"></a><span class="c1"># with ServerRoot set to &#39;/www&#39; will be interpreted by the</span>
+<a id="__codelineno-30-4" name="__codelineno-30-4" href="#__codelineno-30-4"></a><span class="c1"># ServerRoot: The top of the directory tree under which the server&#39;s</span>
+<a id="__codelineno-30-5" name="__codelineno-30-5" href="#__codelineno-30-5"></a><span class="c1"># ServerRoot at a non-local disk, be sure to specify a local disk on the</span>
+<a id="__codelineno-30-6" name="__codelineno-30-6" href="#__codelineno-30-6"></a><span class="c1"># same ServerRoot for multiple httpd daemons, you will need to change at</span>
+<a id="__codelineno-30-7" name="__codelineno-30-7" href="#__codelineno-30-7"></a>ServerRoot <span class="s2">&quot;/etc/httpd&quot;</span>
+</code></pre></div>
+In cases where you know what you are not looking for, the <strong>-v</strong> option is very useful. The <strong>-v</strong> option
+only displays lines that do not match the regular expression. In the following example, all lines,
+regardless of case, that do not contain the regular expression <strong>server</strong> are returned.</p>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ cat /etc/hosts
+<a id="__codelineno-31-2" name="__codelineno-31-2" href="#__codelineno-31-2"></a><span class="m">127</span>.0.0.1
+<a id="__codelineno-31-3" name="__codelineno-31-3" href="#__codelineno-31-3"></a> localhost localhost.localdomain localhost4 localhost4.localdomain4
+<a id="__codelineno-31-4" name="__codelineno-31-4" href="#__codelineno-31-4"></a>::1
+<a id="__codelineno-31-5" name="__codelineno-31-5" href="#__codelineno-31-5"></a> localhost localhost.localdomain localhost6 localhost6.localdomain6
+<a id="__codelineno-31-6" name="__codelineno-31-6" href="#__codelineno-31-6"></a><span class="m">172</span>.25.254.254 classroom.example.com classroom
+<a id="__codelineno-31-7" name="__codelineno-31-7" href="#__codelineno-31-7"></a><span class="m">172</span>.25.254.254 content.example.com content
+<a id="__codelineno-31-8" name="__codelineno-31-8" href="#__codelineno-31-8"></a><span class="m">172</span>.25.254.254 materials.example.com materials
+<a id="__codelineno-31-9" name="__codelineno-31-9" href="#__codelineno-31-9"></a><span class="m">172</span>.25.250.254 workstation.lab.example.com workstation
+<a id="__codelineno-31-10" name="__codelineno-31-10" href="#__codelineno-31-10"></a><span class="c1">### rht-vm-hosts file listing the entries to be appended to /etc/hosts</span>
+<a id="__codelineno-31-11" name="__codelineno-31-11" href="#__codelineno-31-11"></a><span class="m">172</span>.25.250.10
+<a id="__codelineno-31-12" name="__codelineno-31-12" href="#__codelineno-31-12"></a><span class="m">172</span>.25.250.11
+<a id="__codelineno-31-13" name="__codelineno-31-13" href="#__codelineno-31-13"></a><span class="m">172</span>.25.250.254
+<a id="__codelineno-31-14" name="__codelineno-31-14" href="#__codelineno-31-14"></a>servera.lab.example.com servera
+<a id="__codelineno-31-15" name="__codelineno-31-15" href="#__codelineno-31-15"></a>serverb.lab.example.com serverb
+<a id="__codelineno-31-16" name="__codelineno-31-16" href="#__codelineno-31-16"></a>workstation.lab.example.com workstation
+<a id="__codelineno-31-17" name="__codelineno-31-17" href="#__codelineno-31-17"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ grep -v -i server /etc/hosts
+<a id="__codelineno-31-18" name="__codelineno-31-18" href="#__codelineno-31-18"></a><span class="m">127</span>.0.0.1
+<a id="__codelineno-31-19" name="__codelineno-31-19" href="#__codelineno-31-19"></a> localhost localhost.localdomain localhost4 localhost4.localdomain4
+<a id="__codelineno-31-20" name="__codelineno-31-20" href="#__codelineno-31-20"></a>::1
+<a id="__codelineno-31-21" name="__codelineno-31-21" href="#__codelineno-31-21"></a> localhost localhost.localdomain localhost6 localhost6.localdomain6
+<a id="__codelineno-31-22" name="__codelineno-31-22" href="#__codelineno-31-22"></a><span class="m">172</span>.25.254.254 classroom.example.com classroom
+<a id="__codelineno-31-23" name="__codelineno-31-23" href="#__codelineno-31-23"></a><span class="m">172</span>.25.254.254 content.example.com content
+<a id="__codelineno-31-24" name="__codelineno-31-24" href="#__codelineno-31-24"></a><span class="m">172</span>.25.254.254 materials.example.com materials
+<a id="__codelineno-31-25" name="__codelineno-31-25" href="#__codelineno-31-25"></a><span class="m">172</span>.25.250.254 workstation.lab.example.com workstation
+<a id="__codelineno-31-26" name="__codelineno-31-26" href="#__codelineno-31-26"></a><span class="c1">### rht-vm-hosts file listing the entries to be appended to /etc/hosts</span>
+<a id="__codelineno-31-27" name="__codelineno-31-27" href="#__codelineno-31-27"></a><span class="m">172</span>.25.250.254
+<a id="__codelineno-31-28" name="__codelineno-31-28" href="#__codelineno-31-28"></a> workstation.lab.example.com workstation
+</code></pre></div>
+To look at a file without being distracted by comment lines use the <strong>-v</strong> option. In the following
+example, the regular expression matches all lines that begin with a # or ; (typical characters that
+indicate the line will be interpreted as a comment). Those lines are then omitted from the output.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ cat /etc/ethertypes
+<a id="__codelineno-32-2" name="__codelineno-32-2" href="#__codelineno-32-2"></a><span class="c1">#</span>
+<a id="__codelineno-32-3" name="__codelineno-32-3" href="#__codelineno-32-3"></a><span class="c1"># Ethernet frame types</span>
+<a id="__codelineno-32-4" name="__codelineno-32-4" href="#__codelineno-32-4"></a><span class="c1">#</span>
+<a id="__codelineno-32-5" name="__codelineno-32-5" href="#__codelineno-32-5"></a> This file describes some of the various Ethernet
+<a id="__codelineno-32-6" name="__codelineno-32-6" href="#__codelineno-32-6"></a><span class="c1">#</span>
+<a id="__codelineno-32-7" name="__codelineno-32-7" href="#__codelineno-32-7"></a> protocol types that are used on Ethernet networks.
+<a id="__codelineno-32-8" name="__codelineno-32-8" href="#__codelineno-32-8"></a><span class="c1">#</span>
+<a id="__codelineno-32-9" name="__codelineno-32-9" href="#__codelineno-32-9"></a><span class="c1"># This list could be found on:</span>
+<a id="__codelineno-32-10" name="__codelineno-32-10" href="#__codelineno-32-10"></a><span class="c1">#</span>
+<a id="__codelineno-32-11" name="__codelineno-32-11" href="#__codelineno-32-11"></a> http://www.iana.org/assignments/ethernet-numbers
+<a id="__codelineno-32-12" name="__codelineno-32-12" href="#__codelineno-32-12"></a><span class="c1">#</span>
+<a id="__codelineno-32-13" name="__codelineno-32-13" href="#__codelineno-32-13"></a> http://www.iana.org/assignments/ieee-802-numbers
+<a id="__codelineno-32-14" name="__codelineno-32-14" href="#__codelineno-32-14"></a><span class="c1">#</span>
+<a id="__codelineno-32-15" name="__codelineno-32-15" href="#__codelineno-32-15"></a><span class="c1"># &lt;name&gt;</span>
+<a id="__codelineno-32-16" name="__codelineno-32-16" href="#__codelineno-32-16"></a> &lt;hexnumber&gt; &lt;alias1&gt;...&lt;alias35&gt; <span class="c1">#Comment</span>
+<a id="__codelineno-32-17" name="__codelineno-32-17" href="#__codelineno-32-17"></a><span class="c1">#</span>
+<a id="__codelineno-32-18" name="__codelineno-32-18" href="#__codelineno-32-18"></a>IPv4     <span class="m">0800</span>    ip ip4      <span class="c1"># Internet IP (IPv4)</span>
+<a id="__codelineno-32-19" name="__codelineno-32-19" href="#__codelineno-32-19"></a>X25      <span class="m">0805</span>
+<a id="__codelineno-32-20" name="__codelineno-32-20" href="#__codelineno-32-20"></a>ARP      <span class="m">0806</span>    ether-arp  <span class="c1">#</span>
+<a id="__codelineno-32-21" name="__codelineno-32-21" href="#__codelineno-32-21"></a>FR_ARP      <span class="m">0808</span>            <span class="c1"># Frame Relay ARP    [RFC1701]</span>
+<a id="__codelineno-32-22" name="__codelineno-32-22" href="#__codelineno-32-22"></a>
+<a id="__codelineno-32-23" name="__codelineno-32-23" href="#__codelineno-32-23"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ grep -v <span class="s1">&#39;^[#;]&#39;</span> /etc/ethertypes
+<a id="__codelineno-32-24" name="__codelineno-32-24" href="#__codelineno-32-24"></a>IPv4     <span class="m">0800</span>    ip ip4      <span class="c1"># Internet IP (IPv4)</span>
+<a id="__codelineno-32-25" name="__codelineno-32-25" href="#__codelineno-32-25"></a>X25      <span class="m">0805</span>
+<a id="__codelineno-32-26" name="__codelineno-32-26" href="#__codelineno-32-26"></a>ARP      <span class="m">0806</span>    ether-arp   <span class="c1">#</span>
+<a id="__codelineno-32-27" name="__codelineno-32-27" href="#__codelineno-32-27"></a>FR_ARP   <span class="m">0808</span>    <span class="c1"># Frame Relay ARP   [RFC1701]</span>
+</code></pre></div>
+<p>The <strong>grep</strong> command with the <strong>-e</strong> option allows you to search for more than one regular expression
+at a time. The following example, using a combination of <strong>less</strong> and <strong>grep</strong>, locates all occurrences of
+<strong>pam_unix, user root</strong> and <strong>Accepted publickey</strong> in the <strong>/var/log/secure</strong> log file.</p>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># cat /var/log/secure | grep -e &#39;pam_unix&#39; \</span>
+<a id="__codelineno-33-2" name="__codelineno-33-2" href="#__codelineno-33-2"></a>-e <span class="s1">&#39;user root&#39;</span> -e <span class="s1">&#39;Accepted publickey&#39;</span> <span class="p">|</span> less
+<a id="__codelineno-33-3" name="__codelineno-33-3" href="#__codelineno-33-3"></a>Mar <span class="m">19</span> <span class="m">08</span>:04:46 jegui sshd<span class="o">[</span><span class="m">6141</span><span class="o">]</span>: pam_unix<span class="o">(</span>sshd:session<span class="o">)</span>: session opened <span class="k">for</span> user
+<a id="__codelineno-33-4" name="__codelineno-33-4" href="#__codelineno-33-4"></a>root by <span class="o">(</span><span class="nv">uid</span><span class="o">=</span><span class="m">0</span><span class="o">)</span>
+<a id="__codelineno-33-5" name="__codelineno-33-5" href="#__codelineno-33-5"></a>Mar <span class="m">19</span> <span class="m">08</span>:04:50 jegui sshd<span class="o">[</span><span class="m">6144</span><span class="o">]</span>: Disconnected from user root <span class="m">172</span>.25.250.254 port
+<a id="__codelineno-33-6" name="__codelineno-33-6" href="#__codelineno-33-6"></a><span class="m">41170</span>
+<a id="__codelineno-33-7" name="__codelineno-33-7" href="#__codelineno-33-7"></a>Mar <span class="m">19</span> <span class="m">08</span>:04:50 jegui sshd<span class="o">[</span><span class="m">6141</span><span class="o">]</span>: pam_unix<span class="o">(</span>sshd:session<span class="o">)</span>: session closed <span class="k">for</span> user
+<a id="__codelineno-33-8" name="__codelineno-33-8" href="#__codelineno-33-8"></a>root
+<a id="__codelineno-33-9" name="__codelineno-33-9" href="#__codelineno-33-9"></a>Mar <span class="m">19</span> <span class="m">08</span>:04:53 jegui sshd<span class="o">[</span><span class="m">6168</span><span class="o">]</span>: Accepted publickey <span class="k">for</span> student from
+<a id="__codelineno-33-10" name="__codelineno-33-10" href="#__codelineno-33-10"></a><span class="m">172</span>.25.250.254 port <span class="m">41172</span> ssh2: RSA SHA256:M8ikhcEDm2tQ95Z0o7ZvufqEixCFCt
+<a id="__codelineno-33-11" name="__codelineno-33-11" href="#__codelineno-33-11"></a>+wowZLNzNlBT0
+</code></pre></div>
+To search for text in a file opened using <strong>vim</strong> or <strong>less</strong>, use the slash character (/) and type the
+pattern to find. Press <strong>Enter</strong> to start the search. Press <strong>N</strong> to find the next match.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># vim /var/log/boot.log</span>
+<a id="__codelineno-34-2" name="__codelineno-34-2" href="#__codelineno-34-2"></a>...output omitted...
+<a id="__codelineno-34-3" name="__codelineno-34-3" href="#__codelineno-34-3"></a><span class="o">[</span>^<span class="o">[[</span><span class="m">0</span><span class="p">;</span>32m OK ^<span class="o">[[</span>0m<span class="o">]</span> Reached target Initrd Default Target.^M
+<a id="__codelineno-34-4" name="__codelineno-34-4" href="#__codelineno-34-4"></a>Starting dracut pre-pivot and cleanup hook...^M
+<a id="__codelineno-34-5" name="__codelineno-34-5" href="#__codelineno-34-5"></a><span class="o">[</span>^<span class="o">[[</span><span class="m">0</span><span class="p">;</span>32m OK ^<span class="o">[[</span>0m<span class="o">]</span> Started dracut pre-pivot and cleanup hook.^M
+<a id="__codelineno-34-6" name="__codelineno-34-6" href="#__codelineno-34-6"></a>Starting Cleaning Up and Shutting Down Daemons...^M
+<a id="__codelineno-34-7" name="__codelineno-34-7" href="#__codelineno-34-7"></a>Starting Plymouth switch root service...^M
+<a id="__codelineno-34-8" name="__codelineno-34-8" href="#__codelineno-34-8"></a>Starting Setup Virtual Console...^M
+<a id="__codelineno-34-9" name="__codelineno-34-9" href="#__codelineno-34-9"></a><span class="o">[</span>^<span class="o">[[</span><span class="m">0</span><span class="p">;</span>32m OK ^<span class="o">[[</span>0m<span class="o">]</span> Stopped target Timers.^M
+<a id="__codelineno-34-10" name="__codelineno-34-10" href="#__codelineno-34-10"></a><span class="o">[</span>^<span class="o">[[</span><span class="m">0</span><span class="p">;</span>32m OK ^<span class="o">[[</span>0m<span class="o">]</span> Stopped dracut pre-pivot and cleanup hook.^M
+<a id="__codelineno-34-11" name="__codelineno-34-11" href="#__codelineno-34-11"></a><span class="o">[</span>^<span class="o">[[</span><span class="m">0</span><span class="p">;</span>32m OK ^<span class="o">[[</span>0m<span class="o">]</span> Stopped target Initrd Default Target.^M
+<a id="__codelineno-34-12" name="__codelineno-34-12" href="#__codelineno-34-12"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># less /var/log/messages</span>
+<a id="__codelineno-34-13" name="__codelineno-34-13" href="#__codelineno-34-13"></a>...output omitted...
+<a id="__codelineno-34-14" name="__codelineno-34-14" href="#__codelineno-34-14"></a>Feb <span class="m">26</span> <span class="m">15</span>:51:07 jegui NetworkManager<span class="o">[</span><span class="m">689</span><span class="o">]</span>: &lt;info&gt;
+<a id="__codelineno-34-15" name="__codelineno-34-15" href="#__codelineno-34-15"></a> <span class="o">[</span><span class="m">1551214267</span>.8584<span class="o">]</span> Loaded device
+<a id="__codelineno-34-16" name="__codelineno-34-16" href="#__codelineno-34-16"></a>plugin: NMTeamFactory <span class="o">(</span>/usr/lib64/NetworkManager/1.14.0-14.el8/libnm-device-
+<a id="__codelineno-34-17" name="__codelineno-34-17" href="#__codelineno-34-17"></a>plugin-team.so<span class="o">)</span>
+<a id="__codelineno-34-18" name="__codelineno-34-18" href="#__codelineno-34-18"></a>Feb <span class="m">26</span> <span class="m">15</span>:51:07 jegui NetworkManager<span class="o">[</span><span class="m">689</span><span class="o">]</span>: &lt;info&gt;
+<a id="__codelineno-34-19" name="__codelineno-34-19" href="#__codelineno-34-19"></a> <span class="o">[</span><span class="m">1551214267</span>.8599<span class="o">]</span> device <span class="o">(</span>lo<span class="o">)</span>:
+<a id="__codelineno-34-20" name="__codelineno-34-20" href="#__codelineno-34-20"></a>carrier: link connected
+<a id="__codelineno-34-21" name="__codelineno-34-21" href="#__codelineno-34-21"></a>Feb <span class="m">26</span> <span class="m">15</span>:51:07 jegui NetworkManager<span class="o">[</span><span class="m">689</span><span class="o">]</span>: &lt;info&gt;
+<a id="__codelineno-34-22" name="__codelineno-34-22" href="#__codelineno-34-22"></a> <span class="o">[</span><span class="m">1551214267</span>.8600<span class="o">]</span> manager:
+<a id="__codelineno-34-23" name="__codelineno-34-23" href="#__codelineno-34-23"></a><span class="o">(</span>lo<span class="o">)</span>: new Generic device <span class="o">(</span>/org/freedesktop/NetworkManager/Devices/1<span class="o">)</span>
+<a id="__codelineno-34-24" name="__codelineno-34-24" href="#__codelineno-34-24"></a>Feb <span class="m">26</span> <span class="m">15</span>:51:07 jegui NetworkManager<span class="o">[</span><span class="m">689</span><span class="o">]</span>: &lt;info&gt;
+<a id="__codelineno-34-25" name="__codelineno-34-25" href="#__codelineno-34-25"></a> <span class="o">[</span><span class="m">1551214267</span>.8623<span class="o">]</span> manager:
+<a id="__codelineno-34-26" name="__codelineno-34-26" href="#__codelineno-34-26"></a><span class="o">(</span>ens3<span class="o">)</span>: new Ethernet device <span class="o">(</span>/org/freedesktop/NetworkManager/Devices/2<span class="o">)</span>
+<a id="__codelineno-34-27" name="__codelineno-34-27" href="#__codelineno-34-27"></a>Feb <span class="m">26</span> <span class="m">15</span>:51:07 jegui NetworkManager<span class="o">[</span><span class="m">689</span><span class="o">]</span>: &lt;info&gt;
+<a id="__codelineno-34-28" name="__codelineno-34-28" href="#__codelineno-34-28"></a> <span class="o">[</span><span class="m">1551214267</span>.8653<span class="o">]</span> device
+<a id="__codelineno-34-29" name="__codelineno-34-29" href="#__codelineno-34-29"></a><span class="o">(</span>ens3<span class="o">)</span>: state change: unmanaged -&gt; unavailable <span class="o">(</span>reason <span class="s1">&#39;managed&#39;</span>, sys-iface-
+<a id="__codelineno-34-30" name="__codelineno-34-30" href="#__codelineno-34-30"></a>state: <span class="s1">&#39;external&#39;</span><span class="o">)</span>
+<a id="__codelineno-34-31" name="__codelineno-34-31" href="#__codelineno-34-31"></a>/device
+</code></pre></div>
+<h3 id="summary">SUMMARY<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h3>
+<p>In this chapter, you learned:</p>
+<ul>
+<li>
+<p>How to create and execute simple Bash scripts.</p>
+</li>
+<li>
+<p>How to use loops to iterate through a list of items from the command-line and in a shell script.</p>
+</li>
+<li>
+<p>How to search for text in log files and configuration files using regular expressions and grep.</p>
+</li>
+</ul>
+<h3 id="lab">LAB<a class="headerlink" href="#lab" title="Permanent link">&para;</a></h3>
+<p>pdf - 31</p>
 
   <hr>
 <div class="md-source-file">
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">December 2, 2022</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">December 5, 2022</span>
       
     
   </small>
@@ -2399,13 +3204,13 @@ demonstrate the different ways strings can be provided to <strong>for</strong> l
       
       
         
-        <a href="../../english/vol1/" class="md-footer__link md-footer__link--next" aria-label="Next: Vol-1" rel="next">
+        <a href="../tasks/" class="md-footer__link md-footer__link--next" aria-label="Next: Scheduling Future Tasks" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              Vol-1
+              Scheduling Future Tasks
             </div>
           </div>
           <div class="md-footer__button md-icon">

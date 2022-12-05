@@ -8,14 +8,14 @@
       
       
       
-        <link rel="canonical" href="https://divijesh.tech/redhat/service/">
+        <link rel="canonical" href="https://divijesh.tech/redhat2/acls/">
       
       <link rel="icon" href="../../assets/img/layout/favicon.ico">
       <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-8.5.10">
     
     
       
-        <title>Controlling Services And Daemons - Divijesh Varma</title>
+        <title>Controlling Access To Files With Acls - Divijesh Varma</title>
       
     
     
@@ -64,7 +64,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#identifying-automatically-started-system-processes" class="md-skip">
+        <a href="#interpreting-file-acls" class="md-skip">
           Skip to content
         </a>
       
@@ -98,7 +98,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Controlling Services And Daemons
+              Controlling Access To Files With Acls
             
           </span>
         </div>
@@ -224,7 +224,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../intro/" class="md-tabs__link md-tabs__link--active">
+      <a href="../../redhat/intro/" class="md-tabs__link md-tabs__link--active">
         RedHat
       </a>
     </li>
@@ -683,16 +683,14 @@
               
   
   
-    
-  
   
     
       
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_1" type="checkbox" id="__nav_3_1" checked>
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_3_1" type="checkbox" id="__nav_3_1" checked>
       
       
       
@@ -715,7 +713,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../intro/" class="md-nav__link">
+      <a href="../../redhat/intro/" class="md-nav__link">
         Introduction
       </a>
     </li>
@@ -729,7 +727,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../access/" class="md-nav__link">
+      <a href="../../redhat/access/" class="md-nav__link">
         Accessing The Command Line
       </a>
     </li>
@@ -743,7 +741,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../manage/" class="md-nav__link">
+      <a href="../../redhat/manage/" class="md-nav__link">
         Managing Files From The Command Line
       </a>
     </li>
@@ -757,7 +755,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../help/" class="md-nav__link">
+      <a href="../../redhat/help/" class="md-nav__link">
         Getting Help In Red Hat Enterprise Linux
       </a>
     </li>
@@ -771,7 +769,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../edit/" class="md-nav__link">
+      <a href="../../redhat/edit/" class="md-nav__link">
         Creating, Viewing, And Editing Text Files
       </a>
     </li>
@@ -785,7 +783,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../users/" class="md-nav__link">
+      <a href="../../redhat/users/" class="md-nav__link">
         Managing Local Users And Groups
       </a>
     </li>
@@ -799,7 +797,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../control/" class="md-nav__link">
+      <a href="../../redhat/control/" class="md-nav__link">
         Controlling Access To Files
       </a>
     </li>
@@ -813,8 +811,213 @@
   
   
     <li class="md-nav__item">
-      <a href="../monitor/" class="md-nav__link">
+      <a href="../../redhat/monitor/" class="md-nav__link">
         Monitoring And Managing Linux Processes
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../redhat/service/" class="md-nav__link">
+        Controlling Services And Daemons
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../redhat/secssh/" class="md-nav__link">
+        Configuring And Securing Ssh
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../redhat/store/" class="md-nav__link">
+        Analyzing And Storing Logs
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../redhat/mannet/" class="md-nav__link">
+        Managing Networking
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../redhat/archiv/" class="md-nav__link">
+        Archiving And Transferring Files
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../redhat/pack/" class="md-nav__link">
+        Installing And Updating Software Packages
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../redhat/filsys/" class="md-nav__link">
+        Accessing Linux File Systems
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../redhat/support/" class="md-nav__link">
+        Analyzing Servers And Getting Support
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../redhat/review/" class="md-nav__link">
+        Comprehensive Review
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_2" type="checkbox" id="__nav_3_2" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_2">
+          RHSA II (RH134)
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="RHSA II (RH134)" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_2">
+          <span class="md-nav__icon md-icon"></span>
+          RHSA II (RH134)
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cmd/" class="md-nav__link">
+        Improving Command-Line Productivity
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tasks/" class="md-nav__link">
+        Scheduling Future Tasks
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tuning/" class="md-nav__link">
+        Tuning System Performance
       </a>
     </li>
   
@@ -835,12 +1038,12 @@
       
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
-          Controlling Services And Daemons
+          Controlling Access To Files With Acls
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
-        Controlling Services And Daemons
+        Controlling Access To Files With Acls
       </a>
       
         
@@ -857,44 +1060,23 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#identifying-automatically-started-system-processes" class="md-nav__link">
-    IDENTIFYING AUTOMATICALLY STARTED SYSTEM PROCESSES
+  <a href="#interpreting-file-acls" class="md-nav__link">
+    INTERPRETING FILE ACLS
   </a>
   
-    <nav class="md-nav" aria-label="IDENTIFYING AUTOMATICALLY STARTED SYSTEM PROCESSES">
+    <nav class="md-nav" aria-label="INTERPRETING FILE ACLS">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#introduction-to-systemd" class="md-nav__link">
-    INTRODUCTION TO systemd
+  <a href="#access-control-list-concepts" class="md-nav__link">
+    ACCESS CONTROL LIST CONCEPTS
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#describing-service-units" class="md-nav__link">
-    DESCRIBING SERVICE UNITS
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#listing-service-units" class="md-nav__link">
-    LISTING SERVICE UNITS
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#viewing-service-states" class="md-nav__link">
-    VIEWING SERVICE STATES
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#verifying-the-status-of-a-service" class="md-nav__link">
-    VERIFYING THE STATUS OF A SERVICE
+  <a href="#viewing-and-interpreting-acl-permissions" class="md-nav__link">
+    VIEWING AND INTERPRETING ACL PERMISSIONS
   </a>
   
 </li>
@@ -905,51 +1087,30 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#controlling-system-services" class="md-nav__link">
-    CONTROLLING SYSTEM SERVICES
+  <a href="#examples-of-acl-use-by-the-operating-system" class="md-nav__link">
+    EXAMPLES OF ACL USE BY THE OPERATING SYSTEM
   </a>
   
-    <nav class="md-nav" aria-label="CONTROLLING SYSTEM SERVICES">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#securing-files-with-acls" class="md-nav__link">
+    SECURING FILES WITH ACLS
+  </a>
+  
+    <nav class="md-nav" aria-label="SECURING FILES WITH ACLS">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#starting-and-stopping-services" class="md-nav__link">
-    STARTING AND STOPPING SERVICES
+  <a href="#changing-acl-file-permissions" class="md-nav__link">
+    CHANGING ACL FILE PERMISSIONS
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#restarting-and-reloading-services" class="md-nav__link">
-    RESTARTING AND RELOADING SERVICES
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#listing-unit-dependencies" class="md-nav__link">
-    LISTING UNIT DEPENDENCIES
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#masking-and-unmasking-services" class="md-nav__link">
-    MASKING AND UNMASKING SERVICES
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#enabling-services-to-start-or-stop-at-boot" class="md-nav__link">
-    ENABLING SERVICES TO START OR STOP AT BOOT
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#summary-of-systemctl-commands" class="md-nav__link">
-    SUMMARY OF systemctl COMMANDS
+  <a href="#controlling-default-acl-file-permissions" class="md-nav__link">
+    CONTROLLING DEFAULT ACL FILE PERMISSIONS
   </a>
   
 </li>
@@ -977,209 +1138,6 @@
   
 </nav>
       
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../secssh/" class="md-nav__link">
-        Configuring And Securing Ssh
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../store/" class="md-nav__link">
-        Analyzing And Storing Logs
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../mannet/" class="md-nav__link">
-        Managing Networking
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../archiv/" class="md-nav__link">
-        Archiving And Transferring Files
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../pack/" class="md-nav__link">
-        Installing And Updating Software Packages
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../filsys/" class="md-nav__link">
-        Accessing Linux File Systems
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../support/" class="md-nav__link">
-        Analyzing Servers And Getting Support
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../review/" class="md-nav__link">
-        Comprehensive Review
-      </a>
-    </li>
-  
-
-            
-          
-        </ul>
-      </nav>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    
-      
-    
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
-      
-      
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_3_2" type="checkbox" id="__nav_3_2" checked>
-      
-      
-      
-      
-        <label class="md-nav__link" for="__nav_3_2">
-          RHSA II (RH134)
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <nav class="md-nav" aria-label="RHSA II (RH134)" data-md-level="2">
-        <label class="md-nav__title" for="__nav_3_2">
-          <span class="md-nav__icon md-icon"></span>
-          RHSA II (RH134)
-        </label>
-        <ul class="md-nav__list" data-md-scrollfix>
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../redhat2/cmd/" class="md-nav__link">
-        Improving Command-Line Productivity
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../redhat2/tasks/" class="md-nav__link">
-        Scheduling Future Tasks
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../redhat2/tuning/" class="md-nav__link">
-        Tuning System Performance
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../redhat2/acls/" class="md-nav__link">
-        Controlling Access To Files With Acls
-      </a>
     </li>
   
 
@@ -2220,44 +2178,23 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#identifying-automatically-started-system-processes" class="md-nav__link">
-    IDENTIFYING AUTOMATICALLY STARTED SYSTEM PROCESSES
+  <a href="#interpreting-file-acls" class="md-nav__link">
+    INTERPRETING FILE ACLS
   </a>
   
-    <nav class="md-nav" aria-label="IDENTIFYING AUTOMATICALLY STARTED SYSTEM PROCESSES">
+    <nav class="md-nav" aria-label="INTERPRETING FILE ACLS">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#introduction-to-systemd" class="md-nav__link">
-    INTRODUCTION TO systemd
+  <a href="#access-control-list-concepts" class="md-nav__link">
+    ACCESS CONTROL LIST CONCEPTS
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#describing-service-units" class="md-nav__link">
-    DESCRIBING SERVICE UNITS
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#listing-service-units" class="md-nav__link">
-    LISTING SERVICE UNITS
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#viewing-service-states" class="md-nav__link">
-    VIEWING SERVICE STATES
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#verifying-the-status-of-a-service" class="md-nav__link">
-    VERIFYING THE STATUS OF A SERVICE
+  <a href="#viewing-and-interpreting-acl-permissions" class="md-nav__link">
+    VIEWING AND INTERPRETING ACL PERMISSIONS
   </a>
   
 </li>
@@ -2268,51 +2205,30 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#controlling-system-services" class="md-nav__link">
-    CONTROLLING SYSTEM SERVICES
+  <a href="#examples-of-acl-use-by-the-operating-system" class="md-nav__link">
+    EXAMPLES OF ACL USE BY THE OPERATING SYSTEM
   </a>
   
-    <nav class="md-nav" aria-label="CONTROLLING SYSTEM SERVICES">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#securing-files-with-acls" class="md-nav__link">
+    SECURING FILES WITH ACLS
+  </a>
+  
+    <nav class="md-nav" aria-label="SECURING FILES WITH ACLS">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#starting-and-stopping-services" class="md-nav__link">
-    STARTING AND STOPPING SERVICES
+  <a href="#changing-acl-file-permissions" class="md-nav__link">
+    CHANGING ACL FILE PERMISSIONS
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#restarting-and-reloading-services" class="md-nav__link">
-    RESTARTING AND RELOADING SERVICES
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#listing-unit-dependencies" class="md-nav__link">
-    LISTING UNIT DEPENDENCIES
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#masking-and-unmasking-services" class="md-nav__link">
-    MASKING AND UNMASKING SERVICES
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#enabling-services-to-start-or-stop-at-boot" class="md-nav__link">
-    ENABLING SERVICES TO START OR STOP AT BOOT
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#summary-of-systemctl-commands" class="md-nav__link">
-    SUMMARY OF systemctl COMMANDS
+  <a href="#controlling-default-acl-file-permissions" class="md-nav__link">
+    CONTROLLING DEFAULT ACL FILE PERMISSIONS
   </a>
   
 </li>
@@ -2354,464 +2270,430 @@
 
 
 
-  <h1>Controlling Services And Daemons</h1>
+  <h1>Controlling Access To Files With Acls</h1>
 
-<h3 id="identifying-automatically-started-system-processes">IDENTIFYING AUTOMATICALLY STARTED SYSTEM PROCESSES<a class="headerlink" href="#identifying-automatically-started-system-processes" title="Permanent link">&para;</a></h3>
-<h4 id="introduction-to-systemd">INTRODUCTION TO systemd<a class="headerlink" href="#introduction-to-systemd" title="Permanent link">&para;</a></h4>
-<p>The systemd daemon manages startup for Linux, including service startup and service
-management in general. It activates system resources, server daemons, and other processes both
-at boot time and on a running system.</p>
-<p>Daemons are processes that either wait or run in the background, performing various tasks.
-Generally, daemons start automatically at boot time and continue to run until shutdown or until
-they are manually stopped. It is a convention for names of many daemon programs to end in the
-letter <strong>d</strong>.</p>
-<p>A service in the systemd sense often refers to one or more daemons, but starting or stopping a
-service may instead make a one-time change to the state of the system, which does not involve
-leaving a daemon process running afterward (called oneshot).</p>
-<p>In Red Hat Enterprise Linux, the first process that starts (PID 1) is systemd. A few of the features
-provided by systemd include:</p>
-<ul>
-<li>
-<p>Parallelization capabilities (starting multiple services simultaneously), which increase the boot
-speed of a system.</p>
-</li>
-<li>
-<p>On-demand starting of daemons without requiring a separate service.</p>
-</li>
-<li>
-<p>Automatic service dependency management, which can prevent long timeouts. For example, a
-network-dependent service will not attempt to start up until the network is available.</p>
-</li>
-<li>
-<p>A method of tracking related processes together by using Linux control groups.</p>
-</li>
-</ul>
-<h4 id="describing-service-units">DESCRIBING SERVICE UNITS<a class="headerlink" href="#describing-service-units" title="Permanent link">&para;</a></h4>
-<p>systemd uses units to manage different types of objects. Some common unit types are listed
-below:</p>
-<ul>
-<li>
-<p>Service units have a <strong>.service</strong> extension and represent system services. This type of unit is
-used to start frequently accessed daemons, such as a web server.</p>
-</li>
-<li>
-<p>Socket units have a <strong>.socket</strong> extension and represent inter-process communication (IPC)
-sockets that systemd should monitor. If a client connects to the socket, systemd will start a
-daemon and pass the connection to it. Socket units are used to delay the start of a service at
-boot time and to start less frequently used services on demand.</p>
-</li>
-<li>
-<p>Path units have a <strong>.path</strong> extension and are used to delay the activation of a service until
-a specific file system change occurs. This is commonly used for services which use spool
-directories such as a printing system.</p>
-</li>
-</ul>
-<p>The <strong>systemctl</strong> command is used to manage units. For example, display available unit types with
-the <strong>systemctl -t help</strong> command.</p>
+<h3 id="interpreting-file-acls">INTERPRETING FILE ACLS<a class="headerlink" href="#interpreting-file-acls" title="Permanent link">&para;</a></h3>
+<h4 id="access-control-list-concepts">ACCESS CONTROL LIST CONCEPTS<a class="headerlink" href="#access-control-list-concepts" title="Permanent link">&para;</a></h4>
+<p>Standard Linux file permissions are satisfactory when files are used by only a single owner, and a
+single designated group of people. However, some use cases require that files are accessed with
+different file permission sets by multiple named users and groups. Access Control Lists (ACLs)
+provide this function.</p>
+<p>With ACLs, you can grant permissions to multiple users and groups, identified by user name,
+group name, UID, or GID, using the same permission flags used with regular file permissions: read,
+write, and execute. These additional users and groups, beyond the file owner and the file's group
+affiliation, are called named users and named groups respectively, because they are named not in a
+long listing, but rather within an ACL.</p>
+<p>Users can set ACLs on files and directories that they own. Privileged users, assigned the
+<strong>CAP_FOWNER</strong> Linux capability, can set ACLs on any file or directory. New files and subdirectories
+automatically inherit ACL settings from the parent directory's default ACL, if they are set. Similar
+to normal file access rules, the parent directory hierarchy needs at least the other search (execute)
+permission set to enable named users and named groups to have access.</p>
+<p><strong>File-system ACL Support</strong></p>
+<p>File systems need to be mounted with ACL support enabled. XFS file systems have built-in ACL
+support. Other file systems, such as ext3 or ext4 created on Red Hat Enterprise Linux 8, have the
+<strong>acl</strong> option enabled by default, although on earlier versions you should confirm that ACL support
+is enabled. To enable file-system ACL support, use the ACL option with the <strong>mount</strong> command or in
+the file system's entry in <strong>/etc/fstab</strong> configuration file.</p>
+<h4 id="viewing-and-interpreting-acl-permissions">VIEWING AND INTERPRETING ACL PERMISSIONS<a class="headerlink" href="#viewing-and-interpreting-acl-permissions" title="Permanent link">&para;</a></h4>
+<p>The <strong>ls -l</strong> command only outputs minimal ACL setting details:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="o">[</span>user@host content<span class="o">]</span>$ ls -l reports.txt
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>-rwxrw----+ <span class="m">1</span> user operators <span class="m">130</span> Mar <span class="m">19</span> <span class="m">23</span>:56 reports.txt
+</code></pre></div>
+<p>The plus sign (+) at the end of the 10-character permission string indicates that an extended ACL
+structure with entries exists on this file.</p>
+<p>user:</p>
+<p>Shows the user ACL settings, which are the same as the standard user file settings; rwx.</p>
+<p>group:</p>
+<p>Shows the current ACL mask settings, not the group owner settings; rw.</p>
+<p>other:</p>
+<p>Shows the other ACL settings, which are the same as the standard other file settings; no
+access.</p>
 <div class="admonition danger">
 <p class="admonition-title">IMPORTANT</p>
-<p>When using <strong>systemctl</strong>, you can abbreviate unit names, process tree entries, and
-unit descriptions.</p>
+<p>Changing group permissions on a file with an ACL by using chmod does not change
+the group owner permissions, but does change the ACL mask. Use setfacl -m
+g::perms file if the intent is to update the file's group owner permissions.</p>
 </div>
-<h4 id="listing-service-units">LISTING SERVICE UNITS<a class="headerlink" href="#listing-service-units" title="Permanent link">&para;</a></h4>
-<p>You use the <strong>systemctl</strong> command to explore the current state of the system. For example, the
-following command lists all currently loaded service units, paginating the output using <strong>less</strong>.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># systemctl list-units --type=service</span>
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>UNIT                               LOAD   ACTIVE SUB     DESCRIPTION
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>atd.service                        loaded active running Job spooling tools
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>auditd.service                     loaded active running Security Auditing Service
-<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>chronyd.service                    loaded active running NTP client/server
-<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>crond.service                      loaded active running Command Scheduler
-<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>dbus.service                       loaded active running D-Bus System Message Bus
-<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>...output omitted...
+<p><strong>View File ACLs</strong></p>
+<p>To display ACL settings on a file, use getfacl file:</p>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="o">[</span>user@host content<span class="o">]</span>$ getfacl reports.txt
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="c1"># file: reports.txt</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="c1"># owner: user</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="c1"># group: operators</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>user::rwx
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>user:consultant3:---
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>user:1005:rwx
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a> <span class="c1">#effective:rw-</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>group::rwx
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a> <span class="c1">#effective:rw-</span>
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>group:consultant1:r--
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>group:2210:rwx
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a> <span class="c1">#effective:rw-</span>
+<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>mask::rw-
+<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>other::---
 </code></pre></div>
-<p>The above output limits the type of unit listed to service units with the --type=service option.
-The output has the following columns:</p>
-<p><strong>Columns in the systemctl list-units Command Output</strong></p>
-<p><strong>UNIT</strong></p>
-<div class="highlight"><pre><span></span><code>The service unit name.
+Review each section of the previous example:</p>
+<p>Commented entries:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a># file: reports.txt
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a># owner: user
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a># group: operators
 </code></pre></div>
-<p><strong>LOAD</strong></p>
-<div class="highlight"><pre><span></span><code>Whether systemd properly parsed the unit&#39;s configuration and loaded the unit into memory.
+<p>The first three lines are comments that identify the file name, owner (<strong>user</strong>), and group owner
+(<strong>operators</strong>). If there are any additional file flags, such as <strong>setuid</strong> or <strong>setgid</strong>, then a fourth
+comment line will appear showing which flags are set.</p>
+<p>User entries:</p>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>user::rwx
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>user:consultant3:---
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>user:1005:rwx  #effective:rw-
 </code></pre></div>
-<p><strong>ACTIVE</strong></p>
-<div class="highlight"><pre><span></span><code>The high-level activation state of the unit. This information indicates whether the unit has
-started successfully or not.
+<code>user::rwx</code>  File owner permissions. <strong>user</strong> has <strong>rwx</strong>.</p>
+<p><code>user:consultant3:---</code>   Named user permissions. One entry for each named user associated with this file.
+consultant3 has no permissions.</p>
+<p><code>user:1005:rwx #effective:rw-</code>   Named user permissions. UID 1005 has rwx, but the mask limits the effective permissions to <strong>rw</strong> only.</p>
+<p>Group entries:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>group::rwx   #effective:rw-
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>group:consultant1:r--
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>group:2210:rwx   #effective:rw-
 </code></pre></div>
-<p><strong>SUB</strong></p>
-<div class="highlight"><pre><span></span><code>The low-level activation state of the unit. This information indicates more detailed information
-about the unit. The information varies based on unit type, state, and how the unit is executed.
+<p><code>group::rwx   #effective:rw-</code>    Group owner permissions. operators has rwx, but the mask limits the effective permissions
+to rw only.</p>
+<p><code>group:consultant1:r--</code>    Named group permissions. One entry for each named group associated with this file.
+consultant1 has r only.</p>
+<p><code>group:2210:rwx   #effective:rw-</code>    Named group permissions. GID 2210 has rwx, but the mask limits the effective permissions to rw only.</p>
+<p>Mask entry:</p>
+<p><code>mask::rw-</code></p>
+<p>Mask settings show the maximum permissions possible for all named users, the group owner, and
+named groups. UID 1005, operators, and GID 2210 cannot execute this file, even though each
+entry has the execute permission set.</p>
+<p>Other entry:</p>
+<p><code>other::---</code></p>
+<p>Other or "world" permissions. All other UIDs and GIDs have NO permissions.</p>
+<p><strong>Viewing Directory ACLs</strong></p>
+<p>To display ACL settings on a directory, use the <strong>getfacl directory</strong> command:</p>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="o">[</span>user@host content<span class="o">]</span>$ getfacl .
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="c1"># file: .</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="c1"># owner: user</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="c1"># group: operators</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="c1"># flags: -s-</span>
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>user::rwx
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>user:consultant3:---
+<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>user:1005:rwx
+<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>group::rwx
+<a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a>group:consultant1:r-x
+<a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a>group:2210:rwx
+<a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a>mask::rwx
+<a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a>other::---
+<a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a>default:user::rwx
+<a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a>default:user:consultant3:---
+<a id="__codelineno-5-16" name="__codelineno-5-16" href="#__codelineno-5-16"></a>default:group::rwx
+<a id="__codelineno-5-17" name="__codelineno-5-17" href="#__codelineno-5-17"></a>default:group:consultant1:r-x
+<a id="__codelineno-5-18" name="__codelineno-5-18" href="#__codelineno-5-18"></a>default:mask::rwx
+<a id="__codelineno-5-19" name="__codelineno-5-19" href="#__codelineno-5-19"></a>default:other::---
 </code></pre></div>
-<p><strong>DESCRIPTION</strong></p>
-<div class="highlight"><pre><span></span><code>The short description of the unit.
+Review each section of the previous example:</p>
+<p>Opening comment entries:</p>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a># file: .
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a># owner: user
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a># group: operators
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a># flags: -s-
 </code></pre></div>
-<p>By default, the <strong>systemctl list-units --type=service</strong> command lists only the service
-units with active activation states. The <strong>--all</strong> option lists all service units regardless of the
-activation states. Use the <strong>--state=</strong> option to filter by the values in the <strong>LOAD, ACTIVE</strong>, or <strong>SUB</strong>
-fields.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># systemctl list-units --type=service --all</span>
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>UNIT                          LOAD      ACTIVE   SUB     DESCRIPTION
-<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>  atd.service                 loaded    active   running Job spooling tools
-<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>  auditd.service              loaded    active   running Security Auditing ...
-<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>  auth-rpcgss-module.service  loaded    inactive dead    Kernel Module ...
-<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>  chronyd.service             loaded    active   running NTP client/server
-<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>  cpupower.service            loaded    inactive dead    Configure CPU power ...
-<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>  crond.service               loaded    active   running Command Scheduler
-<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>  dbus.service                loaded    active   running D-Bus System Message Bus
-<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>●display-manager.service     not-found inactive dead    display-manager.service
-<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>...output omitted...
+The first three lines are comments that identify the directory name, owner (user), and group
+owner (operators). If there are any additional directory flags (<strong>setuid, setgid, sticky</strong>), then a
+fourth comment line shows which flags are set; in this case, <strong>setgid</strong>.</p>
+<p>Standard ACL entries:</p>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>user::rwx
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>user:consultant3:---
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>user:1005:rwx
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>group::rwx
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>group:consultant1:r-x
+<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>group:2210:rwx
+<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>mask::rwx
+<a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>other::---
 </code></pre></div>
-<p>The <strong>systemctl</strong> command without any arguments lists units that are both loaded and active.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># systemctl</span>
-<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>UNIT                                 LOAD   ACTIVE SUB       DESCRIPTION
-<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>proc-sys-fs-binfmt_misc.automount    loaded active waiting   Arbitrary...
-<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>sys-devices-....device               loaded active plugged   Virtio network...
-<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>sys-subsystem-net-devices-ens3.deviceloaded active plugged   Virtio network...
-<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>...
-<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>-.mount                              loaded active mounted   Root Mount
-<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>boot.mount                           loaded active mounted   /boot
-<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>...
-<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>systemd-ask-password-plymouth.path   loaded active waiting   Forward Password...
-<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>systemd-ask-password-wall.path       loaded active waiting   Forward Password...
-<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>init.scope                           loaded active running   System and Servi...
-<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>session-1.scope                      loaded active running   Session <span class="m">1</span> of...
-<a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>atd.service                          loaded active running   Job spooling tools
-<a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a>auditd.service                       loaded active running   Security Auditing...
-<a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a>chronyd.service                      loaded active running   NTP client/server
-<a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a>crond.service                        loaded active running   Command Scheduler
-<a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a>...output omitted...
+The ACL permissions on this directory are the same as the file example shown earlier, but apply to the directory. The key difference is the inclusion of the execute permission on these entries (when
+appropriate) to allow directory search permission.</p>
+<p>Default user entries:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>default:user::rwx
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>default:user:consultant3:---
 </code></pre></div>
-<p>The <strong>systemctl list-units</strong> command displays units that the systemd service attempts to
-parse and load into memory; it does not display installed, but not enabled, services. To see the
-state of all unit files installed, use the <strong>systemctl list-unit-files</strong> command. For example:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># systemctl list-unit-files --type=service</span>
-<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>UNIT FILE                                   STATE
-<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>arp-ethers.service                          disabled
-<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>atd.service                                 enabled
-<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>auditd.service                              enabled
-<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>auth-rpcgss-module.service                  static
-<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>autovt@.service                             enabled
-<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>blk-availability.service                    disabled
-<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>...output omitted...
+<p><code>default:user::rwx</code> Default file owner ACL permissions. The file owner will get rwx, read/write on new files and execute on new subdirectories.</p>
+<p><code>default:user:consultant3:---</code> Default named user ACL permissions. One entry for each named user who will automatically get the default ACL applied to new files or subdirectories. consultant3 always defaults to no permissions.</p>
+<p>Default group entries:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>default:group::rwx
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>default:group:consultant1:r-x
 </code></pre></div>
-<p>In the output of the <strong>systemctl list-units-files</strong> command, valid entries for the <strong>STATE</strong> field
-are <strong>enabled, disabled, static</strong>, and <strong>masked</strong>.</p>
-<h4 id="viewing-service-states">VIEWING SERVICE STATES<a class="headerlink" href="#viewing-service-states" title="Permanent link">&para;</a></h4>
-<p>View the status of a specific unit with <strong>systemctl status name.type</strong>. If the unit type is not
-provided, <strong>systemctl</strong> will show the status of a service unit, if one exists.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># systemctl status sshd.service</span>
-<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>● sshd.service - OpenSSH server daemon
-<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>   Loaded: loaded <span class="o">(</span>/usr/lib/systemd/system/sshd.service<span class="p">;</span> enabled<span class="p">;</span> vendor preset:
-<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a> enabled<span class="o">)</span>
-<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>   Active: active <span class="o">(</span>running<span class="o">)</span> since Thu <span class="m">2019</span>-02-14 <span class="m">12</span>:07:45 IST<span class="p">;</span> 7h ago
-<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a> Main PID: <span class="m">1073</span> <span class="o">(</span>sshd<span class="o">)</span>
-<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>    CGroup: /system.slice/sshd.service
-<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>           └─1073 /usr/sbin/sshd -D ...
-<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>Feb <span class="m">14</span> <span class="m">11</span>:51:39 host.example.com systemd<span class="o">[</span><span class="m">1</span><span class="o">]</span>: Started OpenSSH server daemon.
-<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>Feb <span class="m">14</span> <span class="m">11</span>:51:39 host.example.com sshd<span class="o">[</span><span class="m">1073</span><span class="o">]</span>: Could not load host key: /et...y
-<a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a>Feb <span class="m">14</span> <span class="m">11</span>:51:39 host.example.com sshd<span class="o">[</span><span class="m">1073</span><span class="o">]</span>: Server listening on <span class="m">0</span>.0.0.0 ....
-<a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a>Feb <span class="m">14</span> <span class="m">11</span>:51:39 host.example.com sshd<span class="o">[</span><span class="m">1073</span><span class="o">]</span>: Server listening on :: port <span class="m">22</span>.
-<a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a>Feb <span class="m">14</span> <span class="m">11</span>:53:21 host.example.com sshd<span class="o">[</span><span class="m">1270</span><span class="o">]</span>: error: Could not load host k...y
-<a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a>Feb <span class="m">14</span> <span class="m">11</span>:53:22 host.example.com sshd<span class="o">[</span><span class="m">1270</span><span class="o">]</span>: Accepted password <span class="k">for</span> root f...2
-<a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a>...output omitted...
-</code></pre></div>
-<p>This command displays the current status of the service. The meaning of the fields are:</p>
-<p><strong>Service Unit Information</strong></p>
-<table>
-<thead>
-<tr>
-<th align="center">FIELD</th>
-<th align="left">DESCRIPTION</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td align="center">Loaded</td>
-<td align="left">Whether the service unit is loaded into memory.</td>
-</tr>
-<tr>
-<td align="center">Active</td>
-<td align="left">Whether the service unit is running and if so, how long it has been running.</td>
-</tr>
-<tr>
-<td align="center">Main PID</td>
-<td align="left">The main process ID of the service, including the command name.</td>
-</tr>
-<tr>
-<td align="center">Status</td>
-<td align="left">Additional information about the service.</td>
-</tr>
-</tbody>
-</table>
-<p>Several keywords indicating the state of the service can be found in the status output:</p>
-<p><strong>Service States in the Output of systemctl</strong></p>
-<table>
-<thead>
-<tr>
-<th align="center">KEYWORD</th>
-<th align="left">DESCRIPTION</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td align="center">loaded</td>
-<td align="left">Unit configuration file has been processed.</td>
-</tr>
-<tr>
-<td align="center">active (running)</td>
-<td align="left">Running with one or more continuing processes.</td>
-</tr>
-<tr>
-<td align="center">active (exited)</td>
-<td align="left">Successfully completed a one-time configuration.</td>
-</tr>
-<tr>
-<td align="center">active (waiting)</td>
-<td align="left">Running but waiting for an event.</td>
-</tr>
-<tr>
-<td align="center">inactive</td>
-<td align="left">Not running.</td>
-</tr>
-<tr>
-<td align="center">enabled</td>
-<td align="left">Is started at boot time.</td>
-</tr>
-<tr>
-<td align="center">disabled</td>
-<td align="left">Is not set to be started at boot time.</td>
-</tr>
-<tr>
-<td align="center">static</td>
-<td align="left">Cannot be enabled, but may be started by an enabled unit automatically.</td>
-</tr>
-</tbody>
-</table>
+<p><code>default:group::rwx</code> Default group owner ACL permissions. The file group owner will get <strong>rwx</strong>, read/write on new files and execute on new subdirectories.</p>
+<p><code>default:group:consultant1:r-x</code> Default named group ACL permissions. One entry for each named group which will
+automatically get the default ACL. consultant1 will get rx, read-only on new files, and execute on new subdirectories.</p>
+<p>Default ACL mask entry:</p>
+<p><code>default:mask::rwx</code></p>
+<p>Default mask settings show the initial maximum permissions possible for all new files or directories
+created that have named user ACLs, the group owner ACL, or named group ACLs: read and write for new files and execute permission on new subdirectories. New files never get execute permission.</p>
+<p>Default other entry:</p>
+<p><code>default:other::---</code></p>
+<p>Default other or "world" permissions. All other UIDs and GIDs have no permissions to new files or
+new subdirectories.</p>
+<p>The <strong>default</strong> entries in the previous example do not include the named user (UID <strong>1005</strong>) and
+named group (GID <strong>2210</strong>); consequently, they will not automatically get initial ACL entries
+added for them to any new files or new subdirectories. This effectively limits them to files and
+subdirectories that they already have ACLs on, or if the relevant file owner adds the ACL later
+using <strong>setfacl</strong>. They can still create their own files and subdirectories.</p>
 <div class="admonition info">
 <p class="admonition-title">NOTE</p>
-<p>The <strong>systemctl status NAME</strong> command replaces the <strong>service NAME status</strong>
-command used in Red Hat Enterprise Linux 6 and earlier.</p>
+<p>The output from <strong>getfacl</strong> command can be used as input to <strong>setfacl</strong> for restoring
+ACLs, or for copying ACLs from a source file or directory and save them into a
+new file. For example, to restore ACLs from a backup, use <strong>getfacl -R /dir1</strong>
+<strong>&gt; file1</strong> to generate a recursive ACL output dump file for the directory and its
+contents. The output can then be used for recovery of the original ACLs, passing
+the saved output as input to the <strong>setfacl</strong> command. For example, to perform a
+bulk update of the same directory in the current path use the following command:
+<strong>setfacl --set-file=file1</strong></p>
 </div>
-<h4 id="verifying-the-status-of-a-service">VERIFYING THE STATUS OF A SERVICE<a class="headerlink" href="#verifying-the-status-of-a-service" title="Permanent link">&para;</a></h4>
-<p>The <strong>systemctl</strong> command provides methods for verifying the specific states of a service. For
-example, use the following command to verify that the a service unit is currently active (running):</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># systemctl is-active sshd.service</span>
-<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>active
+<p><strong>The ACL Mask</strong></p>
+<p>The ACL mask defines the maximum permissions that you can grant to named users, the group
+owner, and named groups. It does not restrict the permissions of the file owner or other users. All
+files and directories that implement ACLs will have an ACL mask.</p>
+<p>The mask can be viewed with <strong>getfacl</strong> and explicitly set with <strong>setfacl</strong>. It will be calculated and
+added automatically if it is not explicitly set, but it could also be inherited from a parent directory
+default mask setting. By default, the mask is recalculated whenever any of the affected ACLs are
+added, modified, or deleted.</p>
+<p><strong>ACL Permission Precedence</strong>
+When determining whether a process (a running program) can access a file, file permissions and
+ACLs are applied as follows:</p>
+<ul>
+<li>
+<p>If the process is running as the user that owns the file, then the file's user ACL permissions
+apply.</p>
+</li>
+<li>
+<p>If the process is running as a user that is listed in a named user ACL entry, then the named user
+ACL permissions apply (as long as it is permitted by the mask).</p>
+</li>
+<li>
+<p>If the process is running as a group that matches the group owner of the file, or as a group with
+an explicitly named group ACL entry, then the matching ACL permissions apply (as long as it is
+permitted by the mask).</p>
+</li>
+<li>
+<p>Otherwise, the file's other ACL permissions apply.</p>
+</li>
+</ul>
+<h3 id="examples-of-acl-use-by-the-operating-system">EXAMPLES OF ACL USE BY THE OPERATING SYSTEM<a class="headerlink" href="#examples-of-acl-use-by-the-operating-system" title="Permanent link">&para;</a></h3>
+<p>Red Hat Enterprise Linux has examples that demonstrate typical ACL use for extended permission
+requirements.</p>
+<p><strong>ACLs on Systemd Journal Files</strong></p>
+<p>systemd-journald uses ACL entries to allow read access to the <strong>/run/log/journal/cb44...8ae2/system.journal</strong> file to the adm and wheel groups. This ACL allows the members of the adm and wheel groups to have read access to the logs managed by <strong>journalctl</strong> without having the need to give special permissions to the privileged content inside <strong>/var/log/</strong>, like <strong>messages, secure</strong> or <strong>audit</strong>.</p>
+<p>Due to the systemd-journald configuration, the parent folder of the <strong>system.journal</strong> file
+can change, but the systemd-journald applies ACLs to the new folder and file automatically.</p>
+<div class="admonition info">
+<p class="admonition-title">NOTE</p>
+<p>System administrators should set an ACL on the <strong>/var/log/journal/</strong> folder when
+systemd-journald is configured to use persistent storage.</p>
+</div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="o">[</span>user@host <span class="o">]</span>$ getfacl /run/log/journal/cb44...8ae2/system.journal
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>getfacl: Removing leading <span class="s1">&#39;/&#39;</span> from absolute path names
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="c1"># file: run/log/journal/cb44...8ae2/system.journal</span>
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="c1"># owner: root</span>
+<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="c1"># group: systemd-journal</span>
+<a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>user::rw-
+<a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a>group::r--
+<a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a>group:adm:r--
+<a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a>group:wheel:r--
+<a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a>mask::r--
+<a id="__codelineno-10-11" name="__codelineno-10-11" href="#__codelineno-10-11"></a>other::---
 </code></pre></div>
-<p>The command returns state of the service unit, which is usually <strong>active</strong> or <strong>inactive</strong>.</p>
-<p>Run the following command to verify whether a service unit is enabled to start automatically
-during system boot:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># systemctl is-enabled sshd.service</span>
-<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>enabled
+<p><strong>ACL on Systemd Managed Devices</strong></p>
+<p>systemd-udev uses a set of udev rules that enable the uaccess tag to some devices, such as
+CD/DVD players or writers, USB storage devices, sound cards, and many others. The previous
+mentioned udev rules sets ACLs on those devices to allow users logged in to a graphical user
+interface (for example gdm) to have full control of those devices.</p>
+<p>The ACLs will remain active until the user logs out of the GUI. The next user who logs in to the GUI
+will have a new ACL applied for the required devices.</p>
+<p>In the following example, you can see the user has an ACL entry with <strong>rw</strong> permissions applied to
+the <strong>/dev/sr0</strong> device that is a CD/DVD drive.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="o">[</span>user@host <span class="o">]</span>$ getfacl /dev/sr0
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>getfacl: Removing leading <span class="s1">&#39;/&#39;</span> from absolute path names
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="c1"># file: dev/sr0</span>
+<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="c1"># owner: root</span>
+<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="c1"># group: cdrom</span>
+<a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a>user::rw-
+<a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a>user:group:rw-
+<a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a>group::rw-
+<a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a>mask::rw-
+<a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a>other::---
 </code></pre></div>
-<p>The command returns whether the service unit is enabled to start at boot time, which is usually
-<strong>enabled</strong> or <strong>disabled</strong>.</p>
-<p>To verify whether the unit failed during startup, run the following command:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># systemctl is-failed sshd.service</span>
-<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>active
+<h3 id="securing-files-with-acls">SECURING FILES WITH ACLS<a class="headerlink" href="#securing-files-with-acls" title="Permanent link">&para;</a></h3>
+<h4 id="changing-acl-file-permissions">CHANGING ACL FILE PERMISSIONS<a class="headerlink" href="#changing-acl-file-permissions" title="Permanent link">&para;</a></h4>
+<p>Use setfacl to add, modify, or remove standard ACLs on files and directories.</p>
+<p>ACLs use the normal file system representation of permissions, "<strong>r</strong>" for read permission, "<strong>w</strong>"
+for write permission, and "<strong>x</strong>" for execute permission. A "-" (dash) indicates that the relevant
+permission is absent. When (recursively) setting ACLs, an uppercase "<strong>X</strong>" can be used to indicate
+that execute permission should only be set on directories and not regular files, unless the file
+already has the relevant execute permission. This is the same behavior as <strong>chmod</strong>.</p>
+<p><strong>Adding or Modifying ACLs</strong></p>
+<p>ACLs can be set via the command-line using the <strong>-m</strong> option, or passed in via a file using the -
+<strong>M</strong> option (use "-" (dash) instead of a file name for <strong>stdin</strong>). These two options are the "modify"
+options; they add new ACL entries or replace specific existing ACL entries on a file or directory.
+Any other existing ACL entries on the file or directory remain untouched.</p>
+<div class="admonition info">
+<p class="admonition-title">NOTE</p>
+<p>Use the <strong>--set</strong> or <strong>--set-file</strong> options to completely replace the ACL settings on a file.</p>
+</div>
+<p>When first defining an ACL on a file, if the add operation does not include settings for the file
+owner, group owner, or other permissions, then these will be set based on the current standard
+file permissions (these are also known as the base ACL entries and cannot be deleted), and a new
+mask value will be calculated and added as well.</p>
+<p>To add or modify a user or named user ACL:</p>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ setfacl -m u:name:rX file
 </code></pre></div>
-<p>The command either returns <strong>active</strong> if it is properly running or <strong>failed</strong> if an error has occurred
-during startup. In case the unit was stopped, it returns <strong>unknown</strong> or <strong>inactive</strong>.</p>
-<p>To list all the failed units, run the <strong>systemctl --failed --type=service</strong> command.</p>
-<h3 id="controlling-system-services">CONTROLLING SYSTEM SERVICES<a class="headerlink" href="#controlling-system-services" title="Permanent link">&para;</a></h3>
-<h4 id="starting-and-stopping-services">STARTING AND STOPPING SERVICES<a class="headerlink" href="#starting-and-stopping-services" title="Permanent link">&para;</a></h4>
-<p>Services need to be stopped or started manually for a number of reasons: perhaps the service
-needs to be updated; the configuration file may need to be changed; or a service may need to be
-uninstalled; or an administrator may manually start an infrequently used service.</p>
-<p>To start a service, first verify that it is not running with <strong>systemctl status</strong>. Then, use the
-<strong>systemctl start</strong> command as the root user (using <strong>sudo</strong> if necessary). The example below
-shows how to start the sshd.service service:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># systemctl start sshd.service</span>
+If name is left blank, then it applies to the file owner, otherwise name can be a username or UID
+value. In this example, the permissions granted would be read-only, and if already set, execute
+(unless file was a directory, in which case the directory would get the execute permission set to
+allow directory search).</p>
+<p>ACL file owner and standard file owner permissions are equivalent; consequently, using <strong>chmod</strong> on
+the file owner permissions is equivalent to using <strong>setfacl</strong> on the file owner permissions. <strong>chmod</strong>
+has no effect on named users.</p>
+<p>To add or modify a group or named group ACL:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ setfacl -m g:name:rw file
 </code></pre></div>
-<p>The systemd service looks for .service files for service management in commands in the
-absence of the service type with the service name. Thus the above command can be executed as:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># systemctl start sshd</span>
+<p>This follows the same pattern for adding or modifying a user ACL entry. If name is left blank, then
+it applies to the group owner. Otherwise, specify a group name or GID value for a named group.
+The permissions would be read and write in this example.</p>
+<p><strong>chmod</strong> has no effect on any group permissions for files with ACL settings, but it updates the ACL
+mask.</p>
+<p>To add or modify the other ACL:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ setfacl -m o::- file
 </code></pre></div>
-<p>To stop a currently running service, use the stop argument with the systemctl command. The
-example below shows how to stop the sshd.service service:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># systemctl stop sshd.service</span>
+<p>other only accepts permission settings. Typical permission settings for others are: no permissions
+at all, set with a dash (-); and read-only permissions set as usual with <strong>r</strong>. Of course, you can set any
+of the standard permissions.</p>
+<p>ACL other and standard other permissions are equivalent, so using <strong>chmod</strong> on the other
+permissions is equivalent to using <strong>setfacl</strong> on the other permissions.</p>
+<p>You can add multiple entries with the same command; use a comma-separated list of entries:</p>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ setfacl -m u::rwx,g:consultants:rX,o::- file
 </code></pre></div>
-<h4 id="restarting-and-reloading-services">RESTARTING AND RELOADING SERVICES<a class="headerlink" href="#restarting-and-reloading-services" title="Permanent link">&para;</a></h4>
-<p>During a restart of a running service, the service is stopped and then started. On the restart of
-service, the process ID changes and a new process ID gets associated during the startup. To restart
-a running service, use the <strong>restart</strong> argument with the <strong>systemctl</strong> command. The example below
-shows how to restart the sshd.service service:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># systemctl restart sshd.service</span>
+This sets the file owner to read, write, and execute, sets the named group <strong>consultants</strong> to read-
+only and conditional execute, and restricts all other users to no permissions. The group owner
+maintains existing file or ACL permissions and other "named" entries remain unchanged.</p>
+<p><strong>Using getfacl as Input</strong></p>
+<p>You can use the output from <strong>getfacl</strong> as input to <strong>setfacl</strong>:</p>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ getfacl file-A <span class="p">|</span> setfacl --set-file<span class="o">=</span>- file-B
 </code></pre></div>
-<p>Some services have the ability to reload their configuration files without requiring a restart. This
-process is called a service reload. Reloading a service does not change the process ID associated
-with various service processes. To reload a running service, use the <strong>reload</strong> argument with the
-<strong>systemctl</strong> command. The example below shows how to reload the sshd.service service after
-configuration changes:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># systemctl reload sshd.service</span>
+The <strong>--set-file</strong> option accepts input from a file or from stdin. The dash character (-) specifies
+the use of stdin. In this case, file-B will have the same ACL settings as file-A.</p>
+<p><strong>Setting an Explicit ACL Mask</strong></p>
+<p>You can set an ACL mask explicitly on a file or directory to limit the maximum effective
+permissions for named users, the group owner, and named groups. This restricts any existing
+permissions that exceed the mask, but does not affect permissions that are less permissive than
+the mask.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ setfacl -m m::r file
 </code></pre></div>
-<p>In case you are not sure whether the service has the functionality to reload the configuration
-file changes, use the <strong>reload-or-restart</strong> argument with the <strong>systemctl</strong> command. The
-command reloads the configuration changes if the reloading functionality is available. Otherwise,
-the command restarts the service to implements the new configuration changes:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># systemctl reload-or-restart sshd.service</span>
-</code></pre></div>
-<h4 id="listing-unit-dependencies">LISTING UNIT DEPENDENCIES<a class="headerlink" href="#listing-unit-dependencies" title="Permanent link">&para;</a></h4>
-<p>Some services require that other services be running first, creating dependencies on the other
-services. Other services are not started at boot time but rather only on demand. In both cases,
-systemd and <strong>systemctl</strong> start services as needed whether to resolve the dependency or to
-start an infrequently used service. For example, if the CUPS print service is not running and a
-file is placed into the print spool directory, then the system will start CUPS-related daemons or
-commands to satisfy the print request.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># systemctl stop cups.service</span>
-<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>Warning: Stopping cups, but it can still be activated by:
-<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>  cups.path
-<a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a>  cups.socket
-</code></pre></div>
-<p>To completely stop printing services on a system, stop all three units. Disabling the service disables
-the dependencies.</p>
-<p>The <strong>systemctl list-dependencies UNIT</strong> command displays a hierarchy mapping of
-dependencies to start the service unit. To list reverse dependencies (units that depend on the
-specified unit), use the <strong>--reverse</strong> option with the command.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># systemctl list-dependencies sshd.service</span>
-<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>sshd.service
-<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>● ├─system.slice
-<a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a>● ├─sshd-keygen.target
-<a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a>● │ ├─sshd-keygen@ecdsa.service
-<a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a>● │ ├─sshd-keygen@ed25519.service
-<a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a>● │ └─sshd-keygen@rsa.service
-<a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a>● └─sysinit.target
-<a id="__codelineno-15-9" name="__codelineno-15-9" href="#__codelineno-15-9"></a>...output omitted...
-</code></pre></div>
-<h4 id="masking-and-unmasking-services">MASKING AND UNMASKING SERVICES<a class="headerlink" href="#masking-and-unmasking-services" title="Permanent link">&para;</a></h4>
-<p>At times, a system may have different services installed that are conflicting with each other.
-For example, there are multiple methods to manage mail servers (postfix and sendmail, for
-example). Masking a service prevents an administrator from accidentally starting a service that
-conflicts with others. Masking creates a link in the configuration directories to the <strong>/dev/null</strong> file
-which prevents the service from starting.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># systemctl mask sendmail.service</span>
-<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>Created symlink /etc/systemd/system/sendmail.service → /dev/null.
-<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># systemctl list-unit-files --type=service</span>
-<a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a>UNIT FILE                                   STATE
-<a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a>...output omitted...
-<a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a>sendmail.service                            masked
-<a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a>...output omitted...
-</code></pre></div>
-<p>Attempting to start a masked service unit fails with the following output:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># systemctl start sendmail.service</span>
-</code></pre></div>
-<p>Failed to start sendmail.service: Unit sendmail.service is masked.
-Use the systemctl unmask command to unmask the service unit.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># systemctl unmask sendmail</span>
-<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>Removed /etc/systemd/system/sendmail.service.
-</code></pre></div>
+<p>This adds a mask value that restricts any named users, the group owner, and any named groups to
+read-only permission, regardless of their existing settings. The file owner and other users are not
+impacted by the mask setting.</p>
+<p><strong>getfacl</strong> shows an <strong>effective</strong> comment beside entries that are restricted by a mask setting.</p>
 <div class="admonition danger">
 <p class="admonition-title">IMPORTANT</p>
-<p>A disabled service can be started manually or by other unit files but it does not start
-automatically at boot. A masked service does not start manually or automatically.</p>
+<p>By default, each time one of the impacted ACL settings (named users, group owner,
+or named groups) is modified or deleted, the ACL mask is recalculated, potentially
+resetting a previous explicit mask setting.</p>
+<p>To avoid the mask recalculation, use the <strong>-n</strong> option or include a mask setting (<strong>-m
+m::perms</strong>) with any <strong>setfacl</strong> operation that modifies mask-affected ACL settings.</p>
 </div>
-<h4 id="enabling-services-to-start-or-stop-at-boot">ENABLING SERVICES TO START OR STOP AT BOOT<a class="headerlink" href="#enabling-services-to-start-or-stop-at-boot" title="Permanent link">&para;</a></h4>
-<p>Starting a service on a running system does not guarantee that the service automatically starts
-when the system reboots. Similarly, stopping a service on a running system does not keep it from
-starting again when the system reboots. Creating links in the systemd configuration directories
-enables the service to start at boot. The <strong>systemctl</strong> commands creates and removes these links.
-To start a service at boot, use the <strong>systemctl enable</strong> command.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="o">[</span>root@root ~<span class="o">]</span><span class="c1"># systemctl enable sshd.service</span>
-<a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>Created symlink /etc/systemd/system/multi-user.target.wants/sshd.service → /usr/
-<a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a>lib/systemd/system/sshd.service.
+<p><strong>Recursive ACL Modifications</strong></p>
+<p>When setting an ACL on a directory, use the <strong>-R</strong> option to apply the ACL recursively. Remember
+that you are likely to want to use the "<strong>X</strong>" (capital X) permission with recursion so that files with the
+execute permission set retain the setting and directories get the execute permission set to allow
+directory search. It is considered good practice to also use the uppercase "<strong>X</strong>" when non-recursively
+setting ACLs because it prevents administrators from accidentally adding execute permissions to
+a regular file.</p>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ setfacl -R -m u:name:rX directory
 </code></pre></div>
-<p>The above command creates a symbolic link from the service unit file, usually in the <strong>/usr/lib/
-systemd/system</strong> directory, to the location on disk where systemd looks for files, which is in the
-<strong>/etc/systemd/system/TARGETNAME.target.wants</strong> directory. Enabling a service does not
-start the service in the current session. To start the service and enable it to start automatically
-during boot, execute both the <strong>systemctl start</strong> and <strong>systemctl enable</strong> commands.</p>
-<p>To disable the service from starting automatically, use the following command, which removes
-the symbolic link created while enabling a service. Note that disabling a service does not stop the
-service.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># systemctl disable sshd.service</span>
-<a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>Removed /etc/systemd/system/multi-user.target.wants/sshd.service.
+This adds the user name to the directory directory and all existing files and subdirectories, setting
+read-only and conditional execute permissions.</p>
+<p><strong>Deleting ACLs</strong></p>
+<p>Deleting specific ACL entries follows the same basic format as the modify operation, except that
+":perms" is not specified.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ setfacl -x u:name,g:name file
 </code></pre></div>
-<p>To verify whether the service is enabled or disable, use the <strong>systemctl is-enabled</strong> command.</p>
-<h4 id="summary-of-systemctl-commands">SUMMARY OF <em>systemctl</em> COMMANDS<a class="headerlink" href="#summary-of-systemctl-commands" title="Permanent link">&para;</a></h4>
-<p>Services can be started and stopped on a running system and enabled or disabled for an automatic
-start at boot time.</p>
-<p><strong>Useful Service Management Commands</strong></p>
-<table>
-<thead>
-<tr>
-<th align="left">TASK</th>
-<th align="left">COMMAND</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td align="left">View detailed information about a unit state.</td>
-<td align="left"><strong>systemctl status UNIT</strong></td>
-</tr>
-<tr>
-<td align="left">Stop a service on a running system.</td>
-<td align="left"><strong>systemctl stop UNIT</strong></td>
-</tr>
-<tr>
-<td align="left">Start a service on a running system.</td>
-<td align="left"><strong>systemctl start UNIT</strong></td>
-</tr>
-<tr>
-<td align="left">Restart a service on a running system.</td>
-<td align="left"><strong>systemctl restart UNIT</strong></td>
-</tr>
-<tr>
-<td align="left">Reload the configuration file of a running service.</td>
-<td align="left"><strong>systemctl reload UNIT</strong></td>
-</tr>
-<tr>
-<td align="left">Completely disable a service from being started, both manually and at boot.</td>
-<td align="left"><strong>systemctl mask UNIT</strong></td>
-</tr>
-<tr>
-<td align="left">Make a masked service available.</td>
-<td align="left"><strong>systemctl unmask UNIT</strong></td>
-</tr>
-<tr>
-<td align="left">Configure a service to start at boot time.</td>
-<td align="left"><strong>systemctl enable UNIT</strong></td>
-</tr>
-<tr>
-<td align="left">Disable a service from starting at boot time.</td>
-<td align="left"><strong>systemctl disable UNIT</strong></td>
-</tr>
-<tr>
-<td align="left">List units required and wanted by the specified unit.</td>
-<td align="left"><strong>systemctl list-dependencies UNIT</strong></td>
-</tr>
-</tbody>
-</table>
+<p>This removes only the named user and the named group from the file or directory ACL. Any other
+existing ACL entries remain active.</p>
+<p>You can include both the delete (<strong>-x</strong>) and modify (<strong>-m</strong>) operations in the same <strong>setfacl</strong> operation.</p>
+<p>The mask can only be deleted if there are no other ACLs set (excluding the base ACL which
+cannot be deleted), so it must be deleted last. The file will no longer have any ACLs and <strong>ls -l</strong> will
+not show the plus sign (+) next to the permissions string. Alternatively, to delete all ACL entries on
+a file or directory (including default ACL on directories), use the following command:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ setfacl -b file
+</code></pre></div>
+<h4 id="controlling-default-acl-file-permissions">CONTROLLING DEFAULT ACL FILE PERMISSIONS<a class="headerlink" href="#controlling-default-acl-file-permissions" title="Permanent link">&para;</a></h4>
+<p>To ensure that files and directories created within a directory inherit certain ACLs, use the default
+ACL on a directory. You can set a default ACL and any of the standard ACL settings, including a
+default mask.</p>
+<p>The directory itself still requires standard ACLs for access control because the default ACLs do
+not implement access control for the directory; they only provide ACL permission inheritance
+support. For example:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ setfacl -m d:u:name:rx directory
+</code></pre></div>
+<p>This adds a default named user (<strong>d:u:name</strong>) with read-only permission and execute permission on
+subdirectories.</p>
+<p>The <strong>setfacl</strong> command for adding a default ACL for each of the ACL types is exactly the same as
+for standard ACLs, but prefaced with <strong>d:</strong>. Alternatively, use the <strong>-d</strong> option on the command line.</p>
+<div class="admonition danger">
+<p class="admonition-title">IMPORTANT</p>
+<p>When setting default ACLs on a directory, ensure that users will be able to access
+the contents of new subdirectories created in it by including the execute permission
+on the default ACL.</p>
+<p>Users will not automatically get the execute permission set on newly created regular
+files because unlike new directories, the ACL mask of a new regular file is <strong>rw-</strong>.</p>
+</div>
+<div class="admonition info">
+<p class="admonition-title">NOTE</p>
+<p>New files and new subdirectories continue to get their owner UID and primary group
+GID values set from the creating user, except when the parent directory <strong>setgid</strong>
+flag is enabled, in which case the primary group GID is the same as the parent
+directory GID.</p>
+</div>
+<p><strong>Deleting Default ACL Entries</strong></p>
+<p>Delete a default ACL the same way that you delete a standard ACL, prefacing with <strong>d:</strong>, or use the <strong>-
+d</strong> option.</p>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ setfacl -x d:u:name directory
+</code></pre></div>
+This removes the default ACL entry that was added in the previous example.</p>
+<p>To delete all default ACL entries on a directory, use <strong>setfacl -k directory</strong>.</p>
 <h3 id="summary">SUMMARY<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h3>
 <p>In this chapter, you learned:</p>
 <ul>
 <li>
-<p>systemd provides a method for activating system resources, server daemons, and other
-processes, both at boot time and on a running system.</p>
+<p>ACLs provide fine-grained access control to files and directories.</p>
 </li>
 <li>
-<p>Use the <strong>systemctl</strong> to start, stop, reload, enable, and disable services.</p>
+<p>The <strong>getfacl</strong> command displays the ACLs on a file or directory.</p>
 </li>
 <li>
-<p>Use the <strong>systemctl status</strong> command to determine the status of system daemons and
-network services started by systemd.</p>
+<p>The <strong>setfacl</strong> command sets, modifies, and removes default and standard ACLs on files and
+directories.</p>
 </li>
 <li>
-<p>The <strong>systemctl list-dependencies</strong> command lists all service units upon which a specific
-service unit depends.</p>
+<p>Use default ACLs for controlling new files and directories permissions.</p>
 </li>
 <li>
-<p>systemd can mask a service unit so that it does not run even to satisfy dependencies.</p>
+<p>Red Hat Enterprise Linux uses systemd and udev to apply predefined ACLs on devices, folders,
+and files.</p>
 </li>
 </ul>
 <h3 id="lab">LAB<a class="headerlink" href="#lab" title="Permanent link">&para;</a></h3>
-<p>pdf - 326</p>
+<p>pdf - 114</p>
 
   <hr>
 <div class="md-source-file">
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">December 1, 2022</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">December 5, 2022</span>
       
     
   </small>
@@ -2841,7 +2723,7 @@ service unit depends.</p>
     <nav class="md-footer__inner md-grid" aria-label="Footer" >
       
         
-        <a href="../monitor/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Monitoring And Managing Linux Processes" rel="prev">
+        <a href="../tuning/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Tuning System Performance" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
           </div>
@@ -2850,20 +2732,20 @@ service unit depends.</p>
               <span class="md-footer__direction">
                 Previous
               </span>
-              Monitoring And Managing Linux Processes
+              Tuning System Performance
             </div>
           </div>
         </a>
       
       
         
-        <a href="../secssh/" class="md-footer__link md-footer__link--next" aria-label="Next: Configuring And Securing Ssh" rel="next">
+        <a href="../../english/vol1/" class="md-footer__link md-footer__link--next" aria-label="Next: Vol-1" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              Configuring And Securing Ssh
+              Vol-1
             </div>
           </div>
           <div class="md-footer__button md-icon">
