@@ -1,0 +1,3065 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://divijesh.tech/redhat2/selinux/">
+      
+      <link rel="icon" href="../../assets/img/layout/favicon.ico">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-8.5.10">
+    
+    
+      
+        <title>Managing Selinux Security - Divijesh Varma</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.975780f9.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.2505c338.min.css">
+        
+      
+      
+
+    
+    
+    
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent="teal">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#changing-the-selinux-enforcement-mode" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Divijesh Varma" class="md-header__button md-logo" aria-label="Divijesh Varma" data-md-component="logo">
+      
+  <img src="../../assets/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Divijesh Varma
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Managing Selinux Security
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent="teal"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 1 7 7c0 2.38-1.19 4.47-3 5.74V17a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 0 1 7-7M9 21v-1h6v1a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1m3-17a5 5 0 0 0-5 5c0 2.05 1.23 3.81 3 4.58V16h4v-2.42c1.77-.77 3-2.53 3-4.58a5 5 0 0 0-5-5Z"/></svg>
+            </label>
+          
+        
+          
+          
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="deep-purple" data-md-color-accent="deep-orange"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 2.38 1.19 4.47 3 5.74V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.26c1.81-1.27 3-3.36 3-5.74a7 7 0 0 0-7-7M9 21a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-1H9v1Z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../.." class="md-tabs__link">
+      Home
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../linux/vi/" class="md-tabs__link">
+        Linux
+      </a>
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../redhat/intro/" class="md-tabs__link md-tabs__link--active">
+        RedHat
+      </a>
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../english/vol1/" class="md-tabs__link">
+        English
+      </a>
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../basics/threat-modeling/" class="md-tabs__link">
+        Knowledge Base
+      </a>
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../tools/" class="md-tabs__link">
+        Recommendations
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../about/" class="md-tabs__link">
+        About
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Divijesh Varma" class="md-nav__button md-logo" aria-label="Divijesh Varma" data-md-component="logo">
+      
+  <img src="../../assets/logo.png" alt="logo">
+
+    </a>
+    Divijesh Varma
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          Linux
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Linux" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Linux
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_2_1" type="checkbox" id="__nav_2_1" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_1">
+          Editors
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Editors" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_1">
+          <span class="md-nav__icon md-icon"></span>
+          Editors
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/vi/" class="md-nav__link">
+        Vim
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/nano/" class="md-nav__link">
+        Nano
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_2_2" type="checkbox" id="__nav_2_2" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_2">
+          Notes
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Notes" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_2">
+          <span class="md-nav__icon md-icon"></span>
+          Notes
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/rhcsa/" class="md-nav__link">
+        Tritree
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/user/" class="md-nav__link">
+        User Management
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/acl/" class="md-nav__link">
+        Access control lists (ACLs)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/network/" class="md-nav__link">
+        Networking
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/ssh/" class="md-nav__link">
+        OpenSSH
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/process/" class="md-nav__link">
+        Process Management
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/software/" class="md-nav__link">
+        Software Management
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/systemd/" class="md-nav__link">
+        Systemd Management
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/cron/" class="md-nav__link">
+        Cron Jobs
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/logs/" class="md-nav__link">
+        Logs
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/disk/" class="md-nav__link">
+        Disk Management
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3">
+          RedHat
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="RedHat" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          RedHat
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_3_1" type="checkbox" id="__nav_3_1" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_1">
+          RHSA I (RH124)
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="RHSA I (RH124)" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_1">
+          <span class="md-nav__icon md-icon"></span>
+          RHSA I (RH124)
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../redhat/intro/" class="md-nav__link">
+        Introduction
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../redhat/access/" class="md-nav__link">
+        Accessing The Command Line
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../redhat/manage/" class="md-nav__link">
+        Managing Files From The Command Line
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../redhat/help/" class="md-nav__link">
+        Getting Help In Red Hat Enterprise Linux
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../redhat/edit/" class="md-nav__link">
+        Creating, Viewing, And Editing Text Files
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../redhat/users/" class="md-nav__link">
+        Managing Local Users And Groups
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../redhat/control/" class="md-nav__link">
+        Controlling Access To Files
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../redhat/monitor/" class="md-nav__link">
+        Monitoring And Managing Linux Processes
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../redhat/service/" class="md-nav__link">
+        Controlling Services And Daemons
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../redhat/secssh/" class="md-nav__link">
+        Configuring And Securing Ssh
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../redhat/store/" class="md-nav__link">
+        Analyzing And Storing Logs
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../redhat/mannet/" class="md-nav__link">
+        Managing Networking
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../redhat/archiv/" class="md-nav__link">
+        Archiving And Transferring Files
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../redhat/pack/" class="md-nav__link">
+        Installing And Updating Software Packages
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../redhat/filsys/" class="md-nav__link">
+        Accessing Linux File Systems
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../redhat/support/" class="md-nav__link">
+        Analyzing Servers And Getting Support
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../redhat/review/" class="md-nav__link">
+        Comprehensive Review
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_2" type="checkbox" id="__nav_3_2" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_2">
+          RHSA II (RH134)
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="RHSA II (RH134)" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_2">
+          <span class="md-nav__icon md-icon"></span>
+          RHSA II (RH134)
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cmd/" class="md-nav__link">
+        Improving Command-Line Productivity
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tasks/" class="md-nav__link">
+        Scheduling Future Tasks
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tuning/" class="md-nav__link">
+        Tuning System Performance
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../acls/" class="md-nav__link">
+        Controlling Access To Files With Acls
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Managing Selinux Security
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Managing Selinux Security
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#changing-the-selinux-enforcement-mode" class="md-nav__link">
+    CHANGING THE SELINUX ENFORCEMENT MODE
+  </a>
+  
+    <nav class="md-nav" aria-label="CHANGING THE SELINUX ENFORCEMENT MODE">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how-selinux-protects-resources" class="md-nav__link">
+    HOW SELINUX PROTECTS RESOURCES
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#why-use-security-enhanced-linux" class="md-nav__link">
+    WHY USE SECURITY ENHANCED LINUX?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#basic-selinux-security-concepts" class="md-nav__link">
+    BASIC SELINUX SECURITY CONCEPTS
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#changing-the-current-selinux-mode" class="md-nav__link">
+    CHANGING THE CURRENT SELINUX MODE
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#setting-the-default-selinux-mode" class="md-nav__link">
+    SETTING THE DEFAULT SELINUX MODE
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#controlling-selinux-file-contexts" class="md-nav__link">
+    CONTROLLING SELINUX FILE CONTEXTS
+  </a>
+  
+    <nav class="md-nav" aria-label="CONTROLLING SELINUX FILE CONTEXTS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#initial-selinux-context" class="md-nav__link">
+    INITIAL SELINUX CONTEXT
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#changing-the-selinux-context-of-a-file" class="md-nav__link">
+    CHANGING THE SELINUX CONTEXT OF A FILE
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#defining-selinux-default-file-context-rules" class="md-nav__link">
+    DEFINING SELINUX DEFAULT FILE CONTEXT RULES
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#adjusting-selinux-policy-with-booleans" class="md-nav__link">
+    ADJUSTING SELINUX POLICY WITH BOOLEANS
+  </a>
+  
+    <nav class="md-nav" aria-label="ADJUSTING SELINUX POLICY WITH BOOLEANS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#selinux-booleans" class="md-nav__link">
+    SELINUX BOOLEANS
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#investigating-and-resolving-selinux-issues" class="md-nav__link">
+    INVESTIGATING AND RESOLVING SELINUX ISSUES
+  </a>
+  
+    <nav class="md-nav" aria-label="INVESTIGATING AND RESOLVING SELINUX ISSUES">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#troubleshooting-selinux-issues" class="md-nav__link">
+    TROUBLESHOOTING SELINUX ISSUES
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#monitoring-selinux-violations" class="md-nav__link">
+    MONITORING SELINUX VIOLATIONS
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#web-console" class="md-nav__link">
+    WEB CONSOLE
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    SUMMARY
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lab" class="md-nav__link">
+    LAB
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../storage/" class="md-nav__link">
+        Managing Basic Storage
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4">
+          English
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="English" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          English
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_4_1" type="checkbox" id="__nav_4_1" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_1">
+          Tutorial
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Tutorial" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_1">
+          <span class="md-nav__icon md-icon"></span>
+          Tutorial
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../english/vol1/" class="md-nav__link">
+        Vol-1
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../english/vol2/" class="md-nav__link">
+        Vol-2
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../english/vol3/" class="md-nav__link">
+        Vol-3
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../english/vol4/" class="md-nav__link">
+        Vol-4
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5">
+          Knowledge Base
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Knowledge Base" data-md-level="1">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          Knowledge Base
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_5_1" type="checkbox" id="__nav_5_1" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5_1">
+          The Basics
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="The Basics" data-md-level="2">
+        <label class="md-nav__title" for="__nav_5_1">
+          <span class="md-nav__icon md-icon"></span>
+          The Basics
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../basics/threat-modeling/" class="md-nav__link">
+        Threat Modeling
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../basics/dns/" class="md-nav__link">
+        Introduction to DNS
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../basics/multi-factor-authentication/" class="md-nav__link">
+        Multi-factor Authentication
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../basics/account-deletion/" class="md-nav__link">
+        Account Deletion
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_5_2" type="checkbox" id="__nav_5_2" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5_2">
+          Android
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Android" data-md-level="2">
+        <label class="md-nav__title" for="__nav_5_2">
+          <span class="md-nav__icon md-icon"></span>
+          Android
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../android/overview/" class="md-nav__link">
+        Android Overview
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../android/grapheneos-vs-calyxos/" class="md-nav__link">
+        GrapheneOS vs CalyxOS
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_5_3" type="checkbox" id="__nav_5_3" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5_3">
+          Linux
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Linux" data-md-level="2">
+        <label class="md-nav__title" for="__nav_5_3">
+          <span class="md-nav__icon md-icon"></span>
+          Linux
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux-desktop/overview/" class="md-nav__link">
+        Linux Overview
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux-desktop/hardening/" class="md-nav__link">
+        System Hardening
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux-desktop/sandboxing/" class="md-nav__link">
+        Application Sandboxing
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_5_4" type="checkbox" id="__nav_5_4" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5_4">
+          Advanced
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Advanced" data-md-level="2">
+        <label class="md-nav__title" for="__nav_5_4">
+          <span class="md-nav__icon md-icon"></span>
+          Advanced
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setup/integrating-metadata-removal/" class="md-nav__link">
+        Integrating Metadata Removal
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_6" type="checkbox" id="__nav_6" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6">
+          Recommendations
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Recommendations" data-md-level="1">
+        <label class="md-nav__title" for="__nav_6">
+          <span class="md-nav__icon md-icon"></span>
+          Recommendations
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tools/" class="md-nav__link">
+        Privacy Tools
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_6_2" type="checkbox" id="__nav_6_2" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6_2">
+          Browsers
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Browsers" data-md-level="2">
+        <label class="md-nav__title" for="__nav_6_2">
+          <span class="md-nav__icon md-icon"></span>
+          Browsers
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../browsers/" class="md-nav__link">
+        Web Browsers
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_6_3" type="checkbox" id="__nav_6_3" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6_3">
+          Operating Systems
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Operating Systems" data-md-level="2">
+        <label class="md-nav__title" for="__nav_6_3">
+          <span class="md-nav__icon md-icon"></span>
+          Operating Systems
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../android/" class="md-nav__link">
+        Android
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux-desktop/" class="md-nav__link">
+        Linux
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../qubes/" class="md-nav__link">
+        Qubes OS
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../router/" class="md-nav__link">
+        Router Firmware
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_6_4" type="checkbox" id="__nav_6_4" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6_4">
+          Providers
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Providers" data-md-level="2">
+        <label class="md-nav__title" for="__nav_6_4">
+          <span class="md-nav__icon md-icon"></span>
+          Providers
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cloud/" class="md-nav__link">
+        Cloud Storage
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dns/" class="md-nav__link">
+        DNS Resolvers
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../email/" class="md-nav__link">
+        Email Services
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../search-engines/" class="md-nav__link">
+        Search Engines
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vpn/" class="md-nav__link">
+        VPN Services
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_6_5" type="checkbox" id="__nav_6_5" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6_5">
+          Software
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Software" data-md-level="2">
+        <label class="md-nav__title" for="__nav_6_5">
+          <span class="md-nav__icon md-icon"></span>
+          Software
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../calendar-contacts/" class="md-nav__link">
+        Calendar and Contact Sync
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../notebooks/" class="md-nav__link">
+        Notebooks
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../email-clients/" class="md-nav__link">
+        Email Clients
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../encryption/" class="md-nav__link">
+        Encryption Software
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../file-sharing/" class="md-nav__link">
+        File Sharing and Sync
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../metadata-removal-tools/" class="md-nav__link">
+        Metadata Removal Tools
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../multi-factor-authentication/" class="md-nav__link">
+        Multi-Factor Authenticators
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../passwords/" class="md-nav__link">
+        Password Managers
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../productivity/" class="md-nav__link">
+        Productivity Tools
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../real-time-communication/" class="md-nav__link">
+        Real-Time Communication
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../news-aggregators/" class="md-nav__link">
+        News Aggregators
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../self-contained-networks/" class="md-nav__link">
+        Self-Contained Networks
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../video-streaming/" class="md-nav__link">
+        Video Streaming
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_7" type="checkbox" id="__nav_7" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_7">
+          About
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="About" data-md-level="1">
+        <label class="md-nav__title" for="__nav_7">
+          <span class="md-nav__icon md-icon"></span>
+          About
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/" class="md-nav__link">
+        Heading
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#changing-the-selinux-enforcement-mode" class="md-nav__link">
+    CHANGING THE SELINUX ENFORCEMENT MODE
+  </a>
+  
+    <nav class="md-nav" aria-label="CHANGING THE SELINUX ENFORCEMENT MODE">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how-selinux-protects-resources" class="md-nav__link">
+    HOW SELINUX PROTECTS RESOURCES
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#why-use-security-enhanced-linux" class="md-nav__link">
+    WHY USE SECURITY ENHANCED LINUX?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#basic-selinux-security-concepts" class="md-nav__link">
+    BASIC SELINUX SECURITY CONCEPTS
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#changing-the-current-selinux-mode" class="md-nav__link">
+    CHANGING THE CURRENT SELINUX MODE
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#setting-the-default-selinux-mode" class="md-nav__link">
+    SETTING THE DEFAULT SELINUX MODE
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#controlling-selinux-file-contexts" class="md-nav__link">
+    CONTROLLING SELINUX FILE CONTEXTS
+  </a>
+  
+    <nav class="md-nav" aria-label="CONTROLLING SELINUX FILE CONTEXTS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#initial-selinux-context" class="md-nav__link">
+    INITIAL SELINUX CONTEXT
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#changing-the-selinux-context-of-a-file" class="md-nav__link">
+    CHANGING THE SELINUX CONTEXT OF A FILE
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#defining-selinux-default-file-context-rules" class="md-nav__link">
+    DEFINING SELINUX DEFAULT FILE CONTEXT RULES
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#adjusting-selinux-policy-with-booleans" class="md-nav__link">
+    ADJUSTING SELINUX POLICY WITH BOOLEANS
+  </a>
+  
+    <nav class="md-nav" aria-label="ADJUSTING SELINUX POLICY WITH BOOLEANS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#selinux-booleans" class="md-nav__link">
+    SELINUX BOOLEANS
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#investigating-and-resolving-selinux-issues" class="md-nav__link">
+    INVESTIGATING AND RESOLVING SELINUX ISSUES
+  </a>
+  
+    <nav class="md-nav" aria-label="INVESTIGATING AND RESOLVING SELINUX ISSUES">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#troubleshooting-selinux-issues" class="md-nav__link">
+    TROUBLESHOOTING SELINUX ISSUES
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#monitoring-selinux-violations" class="md-nav__link">
+    MONITORING SELINUX VIOLATIONS
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#web-console" class="md-nav__link">
+    WEB CONSOLE
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    SUMMARY
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lab" class="md-nav__link">
+    LAB
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+  
+
+
+
+
+  <h1>Managing Selinux Security</h1>
+
+<h3 id="changing-the-selinux-enforcement-mode">CHANGING THE SELINUX ENFORCEMENT MODE<a class="headerlink" href="#changing-the-selinux-enforcement-mode" title="Permanent link">&para;</a></h3>
+<h4 id="how-selinux-protects-resources">HOW SELINUX PROTECTS RESOURCES<a class="headerlink" href="#how-selinux-protects-resources" title="Permanent link">&para;</a></h4>
+<p>SELinux provides a critical security purpose in Linux, permitting or denying access to files and
+other resources that are significantly more precise than user permissions.</p>
+<p>File permissions control which users or groups of users can access which specific files. However, a
+user given read or write access to any specific file can use that file in any way that user chooses,
+even if that use is not how the file should be used.</p>
+<p>For example, with write access to a file, should a structured data file designed to be written to
+using only a particular program, be allowed to be opened and modified by other editors that could
+result in corruption?</p>
+<p>File permissions cannot stop such undesired access. They were never designed to control how a
+file is used, but only who is allowed to read, write, or run a file.</p>
+<p>SELinux consists of sets of policies, defined by the application developers, that declare exactly
+what actions and accesses are proper and allowed for each binary executable, configuration
+file, and data file used by an application. This is known as a targeted policy because one policy is
+written to cover the activities of a single application. Policies declare predefined labels that are
+placed on individual programs, files, and network ports.</p>
+<h4 id="why-use-security-enhanced-linux">WHY USE SECURITY ENHANCED LINUX?<a class="headerlink" href="#why-use-security-enhanced-linux" title="Permanent link">&para;</a></h4>
+<p>Not all security issues can be predicted in advance. SELinux enforces a set of access rules
+preventing a weakness in one application from affecting other applications or the underlying
+system. SELinux provides an extra layer of security; it also adds a layer of complexity which can
+be off-putting to people new to this subsystem. Learning to work with SELinux may take time but
+the enforcement policy means that a weakness in one part of the system does not spread to other
+parts. If SELinux works poorly with a particular subsystem, you can turn off enforcement for that
+specific service until you find a solution to the underlying problem.</p>
+<p>SELinux has three modes:</p>
+<ul>
+<li>
+<p>Enforcing: SELinux is enforcing access control rules. Computers generally run in this mode.</p>
+</li>
+<li>
+<p>Permissive: SELinux is active but instead of enforcing access control rules, it records warnings of
+rules that have been violated. This mode is used primarily for testing and troubleshooting.</p>
+</li>
+<li>
+<p>Disabled: SELinux is turned off entirely: no SELinux violations are denied, nor even recorded.
+Discouraged!</p>
+</li>
+</ul>
+<h4 id="basic-selinux-security-concepts">BASIC SELINUX SECURITY CONCEPTS<a class="headerlink" href="#basic-selinux-security-concepts" title="Permanent link">&para;</a></h4>
+<p>Security Enhanced Linux (SELinux) is an additional layer of system security. The primary goal of
+SELinux is to protect user data from system services that have been compromised. Most Linux
+administrators are familiar with the standard user/group/other permission security model. This
+is a user and group based model known as discretionary access control. SELinux provides an
+additional layer of security that is object-based and controlled by more sophisticated rules, known
+as mandatory access control.</p>
+<p>To allow remote anonymous access to a web server, firewall ports must be opened. However,
+this gives malicious people an opportunity to crack the system through a security exploit. If they
+succeed in compromising the web server process they gain its permissions. Specifically, the
+permissions of the apache user and the apache group. That user and group has read access to
+the document root, <strong>/var/www/html</strong>. It also has access to <strong>/tmp</strong>, and <strong>/var/tmp</strong>, and any other
+files and directories that are world writable.</p>
+<p>SELinux is a set of security rules that determine which process can access which files, directories,
+and ports. Every file, process, directory, and port has a special security label called an SELinux
+context. A context is a name used by the SELinux policy to determine whether a process can
+access a file, directory, or port. By default, the policy does not allow any interaction unless an
+explicit rule grants access. If there is no allow rule, no access is allowed.</p>
+<p>SELinux labels have several contexts: user, role, type, and sensitivity. The targeted policy,
+which is the default policy enabled in Red Hat Enterprise Linux, bases its rules on the third context:
+the type context. Type context names usually end with <strong>_t</strong>.</p>
+<p><img alt="SElinux file context" src="https://www.thegeeksearch.com/images/post/wp-content-uploads-2020-10-SELinux-file-context_hu2c9107b5657b0003c389b5a17363ab6e_11135_750x0_resize_q100_h2_box.webp" /></p>
+<p>The type context for a web server is <strong>httpd_t</strong>. The type context for files and directories normally
+found in <strong>/var/www/html</strong> is <strong>httpd_sys_content_t</strong>. The contexts for files and directories
+normally found in <strong>/tmp</strong> and <strong>/var/tmp</strong> is <strong>tmp_t</strong>. The type context for web server ports is
+<strong>http_port_t</strong>.</p>
+<p>Apache has a type context of <strong>httpd_t</strong>. There is a policy rule that permits Apache access to files
+and directories with the <strong>httpd_sys_content_t</strong> type context. By default files found in <strong>/var/
+www/html</strong> and other web server directories have the <strong>httpd_sys_content_t</strong> type context.
+There is no <strong>allow</strong> rule in the policy for files normally found in <strong>/tmp</strong> and <strong>/var/tmp</strong>, so access
+is not permitted. With SELinux enabled, a malicious user who had compromised the web server
+process could not access the <strong>/tmp</strong> directory.</p>
+<p>The MariaDB server has a type context of <strong>mysqld_t</strong>. By default, files found in <strong>/data/mysql</strong>
+have the <strong>mysqld_db_t</strong> type context. This type context allows MariaDB access to those files but
+disables access by other services, such as the Apache web service.</p>
+<p><img alt="SElinux access" src="https://access.redhat.com/webassets/avalon/d/Red_Hat_Enterprise_Linux-7-SELinux_Users_and_Administrators_Guide-en-US/images/f7b4d4a7ee54ec0153a3422060470895/selinux-intro-apache-mariadb.png" /></p>
+<p>Many commands that deal with files use the <strong>-Z</strong> option to display or set SELinux contexts. For
+instance, <strong>ps, ls, cp</strong>, and <strong>mkdir</strong> all use the <strong>-Z</strong> option to display or set SELinux contexts.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># ps axZ</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>LABEL                           PID TTY     STAT    TIME  COMMAND
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>system_u:system_r:init_t:s0       <span class="m">1</span>  ?        Ss     <span class="m">0</span>:09  /usr/lib/systemd/...
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>system_u:system_r:kernel_t:s0     <span class="m">2</span>  ?        S      <span class="m">0</span>:00  <span class="o">[</span>kthreadd<span class="o">]</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>system_u:system_r:kernel_t:s0     <span class="m">3</span>  ?        S      <span class="m">0</span>:00  <span class="o">[</span>ksoftirqd/0<span class="o">]</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>...output omitted...
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># systemctl start httpd</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># ps -ZC httpd</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>LABEL                           PID  TTY           TIME    CMD
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>system_u:system_r:httpd_t:s0    <span class="m">1608</span>  ?         <span class="m">00</span>:00:05   httpd
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>system_u:system_r:httpd_t:s0    <span class="m">1609</span>  ?         <span class="m">00</span>:00:00   httpd
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>...output omitted...
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># ls -Z /home</span>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>drwx------. root   root     system_u:object_r:lost_found_t:s0 lost+found
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>drwx------. student student unconfined_u:object_r:user_home_dir_t:s0 student
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>drwx------. visitor visitor unconfined_u:object_r:user_home_dir_t:s0 visitor
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># ls -Z /var/www</span>
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>drwxr-xr-x. root root system_u:object_r:httpd_sys_script_exec_t:s0 cgi-bin
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>drwxr-xr-x. root root system_u:object_r:httpd_sys_content_t:s0 error
+<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>drwxr-xr-x. root root system_u:object_r:httpd_sys_content_t:s0 html
+<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>drwxr-xr-x. root root system_u:object_r:httpd_sys_content_t:s0 icons
+</code></pre></div>
+<h4 id="changing-the-current-selinux-mode">CHANGING THE CURRENT SELINUX MODE<a class="headerlink" href="#changing-the-current-selinux-mode" title="Permanent link">&para;</a></h4>
+<p>The SELinux subsystem provides tools to display and change modes. To determine the current
+SELinux mode, run the <strong>getenforce</strong> command. To set SELinux to a different mode, use the
+<strong>setenforce</strong> command:</p>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="o">[</span>user@host ~<span class="o">]</span><span class="c1"># getenforce</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>Enforcing
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="o">[</span>user@host ~<span class="o">]</span><span class="c1"># setenforce</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>usage:
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a> setenforce <span class="o">[</span> Enforcing <span class="p">|</span> Permissive <span class="p">|</span> <span class="m">1</span> <span class="p">|</span> <span class="m">0</span> <span class="o">]</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="o">[</span>user@host ~<span class="o">]</span><span class="c1"># setenforce 0</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="o">[</span>user@host ~<span class="o">]</span><span class="c1"># getenforce</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>Permissive
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="o">[</span>user@host ~<span class="o">]</span><span class="c1"># setenforce Enforcing</span>
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="o">[</span>user@host ~<span class="o">]</span><span class="c1"># getenforce</span>
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>Enforcing
+</code></pre></div>
+Alternatively, you can set the SELinux mode at boot time by passing a parameter to the kernel:
+the kernel argument of <strong>enforcing=0</strong> boots the system into permissive mode; a value of
+<strong>enforcing=1</strong> sets enforcing mode. You can also disable SELinux completely by passing on the
+kernel parameter <strong>selinux=0</strong>. A value of <strong>selinux=1</strong> enables SELinux.</p>
+<h4 id="setting-the-default-selinux-mode">SETTING THE DEFAULT SELINUX MODE<a class="headerlink" href="#setting-the-default-selinux-mode" title="Permanent link">&para;</a></h4>
+<p>You can also configure SELinux persistently using the <strong>/etc/selinux/config</strong> file. In the
+example below (the default configuration), the configuration file sets SELinux to <strong>enforcing</strong>. The
+comments also show the other valid values: <strong>permissive</strong> and <strong>disabled</strong>.</p>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a># This file controls the state of SELinux on the system.
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a># SELINUX= can take one of these three values:
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>#
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a> enforcing - SELinux security policy is enforced.
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>#
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a> permissive - SELinux prints warnings instead of enforcing.
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>#
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a> disabled - No SELinux policy is loaded.
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>SELINUX=enforcing
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a># SELINUXTYPE= can take one of these two values:
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>#
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a> targeted - Targeted processes are protected,
+<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>#
+<a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a> minimum - Modification of targeted policy. Only selected processes
+<a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a>#
+<a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a> are protected.
+<a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a>#
+<a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a> mls - Multi Level Security protection.
+<a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a>SELINUXTYPE=targeted
+</code></pre></div>
+The system reads this file at boot time and configures SELinux as shown. Kernel arguments
+(<strong>selinux=0|1</strong> and <strong>enforcing=0|1</strong>) override this configuration.</p>
+<h3 id="controlling-selinux-file-contexts">CONTROLLING SELINUX FILE CONTEXTS<a class="headerlink" href="#controlling-selinux-file-contexts" title="Permanent link">&para;</a></h3>
+<h4 id="initial-selinux-context">INITIAL SELINUX CONTEXT<a class="headerlink" href="#initial-selinux-context" title="Permanent link">&para;</a></h4>
+<p>On systems running SELinux, all processes and files are labeled. The label represents the security
+relevant information, known as the SELinux context.</p>
+<p>New files typically inherit their SELinux context from the parent directory, thus ensuring that they
+have the proper context.</p>
+<p>But this inheritance procedure can be undermined in two different ways. First, if you create a file
+in a different location from the ultimate intended location and then move the file, the file still has
+the SELinux context of the directory where it was created, not the destination directory. Second, if
+you copy a file preserving the SELinux context, as with the <strong>cp -a</strong> command, the SELinux context
+reflects the location of the original file.</p>
+<p>The following example demonstrates inheritance and its pitfalls. Consider these two files created
+in <strong>/tmp</strong>, one moved to <strong>/var/www/html</strong> and the second one copied to the same directory. Note
+the SELinux contexts on the files. The file that was moved to the <strong>/var/www/html</strong> directory
+retains the file context for the <strong>/tmp</strong> directory. The file that was copied to the <strong>/var/www/html</strong>
+directory inherited SELinux context from the <strong>/var/www/html</strong> directory.</p>
+<p>The <strong>ls -Z</strong> command displays the SELinux context of a file. Note the label of the file.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># ls -Z /var/www/html/index.html</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>-rw-r--r--. root root unconfined_u:object_r:httpd_sys_content_t:s0 /var/www/html/
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>index.html
+</code></pre></div>
+<p>And the ls -Zd command displays the SELinux context of a directory:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># ls -Zd /var/www/html/</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>drwxr-xr-x. root root system_u:object_r:httpd_sys_content_t:s0 /var/www/html/
+</code></pre></div>
+<p>Note that the <strong>/var/www/html/index.html</strong> has the same label as the parent directory <strong>/
+var/www/html/</strong>. Now, create files outside of the <strong>/var/www/html</strong> directory and note their file
+context:</p>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># touch /tmp/file1 /tmp/file2</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># ls -Z /tmp/file*</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>unconfined_u:object_r:user_tmp_t:s0 /tmp/file1
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>unconfined_u:object_r:user_tmp_t:s0 /tmp/file2
+</code></pre></div>
+Move one of these files to the <strong>/var/www/html</strong> directory, copy another, and note the label of
+each:</p>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># mv /tmp/file1 /var/www/html/</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># cp /tmp/file2 /var/www/html/</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># ls -Z /var/www/html/file*</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>unconfined_u:object_r:user_tmp_t:s0 /var/www/html/file1
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>unconfined_u:object_r:httpd_sys_content_t:s0 /var/www/html/file2
+</code></pre></div>
+The moved file maintains its original label while the copied file inherits the label from the <strong>/var/
+www/html</strong> directory. <strong>unconfined_u:</strong> is the user, <strong>object_r:</strong> denotes the role, and <strong>s0</strong> is the
+level. A sensitivity level of 0 is the lowest possible sensitivity level.</p>
+<h4 id="changing-the-selinux-context-of-a-file">CHANGING THE SELINUX CONTEXT OF A FILE<a class="headerlink" href="#changing-the-selinux-context-of-a-file" title="Permanent link">&para;</a></h4>
+<p>Commands to change the SELinux context on files include <strong>semanage fcontext, restorecon</strong>,
+and <strong>chcon</strong>.</p>
+<p>The preferred method to set the SELinux context for a file is to declare the default labeling for a
+file using the <strong>semanage fcontext</strong> command and then applying that context to the file using the
+<strong>restorecon</strong> command. This ensures that the labeling will be as desired even after a complete
+relabeling of the file system.</p>
+<p>The <strong>chcon</strong> command changes SELinux contexts. <strong>chcon</strong> sets the security context on the file,
+stored in the file system. It is useful for testing and experimenting. However, it does not save
+context changes in the SELinux context database. When a <strong>restorecon</strong> command runs, changes
+made by the <strong>chcon</strong> command also do not survive. Also, if the entire file system is relabeled, the
+SELinux context for files changed using <strong>chcon</strong> are reverted.</p>
+<p>The following screen shows a directory being created. The directory has a type value of
+<strong>default_t</strong>.</p>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># mkdir /virtual</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># ls -Zd /virtual</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>drwxr-xr-x. root root unconfined_u:object_r:default_t:s0 /virtual
+</code></pre></div>
+The <strong>chcon</strong> command changes the file context of the <strong>/virtual</strong> directory: the type value changes
+to <strong>httpd_sys_content_t</strong>.</p>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># chcon -t httpd_sys_content_t /virtual</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># ls -Zd /virtual</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>drwxr-xr-x. root root unconfined_u:object_r:httpd_sys_content_t:s0 /virtual
+</code></pre></div>
+The <strong>restorecon</strong> command runs and the type value returns to the value of <strong>default_t</strong>. Note the
+<strong>Relabeled</strong> message.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># restorecon -v /virtual</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>Relabeled /virtual from unconfined_u:object_r:httpd_sys_content_t:s0 to
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>unconfined_u:object_r:default_t:s0
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># ls -Zd /virtual</span>
+<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>drwxr-xr-x. root root unconfined_u:object_r:default_t:s0 /virtual
+</code></pre></div>
+<h4 id="defining-selinux-default-file-context-rules">DEFINING SELINUX DEFAULT FILE CONTEXT RULES<a class="headerlink" href="#defining-selinux-default-file-context-rules" title="Permanent link">&para;</a></h4>
+<p>The <strong>semanage fcontext</strong> command displays and modifies the rules that <strong>restorecon</strong> uses to
+set default file contexts. It uses extended regular expressions to specify the path and file names.
+The most common extended regular expression used in <strong>fcontext</strong> rules is <strong>(/.*)?</strong>, which means
+“optionally, match a / followed by any number of characters”. It matches the directory listed before
+the expression and everything in that directory recursively.</p>
+<p><strong>Basic File Context Operations</strong></p>
+<p>The following table is a reference for <strong>semanage fcontext</strong> options to add, remove or list SELinux
+file contexts.</p>
+<p><strong>semanage fcontext commands</strong></p>
+<table>
+<thead>
+<tr>
+<th>OPTION</th>
+<th>DESCRIPTION</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-a, --add</td>
+<td>Add a record of the specified object type</td>
+</tr>
+<tr>
+<td>-d, --delete</td>
+<td>Delete a record of the specified object type</td>
+</tr>
+<tr>
+<td>-l, --list</td>
+<td>List records of the specified object type</td>
+</tr>
+</tbody>
+</table>
+<p>To ensure that you have the tools to manage SELinux contexts, install the <strong>policycoreutil</strong>
+package and the <strong>policycoreutil-python</strong> package if needed. These contain the <strong>restorecon</strong>
+command and <strong>semanage</strong> command, respectively.</p>
+<p>To ensure that all files in a directory have the correct file context run the <strong>semanage fcontext -</strong>
+<strong>l</strong> followed by the <strong>restorecon</strong> command. In the following example, note the file context of each
+file before and after the <strong>semanage</strong> and <strong>restorecon</strong> commands run.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># ls -Z /var/www/html/file*</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>unconfined_u:object_r:user_tmp_t:s0 /var/www/html/file1
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>unconfined_u:object_r:httpd_sys_content_t:s0 /var/www/html/file2
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>
+<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># semanage fcontext -l</span>
+<a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>...output omitted...
+<a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a>/var/www<span class="o">(</span>/.*<span class="o">)</span>?
+<a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a> all files
+<a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a> system_u:object_r:httpd_sys_content_t:s0
+<a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a>...output omitted...
+<a id="__codelineno-10-11" name="__codelineno-10-11" href="#__codelineno-10-11"></a><span class="o">[</span>root@host<span class="p">;</span> ~<span class="o">]</span><span class="c1"># restorecon -Rv /var/www/</span>
+<a id="__codelineno-10-12" name="__codelineno-10-12" href="#__codelineno-10-12"></a>Relabeled /var/www/html/file1 from unconfined_u:object_r:user_tmp_t:s0 to
+<a id="__codelineno-10-13" name="__codelineno-10-13" href="#__codelineno-10-13"></a>unconfined_u:object_r:httpd_sys_content_t:s0
+<a id="__codelineno-10-14" name="__codelineno-10-14" href="#__codelineno-10-14"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># ls -Z /var/www/html/file*</span>
+<a id="__codelineno-10-15" name="__codelineno-10-15" href="#__codelineno-10-15"></a>unconfined_u:object_r:httpd_sys_content_t:s0 /var/www/html/file1
+<a id="__codelineno-10-16" name="__codelineno-10-16" href="#__codelineno-10-16"></a>unconfined_u:object_r:httpd_sys_content_t:s0 /var/www/html/file2
+</code></pre></div>
+<p>The following example shows how to use semanage to add a context for a new directory.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># mkdir /virtual</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># touch /virtual/index.html</span>
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># ls -Zd /virtual/</span>
+<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>drwxr-xr-x. root root unconfined_u:object_r:default_t:s0 /virtual/
+<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>
+<a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># ls -Z /virtual/</span>
+<a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a>-rw-r--r--. root root unconfined_u:object_r:default_t:s0 index.html
+<a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># semanage fcontext -a -t httpd_sys_content_t &#39;/virtual(/.*)?&#39;</span>
+<a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># restorecon -RFvv /virtual</span>
+<a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># ls -Zd /virtual/</span>
+<a id="__codelineno-11-11" name="__codelineno-11-11" href="#__codelineno-11-11"></a>drwxr-xr-x. root root system_u:object_r:httpd_sys_content_t:s0 /virtual/
+<a id="__codelineno-11-12" name="__codelineno-11-12" href="#__codelineno-11-12"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># ls -Z /virtual/</span>
+<a id="__codelineno-11-13" name="__codelineno-11-13" href="#__codelineno-11-13"></a>-rw-r--r--. root root system_u:object_r:httpd_sys_content_t:s0 index.html
+</code></pre></div>
+<h3 id="adjusting-selinux-policy-with-booleans">ADJUSTING SELINUX POLICY WITH BOOLEANS<a class="headerlink" href="#adjusting-selinux-policy-with-booleans" title="Permanent link">&para;</a></h3>
+<h4 id="selinux-booleans">SELINUX BOOLEANS<a class="headerlink" href="#selinux-booleans" title="Permanent link">&para;</a></h4>
+<p>SELinux booleans are switches that change the behavior of the SELinux policy. SELinux booleans
+are rules that can be enabled or disabled. They can be used by security administrators to tune the
+policy to make selective adjustments.</p>
+<p>The SELinux man pages, provided with the selinux-policy-doc package, describe the purpose of
+the available booleans. The <strong>man -k '_selinux'</strong> command lists these man pages.</p>
+<p>Commands useful for managing SELinux booleans include <strong>getsebool</strong>, which lists booleans and
+their state, and <strong>setsebool</strong> which modifies booleans. <strong>setsebool -P</strong> modifies the SELinux policy
+to make the modification persistent. And <strong>semanage boolean -l</strong> reports on whether or not a
+boolean is persistent, along with a short description of the boolean.</p>
+<p>Non-privileged users can run the <strong>getsebool</strong> command, but you must be a superuser to run
+<strong>semanage boolean -l</strong> and <strong>setsebool -P</strong>.</p>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ getsebool -a
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>abrt_anon_write --&gt; off
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>abrt_handle_event --&gt; off
+<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>abrt_upload_watch_anon_write --&gt; on
+<a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>antivirus_can_scan_system --&gt; off
+<a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a>antivirus_use_jit --&gt; off
+<a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a>...output omitted...
+<a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ getsebool httpd_enable_homedirs
+<a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a>httpd_enable_homedirs --&gt; off
+<a id="__codelineno-12-10" name="__codelineno-12-10" href="#__codelineno-12-10"></a>
+<a id="__codelineno-12-11" name="__codelineno-12-11" href="#__codelineno-12-11"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ setsebool httpd_enable_homedirs on
+<a id="__codelineno-12-12" name="__codelineno-12-12" href="#__codelineno-12-12"></a>Could not change active booleans. Please try as root: Permission denied
+<a id="__codelineno-12-13" name="__codelineno-12-13" href="#__codelineno-12-13"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ sudo setsebool httpd_enable_homedirs on
+<a id="__codelineno-12-14" name="__codelineno-12-14" href="#__codelineno-12-14"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ sudo semanage boolean -l <span class="p">|</span> grep httpd_enable_homedirs
+<a id="__codelineno-12-15" name="__codelineno-12-15" href="#__codelineno-12-15"></a>httpd_enable_homedirs  <span class="o">(</span>on , off<span class="o">)</span>  Allow httpd to <span class="nb">enable</span> homedirs
+<a id="__codelineno-12-16" name="__codelineno-12-16" href="#__codelineno-12-16"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ getsebool httpd_enable_homedirs
+<a id="__codelineno-12-17" name="__codelineno-12-17" href="#__codelineno-12-17"></a>httpd_enable_homedirs --&gt; on
+</code></pre></div>
+The <strong>-P</strong> option writes all pending values to the policy, making them persistent across reboots. In
+the example that follows, note the values in parentheses: both are now set to <strong>on</strong>.</p>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ setsebool -P httpd_enable_homedirs on
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ sudo semanage boolean -l <span class="p">|</span> grep httpd_enable_homedirs
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>httpd_enable_homedirs    <span class="o">(</span>on , on<span class="o">)</span>   Allow httpd to <span class="nb">enable</span> homedirs
+</code></pre></div>
+To list booleans in which the current state differs from the default state, run <strong>semanage boolean
+-l -C</strong>.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="o">[</span>user@host ~<span class="o">]</span>$ sudo semanage boolean -l -C
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>SELinux boolean    State        Default Description
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>
+<a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a>cron_can_relabel   <span class="o">(</span>off , on<span class="o">)</span>    Allow cron to can relabel
+</code></pre></div>
+<h3 id="investigating-and-resolving-selinux-issues">INVESTIGATING AND RESOLVING SELINUX ISSUES<a class="headerlink" href="#investigating-and-resolving-selinux-issues" title="Permanent link">&para;</a></h3>
+<h4 id="troubleshooting-selinux-issues">TROUBLESHOOTING SELINUX ISSUES<a class="headerlink" href="#troubleshooting-selinux-issues" title="Permanent link">&para;</a></h4>
+<p>It is important to understand what actions you must take when SELinux prevents access to files on
+a server that you know should be accessible. Use the following steps as a guide to troubleshooting
+these issues:</p>
+<ol>
+<li>
+<p>Before thinking of making any adjustments, consider that SELinux may be doing its job
+correctly by prohibiting the attempted access. If a web server tries to access files in <strong>/home</strong>,
+this could signal a compromise of the service if web content is not published by users.
+If access should have been granted, then additional steps need to be taken to solve the
+problem.</p>
+</li>
+<li>
+<p>The most common SELinux issue is an incorrect file context. This can occur when a file is
+created in a location with one file context and moved into a place where a different context is
+expected. In most cases, running <strong>restorecon</strong> will correct the issue. Correcting issues in this
+way has a very narrow impact on the security of the rest of the system.</p>
+</li>
+<li>
+<p>Another remedy for overly restrictive access could be the adjustment of a Boolean. For
+example, the <strong>ftpd_anon_write</strong> boolean controls whether anonymous FTP users can upload
+files. You must turn this boolean on to permit anonymous FTP users to upload files to a server.
+Adjusting booleans requires more care because they can have a broad impact on system
+security.</p>
+</li>
+<li>
+<p>It is possible that the SELinux policy has a bug that prevents a legitimate access. Since
+SELinux has matured, this is a rare occurrence. When it is clear that a policy bug has been
+identified, contact Red Hat support to report the bug so it can be resolved.</p>
+</li>
+</ol>
+<h4 id="monitoring-selinux-violations">MONITORING SELINUX VIOLATIONS<a class="headerlink" href="#monitoring-selinux-violations" title="Permanent link">&para;</a></h4>
+<p>Install the setroubleshoot-server package to send SELinux messages to <strong>/var/log/messages</strong>.
+<strong>setroubleshoot-server</strong> listens for audit messages in <strong>/var/log/audit/audit.log</strong> and
+sends a short summary to <strong>/var/log/messages</strong>. This summary includes unique identifiers (UUID)
+for SELinux violations that can be used to gather further information. The <strong>sealert -l UUID</strong>
+command is used to produce a report for a specific incident. Use <strong>sealert -a /var/log/</strong>
+<strong>audit/audit.log</strong> to produce reports for all incidents in that file.</p>
+<p>Consider the following sample sequence of commands on a standard Apache web server:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># touch /root/file3</span>
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># mv /root/file3 /var/www/html</span>
+<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># systemctl start httpd</span>
+<a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># curl http://localhost/file3</span>
+<a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a>&lt;!DOCTYPE HTML PUBLIC <span class="s2">&quot;-//IETF//DTD HTML 2.0//EN&quot;</span>&gt;
+<a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a>&lt;html&gt;&lt;head&gt;
+<a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a>&lt;title&gt;403 Forbidden&lt;/title&gt;
+<a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a>&lt;/head&gt;&lt;body&gt;
+<a id="__codelineno-15-9" name="__codelineno-15-9" href="#__codelineno-15-9"></a>&lt;h1&gt;Forbidden&lt;/h1&gt;
+<a id="__codelineno-15-10" name="__codelineno-15-10" href="#__codelineno-15-10"></a>&lt;p&gt;You don<span class="err">&#39;</span>t have permission to access /file3
+<a id="__codelineno-15-11" name="__codelineno-15-11" href="#__codelineno-15-11"></a>on this server.&lt;/p&gt;
+<a id="__codelineno-15-12" name="__codelineno-15-12" href="#__codelineno-15-12"></a>&lt;/body&gt;&lt;/html&gt;
+</code></pre></div>
+<p>You expect the web server to deliver the contents of <strong>file3</strong> but instead it returns a <strong>permission
+denied</strong> error. Inspecting both <strong>/var/log/audit/audit.log</strong> and <strong>/var/log/messages</strong>
+reveals extra information about this error.</p>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># tail /var/log/audit/audit.log</span>
+<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>...output omitted...
+<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a><span class="nv">type</span><span class="o">=</span>AVC <span class="nv">msg</span><span class="o">=</span>audit<span class="o">(</span><span class="m">1392944135</span>.482:429<span class="o">)</span>: avc: denied <span class="o">{</span> getattr <span class="o">}</span> <span class="k">for</span>
+<a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a>  <span class="nv">pid</span><span class="o">=</span><span class="m">1609</span> <span class="nv">comm</span><span class="o">=</span><span class="s2">&quot;httpd&quot;</span> <span class="nv">path</span><span class="o">=</span><span class="s2">&quot;/var/www/html/file3&quot;</span> <span class="nv">dev</span><span class="o">=</span><span class="s2">&quot;vda1&quot;</span> <span class="nv">ino</span><span class="o">=</span><span class="m">8980981</span>
+<a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a>  <span class="nv">scontext</span><span class="o">=</span>system_u:system_r:httpd_t:s0
+<a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a>  <span class="nv">tcontext</span><span class="o">=</span>unconfined_u:object_r:admin_home_t:s0 <span class="nv">tclass</span><span class="o">=</span>file
+<a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a>...output omitted...
+<a id="__codelineno-16-8" name="__codelineno-16-8" href="#__codelineno-16-8"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># tail /var/log/messages</span>
+<a id="__codelineno-16-9" name="__codelineno-16-9" href="#__codelineno-16-9"></a>...output omitted...
+<a id="__codelineno-16-10" name="__codelineno-16-10" href="#__codelineno-16-10"></a>Feb <span class="m">20</span> <span class="m">19</span>:55:42 host setroubleshoot: SELinux is preventing /usr/sbin/httpd
+<a id="__codelineno-16-11" name="__codelineno-16-11" href="#__codelineno-16-11"></a>  from getattr access on the file . For <span class="nb">complete</span> SELinux messages. run
+<a id="__codelineno-16-12" name="__codelineno-16-12" href="#__codelineno-16-12"></a>  sealert -l 613ca624-248d-48a2-a7d9-d28f5bbe2763
+</code></pre></div>
+Both log files indicate that an SELinux denial is the culprit. The <strong>sealert</strong> command that is part of
+the output in <strong>/var/log/messages</strong> provides extra information, including a possible fix.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># sealert -l 613ca624-248d-48a2-a7d9-d28f5bbe2763</span>
+<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>SELinux is preventing /usr/sbin/httpd from getattr access on the file .
+<a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>
+<a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a>*****  Plugin catchall <span class="o">(</span><span class="m">100</span>. confidence<span class="o">)</span> suggests  **************************
+<a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a>
+<a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a>If you believe that httpd should be allowed getattr access on the
+<a id="__codelineno-17-7" name="__codelineno-17-7" href="#__codelineno-17-7"></a>file by default.
+<a id="__codelineno-17-8" name="__codelineno-17-8" href="#__codelineno-17-8"></a>Then you should report this as a bug.
+<a id="__codelineno-17-9" name="__codelineno-17-9" href="#__codelineno-17-9"></a>You can generate a <span class="nb">local</span> policy module to allow this access.
+<a id="__codelineno-17-10" name="__codelineno-17-10" href="#__codelineno-17-10"></a>Do
+<a id="__codelineno-17-11" name="__codelineno-17-11" href="#__codelineno-17-11"></a>allow this access <span class="k">for</span> now by executing:
+<a id="__codelineno-17-12" name="__codelineno-17-12" href="#__codelineno-17-12"></a><span class="c1"># grep httpd /var/log/audit/audit.log | audit2allow -M mypol</span>
+<a id="__codelineno-17-13" name="__codelineno-17-13" href="#__codelineno-17-13"></a><span class="c1"># semodule -i mypol.pp</span>
+<a id="__codelineno-17-14" name="__codelineno-17-14" href="#__codelineno-17-14"></a>Additional Information:
+<a id="__codelineno-17-15" name="__codelineno-17-15" href="#__codelineno-17-15"></a>Source Context          system_u:system_r:httpd_t:s0
+<a id="__codelineno-17-16" name="__codelineno-17-16" href="#__codelineno-17-16"></a>Target Context          unconfined_u:object_r:admin_home_t:s0
+<a id="__codelineno-17-17" name="__codelineno-17-17" href="#__codelineno-17-17"></a>Target Objects            <span class="o">[</span> file <span class="o">]</span>
+<a id="__codelineno-17-18" name="__codelineno-17-18" href="#__codelineno-17-18"></a>Source                  httpd
+<a id="__codelineno-17-19" name="__codelineno-17-19" href="#__codelineno-17-19"></a>Source Path             /usr/sbin/httpd
+<a id="__codelineno-17-20" name="__codelineno-17-20" href="#__codelineno-17-20"></a>Port                    &lt;Unknown&gt;
+<a id="__codelineno-17-21" name="__codelineno-17-21" href="#__codelineno-17-21"></a>Host                    servera
+<a id="__codelineno-17-22" name="__codelineno-17-22" href="#__codelineno-17-22"></a>Source RPM Packages     httpd-2.4.6-14.el7.x86_64
+<a id="__codelineno-17-23" name="__codelineno-17-23" href="#__codelineno-17-23"></a>Target RPM Packages     
+<a id="__codelineno-17-24" name="__codelineno-17-24" href="#__codelineno-17-24"></a>Policy RPM              selinux-policy-3.12.1-124.el7.noarch
+<a id="__codelineno-17-25" name="__codelineno-17-25" href="#__codelineno-17-25"></a>Selinux Enabled         True
+<a id="__codelineno-17-26" name="__codelineno-17-26" href="#__codelineno-17-26"></a>Policy Type             targeted
+<a id="__codelineno-17-27" name="__codelineno-17-27" href="#__codelineno-17-27"></a>Enforcing Mode          Enforcing
+<a id="__codelineno-17-28" name="__codelineno-17-28" href="#__codelineno-17-28"></a>Host Name               servera
+<a id="__codelineno-17-29" name="__codelineno-17-29" href="#__codelineno-17-29"></a>Platform                Linux servera <span class="m">3</span>.10.0-84.el7.x86_64 <span class="c1">#1</span>
+<a id="__codelineno-17-30" name="__codelineno-17-30" href="#__codelineno-17-30"></a>                        SMP Tue Feb <span class="m">4</span> <span class="m">16</span>:28:19 EST <span class="m">2014</span> x86_64 x86_64
+<a id="__codelineno-17-31" name="__codelineno-17-31" href="#__codelineno-17-31"></a>Alert Count             <span class="m">2</span>
+<a id="__codelineno-17-32" name="__codelineno-17-32" href="#__codelineno-17-32"></a>First Seen              <span class="m">2014</span>-02-20 <span class="m">19</span>:55:35 EST
+<a id="__codelineno-17-33" name="__codelineno-17-33" href="#__codelineno-17-33"></a>Last Seen               <span class="m">2014</span>-02-20 <span class="m">19</span>:55:35 EST
+<a id="__codelineno-17-34" name="__codelineno-17-34" href="#__codelineno-17-34"></a>Local ID                613ca624-248d-48a2-a7d9-d28f5bbe2763
+<a id="__codelineno-17-35" name="__codelineno-17-35" href="#__codelineno-17-35"></a>
+<a id="__codelineno-17-36" name="__codelineno-17-36" href="#__codelineno-17-36"></a>Raw Audit Messages
+<a id="__codelineno-17-37" name="__codelineno-17-37" href="#__codelineno-17-37"></a><span class="nv">type</span><span class="o">=</span>AVC <span class="nv">msg</span><span class="o">=</span>audit<span class="o">(</span><span class="m">1392944135</span>.482:429<span class="o">)</span>: avc: denied <span class="o">{</span> getattr <span class="o">}</span> <span class="k">for</span>
+<a id="__codelineno-17-38" name="__codelineno-17-38" href="#__codelineno-17-38"></a>  <span class="nv">pid</span><span class="o">=</span><span class="m">1609</span> <span class="nv">comm</span><span class="o">=</span><span class="s2">&quot;httpd&quot;</span> <span class="nv">path</span><span class="o">=</span><span class="s2">&quot;/var/www/html/file3&quot;</span> <span class="nv">dev</span><span class="o">=</span><span class="s2">&quot;vda1&quot;</span> <span class="nv">ino</span><span class="o">=</span><span class="m">8980981</span>
+<a id="__codelineno-17-39" name="__codelineno-17-39" href="#__codelineno-17-39"></a>  <span class="nv">scontext</span><span class="o">=</span>system_u:system_r:httpd_t:s0
+<a id="__codelineno-17-40" name="__codelineno-17-40" href="#__codelineno-17-40"></a>  <span class="nv">tcontext</span><span class="o">=</span>unconfined_u:object_r:admin_home_t:s0 <span class="nv">tclass</span><span class="o">=</span>file
+<a id="__codelineno-17-41" name="__codelineno-17-41" href="#__codelineno-17-41"></a>
+<a id="__codelineno-17-42" name="__codelineno-17-42" href="#__codelineno-17-42"></a><span class="nv">type</span><span class="o">=</span>SYSCALL <span class="nv">msg</span><span class="o">=</span>audit<span class="o">(</span><span class="m">1392944135</span>.482:429<span class="o">)</span>: <span class="nv">arch</span><span class="o">=</span>x86_64 <span class="nv">syscall</span><span class="o">=</span>lstat
+<a id="__codelineno-17-43" name="__codelineno-17-43" href="#__codelineno-17-43"></a>  <span class="nv">success</span><span class="o">=</span>no <span class="nv">exit</span><span class="o">=</span>EACCES <span class="nv">a0</span><span class="o">=</span>7f9fed0edea8 <span class="nv">a1</span><span class="o">=</span>7fff7bffc770 <span class="nv">a2</span><span class="o">=</span>7fff7bffc770
+<a id="__codelineno-17-44" name="__codelineno-17-44" href="#__codelineno-17-44"></a>  <span class="nv">a3</span><span class="o">=</span><span class="m">0</span> <span class="nv">items</span><span class="o">=</span><span class="m">0</span> <span class="nv">ppid</span><span class="o">=</span><span class="m">1608</span> <span class="nv">pid</span><span class="o">=</span><span class="m">1609</span> <span class="nv">auid</span><span class="o">=</span><span class="m">4294967295</span> <span class="nv">uid</span><span class="o">=</span><span class="m">48</span> <span class="nv">gid</span><span class="o">=</span><span class="m">48</span> <span class="nv">euid</span><span class="o">=</span><span class="m">48</span>
+<a id="__codelineno-17-45" name="__codelineno-17-45" href="#__codelineno-17-45"></a>  <span class="nv">suid</span><span class="o">=</span><span class="m">48</span> <span class="nv">fsuid</span><span class="o">=</span><span class="m">48</span> <span class="nv">egid</span><span class="o">=</span><span class="m">48</span> <span class="nv">sgid</span><span class="o">=</span><span class="m">48</span> <span class="nv">fsgid</span><span class="o">=</span><span class="m">48</span> <span class="nv">tty</span><span class="o">=(</span>none<span class="o">)</span> <span class="nv">ses</span><span class="o">=</span><span class="m">4294967295</span>
+<a id="__codelineno-17-46" name="__codelineno-17-46" href="#__codelineno-17-46"></a>  <span class="nv">comm</span><span class="o">=</span>httpd <span class="nv">exe</span><span class="o">=</span>/usr/sbin/httpd <span class="nv">subj</span><span class="o">=</span>system_u:system_r:httpd_t:s0 <span class="nv">key</span><span class="o">=(</span>null<span class="o">)</span>
+<a id="__codelineno-17-47" name="__codelineno-17-47" href="#__codelineno-17-47"></a>
+<a id="__codelineno-17-48" name="__codelineno-17-48" href="#__codelineno-17-48"></a>Hash: httpd,httpd_t,admin_home_t,file,getattr
+</code></pre></div>
+<div class="admonition info">
+<p class="admonition-title">NOTE</p>
+<p>The <strong>Raw Audit Messages</strong> section reveals the target file that is the problem, <strong>/
+var/www/html/file3</strong>. Also, the target context, <strong>tcontext</strong>, does not look like
+it belongs with a web server. Use the <strong>restorecon </strong><strong>/var/www/html/file3</strong>
+command to fix the file context. If there are other files that need to be adjusted,
+<strong>restorecon</strong> can recursively reset the context: <strong>restorecon -R /var/www/</strong>.</p>
+</div>
+<p>The <strong>Raw Audit Messages</strong> section of the <strong>sealert</strong> command contains information from <strong>/var/
+log/audit.log</strong>. To search the <strong>/var/log/audit.log</strong> file use the <strong>ausearch</strong> command. The <strong>-
+m</strong> searches on the message type. The <strong>-ts</strong> option searches based on time.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="o">[</span>root@host ~<span class="o">]</span><span class="c1"># ausearch -m AVC -ts recent</span>
+<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>----
+<a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a>time-&gt;Tue Apr <span class="m">9</span> <span class="m">13</span>:13:07 <span class="m">2019</span>
+<a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a><span class="nv">type</span><span class="o">=</span>PROCTITLE <span class="nv">msg</span><span class="o">=</span>audit<span class="o">(</span><span class="m">1554808387</span>.778:4002<span class="o">)</span>:
+<a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a>  <span class="nv">proctitle</span><span class="o">=</span>2F7573722F7362696E2F6874747064002D44464F524547524F554E44
+<a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a><span class="nv">type</span><span class="o">=</span>SYSCALL <span class="nv">msg</span><span class="o">=</span>audit<span class="o">(</span><span class="m">1554808387</span>.778:4002<span class="o">)</span>: <span class="nv">arch</span><span class="o">=</span>c000003e <span class="nv">syscall</span><span class="o">=</span><span class="m">49</span>
+<a id="__codelineno-18-7" name="__codelineno-18-7" href="#__codelineno-18-7"></a>  <span class="nv">success</span><span class="o">=</span>no <span class="nv">exit</span><span class="o">=</span>-13 <span class="nv">a0</span><span class="o">=</span><span class="m">3</span> <span class="nv">a1</span><span class="o">=</span>55620b8c9280 <span class="nv">a2</span><span class="o">=</span><span class="m">10</span> <span class="nv">a3</span><span class="o">=</span>7ffed967661c <span class="nv">items</span><span class="o">=</span><span class="m">0</span>
+<a id="__codelineno-18-8" name="__codelineno-18-8" href="#__codelineno-18-8"></a>  <span class="nv">ppid</span><span class="o">=</span><span class="m">1</span> <span class="nv">pid</span><span class="o">=</span><span class="m">9340</span> <span class="nv">auid</span><span class="o">=</span><span class="m">4294967295</span> <span class="nv">uid</span><span class="o">=</span><span class="m">0</span> <span class="nv">gid</span><span class="o">=</span><span class="m">0</span> <span class="nv">euid</span><span class="o">=</span><span class="m">0</span> <span class="nv">suid</span><span class="o">=</span><span class="m">0</span> <span class="nv">fsuid</span><span class="o">=</span><span class="m">0</span> <span class="nv">egid</span><span class="o">=</span><span class="m">0</span>
+<a id="__codelineno-18-9" name="__codelineno-18-9" href="#__codelineno-18-9"></a>  <span class="nv">sgid</span><span class="o">=</span><span class="m">0</span> <span class="nv">fsgid</span><span class="o">=</span><span class="m">0</span> <span class="nv">tty</span><span class="o">=(</span>none<span class="o">)</span> <span class="nv">ses</span><span class="o">=</span><span class="m">4294967295</span> <span class="nv">comm</span><span class="o">=</span><span class="s2">&quot;httpd&quot;</span> <span class="nv">exe</span><span class="o">=</span><span class="s2">&quot;/usr/sbin/httpd&quot;</span>
+<a id="__codelineno-18-10" name="__codelineno-18-10" href="#__codelineno-18-10"></a>  <span class="nv">subj</span><span class="o">=</span>system_u:system_r:httpd_t:s0 <span class="nv">key</span><span class="o">=(</span>null<span class="o">)</span>
+<a id="__codelineno-18-11" name="__codelineno-18-11" href="#__codelineno-18-11"></a><span class="nv">type</span><span class="o">=</span>AVC <span class="nv">msg</span><span class="o">=</span>audit<span class="o">(</span><span class="m">1554808387</span>.778:4002<span class="o">)</span>: avc: denied <span class="o">{</span> name_bind <span class="o">}</span>
+<a id="__codelineno-18-12" name="__codelineno-18-12" href="#__codelineno-18-12"></a><span class="k">for</span> <span class="nv">pid</span><span class="o">=</span><span class="m">9340</span> <span class="nv">comm</span><span class="o">=</span><span class="s2">&quot;httpd&quot;</span> <span class="nv">src</span><span class="o">=</span><span class="m">82</span> <span class="nv">scontext</span><span class="o">=</span>system_u:system_r:httpd_t:s0
+<a id="__codelineno-18-13" name="__codelineno-18-13" href="#__codelineno-18-13"></a><span class="nv">tcontext</span><span class="o">=</span>system_u:object_r:reserved_port_t:s0 <span class="nv">tclass</span><span class="o">=</span>tcp_socket <span class="nv">permissive</span><span class="o">=</span><span class="m">0</span>
+</code></pre></div>
+<h4 id="web-console">WEB CONSOLE<a class="headerlink" href="#web-console" title="Permanent link">&para;</a></h4>
+<p>If Web Console is installed it can also be used for troubleshooting SELinux issues. Log on to Web
+Console and select <strong>SELinux</strong> from the menu on the left. The SELinux Policy window informs you of
+the current enforce policy. Any issues are detailed in the <strong>SELinux Access Control Errors</strong> section.</p>
+<p>Click on the <strong>&gt;</strong> character to show error details. Click on <strong>solution details</strong> to show all details and
+possible solution.</p>
+<p><img alt="SElinux policy solution in web console" src="https://cockpit-project.org/images/selinux-apply-this-solution.png" /></p>
+<p>Once the problem has been solved, the <strong><em>SELinux Access Control Errors</em></strong> section should no longer
+show the error. If the message <strong>No SELinux alerts</strong> appears, then all issues have been fixed.</p>
+<p><img alt="SElinux policy in web console" src="https://access.redhat.com/webassets/avalon/d/Red_Hat_Enterprise_Linux-8-Configuring_basic_system_settings-en-US/images/f6c74a13352b57c4346b399a6ae8c8b8/cs_getting_started-selinux-on.png" /></p>
+<h3 id="summary">SUMMARY<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h3>
+<p>In this chapter, you learned:</p>
+<ul>
+<li>
+<p>The <strong>getenforce</strong> and <strong>setenforce</strong> commands are used to manage the SELinux mode of a
+system.</p>
+</li>
+<li>
+<p>The <strong>semanage</strong> command is used to manage SELinux policy rules. The <strong>restorecon</strong> command
+applies the context defined by the policy.</p>
+</li>
+<li>
+<p>Booleans are switches that change the behavior of the SELinux policy. They can be enabled or
+disabled and are used to tune the policy.</p>
+</li>
+<li>
+<p>The <strong>sealert</strong> displays useful information to help with SELinux troubleshooting.</p>
+</li>
+</ul>
+<h3 id="lab">LAB<a class="headerlink" href="#lab" title="Permanent link">&para;</a></h3>
+<p>pdf - 151</p>
+
+  <hr>
+<div class="md-source-file">
+  <small>
+    
+      Last update:
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">December 6, 2022</span>
+      
+    
+  </small>
+</div>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+          <a href="#" class="md-top md-icon" data-md-component="top" hidden>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+            Back to top
+          </a>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+    <nav class="md-footer__inner md-grid" aria-label="Footer" >
+      
+        
+        <a href="../acls/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Controlling Access To Files With Acls" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Controlling Access To Files With Acls
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../storage/" class="md-footer__link md-footer__link--next" aria-label="Next: Managing Basic Storage" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Managing Basic Storage
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2022 Divijesh Varma. All rights reserved.
+    </div>
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.instant", "navigation.tracking", "navigation.tabs", "navigation.tabs.sticky", "navigation.expand", "navigation.top", "navigation.sections", "content.tooltips", "header.autohide"], "search": "../../assets/javascripts/workers/search.16e2a7d4.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.5a2dcb6a.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="../../javascripts/feedback.js"></script>
+      
+    
+    
+  </body>
+</html>
