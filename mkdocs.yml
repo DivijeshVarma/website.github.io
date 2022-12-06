@@ -209,6 +209,8 @@ nav:
       - 'redhat2/tasks.en.md'
       - 'redhat2/tuning.en.md'
       - 'redhat2/acls.en.md'
+      - 'redhat2/selinux.en.md'
+      - 'redhat2/storage.en.md'
   - 'English':
     - 'Tutorial':
       - 'english/vol1.en.md'
