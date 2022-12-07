@@ -211,6 +211,10 @@ nav:
       - 'redhat2/acls.en.md'
       - 'redhat2/selinux.en.md'
       - 'redhat2/storage.en.md'
+      - 'redhat2/lvm.en.md'
+      - 'redhat2/vdo.en.md'
+      - 'redhat2/nas.en.md'
+      - 'redhat2/boot.en.md'
   - 'English':
     - 'Tutorial':
       - 'english/vol1.en.md'
