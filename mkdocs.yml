@@ -215,6 +215,9 @@ nav:
       - 'redhat2/vdo.en.md'
       - 'redhat2/nas.en.md'
       - 'redhat2/boot.en.md'
+      - 'redhat2/netsec.en.md'
+      - 'redhat2/instalrhel.en.md'
+      - 'redhat2/Creview.en.md'
   - 'English':
     - 'Tutorial':
       - 'english/vol1.en.md'
