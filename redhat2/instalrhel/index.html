@@ -1,0 +1,3242 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://divijesh.tech/redhat2/instalrhel/">
+      
+      <link rel="icon" href="../../assets/img/layout/favicon.ico">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-8.5.10">
+    
+    
+      
+        <title>Installing Red Hat Enterprise Linux - Divijesh Varma</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.975780f9.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.2505c338.min.css">
+        
+      
+      
+
+    
+    
+    
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent="teal">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#installing-red-hat-enterprise-linux" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Divijesh Varma" class="md-header__button md-logo" aria-label="Divijesh Varma" data-md-component="logo">
+      
+  <img src="../../assets/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Divijesh Varma
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Installing Red Hat Enterprise Linux
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent="teal"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 1 7 7c0 2.38-1.19 4.47-3 5.74V17a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 0 1 7-7M9 21v-1h6v1a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1m3-17a5 5 0 0 0-5 5c0 2.05 1.23 3.81 3 4.58V16h4v-2.42c1.77-.77 3-2.53 3-4.58a5 5 0 0 0-5-5Z"/></svg>
+            </label>
+          
+        
+          
+          
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="deep-purple" data-md-color-accent="deep-orange"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 2.38 1.19 4.47 3 5.74V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.26c1.81-1.27 3-3.36 3-5.74a7 7 0 0 0-7-7M9 21a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-1H9v1Z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../.." class="md-tabs__link">
+      Home
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../linux/vi/" class="md-tabs__link">
+        Linux
+      </a>
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../redhat/intro/" class="md-tabs__link md-tabs__link--active">
+        RedHat
+      </a>
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../english/vol1/" class="md-tabs__link">
+        English
+      </a>
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../basics/threat-modeling/" class="md-tabs__link">
+        Knowledge Base
+      </a>
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../tools/" class="md-tabs__link">
+        Recommendations
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../about/" class="md-tabs__link">
+        About
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Divijesh Varma" class="md-nav__button md-logo" aria-label="Divijesh Varma" data-md-component="logo">
+      
+  <img src="../../assets/logo.png" alt="logo">
+
+    </a>
+    Divijesh Varma
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          Linux
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Linux" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Linux
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_2_1" type="checkbox" id="__nav_2_1" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_1">
+          Editors
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Editors" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_1">
+          <span class="md-nav__icon md-icon"></span>
+          Editors
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/vi/" class="md-nav__link">
+        Vim
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/nano/" class="md-nav__link">
+        Nano
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_2_2" type="checkbox" id="__nav_2_2" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_2">
+          Notes
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Notes" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_2">
+          <span class="md-nav__icon md-icon"></span>
+          Notes
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/rhcsa/" class="md-nav__link">
+        Tritree
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/user/" class="md-nav__link">
+        User Management
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/acl/" class="md-nav__link">
+        Access control lists (ACLs)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/network/" class="md-nav__link">
+        Networking
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/ssh/" class="md-nav__link">
+        OpenSSH
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/process/" class="md-nav__link">
+        Process Management
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/software/" class="md-nav__link">
+        Software Management
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/systemd/" class="md-nav__link">
+        Systemd Management
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/cron/" class="md-nav__link">
+        Cron Jobs
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/logs/" class="md-nav__link">
+        Logs
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/disk/" class="md-nav__link">
+        Disk Management
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3">
+          RedHat
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="RedHat" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          RedHat
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_3_1" type="checkbox" id="__nav_3_1" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_1">
+          RHSA I (RH124)
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="RHSA I (RH124)" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_1">
+          <span class="md-nav__icon md-icon"></span>
+          RHSA I (RH124)
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../redhat/intro/" class="md-nav__link">
+        Introduction
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../redhat/access/" class="md-nav__link">
+        Accessing The Command Line
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../redhat/manage/" class="md-nav__link">
+        Managing Files From The Command Line
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../redhat/help/" class="md-nav__link">
+        Getting Help In Red Hat Enterprise Linux
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../redhat/edit/" class="md-nav__link">
+        Creating, Viewing, And Editing Text Files
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../redhat/users/" class="md-nav__link">
+        Managing Local Users And Groups
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../redhat/control/" class="md-nav__link">
+        Controlling Access To Files
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../redhat/monitor/" class="md-nav__link">
+        Monitoring And Managing Linux Processes
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../redhat/service/" class="md-nav__link">
+        Controlling Services And Daemons
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../redhat/secssh/" class="md-nav__link">
+        Configuring And Securing Ssh
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../redhat/store/" class="md-nav__link">
+        Analyzing And Storing Logs
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../redhat/mannet/" class="md-nav__link">
+        Managing Networking
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../redhat/archiv/" class="md-nav__link">
+        Archiving And Transferring Files
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../redhat/pack/" class="md-nav__link">
+        Installing And Updating Software Packages
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../redhat/filsys/" class="md-nav__link">
+        Accessing Linux File Systems
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../redhat/support/" class="md-nav__link">
+        Analyzing Servers And Getting Support
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../redhat/review/" class="md-nav__link">
+        Comprehensive Review
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_2" type="checkbox" id="__nav_3_2" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_2">
+          RHSA II (RH134)
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="RHSA II (RH134)" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_2">
+          <span class="md-nav__icon md-icon"></span>
+          RHSA II (RH134)
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cmd/" class="md-nav__link">
+        Improving Command-Line Productivity
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tasks/" class="md-nav__link">
+        Scheduling Future Tasks
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tuning/" class="md-nav__link">
+        Tuning System Performance
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../acls/" class="md-nav__link">
+        Controlling Access To Files With Acls
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../selinux/" class="md-nav__link">
+        Managing Selinux Security
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../storage/" class="md-nav__link">
+        Managing Basic Storage
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lvm/" class="md-nav__link">
+        Managing Logical Volumes
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vdo/" class="md-nav__link">
+        Implementing Advanced Storage Features
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nas/" class="md-nav__link">
+        Accessing Network-Attached Storage
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../boot/" class="md-nav__link">
+        Controlling The Boot Process
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../netsec/" class="md-nav__link">
+        Managing Network Security
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Installing Red Hat Enterprise Linux
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Installing Red Hat Enterprise Linux
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#installing-red-hat-enterprise-linux" class="md-nav__link">
+    INSTALLING RED HAT ENTERPRISE LINUX
+  </a>
+  
+    <nav class="md-nav" aria-label="INSTALLING RED HAT ENTERPRISE LINUX">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#selecting-installation-media" class="md-nav__link">
+    SELECTING INSTALLATION MEDIA
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#manual-installation-with-anaconda" class="md-nav__link">
+    MANUAL INSTALLATION WITH ANACONDA
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#automating-installation-with-kickstart" class="md-nav__link">
+    AUTOMATING INSTALLATION WITH KICKSTART
+  </a>
+  
+    <nav class="md-nav" aria-label="AUTOMATING INSTALLATION WITH KICKSTART">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#creating-a-kickstart-profile" class="md-nav__link">
+    CREATING A KICKSTART PROFILE
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kickstart-file-commands" class="md-nav__link">
+    KICKSTART FILE COMMANDS
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-kickstart-file" class="md-nav__link">
+    EXAMPLE KICKSTART FILE
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kickstart-installation-steps" class="md-nav__link">
+    KICKSTART INSTALLATION STEPS
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#creating-a-kickstart-file" class="md-nav__link">
+    CREATING A KICKSTART FILE
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#publish-the-kickstart-file-to-anaconda" class="md-nav__link">
+    PUBLISH THE KICKSTART FILE TO ANACONDA
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#boot-anaconda-and-point-it-to-the-kickstart-file" class="md-nav__link">
+    BOOT ANACONDA AND POINT IT TO THE KICKSTART FILE
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#installing-and-configuring-virtual-machines" class="md-nav__link">
+    INSTALLING AND CONFIGURING VIRTUAL MACHINES
+  </a>
+  
+    <nav class="md-nav" aria-label="INSTALLING AND CONFIGURING VIRTUAL MACHINES">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#introducing-kvm-virtualization" class="md-nav__link">
+    INTRODUCING KVM VIRTUALIZATION
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuring-a-red-hat-enterprise-linux-physical-system-as-a-virtualization-host" class="md-nav__link">
+    CONFIGURING A RED HAT ENTERPRISE LINUX PHYSICAL SYSTEM AS A VIRTUALIZATION HOST
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#managing-virtual-machines-with-cockpit" class="md-nav__link">
+    MANAGING VIRTUAL MACHINES WITH COCKPIT
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    SUMMARY
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lab" class="md-nav__link">
+    LAB
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Creview/" class="md-nav__link">
+        Comprehensive Review
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4">
+          English
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="English" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          English
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_4_1" type="checkbox" id="__nav_4_1" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_1">
+          Tutorial
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Tutorial" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_1">
+          <span class="md-nav__icon md-icon"></span>
+          Tutorial
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../english/vol1/" class="md-nav__link">
+        Vol-1
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../english/vol2/" class="md-nav__link">
+        Vol-2
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../english/vol3/" class="md-nav__link">
+        Vol-3
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../english/vol4/" class="md-nav__link">
+        Vol-4
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5">
+          Knowledge Base
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Knowledge Base" data-md-level="1">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          Knowledge Base
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_5_1" type="checkbox" id="__nav_5_1" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5_1">
+          The Basics
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="The Basics" data-md-level="2">
+        <label class="md-nav__title" for="__nav_5_1">
+          <span class="md-nav__icon md-icon"></span>
+          The Basics
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../basics/threat-modeling/" class="md-nav__link">
+        Threat Modeling
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../basics/dns/" class="md-nav__link">
+        Introduction to DNS
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../basics/multi-factor-authentication/" class="md-nav__link">
+        Multi-factor Authentication
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../basics/account-deletion/" class="md-nav__link">
+        Account Deletion
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_5_2" type="checkbox" id="__nav_5_2" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5_2">
+          Android
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Android" data-md-level="2">
+        <label class="md-nav__title" for="__nav_5_2">
+          <span class="md-nav__icon md-icon"></span>
+          Android
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../android/overview/" class="md-nav__link">
+        Android Overview
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../android/grapheneos-vs-calyxos/" class="md-nav__link">
+        GrapheneOS vs CalyxOS
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_5_3" type="checkbox" id="__nav_5_3" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5_3">
+          Linux
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Linux" data-md-level="2">
+        <label class="md-nav__title" for="__nav_5_3">
+          <span class="md-nav__icon md-icon"></span>
+          Linux
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux-desktop/overview/" class="md-nav__link">
+        Linux Overview
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux-desktop/hardening/" class="md-nav__link">
+        System Hardening
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux-desktop/sandboxing/" class="md-nav__link">
+        Application Sandboxing
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_5_4" type="checkbox" id="__nav_5_4" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5_4">
+          Advanced
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Advanced" data-md-level="2">
+        <label class="md-nav__title" for="__nav_5_4">
+          <span class="md-nav__icon md-icon"></span>
+          Advanced
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setup/integrating-metadata-removal/" class="md-nav__link">
+        Integrating Metadata Removal
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_6" type="checkbox" id="__nav_6" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6">
+          Recommendations
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Recommendations" data-md-level="1">
+        <label class="md-nav__title" for="__nav_6">
+          <span class="md-nav__icon md-icon"></span>
+          Recommendations
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tools/" class="md-nav__link">
+        Privacy Tools
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_6_2" type="checkbox" id="__nav_6_2" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6_2">
+          Browsers
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Browsers" data-md-level="2">
+        <label class="md-nav__title" for="__nav_6_2">
+          <span class="md-nav__icon md-icon"></span>
+          Browsers
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../browsers/" class="md-nav__link">
+        Web Browsers
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_6_3" type="checkbox" id="__nav_6_3" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6_3">
+          Operating Systems
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Operating Systems" data-md-level="2">
+        <label class="md-nav__title" for="__nav_6_3">
+          <span class="md-nav__icon md-icon"></span>
+          Operating Systems
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../android/" class="md-nav__link">
+        Android
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux-desktop/" class="md-nav__link">
+        Linux
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../qubes/" class="md-nav__link">
+        Qubes OS
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../router/" class="md-nav__link">
+        Router Firmware
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_6_4" type="checkbox" id="__nav_6_4" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6_4">
+          Providers
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Providers" data-md-level="2">
+        <label class="md-nav__title" for="__nav_6_4">
+          <span class="md-nav__icon md-icon"></span>
+          Providers
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cloud/" class="md-nav__link">
+        Cloud Storage
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dns/" class="md-nav__link">
+        DNS Resolvers
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../email/" class="md-nav__link">
+        Email Services
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../search-engines/" class="md-nav__link">
+        Search Engines
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vpn/" class="md-nav__link">
+        VPN Services
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_6_5" type="checkbox" id="__nav_6_5" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6_5">
+          Software
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Software" data-md-level="2">
+        <label class="md-nav__title" for="__nav_6_5">
+          <span class="md-nav__icon md-icon"></span>
+          Software
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../calendar-contacts/" class="md-nav__link">
+        Calendar and Contact Sync
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../notebooks/" class="md-nav__link">
+        Notebooks
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../email-clients/" class="md-nav__link">
+        Email Clients
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../encryption/" class="md-nav__link">
+        Encryption Software
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../file-sharing/" class="md-nav__link">
+        File Sharing and Sync
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../metadata-removal-tools/" class="md-nav__link">
+        Metadata Removal Tools
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../multi-factor-authentication/" class="md-nav__link">
+        Multi-Factor Authenticators
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../passwords/" class="md-nav__link">
+        Password Managers
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../productivity/" class="md-nav__link">
+        Productivity Tools
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../real-time-communication/" class="md-nav__link">
+        Real-Time Communication
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../news-aggregators/" class="md-nav__link">
+        News Aggregators
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../self-contained-networks/" class="md-nav__link">
+        Self-Contained Networks
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../video-streaming/" class="md-nav__link">
+        Video Streaming
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_7" type="checkbox" id="__nav_7" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_7">
+          About
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="About" data-md-level="1">
+        <label class="md-nav__title" for="__nav_7">
+          <span class="md-nav__icon md-icon"></span>
+          About
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/" class="md-nav__link">
+        Heading
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#installing-red-hat-enterprise-linux" class="md-nav__link">
+    INSTALLING RED HAT ENTERPRISE LINUX
+  </a>
+  
+    <nav class="md-nav" aria-label="INSTALLING RED HAT ENTERPRISE LINUX">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#selecting-installation-media" class="md-nav__link">
+    SELECTING INSTALLATION MEDIA
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#manual-installation-with-anaconda" class="md-nav__link">
+    MANUAL INSTALLATION WITH ANACONDA
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#automating-installation-with-kickstart" class="md-nav__link">
+    AUTOMATING INSTALLATION WITH KICKSTART
+  </a>
+  
+    <nav class="md-nav" aria-label="AUTOMATING INSTALLATION WITH KICKSTART">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#creating-a-kickstart-profile" class="md-nav__link">
+    CREATING A KICKSTART PROFILE
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kickstart-file-commands" class="md-nav__link">
+    KICKSTART FILE COMMANDS
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-kickstart-file" class="md-nav__link">
+    EXAMPLE KICKSTART FILE
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kickstart-installation-steps" class="md-nav__link">
+    KICKSTART INSTALLATION STEPS
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#creating-a-kickstart-file" class="md-nav__link">
+    CREATING A KICKSTART FILE
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#publish-the-kickstart-file-to-anaconda" class="md-nav__link">
+    PUBLISH THE KICKSTART FILE TO ANACONDA
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#boot-anaconda-and-point-it-to-the-kickstart-file" class="md-nav__link">
+    BOOT ANACONDA AND POINT IT TO THE KICKSTART FILE
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#installing-and-configuring-virtual-machines" class="md-nav__link">
+    INSTALLING AND CONFIGURING VIRTUAL MACHINES
+  </a>
+  
+    <nav class="md-nav" aria-label="INSTALLING AND CONFIGURING VIRTUAL MACHINES">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#introducing-kvm-virtualization" class="md-nav__link">
+    INTRODUCING KVM VIRTUALIZATION
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuring-a-red-hat-enterprise-linux-physical-system-as-a-virtualization-host" class="md-nav__link">
+    CONFIGURING A RED HAT ENTERPRISE LINUX PHYSICAL SYSTEM AS A VIRTUALIZATION HOST
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#managing-virtual-machines-with-cockpit" class="md-nav__link">
+    MANAGING VIRTUAL MACHINES WITH COCKPIT
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    SUMMARY
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lab" class="md-nav__link">
+    LAB
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+  
+
+
+
+
+  <h1>Installing Red Hat Enterprise Linux</h1>
+
+<h3 id="installing-red-hat-enterprise-linux">INSTALLING RED HAT ENTERPRISE LINUX<a class="headerlink" href="#installing-red-hat-enterprise-linux" title="Permanent link">&para;</a></h3>
+<h4 id="selecting-installation-media">SELECTING INSTALLATION MEDIA<a class="headerlink" href="#selecting-installation-media" title="Permanent link">&para;</a></h4>
+<p>Red Hat provides several installation media that you can download from the Customer Portal
+website using your active subscription.</p>
+<ul>
+<li>
+<p>A binary DVD containing Anaconda, the Red Hat Enterprise Linux installation program, and the
+BaseOS and AppStream package repositories. These repositories contain the packages needed
+to complete the installation without additional material.</p>
+</li>
+<li>
+<p>A boot ISO containing Anaconda, but requires a configured network to access package
+repositories made available using HTTP, FTP, or NFS.</p>
+</li>
+<li>
+<p>A QCOW2 image containing a prebuilt system disk ready to deploy as a virtual machine in cloud
+or enterprise virtual environments. QCOW2 (QEMU Copy On Write) is the standard image
+format used by Red Hat.</p>
+</li>
+</ul>
+<p>Red Hat provides installation media for four supported processor architectures: x86 64-bit (AMD
+and Intel), IBM Power Systems (Little Endian), IBM Z, and ARM 64-bit.</p>
+<p>After downloading, burn the DVD or boot ISO to physical media, copy each to a USB flash drive or
+similar, or publish each from a network server for automated Kickstart use.</p>
+<p><strong>Building Images with Composer</strong></p>
+<p>Composer is a new tool available in RHEL 8. For specialized use cases, Composer allows
+administrators to build custom system images for deployment on cloud platforms or virtual
+environments.</p>
+<p>Composer uses the Cockpit graphical web console. It can also be invoked from a command line
+using the <strong>composer-cli</strong> command.</p>
+<h4 id="manual-installation-with-anaconda">MANUAL INSTALLATION WITH ANACONDA<a class="headerlink" href="#manual-installation-with-anaconda" title="Permanent link">&para;</a></h4>
+<p>Using the binary DVD or boot ISO, administrators can install a new RHEL system on a bare-metal
+server or a virtual machine. The Anaconda program supports two installation methods:</p>
+<ul>
+<li>
+<p>The manual installation interacts with the user to query how Anaconda should install and
+configure the system.</p>
+</li>
+<li>
+<p>The automated installation uses a Kickstart file which tells Anaconda how to install the system. A
+later section discusses Kickstart installations in greater detail.</p>
+</li>
+</ul>
+<p><strong>Installing RHEL with the Graphical Interface</strong></p>
+<p>When you boot the system from the binary DVD or the boot ISO, Anaconda starts as a graphical
+application.</p>
+<p>At the <strong>Welcome to Red Hat Enterprise Linux 8</strong> screen, select the language to use during
+installation. This also sets the default language of the system after installation. Individual users can
+select their own account's preferred language after installation.</p>
+<p>Anaconda presents the <strong>Installation Summary</strong> window, the central place to customize parameters
+before beginning the installation.</p>
+<p><img alt="Summary installation" src="https://www.linuxprobe.com/links/RH134/images/installing/install-summary.png" /></p>
+<p>From this window, configure the installation parameters by selecting the icons in any order. Select
+an item to view or edit. In any item, click <strong>Done</strong> to return to this central screen.</p>
+<p>Anaconda marks mandatory items with a triangle warning symbol and message. The orange status
+bar at the bottom of the screen reminds you that mandatory items remain to be completed before
+the installation can begin.</p>
+<p>Complete the following items as needed:</p>
+<ul>
+<li>
+<p><strong>Keyboard</strong> - Add additional keyboard layouts.</p>
+</li>
+<li>
+<p><strong>Language Support</strong> - Select additional languages to install.</p>
+</li>
+<li>
+<p><strong>Time &amp; Date</strong> - Select the system's location city by clicking on the interactive map, or select it
+from the drop-down list. Specify the local time zone even when using Network Time Protocol (NTP).</p>
+</li>
+<li>
+<p><strong>Installation Source</strong> - Provide the source package location that Anaconda needs for installation.
+If using the binary DVD, the installation source field already refers to the DVD.</p>
+</li>
+<li>
+<p><strong>Software Selection</strong> - Select the base environment to install, plus any additional add-ons. The
+<strong>Minimal Install</strong> environment installs only the essential packages to run Red Hat Enterprise Linux.</p>
+</li>
+<li>
+<p><strong>Installation Destination</strong> - Select and partition the disks onto which Red Hat Enterprise Linux will
+install. This item expects an administrator to comprehend partitioning schemes and file system
+selection criteria. The default radio button for automatic partitioning allocates the selected
+storage devices using all available space.</p>
+</li>
+<li>
+<p><strong>KDUMP</strong> - Kdump is a kernel feature that collects system memory contents when the kernel
+crashes. Red Hat engineers can analyze a kdump to identify the cause of a crash. Use this
+Anaconda item to enable or disable Kdump.</p>
+</li>
+<li>
+<p><strong>Network &amp; Host Name</strong> - Detected network connections list on the left. Select a connection to
+display its details. To configure the selected network connection, click <strong>Configure</strong>.</p>
+</li>
+<li>
+<p><strong>SECURITY POLICY</strong> - By activating a security policy profile, such as the Payment Card Industry
+Data Security Standard (PCI DSS) profile, Anaconda applies restrictions and recommendations,
+defined by the selected profile, during installation.</p>
+</li>
+<li>
+<p><strong>System Purpose</strong> - A new installation feature that allocates active system entitlements to match
+the intended system use.</p>
+</li>
+</ul>
+<p>After completing the installation configuration, and resolving all warnings, click <strong>Begin Installation</strong>.
+Clicking <strong>Quit</strong> aborts the installation without applying any changes to the system.</p>
+<p>While the system is installing, complete the following items when they display:</p>
+<ul>
+<li>
+<p><strong>Root Password</strong> - The installation program prompts to set a root password. The final stage of
+the installation process will not continue until you define a root password.</p>
+</li>
+<li>
+<p><strong>User Creation</strong> - Create an optional non-root account. Maintaining a local, general use account is
+a recommended practice. Accounts can also be created after the installation is complete.</p>
+</li>
+</ul>
+<p>Click <strong>Reboot</strong> when the installation is done. Anaconda displays the <strong>Initial Setup</strong> screen, if a
+graphical desktop was installed. Accept the license information and optionally register the system
+with the subscription manager. You may skip system registration, and perform it later.</p>
+<p><strong>Troubleshooting the Installation</strong></p>
+<p>During a Red Hat Enterprise Linux 8 installation, Anaconda provides two virtual consoles. The first
+has five windows provided by the <strong>tmux</strong> software terminal multiplexer. You can access that console
+with <strong>Ctrl+Alt+F1</strong>. The second virtual console, which displays by default, shows the Anaconda
+graphical interface. You can access it with <strong>Ctrl+Alt+F6</strong>.</p>
+<p>In the first virtual console, <strong>tmux</strong> provides a shell prompt in the second window. You may use it
+to enter commands to inspect and troubleshoot the system while the installation continues. The
+other windows provide diagnostic messages, logs and other information.</p>
+<p>The following table lists the keystroke combinations to access the virtual consoles and the <strong>tmux</strong>
+windows. For <strong>tmux</strong>, the keyboard shortcuts are performed in two actions: press and release
+<strong>Ctrl+b</strong>, then press the number key of the window you want to access. With <strong>tmux</strong>, you can also
+use <strong>Alt+Tab</strong> to rotate the current focus between the windows.</p>
+<table>
+<thead>
+<tr>
+<th>KEY SEQUENCE</th>
+<th>CONTENTS</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ctrl+Alt+F1</td>
+<td>Access the tmux terminal multiplexer.</td>
+</tr>
+<tr>
+<td>Ctrl+b 1</td>
+<td>When in tmux, access the main information page for the installation process.</td>
+</tr>
+<tr>
+<td>Ctrl+b 2</td>
+<td>When in tmux, provide a root shell. Anaconda stores the installation log files in the /tmp file.</td>
+</tr>
+<tr>
+<td>Ctrl+b 3</td>
+<td>When in tmux, display the contents of the /tmp/anaconda.log file.</td>
+</tr>
+<tr>
+<td>Ctrl+b 4</td>
+<td>When in tmux, display the contents of the /tmp/storage.log file.</td>
+</tr>
+<tr>
+<td>Ctrl+b 5</td>
+<td>When in tmux, display the contents of the /tmp/program.log file.</td>
+</tr>
+<tr>
+<td>Ctrl+Alt+F6</td>
+<td>Access the Anaconda graphical interface.</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition info">
+<p class="admonition-title">NOTE</p>
+<p>For compatibility with earlier Red Hat Enterprise Linux versions, the virtual consoles
+from <strong>Ctrl+Alt+F2</strong> through <strong>Ctrl+Alt+F5</strong> also present root shells during
+installation.</p>
+</div>
+<h3 id="automating-installation-with-kickstart">AUTOMATING INSTALLATION WITH KICKSTART<a class="headerlink" href="#automating-installation-with-kickstart" title="Permanent link">&para;</a></h3>
+<h4 id="creating-a-kickstart-profile">CREATING A KICKSTART PROFILE<a class="headerlink" href="#creating-a-kickstart-profile" title="Permanent link">&para;</a></h4>
+<p>You can automate the installation of Red Hat Enterprise Linux using a feature called Kickstart.
+Using Kickstart, you specify everything Anaconda needs to complete an installation, including
+disk partitioning, network interface configuration, package selection, and other parameters, in a
+Kickstart text file. By referencing the text file, Anaconda performs the installation without further
+user interaction.</p>
+<div class="admonition info">
+<p class="admonition-title">NOTE</p>
+<p>Kickstart in Red Hat Enterprise Linux is similar to the Jumpstart facility in Oracle
+Solaris, or to using an unattended Setup answer file for Microsoft Windows.</p>
+</div>
+<p>Kickstart files begin with a list of commands that define how to install the target machine. Lines
+starting with <strong>#</strong> characters are comments to be ignored by the installer. Additional sections begin
+with a directive, recognized by a <strong>%</strong> first character, and end on a line with the <strong>%end</strong> directive.</p>
+<p>The <strong>%packages</strong> section specifies the software to be installed on the target system. Specify
+individual packages by name (without versions). Package groups, specified by name or ID, are
+recognized by beginning them with an @ character. Environment groups (groups of package
+groups) are recognized by beginning them with the @^ characters. Specify modules, streams, and
+profiles with @module:stream/profile syntax.</p>
+<p>Groups have mandatory, default, and optional components. Normally, Kickstart installs mandatory
+and default components. To exclude a package or package group from installation, precede it
+with a - character. However, excluded packages or package groups may still install if they are
+mandatory dependencies of other requested packages.</p>
+<p>A Kickstart configuration commonly uses two additional sections, <strong>%pre</strong> and <strong>%post</strong>, which contain
+shell scripting commands that further configure the system. The <strong>%pre</strong> script is executed before
+any disk partitioning is done. Typically, this section is used only if actions are required to recognize
+or initialize a device before disk partitioning. The <strong>%post</strong> script is executed after the installation is
+otherwise completed.</p>
+<p>You must specify the primary Kickstart commands before the <strong>%pre, %post</strong>, and <strong>%packages</strong>
+sections, but otherwise, you can place these sections in any order in the file.</p>
+<h4 id="kickstart-file-commands">KICKSTART FILE COMMANDS<a class="headerlink" href="#kickstart-file-commands" title="Permanent link">&para;</a></h4>
+<p><strong>Installation Commands</strong></p>
+<p>Define the installation source and how to perform the installation. Each is followed by an example.</p>
+<ul>
+<li><strong>url</strong>: Specifies the URL pointing to the installation media.</li>
+</ul>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>url --url=&quot;http://classroom.example.com/content/rhel8.0/x86_64/dvd/&quot;
+</code></pre></div>
+<strong>repo</strong>: Specifies where to find additional packages for installation. This option must point to a valid <strong>yum</strong> repository.</p>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>repo --name=&quot;appstream&quot; --baseurl=http://classroom.example.com/content/rhel8.0/x86_64/dvd/AppStream/
+</code></pre></div>
+<strong>text</strong>: Forces a text mode install.</p>
+<ul>
+<li><strong>vnc</strong>: Allows the graphical installation to be viewed remotely over VNC.</li>
+</ul>
+<p><code>vnc --password=redhat</code></p>
+<p><strong>Partitioning Commands</strong></p>
+<p>Define the devices and partitioning scheme to be used.</p>
+<ul>
+<li><strong>clearpart</strong>: Removes partitions from the system prior to creation of new partitions. By default,
+no partitions are removed.</li>
+</ul>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>clearpart --all --drives=sda,sdb --initlabel
+</code></pre></div>
+<strong>part</strong>: Specifies the size, format, and name of a partition.</p>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>part /home --fstype=ext4 --label=homes --size=4096 --maxsize=8192 --grow
+</code></pre></div>
+<strong>autopart</strong>: Automatically creates a root partition, a swap partition, and an appropriate boot
+partition for the architecture. On large enough drives, this also creates a /home partition.</p>
+<ul>
+<li><strong>ignoredisk</strong>: Controls Anaconda's access to disks attached to the system.</li>
+</ul>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>ignoredisk --drives=sdc
+</code></pre></div>
+<strong>bootloader</strong>: Defines where to install the bootloader.</p>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>bootloader --location=mbr --boot-drive=sda
+</code></pre></div>
+<strong>volgroup, logvol</strong>: Creates LVM volume groups and logical volumes.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>part pv.01 --size=8192
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>volgroup myvg pv.01
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>logvol / --vgname=myvg --fstype=xfs --size=2048 --name=rootvol --grow
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>logvol /var --vgname=myvg --fstype=xfs --size=4096 --name=varvol
+</code></pre></div>
+<ul>
+<li><strong>zerombr</strong>: Initialize disks whose formatting is unrecognized.</li>
+</ul>
+<p><strong>Network Commands</strong></p>
+<p>Define the network features used by the host.</p>
+<ul>
+<li><strong>network</strong>: Configures network information for target system. Activates network devices in
+installer environment.</li>
+</ul>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>network --device=eth0 --bootproto=dhcp
+</code></pre></div>
+<strong>firewall</strong>: Defines the firewall configuration for the target system.</p>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>firewall --enabled --service=ssh,http
+</code></pre></div>
+<strong>Location and Security Commands</strong></p>
+<p>Configure settings related to security, language, and regions.</p>
+<ul>
+<li><strong>lang</strong>: Sets the language to use during installation and the default language of the installed
+system. Required.</li>
+</ul>
+<p>lang en_US.UTF-8</p>
+<ul>
+<li><strong>keyboard</strong>: Sets the system keyboard type. Required.</li>
+</ul>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>keyboard --vckeymap=us --xlayouts=&#39;&#39;
+</code></pre></div>
+<strong>timezone</strong>: Defines the timezone, NTP servers, and whether the hardware clock uses UTC.</p>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>timezone --utc --ntpservers=time.example.com Europe/Amsterdam
+</code></pre></div>
+<strong>authselect</strong>: Sets up authentication options. Options recognized by <strong>authselect</strong> are valid for this command. See authselect(8).</p>
+<ul>
+<li><strong>rootpw</strong>: Defines the initial <strong>root</strong> password.</li>
+</ul>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>rootpw --plaintext redhat
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>or
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>rootpw --iscrypted $6$KUnFfrTzO8jv.PiH$YlBbOtXBkWzoMuRfb0.SpbQ....XDR1UuchoMG1
+</code></pre></div>
+<strong>selinux</strong>: Sets the SELinux mode for the installed system.</p>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>selinux --enforcing
+</code></pre></div>
+<strong>services</strong>: Modifies the default set of services to run under the default <strong>systemd</strong> target.</p>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>services --disabled=network,iptables,ip6tables --enabled=NetworkManager,firewalld
+</code></pre></div>
+<strong>group, user</strong>: Create a local group or user on the system.</p>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>group --name=admins --gid=10001
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>user --name=jdoe --gecos=&quot;John Doe&quot; --groups=admins --password=changeme --
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>plaintext
+</code></pre></div>
+<strong>Miscellaneous Commands</strong></p>
+<p>Configure miscellaneous items related to logging during the installation and the host power state
+at completion.</p>
+<ul>
+<li><strong>logging</strong>: This command defines how Anaconda will perform logging during the installation.</li>
+</ul>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>logging --host=loghost.example.com --level=info
+</code></pre></div>
+<strong>firstboot</strong>: If enabled, the Setup Agent starts the first time the system boots. The initial-setup
+package must be installed.</p>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>firstboot --disabled
+</code></pre></div>
+<strong>reboot, poweroff, halt</strong>: Specify the final action to take when the installation completes.</p>
+<div class="admonition info">
+<p class="admonition-title">NOTE</p>
+<p>The <strong>ksverdiff</strong> utility from the pykickstart package is useful for identifying
+changes in Kickstart file syntax between two versions of Red Hat Enterprise Linux or
+Fedora.</p>
+<p>For example, <strong>ksverdiff -f RHEL7 -t RHEL8</strong> identifies changes in syntax from
+RHEL 7 to RHEL 8. Available versions are listed in the top of the file <strong>/usr/lib/
+python3.6/site-packages/pykickstart/version.py</strong>.</p>
+</div>
+<h4 id="example-kickstart-file">EXAMPLE KICKSTART FILE<a class="headerlink" href="#example-kickstart-file" title="Permanent link">&para;</a></h4>
+<p>The first part of the file consists of the installation commands, such as disk partitioning and
+installation source.</p>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>#version=RHEL8
+<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>ignoredisk --only-use=vda
+<a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a># System bootloader configuration
+<a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a>bootloader --append=&quot;console=ttyS0 console=ttyS0,115200n8 no_timer_check
+<a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a>net.ifnames=0 crashkernel=auto&quot; --location=mbr --timeout=1 --boot-drive=vda
+<a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a># Clear the Master Boot Record
+<a id="__codelineno-17-7" name="__codelineno-17-7" href="#__codelineno-17-7"></a>zerombr
+<a id="__codelineno-17-8" name="__codelineno-17-8" href="#__codelineno-17-8"></a># Partition clearing information
+<a id="__codelineno-17-9" name="__codelineno-17-9" href="#__codelineno-17-9"></a>clearpart --all --initlabel
+<a id="__codelineno-17-10" name="__codelineno-17-10" href="#__codelineno-17-10"></a># Use text mode install
+<a id="__codelineno-17-11" name="__codelineno-17-11" href="#__codelineno-17-11"></a>text
+<a id="__codelineno-17-12" name="__codelineno-17-12" href="#__codelineno-17-12"></a>repo --name=&quot;appstream&quot; --baseurl=http://classroom.example.com/content/rhel8.0/
+<a id="__codelineno-17-13" name="__codelineno-17-13" href="#__codelineno-17-13"></a>x86_64/dvd/AppStream/
+<a id="__codelineno-17-14" name="__codelineno-17-14" href="#__codelineno-17-14"></a># Use network installation
+<a id="__codelineno-17-15" name="__codelineno-17-15" href="#__codelineno-17-15"></a>url --url=&quot;http://classroom.example.com/content/rhel8.0/x86_64/dvd/&quot;
+<a id="__codelineno-17-16" name="__codelineno-17-16" href="#__codelineno-17-16"></a># Keyboard layouts
+<a id="__codelineno-17-17" name="__codelineno-17-17" href="#__codelineno-17-17"></a># old format: keyboard us
+<a id="__codelineno-17-18" name="__codelineno-17-18" href="#__codelineno-17-18"></a># new format:
+<a id="__codelineno-17-19" name="__codelineno-17-19" href="#__codelineno-17-19"></a>keyboard --vckeymap=us --xlayouts=&#39;&#39;
+<a id="__codelineno-17-20" name="__codelineno-17-20" href="#__codelineno-17-20"></a># System language
+<a id="__codelineno-17-21" name="__codelineno-17-21" href="#__codelineno-17-21"></a>lang en_US.UTF-8
+<a id="__codelineno-17-22" name="__codelineno-17-22" href="#__codelineno-17-22"></a># Root password
+<a id="__codelineno-17-23" name="__codelineno-17-23" href="#__codelineno-17-23"></a>rootpw --plaintext redhat
+<a id="__codelineno-17-24" name="__codelineno-17-24" href="#__codelineno-17-24"></a># System authorization information
+<a id="__codelineno-17-25" name="__codelineno-17-25" href="#__codelineno-17-25"></a>auth --enableshadow --passalgo=sha512
+<a id="__codelineno-17-26" name="__codelineno-17-26" href="#__codelineno-17-26"></a># SELinux configuration
+<a id="__codelineno-17-27" name="__codelineno-17-27" href="#__codelineno-17-27"></a>selinux --enforcing
+<a id="__codelineno-17-28" name="__codelineno-17-28" href="#__codelineno-17-28"></a>firstboot --disable
+<a id="__codelineno-17-29" name="__codelineno-17-29" href="#__codelineno-17-29"></a># Do not configure the X Window System
+<a id="__codelineno-17-30" name="__codelineno-17-30" href="#__codelineno-17-30"></a>skipx
+<a id="__codelineno-17-31" name="__codelineno-17-31" href="#__codelineno-17-31"></a># System services
+<a id="__codelineno-17-32" name="__codelineno-17-32" href="#__codelineno-17-32"></a>services --disabled=&quot;kdump,rhsmcertd&quot; --enabled=&quot;sshd,rngd,chronyd&quot;
+<a id="__codelineno-17-33" name="__codelineno-17-33" href="#__codelineno-17-33"></a># System timezone
+<a id="__codelineno-17-34" name="__codelineno-17-34" href="#__codelineno-17-34"></a>timezone America/New_York --isUtc
+<a id="__codelineno-17-35" name="__codelineno-17-35" href="#__codelineno-17-35"></a># Disk partitioning information
+<a id="__codelineno-17-36" name="__codelineno-17-36" href="#__codelineno-17-36"></a>part / --fstype=&quot;xfs&quot; --ondisk=vda --size=10000
+</code></pre></div>
+The second part contains the <strong>%packages</strong> section, detailing which packages and packageshould be installed, and which packages should not be installed.</p>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>%packages
+<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>@core
+<a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a>chrony
+<a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a>cloud-init
+<a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a>dracut-config-generic
+<a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a>dracut-norescue
+<a id="__codelineno-18-7" name="__codelineno-18-7" href="#__codelineno-18-7"></a>firewalld
+<a id="__codelineno-18-8" name="__codelineno-18-8" href="#__codelineno-18-8"></a>grub2
+<a id="__codelineno-18-9" name="__codelineno-18-9" href="#__codelineno-18-9"></a>kernel
+<a id="__codelineno-18-10" name="__codelineno-18-10" href="#__codelineno-18-10"></a>rsync
+<a id="__codelineno-18-11" name="__codelineno-18-11" href="#__codelineno-18-11"></a>tar
+<a id="__codelineno-18-12" name="__codelineno-18-12" href="#__codelineno-18-12"></a>-plymouth
+<a id="__codelineno-18-13" name="__codelineno-18-13" href="#__codelineno-18-13"></a>
+<a id="__codelineno-18-14" name="__codelineno-18-14" href="#__codelineno-18-14"></a>%end
+</code></pre></div>
+The last part contains any <strong>%pre</strong> and <strong>%post</strong> installation scripts.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>%post --erroronfail
+<a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a># For cloud images, &#39;eth0&#39; _is_ the predictable device name, since
+<a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a># we don&#39;t want to be tied to specific virtual (!) hardware
+<a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a>rm -f /etc/udev/rules.d/70*
+<a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a>ln -s /dev/null /etc/udev/rules.d/80-net-name-slot.rules
+<a id="__codelineno-19-6" name="__codelineno-19-6" href="#__codelineno-19-6"></a># simple eth0 config, again not hard-coded to the build hardware
+<a id="__codelineno-19-7" name="__codelineno-19-7" href="#__codelineno-19-7"></a>cat &gt; /etc/sysconfig/network-scripts/ifcfg-eth0 &lt;&lt; EOF
+<a id="__codelineno-19-8" name="__codelineno-19-8" href="#__codelineno-19-8"></a>DEVICE=&quot;eth0&quot;
+<a id="__codelineno-19-9" name="__codelineno-19-9" href="#__codelineno-19-9"></a>BOOTPROTO=&quot;dhcp&quot;
+<a id="__codelineno-19-10" name="__codelineno-19-10" href="#__codelineno-19-10"></a>ONBOOT=&quot;yes&quot;
+<a id="__codelineno-19-11" name="__codelineno-19-11" href="#__codelineno-19-11"></a>TYPE=&quot;Ethernet&quot;
+<a id="__codelineno-19-12" name="__codelineno-19-12" href="#__codelineno-19-12"></a>USERCTL=&quot;yes&quot;
+<a id="__codelineno-19-13" name="__codelineno-19-13" href="#__codelineno-19-13"></a>PEERDNS=&quot;yes&quot;
+<a id="__codelineno-19-14" name="__codelineno-19-14" href="#__codelineno-19-14"></a>IPV6INIT=&quot;no&quot;
+<a id="__codelineno-19-15" name="__codelineno-19-15" href="#__codelineno-19-15"></a>EOF
+<a id="__codelineno-19-16" name="__codelineno-19-16" href="#__codelineno-19-16"></a>%end
+</code></pre></div>
+<div class="admonition info">
+<p class="admonition-title">NOTE</p>
+<p>In a Kickstart file, missing required values cause the installer to interactively prompt
+for an answer or to abort the installation entirely.</p>
+</div>
+<h4 id="kickstart-installation-steps">KICKSTART INSTALLATION STEPS<a class="headerlink" href="#kickstart-installation-steps" title="Permanent link">&para;</a></h4>
+<p>To successfully automate installation of Red Hat Enterprise Linux, follow these steps:</p>
+<ol>
+<li>
+<p>Create a Kickstart file.</p>
+</li>
+<li>
+<p>Publish the Kickstart file to the installer.</p>
+</li>
+<li>
+<p>Boot Anaconda and point it to the Kickstart file.</p>
+</li>
+</ol>
+<h4 id="creating-a-kickstart-file">CREATING A KICKSTART FILE<a class="headerlink" href="#creating-a-kickstart-file" title="Permanent link">&para;</a></h4>
+<p>Use either of these methods to create a Kickstart file:</p>
+<ul>
+<li>
+<p>Use the Kickstart Generator website.</p>
+</li>
+<li>
+<p>Use a text editor.</p>
+</li>
+</ul>
+<p>The Kickstart Generator website at https://access.redhat.com/labs/kickstartconfig/ presents dialog boxes for user inputs, and creates a Kickstart directives text file with the user's choices. Each dialog box corresponds to the configurable items in the Anaconda installer.</p>
+<p><img alt="kickstarter generator" src="https://www.linuxprobe.com/links/RH134/images/kickstart/kickstart-generator-1.png" /></p>
+<div class="admonition info">
+<p class="admonition-title">NOTE</p>
+<p>At the time of writing, the Kickstart Generator website did not provide Red Hat
+Enterprise Linux 8 as a menu option. Red Hat Enterprise Linux 8 Beta was a valid
+selection.</p>
+</div>
+<p>Creating a Kickstart file from scratch is typically too complex, but editing an existing Kickstart file
+is common and useful. Every installation creates a <strong>/root/anaconda-ks.cfg</strong> file containing the
+Kickstart directives used in the installation. This file makes a good starting point when creating
+Kickstart file manually.</p>
+<p><strong>ksvalidator</strong> is a utility that checks for syntax errors in a Kickstart file. It ensures that keywords
+and options are properly used, but it does not validate that URL paths, individual packages, or
+groups, nor any part of <strong>%post</strong> or <strong>%pre</strong> scripts will succeed. For instance, if the <strong>firewall --</strong>
+<strong>disabled</strong> directive is misspelled, <strong>ksvalidator</strong> could produce one of the following errors:</p>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>[user@host ~]$ ksvalidator /tmp/anaconda-ks.cfg
+<a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>The following problem occurred on line 10 of the kickstart file:
+<a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a>
+<a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a>Unknown command: frewall
+<a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a>
+<a id="__codelineno-20-6" name="__codelineno-20-6" href="#__codelineno-20-6"></a>[user@host ~]$ ksvalidator /tmp/anaconda-ks.cfg
+<a id="__codelineno-20-7" name="__codelineno-20-7" href="#__codelineno-20-7"></a>The following problem occurred on line 10 of the kickstart file:
+<a id="__codelineno-20-8" name="__codelineno-20-8" href="#__codelineno-20-8"></a>
+<a id="__codelineno-20-9" name="__codelineno-20-9" href="#__codelineno-20-9"></a>no such option: --dsabled
+</code></pre></div>
+The pykickstart package provides <strong>ksvalidator</strong>.</p>
+<h4 id="publish-the-kickstart-file-to-anaconda">PUBLISH THE KICKSTART FILE TO ANACONDA<a class="headerlink" href="#publish-the-kickstart-file-to-anaconda" title="Permanent link">&para;</a></h4>
+<p>Make the Kickstart file available to the installer by placing it in one of these locations:</p>
+<ul>
+<li>A network server available at install time using FTP, HTTP, or NFS.</li>
+<li>An available USB disk or CD-ROM.</li>
+<li>A local hard disk on the system to be installed.</li>
+</ul>
+<p>The installer must access the Kickstart file to begin an automated installation. The most common
+automation method uses a network server such as an FTP, web, or NFS server. Network servers
+facilitate Kickstart file maintenance because changes can be made once, and then immediately
+used for multiple future installations.</p>
+<p>Providing Kickstart files on USB or CD-ROM is also convenient. The Kickstart file can be
+embedded on the boot media used to start the installation. However, when the Kickstart file is
+changed, you must generate new installation media.</p>
+<p>Providing the Kickstart file on a local disk allows you to quickly rebuild a system.</p>
+<h4 id="boot-anaconda-and-point-it-to-the-kickstart-file">BOOT ANACONDA AND POINT IT TO THE KICKSTART FILE<a class="headerlink" href="#boot-anaconda-and-point-it-to-the-kickstart-file" title="Permanent link">&para;</a></h4>
+<p>Once a Kickstart method is chosen, the installer is told where to locate the Kickstart file by passing
+the <strong>inst.ks=LOCATION</strong> parameter to the installation kernel. Some examples:</p>
+<ul>
+<li>
+<p>inst.ks=http://server/dir/file</p>
+</li>
+<li>
+<p>inst.ks=ftp://server/dir/file</p>
+</li>
+<li>
+<p>inst.ks=nfs:server:/dir/file</p>
+</li>
+<li>
+<p>inst.ks=hd:device:/dir/file</p>
+</li>
+<li>
+<p>inst.ks=cdrom:device</p>
+</li>
+</ul>
+<p><img alt="Kickstart" src="https://www.linuxprobe.com/links/RH134/images/kickstart/boot-kickstart.png" /></p>
+<p>For virtual machine installations using the <strong>Virtual Machine Manager</strong> or <strong>virt-manager</strong>, the
+Kickstart URL can be specified in a box under <strong>URL Options</strong>. When installing physical machines,
+boot using installation media and press the <strong>Tab</strong> key to interrupt the boot process. Add an
+<strong>inst.ks=LOCATION</strong> parameter to the installation kernel.</p>
+<h3 id="installing-and-configuring-virtual-machines">INSTALLING AND CONFIGURING VIRTUAL MACHINES<a class="headerlink" href="#installing-and-configuring-virtual-machines" title="Permanent link">&para;</a></h3>
+<h4 id="introducing-kvm-virtualization">INTRODUCING KVM VIRTUALIZATION<a class="headerlink" href="#introducing-kvm-virtualization" title="Permanent link">&para;</a></h4>
+<p>Virtualization is a feature that allows a single physical machine to be divided into multiple virtual
+machines (VM), each of which can run an independent operating system.</p>
+<p>Red Hat Enterprise Linux 8 supports KVM (Kernel-based Virtual Machine), a full virtualization
+solution built into the standard Linux kernel. KVM can run multiple Windows and Linux guest
+operating systems.</p>
+<p><img alt="kvm virtualization" src="https://www.linuxprobe.com/links/RH134/images/installing/configure-kvm.svg" /></p>
+<p>In Red Hat Enterprise Linux, manage KVM with the <strong>virsh</strong> command or with Cockpit's Virtual
+Machines tool.</p>
+<p>KVM virtual machine technology is available across all Red Hat products, from standalone physical
+instances of Red Hat Enterprise Linux to the Red Hat OpenStack Platform:</p>
+<ul>
+<li>
+<p>Physical hardware systems run Red Hat Enterprise Linux to provide KVM virtualization. Red Hat
+Enterprise Linux is typically a thick host, a system that supports VMs while also providing other
+local and network services, applications, and management functions.</p>
+</li>
+<li>
+<p>Red Hat Virtualization (RHV) provides a centralized web interface that allows administrators to
+manage an entire virtual infrastructure. It includes advanced features such as KVM migration,
+redundancy, and high availability. A Red Hat Virtualization Hypervisor is a tuned version of
+Red Hat Enterprise Linux dedicated to the singular purpose of provisioning and supporting VMs.</p>
+</li>
+<li>
+<p>Red Hat OpenStack Platform (RHOSP) provides the foundation to create, deploy, and scale a
+public or a private cloud.</p>
+</li>
+</ul>
+<p>Red Hat supports virtual machines running these operating systems:</p>
+<ul>
+<li>Red Hat Enterprise Linux 6 and later</li>
+<li>Microsoft Windows 10 and later</li>
+<li>Microsoft Windows Server 2016 and later</li>
+</ul>
+<h4 id="configuring-a-red-hat-enterprise-linux-physical-system-as-a-virtualization-host">CONFIGURING A RED HAT ENTERPRISE LINUX PHYSICAL SYSTEM AS A VIRTUALIZATION HOST<a class="headerlink" href="#configuring-a-red-hat-enterprise-linux-physical-system-as-a-virtualization-host" title="Permanent link">&para;</a></h4>
+<p>Administrators can configure a Red Hat Enterprise Linux system as a virtualization host,
+appropriate for development, testing, training, or when needing to work in multiple operating
+systems at the same time.</p>
+<p><strong>Installing the Virtualization Tools</strong></p>
+<p>Install the virt Yum module to prepare a system to become a virtualization host.</p>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>[root@host ~]# yum module list virt
+<a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a>Name       Stream           Profiles          Summary
+<a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a> virt     rhel [d][e]       common [d]        Virtualizationmodule
+<a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a>
+<a id="__codelineno-21-5" name="__codelineno-21-5" href="#__codelineno-21-5"></a>Hint: [d]efault, [e]nabled, [x]disabled, [i]nstalled
+<a id="__codelineno-21-6" name="__codelineno-21-6" href="#__codelineno-21-6"></a>[root@host ~]# yum module install virt
+<a id="__codelineno-21-7" name="__codelineno-21-7" href="#__codelineno-21-7"></a>...output omitted...
+</code></pre></div>
+<strong>Verifying the System Requirements</strong></p>
+<p>KVM requires either an Intel processor with the Intel VT-x and Intel 64 extensions for x86-
+based systems or an AMD processor with the AMD-V and the AMD64 extensions. To verify your
+hardware and check the system requirements, use the <strong>virt-host-validate</strong> command.</p>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>[root@host ~]# virt-host-validate
+<a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a>QEMU:     Checking for hardware virtualization         : PASS
+<a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a>QEMU:     Checking if device /dev/kvm exists           : PASS
+<a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a>QEMU:     Checking if device /dev/kvm is accessible    : PASS
+<a id="__codelineno-22-5" name="__codelineno-22-5" href="#__codelineno-22-5"></a>QEMU:     Checking if device /dev/vhost-net exists     : PASS
+</code></pre></div>
+The system must pass all of the validation items in order to be able to be a KVM host.</p>
+<h4 id="managing-virtual-machines-with-cockpit">MANAGING VIRTUAL MACHINES WITH COCKPIT<a class="headerlink" href="#managing-virtual-machines-with-cockpit" title="Permanent link">&para;</a></h4>
+<p>The virt Yum module provides the <strong>virsh</strong> command to manage your virtual machines. The Cockpit
+tool provides a web console interface for KVM management and virtual machine creation.</p>
+<p><img alt="Cockpit" src="https://www.linuxprobe.com/links/RH134/images/installing/configure-cockpit-console.png" /></p>
+<p>Install the cockpit-machines package to add the <strong>Virtual Machines</strong> menu to Cockpit.</p>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>[root@host ~]# yum install cockpit-machines
+</code></pre></div>
+If Cockpit is not already running, start and enable it.</p>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>[root@host ~]# systemctl enable --now cockpit.socket
+</code></pre></div>
+To create a new virtual machine with Cockpit, access the <strong>Virtual Machines</strong> menu in the Cockpit
+web interface. From there, click <strong>Create VM</strong> and enter the VM configuration in the <strong>Create New
+Virtual Machine</strong> window.</p>
+<p><img alt="Cockpit2" src="https://www.linuxtechi.com/wp-content/uploads/2021/11/Create-New-Virtual-Machine-Cockpit.png" /></p>
+<ul>
+<li>
+<p><strong>Name</strong> sets a domain name for the virtual machine configuration. This name is unrelated to the
+network host name you give the system in the installed VM.</p>
+</li>
+<li>
+<p><strong>Installation Source Type</strong> is the method for retrieving the installation ISO file. Choices include
+the local file system, or an HTTPS, FTP, or NFS URL.</p>
+</li>
+<li>
+<p><strong>Installation Source</strong> provides the path to the installation source.</p>
+</li>
+<li>
+<p><strong>OS Vendor</strong> and <strong>Operating System</strong> indicates the virtual machine's operating system. The
+virtualization layer presents hardware emulation compatible with the operating system chosen.</p>
+</li>
+<li>
+<p><strong>Memory</strong> is the amount of RAM to make available to the new VM.</p>
+</li>
+<li>
+<p><strong>Storage Size</strong> is the disk size to give the new VM. Associate additional disks with the VM after
+installation.</p>
+</li>
+<li>
+<p><strong>Immediately Start VM</strong> indicates whether the VM should immediately start after you click
+<strong>Create</strong>.</p>
+</li>
+</ul>
+<p>Click <strong>Create</strong> to create the VM and <strong>Install</strong> to start the operating system installation. Cockpit
+displays the VM console from which you can install the system.</p>
+<h3 id="summary">SUMMARY<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h3>
+<p>In this chapter, you learned:</p>
+<ul>
+<li>
+<p>The RHEL 8 binary DVD includes Anaconda and all repositories required for installation.</p>
+</li>
+<li>
+<p>The RHEL 8 boot ISO includes the Anaconda installer, accessing repositories over the network
+during installation.</p>
+</li>
+<li>
+<p>The Kickstart system performs unattended installations.</p>
+</li>
+<li>
+<p>Kickstart files can be created using the Kickstart Generator website or by copying and editing <strong>/
+root/anaconda-ks.cfg</strong>.</p>
+</li>
+<li>
+<p>The virt Yum module provides the packages for a RHEL system to become a virtualization host.</p>
+</li>
+<li>
+<p>The cockpit-machines package adds the <strong>Virtual Machines</strong> menu to Cockpit.</p>
+</li>
+</ul>
+<h3 id="lab">LAB<a class="headerlink" href="#lab" title="Permanent link">&para;</a></h3>
+<p>pdf - 374</p>
+
+  <hr>
+<div class="md-source-file">
+  <small>
+    
+      Last update:
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">December 8, 2022</span>
+      
+    
+  </small>
+</div>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+          <a href="#" class="md-top md-icon" data-md-component="top" hidden>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+            Back to top
+          </a>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+    <nav class="md-footer__inner md-grid" aria-label="Footer" >
+      
+        
+        <a href="../netsec/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Managing Network Security" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Managing Network Security
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../Creview/" class="md-footer__link md-footer__link--next" aria-label="Next: Comprehensive Review" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Comprehensive Review
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2022 Divijesh Varma. All rights reserved.
+    </div>
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.instant", "navigation.tracking", "navigation.tabs", "navigation.tabs.sticky", "navigation.expand", "navigation.top", "navigation.sections", "content.tooltips", "header.autohide"], "search": "../../assets/javascripts/workers/search.16e2a7d4.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.5a2dcb6a.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="../../javascripts/feedback.js"></script>
+      
+    
+    
+  </body>
+</html>
